@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - run: npm run test:ui
+      - run: PYTHONPATH=native-host python3 native-host/translation_quality_regression.py
+      - name: Build release archives
+        run: |
+          mkdir -p dist
+          zip -X -q -r "dist/game-mail-summary-${GITHUB_REF_NAME}.xpi" \
+            manifest.json src ui icons README.md docs
+          git archive --format=zip \
+            --output "dist/thunderbird-bilingual-valve-mail-${GITHUB_REF_NAME}-source.zip" \
+            HEAD
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/game-mail-summary-${GITHUB_REF_NAME}.xpi" \
+            "dist/thunderbird-bilingual-valve-mail-${GITHUB_REF_NAME}-source.zip" \
+            --generate-notes \
+            --title "$GITHUB_REF_NAME"

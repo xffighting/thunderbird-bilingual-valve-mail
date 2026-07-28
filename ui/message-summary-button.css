@@ -1,0 +1,198 @@
+#game-mail-summary-inline-root {
+  all: initial;
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2147483647;
+  width: min(360px, calc(100vw - 28px));
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  pointer-events: none;
+}
+
+#game-mail-summary-inline-root *,
+#game-mail-summary-inline-root *::before,
+#game-mail-summary-inline-root *::after {
+  box-sizing: border-box;
+}
+
+#game-mail-summary-inline-root [hidden] {
+  display: none !important;
+}
+
+#game-mail-summary-inline-root .gms-summary-trigger {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  min-width: 44px;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid #0a84ff;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #0a84ff;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
+  cursor: pointer;
+  font: 600 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  pointer-events: auto;
+  user-select: none;
+}
+
+#game-mail-summary-inline-root .gms-summary-trigger:hover {
+  background: #0071e3;
+}
+
+#game-mail-summary-inline-root .gms-summary-trigger:focus-visible,
+#game-mail-summary-inline-root button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+#game-mail-summary-inline-root .gms-panel {
+  clear: both;
+  max-height: min(460px, calc(100vh - 64px));
+  margin-top: 8px;
+  overflow: auto;
+  border: 1px solid rgba(60, 60, 67, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+}
+
+#game-mail-summary-inline-root .gms-panel-header,
+#game-mail-summary-inline-root .gms-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+#game-mail-summary-inline-root .gms-panel-header {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(60, 60, 67, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+#game-mail-summary-inline-root .gms-panel-header strong {
+  font: 700 14px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#game-mail-summary-inline-root .gms-panel-footer {
+  border-top: 1px solid #e3e8ec;
+  justify-content: flex-end;
+}
+
+#game-mail-summary-inline-root .gms-icon-button,
+#game-mail-summary-inline-root .gms-refresh,
+#game-mail-summary-inline-root .gms-dingtalk {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  border: 1px solid rgba(60, 60, 67, 0.18);
+  border-radius: 8px;
+  color: #1d1d1f;
+  background: #f5f5f7;
+  cursor: pointer;
+  font: 600 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  user-select: none;
+}
+
+#game-mail-summary-inline-root .gms-icon-button {
+  width: 28px;
+  padding: 0;
+  font-size: 16px;
+}
+
+#game-mail-summary-inline-root .gms-refresh {
+  padding: 0 10px;
+}
+
+#game-mail-summary-inline-root .gms-dingtalk {
+  margin-right: auto;
+  padding: 0 10px;
+  color: #ffffff;
+  border-color: #0a84ff;
+  background: #0a84ff;
+}
+
+#game-mail-summary-inline-root .gms-dingtalk:disabled {
+  color: #8e8e93;
+  border-color: rgba(60, 60, 67, 0.14);
+  background: #e9e9ed;
+  cursor: default;
+}
+
+#game-mail-summary-inline-root .gms-icon-button:hover,
+#game-mail-summary-inline-root .gms-refresh:hover {
+  background: #eaf0f4;
+}
+
+#game-mail-summary-inline-root .gms-state {
+  margin: 10px;
+  padding: 8px;
+  border: 1px solid #d9e1e6;
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+#game-mail-summary-inline-root .gms-content {
+  padding: 2px 10px 10px;
+}
+
+#game-mail-summary-inline-root .gms-field {
+  padding: 9px 0;
+  border-top: 1px solid #edf1f4;
+}
+
+#game-mail-summary-inline-root .gms-field:first-child {
+  border-top: 0;
+}
+
+#game-mail-summary-inline-root .gms-label {
+  margin-bottom: 5px;
+  color: #26343b;
+  font-weight: 700;
+}
+
+#game-mail-summary-inline-root .gms-line {
+  margin: 2px 0;
+}
+
+#game-mail-summary-inline-root .gms-muted,
+#game-mail-summary-inline-root .gms-empty {
+  color: #52616a;
+}
+
+#game-mail-summary-inline-root .gms-points {
+  margin: 0;
+  padding-left: 20px;
+}
+
+#game-mail-summary-inline-root .gms-points li {
+  margin: 6px 0;
+}
+
+#game-mail-summary-inline-root .gms-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#game-mail-summary-inline-root .gms-chip {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 2px 7px;
+  border: 1px solid #d5dde2;
+  border-radius: 6px;
+  background: #f6f8fa;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mail summary icon">
+  <rect x="8" y="14" width="48" height="36" rx="6" fill="context-fill" fill-opacity="0.85"/>
+  <path d="M12 19l20 15 20-15" fill="none" stroke="context-stroke" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="46" cy="44" r="10" fill="context-stroke" fill-opacity="0.9"/>
+  <path d="M42 44h8M46 40v8" stroke="context-fill" stroke-width="3" stroke-linecap="round"/>
+</svg>

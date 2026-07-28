@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>销售邮件速览 / Sales Mail Brief</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="app-window">
+    <header class="titlebar">
+      <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="title-copy">
+        <h1>销售邮件速览</h1>
+        <p>Sales Mail Brief</p>
+      </div>
+      <div class="title-actions">
+        <button id="openOptions" class="secondary-button" type="button">设置</button>
+        <button id="refresh" class="primary-button" type="button">重新分析</button>
+      </div>
+    </header>
+
+    <section id="state" class="state" aria-live="polite">正在读取当前邮件 / Reading current email...</section>
+
+    <section id="summary" class="summary" hidden>
+      <article class="hero-card">
+        <div class="hero-heading">
+          <div>
+            <div class="eyebrow">当前判断 / Current assessment</div>
+            <h2 id="customerName">未匹配客户</h2>
+            <div id="customerMatch" class="subtle"></div>
+          </div>
+          <div class="status-stack">
+            <span id="importanceBadge" class="status-pill neutral">待评估</span>
+            <span id="orderBadge" class="status-pill neutral">状态未知</span>
+          </div>
+        </div>
+        <div id="brief" class="bilingual-block hero-brief"></div>
+      </article>
+
+      <div class="decision-grid">
+        <article class="card inquiry-card">
+          <div class="card-heading">
+            <div>
+              <div class="eyebrow">阀门询价</div>
+              <h3>Inquiry</h3>
+            </div>
+            <span id="inquiryConfidence" class="confidence-label"></span>
+          </div>
+          <div id="products" class="chips"></div>
+          <dl id="inquiryFacts" class="fact-list"></dl>
+          <div id="missingFields" class="missing-box" hidden></div>
+        </article>
+
+        <article class="card project-card">
+          <div class="card-heading">
+            <div>
+              <div class="eyebrow">项目信息</div>
+              <h3>Project</h3>
+            </div>
+            <span id="projectConfidence" class="confidence-label"></span>
+          </div>
+          <div id="projectBrief" class="bilingual-block"></div>
+          <div id="projects" class="candidate-list"></div>
+        </article>
+      </div>
+
+      <article class="card customer-card">
+        <div class="card-heading">
+          <div>
+            <div class="eyebrow">客户情报</div>
+            <h3>Customer intelligence</h3>
+          </div>
+          <span id="customerConfidence" class="confidence-label"></span>
+        </div>
+        <div id="customerBrief" class="bilingual-block"></div>
+        <div id="importanceReasons" class="reason-list"></div>
+        <div class="card-actions">
+          <button id="showCustomerBackground" class="secondary-button" type="button">查看客户背景</button>
+          <button id="openDingTalk" class="primary-button" type="button" disabled>打开钉钉</button>
+        </div>
+        <p id="dingtalkHint" class="hint"></p>
+      </article>
+
+      <details class="details-card">
+        <summary>完整邮件要点 / Full email key points</summary>
+        <div id="keyPointGroups" class="groups"></div>
+      </details>
+
+      <article class="card order-card">
+        <div class="eyebrow">成交或订单状态 / Deal or order status</div>
+        <div id="order" class="bilingual-block"></div>
+        <div id="evidence" class="evidence"></div>
+      </article>
+
+      <footer class="meta">
+        <span id="conversation"></span>
+        <span id="generated"></span>
+      </footer>
+    </section>
+
+    <section id="customerDrawer" class="drawer-backdrop" hidden>
+      <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+        <header class="drawer-header">
+          <div>
+            <div class="eyebrow">客户背景 / Customer background</div>
+            <h2 id="drawerTitle">客户资料</h2>
+          </div>
+          <button id="closeCustomerBackground" class="icon-button" type="button" aria-label="关闭">×</button>
+        </header>
+        <div class="drawer-content">
+          <div id="drawerMatch" class="match-box"></div>
+          <div id="drawerBackground" class="bilingual-block"></div>
+          <dl id="drawerFacts" class="fact-list"></dl>
+          <div>
+            <div class="section-label">重要度依据 / Importance reasons</div>
+            <div id="drawerReasons" class="reason-list"></div>
+          </div>
+          <div id="drawerTags" class="chips"></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

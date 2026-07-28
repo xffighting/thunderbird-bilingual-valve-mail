@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>销售邮件速览设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="settings-window">
+    <header class="settings-header">
+      <div>
+        <div class="eyebrow">Game Mail Conversation Summary</div>
+        <h1>销售邮件速览设置</h1>
+        <p>所有邮件分析和客户匹配均在本机完成。</p>
+      </div>
+      <button id="saveTop" class="primary-button" type="button">保存设置</button>
+    </header>
+
+    <form id="options-form">
+      <section class="settings-card">
+        <div class="section-heading">
+          <div>
+            <h2>分析范围</h2>
+            <p>控制每次生成摘要时读取的会话范围。</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <label>
+            <span>最多分析邮件数 <small>Max messages per thread</small></span>
+            <input id="maxMessages" type="number" min="5" max="100" step="1">
+          </label>
+          <label>
+            <span>每封邮件读取字符数 <small>Body character limit</small></span>
+            <input id="bodyLimitPerMessage" type="number" min="1000" max="50000" step="1000">
+          </label>
+          <label>
+            <span>结构化要点条数 <small>Structured key points</small></span>
+            <input id="keyPointLimit" type="number" min="3" max="20" step="1">
+          </label>
+        </div>
+        <label class="checkbox-row">
+          <input id="includeSubFolders" type="checkbox">
+          <span>搜索同一文件夹的子文件夹 <small>Include subfolders</small></span>
+        </label>
+      </section>
+
+      <section class="settings-card">
+        <div class="section-heading">
+          <div>
+            <h2>正文逐行中英对照</h2>
+            <p>英文原文保留，中文译文紧贴下一行显示。</p>
+          </div>
+          <button id="checkTranslator" class="secondary-button" type="button">检查离线翻译</button>
+        </div>
+        <label class="checkbox-row">
+          <input id="inlineTranslationEnabled" type="checkbox">
+          <span>打开邮件时自动翻译英文正文 <small>Auto translate English lines</small></span>
+        </label>
+        <label class="checkbox-row">
+          <input id="inlineTranslationIncludeQuoted" type="checkbox">
+          <span>同时翻译引用的历史邮件 <small>Include quoted history</small></span>
+        </label>
+        <p id="translatorStatus" class="hint" role="status">等待检查本机离线翻译组件。</p>
+        <div class="privacy-note">
+          <strong>行业术语与隐私边界</strong>
+          <span>译文先经过良固阀门术语库保护，再由本机 Argos Translate 生成；邮件正文不发送到 Google、DeepL、OpenAI 或其他云端服务。</span>
+        </div>
+      </section>
+
+      <section class="settings-card">
+        <div class="section-heading">
+          <div>
+            <h2>识别我方邮箱</h2>
+            <p>用于区分我方与客户。每行填写一个邮箱或公司域名。</p>
+          </div>
+        </div>
+        <div class="form-grid two-column">
+          <label>
+            <span>我方公司域名 <small>Own domains</small></span>
+            <textarea id="ownDomains" rows="4" placeholder="lianggu.com&#10;example.cn"></textarea>
+          </label>
+          <label>
+            <span>我方个人邮箱 <small>Own email addresses</small></span>
+            <textarea id="ownEmails" rows="4" placeholder="sales@example.com"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="settings-card">
+        <div class="section-heading">
+          <div>
+            <h2>客户资料与钉钉映射</h2>
+            <p>导入 CSV 或 JSON 后，插件才能显示客户等级、背景、历史订单与钉钉入口。</p>
+          </div>
+          <span id="registryCount" class="count-badge">0 条</span>
+        </div>
+
+        <div class="import-box">
+          <input id="registryFile" type="file" accept=".csv,.tsv,.json,text/csv,application/json">
+          <div class="button-row">
+            <button id="downloadTemplate" class="secondary-button" type="button">下载 CSV 模板</button>
+            <button id="clearRegistry" class="danger-button" type="button">清空已导入资料</button>
+          </div>
+          <p id="registryStatus" class="hint">尚未导入客户资料。</p>
+        </div>
+
+        <details class="field-help">
+          <summary>查看支持的字段</summary>
+          <p><code>email, domain, company, contact, country, industry, grade, background_zh, background_en, order_count, active_opportunities, last_order_date, projects, tags, dingtalk_url</code></p>
+          <p>客户优先使用唯一精确邮箱匹配；非公共公司域名只作中置信度匹配。姓名不会用于自动关联。</p>
+        </details>
+
+        <div class="privacy-note">
+          <strong>安全边界</strong>
+          <span>只打开已导入并通过白名单校验的钉钉链接；不会自动创建、修改或回填客户和商机，也不会保存密码、Token 或验证码。</span>
+        </div>
+      </section>
+
+      <div class="save-row">
+        <button class="primary-button" type="submit">保存设置</button>
+        <p id="status" role="status"></p>
+      </div>
+    </form>
+  </main>
+  <script src="../src/customer-intelligence.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

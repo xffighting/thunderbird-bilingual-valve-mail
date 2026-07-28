@@ -1,0 +1,78 @@
+const assert = require("assert");
+const path = require("path");
+const { pathToFileURL } = require("url");
+const { chromium } = require("playwright");
+
+const outputPath = process.argv[2] || path.join(__dirname, "options-preview.png");
+const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html")).href;
+
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 900, height: 1000 }, deviceScaleFactor: 1 });
+  const pageErrors = [];
+  page.on("pageerror", error => pageErrors.push(error.message));
+  await page.addInitScript(() => {
+    const defaults = {
+      maxMessages: 40,
+      bodyLimitPerMessage: 12000,
+      keyPointLimit: 12,
+      includeSubFolders: false,
+      ownDomains: ["our-company.com"],
+      ownEmails: [],
+      customerRecords: [],
+      registryUpdatedAt: ""
+    };
+    window.browser = {
+      runtime: {
+        sendMessage: async request => {
+          if (request.type === "getOptions") return defaults;
+          if (request.type === "saveOptions") return { ...defaults, ...request.options };
+          if (request.type === "checkOfflineTranslator") {
+            return {
+              ok: true,
+              engine: "argos-offline",
+              terminology: "lianggu-valve-glossary",
+              terminologyVersion: "2026.07.28.1",
+              termCount: 45
+            };
+          }
+          return {};
+        }
+      }
+    };
+  });
+  await page.goto(optionsUrl);
+  await page.waitForSelector("#maxMessages");
+  await page.locator("#checkTranslator").click();
+  await page.waitForFunction(() => document.getElementById("translatorStatus").textContent.includes("良固阀门术语库"));
+  assert.ok(
+    (await page.locator("#translatorStatus").textContent()).includes("45 条"),
+    "The settings page should show the active valve terminology count."
+  );
+
+  await page.setInputFiles("#registryFile", {
+    name: "customers.csv",
+    mimeType: "text/csv",
+    buffer: Buffer.from([
+      "email,domain,company,grade,background_zh,background_en,dingtalk_url",
+      "buyer@example-industrial.com,example-industrial.com,Example Industrial,A,重点阀门客户,Priority valve customer,https://docs.dingtalk.com/i/nodes/example"
+    ].join("\n"))
+  });
+  await page.waitForFunction(() => document.getElementById("registryCount").textContent.includes("1"));
+  assert.strictEqual(await page.locator("#registryCount").textContent(), "1 条");
+  assert.strictEqual(
+    await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth),
+    false,
+    "Settings must not overflow horizontally."
+  );
+  await page.screenshot({ path: outputPath, fullPage: true });
+  await page.locator("#saveTop").click();
+  await page.waitForFunction(() => document.getElementById("status").textContent.includes("已保存"));
+  assert.deepStrictEqual(pageErrors, [], `Settings should render without page errors: ${pageErrors.join("; ")}`);
+
+  await browser.close();
+  console.log(`options-ui-regression: ok (${outputPath})`);
+})().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});
