@@ -25,7 +25,7 @@
     <div class="settings-layout">
       <nav class="settings-sidebar" aria-label="设置分类">
         <a href="#analysis-settings">分析范围</a>
-        <a href="#translation-settings">逐行翻译</a>
+        <a href="#translation-settings">翻译与回复</a>
         <a href="#terminology-settings">专业术语</a>
         <a href="#feedback-settings">纠错确认</a>
         <a href="#identity-settings">我方邮箱</a>
@@ -60,11 +60,11 @@
         </label>
       </section>
 
-      <section id="translation-settings" class="settings-card" data-search="翻译 模型 离线 评测 中英对照">
+      <section id="translation-settings" class="settings-card" data-search="翻译 回复 四语 模型 离线 评测 英俄转中文">
         <div class="section-heading">
           <div>
-            <h2>正文逐行中英对照</h2>
-            <p>英文原文保留，中文译文紧贴下一行显示。</p>
+            <h2>本机翻译与回复</h2>
+            <p>阅读英文或俄文邮件时逐行显示中文；写短中文回复时提供中、英、俄、阿四语候选。</p>
           </div>
           <div class="button-row">
             <button id="checkTranslator" class="secondary-button" type="button">检查离线翻译</button>
@@ -73,11 +73,15 @@
         </div>
         <label class="checkbox-row">
           <input id="inlineTranslationEnabled" type="checkbox">
-          <span>打开邮件时自动翻译英文正文 <small>Auto translate English lines</small></span>
+          <span>打开邮件时自动翻译英文或俄文正文 <small>Auto translate English or Russian lines</small></span>
         </label>
         <label class="checkbox-row">
           <input id="inlineTranslationIncludeQuoted" type="checkbox">
           <span>同时翻译引用的历史邮件 <small>Include quoted history</small></span>
+        </label>
+        <label class="checkbox-row">
+          <input id="composeAssistantEnabled" type="checkbox">
+          <span>回复框输入短中文时，自动打开中英俄阿回复助手 <small>Auto open four-language reply assistant</small></span>
         </label>
         <p id="translatorStatus" class="hint" role="status">等待检查本机离线翻译组件。</p>
         <div id="benchmarkPanel" class="benchmark-panel" aria-live="polite">

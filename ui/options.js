@@ -25,6 +25,7 @@
       includeSubFolders: document.getElementById("includeSubFolders").checked,
       inlineTranslationEnabled: document.getElementById("inlineTranslationEnabled").checked,
       inlineTranslationIncludeQuoted: document.getElementById("inlineTranslationIncludeQuoted").checked,
+      composeAssistantEnabled: document.getElementById("composeAssistantEnabled").checked,
       ownDomains: splitLines(document.getElementById("ownDomains").value),
       ownEmails: splitLines(document.getElementById("ownEmails").value),
       customerRecords,
@@ -40,6 +41,7 @@
     document.getElementById("includeSubFolders").checked = Boolean(options.includeSubFolders);
     document.getElementById("inlineTranslationEnabled").checked = options.inlineTranslationEnabled !== false;
     document.getElementById("inlineTranslationIncludeQuoted").checked = Boolean(options.inlineTranslationIncludeQuoted);
+    document.getElementById("composeAssistantEnabled").checked = options.composeAssistantEnabled !== false;
     document.getElementById("ownDomains").value = (options.ownDomains || []).join("\n");
     document.getElementById("ownEmails").value = (options.ownEmails || []).join("\n");
     customerRecords = CustomerIntelligence.normalizeRegistry(options.customerRecords || []);

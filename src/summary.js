@@ -15,6 +15,7 @@
     registryUpdatedAt: "",
     inlineTranslationEnabled: true,
     inlineTranslationIncludeQuoted: false,
+    composeAssistantEnabled: true,
     customTerms: [],
     translationFeedback: [],
     cacheEpoch: 0

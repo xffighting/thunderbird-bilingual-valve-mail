@@ -18,13 +18,16 @@
       const en = cleanText(raw?.en, 240);
       const zh = cleanText(raw?.zh, 240);
       if (!en || !zh) continue;
-      const key = en.toLocaleLowerCase("en-US");
+      const sourceLanguage = raw?.sourceLanguage === "ru" ? "ru" : "en";
+      const locale = sourceLanguage === "ru" ? "ru-RU" : "en-US";
+      const key = `${sourceLanguage}\u0000${en.toLocaleLowerCase(locale)}`;
       byEnglish.set(key, {
         id: cleanText(raw?.id, 120) || createId("term"),
         en,
         zh,
         category: cleanText(raw?.category, 40) || "custom",
         context: raw?.context === "valve" ? "valve" : "always",
+        sourceLanguage,
         enabled: raw?.enabled !== false
       });
     }
@@ -43,6 +46,7 @@
       output.push({
         id: cleanText(raw?.id, 120) || createId("feedback"),
         source,
+        sourceLanguage: raw?.sourceLanguage === "ru" ? "ru" : "en",
         currentTranslation: cleanText(raw?.currentTranslation, 600),
         suggestedTranslation,
         status,
@@ -57,12 +61,49 @@
       {
         id: createId("feedback"),
         source: input?.source,
+        sourceLanguage: input?.sourceLanguage,
         currentTranslation: input?.currentTranslation,
         suggestedTranslation: input?.suggestedTranslation,
         status: "pending",
         createdAt: new Date().toISOString()
       }
     ])[0] || null;
+  }
+
+  function upsertTranslationFeedback(feedbackValues, input) {
+    const feedback = normalizeTranslationFeedback(feedbackValues);
+    const candidate = createTranslationFeedback(input);
+    if (!candidate) return { feedback, record: null, created: false };
+
+    const sourceKey = candidate.source.toLocaleLowerCase(
+      candidate.sourceLanguage === "ru" ? "ru-RU" : "en-US"
+    );
+    const existing = feedback.find(item => {
+      if (item.status !== "pending" || item.sourceLanguage !== candidate.sourceLanguage) {
+        return false;
+      }
+      return item.source.toLocaleLowerCase(
+        item.sourceLanguage === "ru" ? "ru-RU" : "en-US"
+      ) === sourceKey;
+    });
+
+    if (existing) {
+      existing.currentTranslation = candidate.currentTranslation;
+      existing.suggestedTranslation = candidate.suggestedTranslation;
+      existing.createdAt = candidate.createdAt;
+      return {
+        feedback: normalizeTranslationFeedback(feedback),
+        record: existing,
+        created: false
+      };
+    }
+
+    const updated = normalizeTranslationFeedback([...feedback, candidate]);
+    return {
+      feedback: updated,
+      record: updated.find(item => item.id === candidate.id) || candidate,
+      created: true
+    };
   }
 
   function reviewTranslationFeedback(feedbackValues, customTermValues, feedbackId, action) {
@@ -83,6 +124,7 @@
           zh: target.suggestedTranslation,
           category: "feedback",
           context: "always",
+          sourceLanguage: target.sourceLanguage,
           enabled: true
         }
       ]);
@@ -96,6 +138,7 @@
     createTranslationFeedback,
     normalizeCustomTerms,
     normalizeTranslationFeedback,
+    upsertTranslationFeedback,
     reviewTranslationFeedback
   };
 })(globalThis);

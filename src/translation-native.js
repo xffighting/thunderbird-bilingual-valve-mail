@@ -32,7 +32,11 @@
 
   function glossarySignature(customTerms) {
     return customTerms
-      .map(term => `${term.en.toLocaleLowerCase("en-US")}=${term.zh}`)
+      .map(term => {
+        const sourceLanguage = term.sourceLanguage === "ru" ? "ru" : "en";
+        const locale = sourceLanguage === "ru" ? "ru-RU" : "en-US";
+        return `${sourceLanguage}:${term.en.toLocaleLowerCase(locale)}=${term.zh}`;
+      })
       .sort()
       .join("\u001f");
   }
@@ -52,20 +56,37 @@
     const texts = sanitizeTexts(values);
     const customTerms = sanitizeCustomTerms(customTermValues);
     const signature = glossarySignature(customTerms);
-    const cacheKey = text => `${signature}\u0000${text}`;
-    const missing = [...new Set(texts.filter(text => !cache.has(cacheKey(text))))];
+    const sourceLanguageFor = text => {
+      return global.InlineTranslationCore?.detectSourceLanguage(text) || "en";
+    };
+    const cacheKey = (sourceLanguage, text) => {
+      return `${sourceLanguage}\u0000${signature}\u0000${text}`;
+    };
+    const groups = new Map();
+    for (const text of texts) {
+      const sourceLanguage = sourceLanguageFor(text);
+      if (!groups.has(sourceLanguage)) groups.set(sourceLanguage, []);
+      if (!cache.has(cacheKey(sourceLanguage, text))) {
+        groups.get(sourceLanguage).push(text);
+      }
+    }
 
-    if (missing.length) {
+    for (const [sourceLanguage, valuesForLanguage] of groups) {
+      const missing = [...new Set(valuesForLanguage)];
+      if (!missing.length) continue;
       const response = await callNative({
         type: "translate",
-        source: "en",
+        source: sourceLanguage,
         target: "zh",
         texts: missing,
         customTerms
       });
       const translations = Array.isArray(response.translations) ? response.translations : [];
       for (let index = 0; index < missing.length; index += 1) {
-        cache.set(cacheKey(missing[index]), String(translations[index] || "").trim());
+        cache.set(
+          cacheKey(sourceLanguage, missing[index]),
+          String(translations[index] || "").trim()
+        );
       }
     }
 
@@ -73,7 +94,11 @@
       ok: true,
       engine: "argos-offline",
       customTermCount: customTerms.length,
-      translations: texts.map(text => cache.get(cacheKey(text)) || "")
+      sourceLanguages: texts.map(sourceLanguageFor),
+      translations: texts.map(text => {
+        const sourceLanguage = sourceLanguageFor(text);
+        return cache.get(cacheKey(sourceLanguage, text)) || "";
+      })
     };
   }
 

@@ -38,6 +38,8 @@ def main() -> None:
     assert response.get("terminology") == "lianggu-valve-glossary", response
     assert int(response.get("termCount", 0)) >= 150, response
     assert response.get("modelId"), response
+    assert "ru" in response.get("sources", []), response
+    assert response.get("russianModelId") == "translate-ru_en-1_0", response
 
     translated = send_request(
         launcher,
@@ -57,6 +59,34 @@ def main() -> None:
     )
     assert "保压时间" in translated.get("translations", [""])[0], translated
     assert translated.get("customTermCount") == 1, translated
+
+    russian = send_request(
+        launcher,
+        {
+            "type": "translate",
+            "source": "ru",
+            "target": "zh",
+            "texts": [
+                "Просим предоставить цену на шаровой кран DN50 PN16.",
+                "Материал корпуса: WCB.",
+            ],
+            "customTerms": [
+                {
+                    "en": "Материал корпуса",
+                    "zh": "阀体材质",
+                    "sourceLanguage": "ru",
+                    "enabled": True,
+                }
+            ],
+        },
+    )
+    assert russian.get("ok") is True, russian
+    assert russian.get("source") == "ru", russian
+    assert "球阀" in russian.get("translations", [""])[0], russian
+    assert "DN50" in russian.get("translations", [""])[0], russian
+    assert "PN16" in russian.get("translations", [""])[0], russian
+    assert "阀体材质" in russian.get("translations", ["", ""])[1], russian
+    assert "WCB" in russian.get("translations", ["", ""])[1], russian
 
     benchmark = send_request(launcher, {"type": "benchmark", "customTerms": []})
     assert benchmark.get("ok") is True, benchmark

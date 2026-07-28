@@ -1,0 +1,20 @@
+.gms-compose-inserted-block {
+  margin: 0 0 10px;
+  color: inherit;
+  font: inherit;
+  line-height: 1.55;
+}
+
+.gms-compose-inserted-block strong {
+  font-weight: 700;
+}
+
+.gms-compose-greeting,
+.gms-compose-closing {
+  margin-bottom: 12px;
+}
+
+.gms-compose-inserted-spacer {
+  display: block;
+  margin-bottom: 10px;
+}

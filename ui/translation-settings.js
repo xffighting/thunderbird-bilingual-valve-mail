@@ -18,6 +18,7 @@
         zh: "",
         category: "custom",
         context: "always",
+        sourceLanguage: "en",
         enabled: true
       };
     }
@@ -46,15 +47,35 @@
         const row = document.createElement("div");
         row.className = "custom-term-row";
 
+        const sourceLanguage = document.createElement("select");
+        sourceLanguage.setAttribute("aria-label", `第 ${index + 1} 条原文语言`);
+        sourceLanguage.innerHTML = `
+          <option value="en">英语 → 中文</option>
+          <option value="ru">俄语 → 中文</option>
+        `;
+        sourceLanguage.value = term.sourceLanguage === "ru" ? "ru" : "en";
+
         const english = document.createElement("input");
         english.type = "text";
         english.maxLength = 240;
-        english.placeholder = "英文术语，如 Quotation Sheet";
-        english.setAttribute("aria-label", `第 ${index + 1} 条英文术语`);
+        const updateSourcePlaceholder = () => {
+          english.placeholder = sourceLanguage.value === "ru"
+            ? "俄文术语，如 шаровой кран"
+            : "英文术语，如 Quotation Sheet";
+          english.setAttribute(
+            "aria-label",
+            `第 ${index + 1} 条${sourceLanguage.value === "ru" ? "俄文" : "英文"}术语`
+          );
+        };
+        updateSourcePlaceholder();
         english.value = term.en;
         english.addEventListener("input", () => {
           term.en = english.value;
           termCount.textContent = `${customTerms.filter(item => item.en.trim() && item.zh.trim()).length} 条`;
+        });
+        sourceLanguage.addEventListener("change", () => {
+          term.sourceLanguage = sourceLanguage.value;
+          updateSourcePlaceholder();
         });
 
         const chinese = document.createElement("input");
@@ -93,7 +114,7 @@
           customTerms.splice(index, 1);
           renderTerms();
         });
-        row.append(english, chinese, context, enabledLabel, remove);
+        row.append(sourceLanguage, english, chinese, context, enabledLabel, remove);
         termList.appendChild(row);
       });
     }
@@ -106,6 +127,9 @@
           feedbackId: id,
           action
         });
+        if (!saved?.customTerms || !saved?.translationFeedback) {
+          throw new Error(saved?.message || "纠错处理未完成");
+        }
         write(saved);
       } catch (error) {
         button.disabled = false;
@@ -131,7 +155,8 @@
         const copy = document.createElement("div");
         copy.className = "feedback-copy";
         const source = document.createElement("strong");
-        source.textContent = item.source;
+        source.textContent =
+          `${item.sourceLanguage === "ru" ? "俄语" : "英语"} → 中文：${item.source}`;
         const current = document.createElement("span");
         current.textContent = `当前：${item.currentTranslation || "无可用译文"}`;
         const suggested = document.createElement("span");
@@ -177,8 +202,11 @@
         const result = await api.runtime.sendMessage({ type: "checkOfflineTranslator" });
         if (result?.ok && result.terminology === "lianggu-valve-glossary") {
           const model = result.modelId ? `；模型 ${result.modelId}` : "";
+          const sourceText = Array.isArray(result.sources) && result.sources.includes("ru")
+            ? "英语、俄语"
+            : "英语";
           translatorStatus.textContent =
-            `离线翻译可用。良固阀门术语库 ${Number(result.termCount) || 0} 条${model}；邮件正文只在本机处理。`;
+            `${sourceText}转中文可用。良固阀门术语库 ${Number(result.termCount) || 0} 条${model}；邮件正文只在本机处理。`;
         } else {
           translatorStatus.textContent = result?.ok
             ? "离线翻译可用，但良固阀门术语库尚未启用。"

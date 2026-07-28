@@ -25,6 +25,7 @@ Subject: Re: RFQ-100</pre>
         <p id="bad-output">Please confirm the attached commercial offer.</p>
         <pre id="plain-text">Please confirm the required quantity.
 The material shall be stainless steel.</pre>
+        <p id="russian">Просим предоставить цену на шаровой кран DN50 PN16.</p>
       </body>
     </html>
   `);
@@ -33,6 +34,7 @@ The material shall be stainless steel.</pre>
     feedbackRequests.push(request);
   });
   await page.evaluate(() => {
+    globalThis.gmsFeedbackMode = "failure";
     globalThis.browser = {
       runtime: {
         sendMessage: async request => {
@@ -51,12 +53,17 @@ The material shall be stainless steel.</pre>
                 if (text.includes("required quantity")) return "请确认所需数量。";
                 if (text.includes("stainless steel")) return "材质应为不锈钢。";
                 if (text.includes("commercial offer")) return "鹰嘴".repeat(80);
+                if (text.includes("шаровой кран")) return "请提供球阀 DN50 PN16 的报价。";
                 return text;
               })
             };
           }
           if (request.type === "saveTranslationFeedback") {
             await globalThis.captureFeedbackRequest(request);
+            await new Promise(resolve => setTimeout(resolve, 60));
+            if (globalThis.gmsFeedbackMode === "failure") {
+              return { ok: false, message: "模拟保存失败" };
+            }
             return { ok: true, feedbackCount: 1 };
           }
           throw new Error(`Unexpected request: ${request.type}`);
@@ -122,6 +129,18 @@ The material shall be stainless steel.</pre>
     "plain-text Thunderbird messages should also be translated line by line"
   );
 
+  assert.deepStrictEqual(
+    (await page.locator("#russian").innerText())
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean),
+    [
+      "Просим предоставить цену на шаровой кран DN50 PN16.",
+      "请提供球阀 DN50 PN16 的报价。"
+    ],
+    "Russian mail should be translated into Chinese below the source line"
+  );
+
   const translationStyle = await page.locator(".gms-inline-translation").first().evaluate(node => {
     const style = getComputedStyle(node);
     return {
@@ -148,14 +167,54 @@ The material shall be stainless steel.</pre>
 
   assert.strictEqual(
     await page.locator(".gms-inline-feedback-button").count(),
-    4,
+    5,
     "every usable translation should offer a local correction action"
   );
-  await page.locator(".gms-inline-feedback-button").first().click();
+  const firstFeedbackButton = page.locator(".gms-inline-feedback-button").first();
+  await firstFeedbackButton.click();
   await page.locator("#gms-feedback-source").fill("best price");
   await page.locator("#gms-feedback-suggestion").fill("最优价格");
   await page.locator("#gms-feedback-form button[type='submit']").click();
+  await page.waitForFunction(() => {
+    return document.getElementById("gms-feedback-status").textContent.includes("模拟保存失败");
+  });
+  assert.strictEqual(
+    await page.locator("#gms-translation-feedback-dialog").getAttribute("open") !== null,
+    true,
+    "the correction dialog should stay open when local persistence fails"
+  );
+  assert.strictEqual(
+    await page.locator("#gms-feedback-form button[type='submit']").isEnabled(),
+    true,
+    "the correction submit button should be reusable after failure"
+  );
+
+  await page.evaluate(() => {
+    globalThis.gmsFeedbackMode = "success";
+  });
+  await page.locator("#gms-feedback-form button[type='submit']").click();
+  assert.strictEqual(
+    await page.locator("#gms-feedback-form button[type='submit']").isDisabled(),
+    true,
+    "the correction submit button should lock while saving"
+  );
   await page.waitForFunction(() => !document.getElementById("gms-translation-feedback-dialog").open);
+  assert.strictEqual(
+    await firstFeedbackButton.getAttribute("aria-label"),
+    "本行纠错已记录",
+    "the source row should show that the correction was recorded"
+  );
+  assert.strictEqual(
+    await firstFeedbackButton.textContent(),
+    "✓",
+    "the source row should show a visible saved marker"
+  );
+  await firstFeedbackButton.click();
+  assert.strictEqual(
+    await page.locator("#gms-translation-feedback-dialog").getAttribute("open"),
+    null,
+    "an already recorded correction should not reopen the dialog or create duplicates"
+  );
   assert.deepStrictEqual(
     feedbackRequests.map(request => ({
       type: request.type,
@@ -167,9 +226,14 @@ The material shall be stainless steel.</pre>
         type: "saveTranslationFeedback",
         source: "best price",
         suggestedTranslation: "最优价格"
+      },
+      {
+        type: "saveTranslationFeedback",
+        source: "best price",
+        suggestedTranslation: "最优价格"
       }
     ],
-    "corrections should be stored locally for later approval"
+    "a failed save may be retried once, while a saved correction cannot be duplicated"
   );
 
   const artifactDir = path.join(__dirname, ".artifacts");

@@ -2,8 +2,12 @@
 
 from translator_host import (
     benchmark_score,
+    compose_reply_warnings,
+    controlled_reply_translation,
+    extract_technical_terms,
     get_glossary_metadata,
     is_usable_translation,
+    optimize_chinese_reply,
     post_process_translation,
     protect_valve_terms,
     restore_valve_terms,
@@ -13,6 +17,42 @@ from translator_host import (
 
 
 def main() -> None:
+    reply_blocks = optimize_chinese_reply(
+        "球阀DN50 PN16报价做好了，请查收附件。交期四周。"
+    )
+    assert reply_blocks[0] == {
+        "type": "greeting",
+        "key": "greeting",
+        "text": "您好，",
+    }
+    assert any(
+        block["type"] == "field" and block["key"] == "quotation"
+        for block in reply_blocks
+    )
+    assert reply_blocks[-1]["type"] == "closing"
+    display_terms, english_terms = extract_technical_terms(
+        "球阀 DN50 PN16 WCB"
+    )
+    assert "球阀 / Ball Valve" in display_terms
+    assert {"Ball Valve", "DN50", "PN16", "WCB"}.issubset(set(english_terms))
+    assert not any("Please" in term for term in english_terms)
+    assert compose_reply_warnings("报价为100美元，交期四周。")
+    assert controlled_reply_translation(
+        "球阀 DN50 PN16 报价单已准备完成，请查收附件。",
+        "en",
+    ) == (
+        "The quotation for Ball Valve DN50 PN16 is ready. "
+        "Please find it attached for your review."
+    )
+    assert "Коммерческое предложение" in controlled_reply_translation(
+        "球阀 DN50 PN16 报价单已准备完成，请查收附件。",
+        "ru",
+    )
+    assert "عرض السعر" in controlled_reply_translation(
+        "球阀 DN50 PN16 报价单已准备完成，请查收附件。",
+        "ar",
+    )
+
     custom_terms = sanitize_custom_terms(
         [
             {"en": "quotation sheet", "zh": "正式报价单", "enabled": True},
@@ -26,6 +66,7 @@ def main() -> None:
             "zh": "正式报价单",
             "category": "custom",
             "context": "always",
+            "sourceLanguage": "en",
         }
     ]
 
@@ -166,6 +207,22 @@ def main() -> None:
         [{"en": "commercial offer", "zh": "商务报价", "enabled": True}],
     )[0]
     assert "商务报价" in custom_translation
+
+    russian_translation = translate_with_glossary(
+        [
+            "Просим предоставить цену на шаровой кран DN50 PN16.",
+            "Материал корпуса: WCB.",
+            "Коммерческое предложение приложено.",
+        ],
+        lambda texts: texts,
+        source_language="ru",
+    )
+    assert "球阀" in russian_translation[0]
+    assert "DN50" in russian_translation[0]
+    assert "PN16" in russian_translation[0]
+    assert "阀体材质" in russian_translation[1]
+    assert "WCB" in russian_translation[1]
+    assert "报价单" in russian_translation[2]
 
     score = benchmark_score(
         [

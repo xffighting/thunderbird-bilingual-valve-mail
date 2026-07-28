@@ -274,7 +274,7 @@ summary:focus-visible {
 
 .custom-term-row {
   display: grid;
-  grid-template-columns: minmax(130px, 1.3fr) minmax(130px, 1.3fr) 112px auto auto;
+  grid-template-columns: 112px minmax(130px, 1.3fr) minmax(130px, 1.3fr) 112px auto auto;
   align-items: center;
   gap: 8px;
   padding: 9px;
@@ -467,7 +467,7 @@ code {
   }
 
   .custom-term-row {
-    grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) 105px;
+    grid-template-columns: 108px minmax(120px, 1fr) minmax(120px, 1fr);
   }
 
   .custom-term-row .compact-toggle,

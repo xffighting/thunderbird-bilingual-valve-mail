@@ -34,9 +34,10 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
       translationFeedback: [
         {
           id: "feedback-1",
-          source: "Please quote your best price.",
-          currentTranslation: "请报价你的最好价格。",
-          suggestedTranslation: "请提供最优价格。",
+          source: "Материал корпуса",
+          sourceLanguage: "ru",
+          currentTranslation: "身体材料",
+          suggestedTranslation: "阀体材质",
           status: "pending",
           createdAt: "2026-07-28T08:00:00.000Z"
         }
@@ -66,6 +67,27 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
               sampleCount: 6
             };
           }
+          if (request.type === "reviewTranslationFeedback") {
+            return {
+              ...defaults,
+              customTerms: [
+                ...defaults.customTerms,
+                {
+                  id: request.feedbackId,
+                  en: "Материал корпуса",
+                  zh: "阀体材质",
+                  category: "feedback",
+                  context: "always",
+                  sourceLanguage: "ru",
+                  enabled: true
+                }
+              ],
+              translationFeedback: defaults.translationFeedback.map(item => ({
+                ...item,
+                status: request.action === "approve" ? "approved" : "rejected"
+              }))
+            };
+          }
           return {};
         }
       }
@@ -82,8 +104,21 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
   assert.strictEqual(await page.locator("#customTermCount").textContent(), "1 条");
   assert.strictEqual(await page.locator(".custom-term-row").count(), 1);
   assert.strictEqual(await page.locator(".feedback-review-row").count(), 1);
-  await page.locator("#addCustomTerm").click();
+  assert.ok(
+    (await page.locator(".feedback-review-row strong").textContent()).includes("俄语 → 中文"),
+    "pending Russian corrections should display their translation direction"
+  );
+  await page.getByRole("button", { name: "批准为术语" }).click();
+  await page.waitForFunction(() => document.getElementById("pendingFeedbackCount").textContent === "0 条待确认");
+  assert.strictEqual(await page.locator(".feedback-review-row").count(), 0);
   assert.strictEqual(await page.locator(".custom-term-row").count(), 2);
+  assert.strictEqual(
+    await page.locator(".custom-term-row").nth(1).locator("select").first().inputValue(),
+    "ru",
+    "approved Russian feedback should become an active Russian-to-Chinese custom term"
+  );
+  await page.locator("#addCustomTerm").click();
+  assert.strictEqual(await page.locator(".custom-term-row").count(), 3);
   await page.locator("#runTranslationBenchmark").click();
   await page.waitForFunction(() => document.getElementById("benchmarkStatus").textContent.includes("96"));
   assert.ok(

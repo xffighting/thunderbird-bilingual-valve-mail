@@ -13,6 +13,24 @@ assert.strictEqual(
 );
 
 assert.strictEqual(
+  core.detectSourceLanguage("Please quote your best price and delivery time."),
+  "en",
+  "business English should be detected as English"
+);
+
+assert.strictEqual(
+  core.detectSourceLanguage("Просим предоставить цену на шаровой кран DN50 PN16."),
+  "ru",
+  "business Russian should be detected as Russian"
+);
+
+assert.strictEqual(
+  core.isTranslatableLine("Просим предоставить цену на шаровой кран DN50 PN16."),
+  true,
+  "business Russian should be translated"
+);
+
+assert.strictEqual(
   core.isEnglishLine("请提供最优价格和交期。"),
   false,
   "existing Chinese should not be translated"
@@ -48,14 +66,15 @@ for (const headerLine of [
 
 assert.deepStrictEqual(
   core.normalizeTranslationResponse(
-    ["Please quote.", "Delivery: 4 weeks."],
-    { ok: true, translations: ["请报价。", "交期：4周。"] }
+    ["Please quote.", "Delivery: 4 weeks.", "Материал корпуса: WCB."],
+    { ok: true, translations: ["请报价。", "交期：4周。", "阀体材质：WCB。"] }
   ),
   [
     { source: "Please quote.", translation: "请报价。" },
-    { source: "Delivery: 4 weeks.", translation: "交期：4周。" }
+    { source: "Delivery: 4 weeks.", translation: "交期：4周。" },
+    { source: "Материал корпуса: WCB.", translation: "阀体材质：WCB。" }
   ],
-  "translations should keep a stable one-to-one source mapping"
+  "English and Russian translations should keep a stable one-to-one source mapping"
 );
 
 assert.deepStrictEqual(

@@ -2,6 +2,63 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.7.1] - 2026-07-28
+
+### Added
+
+- Added automatic Russian-line detection and private offline
+  Russian-to-English-to-Chinese translation.
+- Added 26 Russian valve and foreign-trade terminology rules, including
+  standard translations for ball valve, valve body, body material, delivery
+  time, and quotation.
+- Added English/Russian source-language selection to custom terminology and
+  preserved that language through correction approval.
+
+### Fixed
+
+- The correction dialog now closes only after the local background process
+  explicitly confirms persistence.
+- Failed correction saves keep the dialog open and restore the submit button
+  for retry.
+- Successful corrections show a visible saved mark, restore focus to the
+  source row, and cannot be submitted twice.
+- Repeated pending corrections for the same source phrase now update the
+  existing local record instead of creating duplicates.
+- Removed an unmatched closing element from the correction dialog markup.
+
+### Security
+
+- Russian and English email text remains inside Thunderbird and the local
+  Native Messaging host. No cloud translation service is used.
+
+## [0.7.0] - 2026-07-28
+
+### Added
+
+- Added an automatic short-Chinese reply assistant to Thunderbird compose
+  windows. It opens a quiet side popup after the writer pauses.
+- Added Chinese, English, Russian, and Arabic candidates that share one
+  fact-preserving structure and can be inserted into the active draft.
+- Added rich-text insertion with bold field labels. Plain-text composers use
+  explicit section labels instead.
+- Added local Chinese-to-English, English-to-Russian, and English-to-Arabic
+  models, with protected valve terms, model numbers, materials, pressure
+  classes, and standards.
+- Added Russian and Arabic technical-reference anchors so critical English
+  valve terms remain visible for final review.
+- Added a Settings toggle to turn the automatic compose popup on or off.
+
+### Changed
+
+- Selecting a language replaces only the short draft above the signature and
+  quoted history. It does not send the message or alter earlier correspondence.
+
+### Security
+
+- Reply optimization and all four translations run through the local Native
+  Messaging host. Draft text is kept in memory and is not uploaded or saved as
+  translation history.
+
 ## [0.6.0] - 2026-07-28
 
 ### Added

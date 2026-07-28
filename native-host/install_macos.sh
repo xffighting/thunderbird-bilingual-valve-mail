@@ -57,6 +57,9 @@ fi
 "${APP_DIR}/venv/bin/python" "${SOURCE_DIR}/install_model.py" \
   "${APP_DIR}/model" \
   "${APP_DIR}/cache"
+"${APP_DIR}/venv/bin/python" "${SOURCE_DIR}/install_reply_models.py" \
+  "${APP_DIR}/models" \
+  "${APP_DIR}/cache"
 
 "${PYTHON_BIN}" "${SOURCE_DIR}/write_manifest.py" \
   "${MANIFEST_PATH}" \

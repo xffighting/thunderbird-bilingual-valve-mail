@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>多语回复助手</title>
+  <link rel="stylesheet" href="compose-assistant.css">
+</head>
+<body>
+  <main class="assistant-window">
+    <header class="titlebar">
+      <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="title-copy">
+        <h1>多语回复助手</h1>
+        <p>阀门技术校对 · 外贸表达优化 · 本机离线</p>
+      </div>
+      <span class="privacy-badge">不上传</span>
+    </header>
+
+    <section id="state" class="state" role="status" aria-live="polite">
+      正在准备四语种版本…
+    </section>
+
+    <section id="assistantContent" class="assistant-content" hidden>
+      <section class="summary-strip">
+        <div>
+          <span class="eyebrow">已完成</span>
+          <strong>技术术语保护 + 商务语气优化</strong>
+        </div>
+        <span id="updatedAt" class="updated-at"></span>
+      </section>
+
+      <section id="warningPanel" class="warning-panel" hidden>
+        <strong>发送前请复核</strong>
+        <ul id="warnings"></ul>
+      </section>
+
+      <section id="technicalSection" class="technical-section" hidden>
+        <div class="section-heading">
+          <h2>已保护的技术信息</h2>
+          <span>型号与标准号不会被改写</span>
+        </div>
+        <div id="technicalTerms" class="chips"></div>
+      </section>
+
+      <div class="language-layout">
+        <nav id="languageTabs" class="language-tabs" role="tablist" aria-label="选择回复语种"></nav>
+
+        <section class="candidate-panel" aria-live="polite">
+          <header class="candidate-header">
+            <div>
+              <span id="languageLabel" class="eyebrow"></span>
+              <h2 id="candidateTitle"></h2>
+            </div>
+            <span id="directionHint" class="direction-hint"></span>
+          </header>
+          <div id="candidatePreview" class="candidate-preview" role="tabpanel"></div>
+          <footer class="candidate-actions">
+            <p>将替换上方短中文草稿；签名和历史邮件保持不变。</p>
+            <button id="insertCandidate" class="primary-button" type="button">插入当前语种</button>
+          </footer>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="../src/compose-assistant-core.js"></script>
+  <script src="compose-assistant.js"></script>
+</body>
+</html>

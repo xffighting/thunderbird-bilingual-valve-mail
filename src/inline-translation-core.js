@@ -2,11 +2,13 @@
   const CJK_PATTERN = /[\u3400-\u9fff\uf900-\ufaff]/u;
   const LATIN_PATTERN = /[A-Za-z]/gu;
   const WORD_PATTERN = /[A-Za-z]{2,}/gu;
+  const CYRILLIC_PATTERN = /[\u0400-\u04ff]/gu;
+  const RUSSIAN_WORD_PATTERN = /[\u0400-\u04ff]{2,}/gu;
   const URL_PATTERN = /\b(?:https?:\/\/|www\.)\S+/giu;
   const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/giu;
   const TECHNICAL_TOKEN_PATTERN = /\b(?:DN|NPS|PN|CL|CLASS|ANSI|API|ASME|ASTM|ISO|EN|DIN|JIS|BS|RFQ|BOQ|PO|WCB|WC6|WC9|CF8M?|SS(?:304|316L?)?|PTFE|NACE|PED|PMI|RT|UT)[-./\s]*[A-Z0-9./-]*\b/giu;
-  const EMAIL_HEADER_PATTERN = /^(?:from|sent|to|cc|bcc|subject|date|reply-to|return-path)\s*:/iu;
-  const ORIGINAL_MESSAGE_PATTERN = /^(?:-{2,}\s*)?(?:original|forwarded)\s+message(?:\s*-{2,})?$/iu;
+  const EMAIL_HEADER_PATTERN = /^(?:(?:from|sent|to|cc|bcc|subject|date|reply-to|return-path)|(?:от|отправлено|кому|копия|тема|дата))\s*:/iu;
+  const ORIGINAL_MESSAGE_PATTERN = /^(?:-{2,}\s*)?(?:(?:original|forwarded)\s+message|исходное\s+сообщение|пересланное\s+сообщение)(?:\s*-{2,})?$/iu;
   const REPEATED_CJK_PATTERN = /([\u3400-\u9fff]{1,4})\1{4,}/u;
 
   function cleanLine(value) {
@@ -29,7 +31,7 @@
       || /^on\s.{1,250}\swrote:\s*$/iu.test(text);
   }
 
-  function isEnglishLine(value) {
+  function detectSourceLanguage(value) {
     const text = cleanLine(value);
     if (
       text.length < 4
@@ -42,21 +44,47 @@
       .replace(URL_PATTERN, " ")
       .replace(EMAIL_PATTERN, " ")
       .trim();
-    if (!withoutContacts) return false;
+    if (!withoutContacts) return "";
 
     const latinCount = (withoutContacts.match(LATIN_PATTERN) || []).length;
-    if (latinCount < 4) return false;
+    const cyrillicCount = (withoutContacts.match(CYRILLIC_PATTERN) || []).length;
 
     const naturalText = withoutContacts
       .replace(TECHNICAL_TOKEN_PATTERN, " ")
       .replace(/[0-9_#./:+*-]+/gu, " ")
       .replace(/\s+/gu, " ")
       .trim();
-    const words = naturalText.match(WORD_PATTERN) || [];
-    if (words.length < 2) return false;
-
     const visibleCount = withoutContacts.replace(/\s/gu, "").length || 1;
-    return latinCount / visibleCount >= 0.32;
+    const russianWords = naturalText.match(RUSSIAN_WORD_PATTERN) || [];
+    if (
+      cyrillicCount >= 4
+      && russianWords.length >= 2
+      && cyrillicCount / visibleCount >= 0.28
+    ) {
+      return "ru";
+    }
+
+    const englishWords = naturalText.match(WORD_PATTERN) || [];
+    if (
+      latinCount >= 4
+      && englishWords.length >= 2
+      && latinCount / visibleCount >= 0.32
+    ) {
+      return "en";
+    }
+    return "";
+  }
+
+  function isEnglishLine(value) {
+    return detectSourceLanguage(value) === "en";
+  }
+
+  function isRussianLine(value) {
+    return detectSourceLanguage(value) === "ru";
+  }
+
+  function isTranslatableLine(value) {
+    return Boolean(detectSourceLanguage(value));
   }
 
   function isUsableTranslation(source, value) {
@@ -94,8 +122,11 @@
 
   global.InlineTranslationCore = {
     cleanLine,
+    detectSourceLanguage,
     isEmailHeaderLine,
     isEnglishLine,
+    isRussianLine,
+    isTranslatableLine,
     isUsableTranslation,
     normalizeTranslationResponse
   };

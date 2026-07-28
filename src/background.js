@@ -276,14 +276,16 @@
 
     if (request.type === "saveTranslationFeedback") {
       return getStoredOptions().then(options => {
-        const feedback = TranslationPreferences.createTranslationFeedback(request);
-        if (!feedback) throw new Error("请填写英文术语和正确中文译法。");
-        options.translationFeedback = TranslationPreferences.normalizeTranslationFeedback([
-          ...options.translationFeedback,
-          feedback
-        ]);
+        const result = TranslationPreferences.upsertTranslationFeedback(
+          options.translationFeedback,
+          request
+        );
+        if (!result.record) throw new Error("请填写原文术语和正确中文译法。");
+        options.translationFeedback = result.feedback;
         return api.storage.local.set({ options }).then(() => ({
           ok: true,
+          feedbackId: result.record.id,
+          created: result.created,
           feedbackCount: options.translationFeedback.filter(item => item.status === "pending").length
         }));
       });
