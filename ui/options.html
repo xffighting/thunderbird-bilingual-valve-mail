@@ -13,11 +13,27 @@
         <h1>销售邮件速览设置</h1>
         <p>所有邮件分析和客户匹配均在本机完成。</p>
       </div>
-      <button id="saveTop" class="primary-button" type="button">保存设置</button>
+      <div class="header-actions">
+        <label class="search-field">
+          <span class="visually-hidden">搜索设置</span>
+          <input id="settingsSearch" type="search" placeholder="搜索设置">
+        </label>
+        <button id="saveTop" class="primary-button" type="button">保存设置</button>
+      </div>
     </header>
 
-    <form id="options-form">
-      <section class="settings-card">
+    <div class="settings-layout">
+      <nav class="settings-sidebar" aria-label="设置分类">
+        <a href="#analysis-settings">分析范围</a>
+        <a href="#translation-settings">逐行翻译</a>
+        <a href="#terminology-settings">专业术语</a>
+        <a href="#feedback-settings">纠错确认</a>
+        <a href="#identity-settings">我方邮箱</a>
+        <a href="#customer-settings">客户资料</a>
+      </nav>
+
+      <form id="options-form">
+      <section id="analysis-settings" class="settings-card" data-search="分析 范围 邮件 摘要">
         <div class="section-heading">
           <div>
             <h2>分析范围</h2>
@@ -44,13 +60,16 @@
         </label>
       </section>
 
-      <section class="settings-card">
+      <section id="translation-settings" class="settings-card" data-search="翻译 模型 离线 评测 中英对照">
         <div class="section-heading">
           <div>
             <h2>正文逐行中英对照</h2>
             <p>英文原文保留，中文译文紧贴下一行显示。</p>
           </div>
-          <button id="checkTranslator" class="secondary-button" type="button">检查离线翻译</button>
+          <div class="button-row">
+            <button id="checkTranslator" class="secondary-button" type="button">检查离线翻译</button>
+            <button id="runTranslationBenchmark" class="secondary-button" type="button">运行质量评测</button>
+          </div>
         </div>
         <label class="checkbox-row">
           <input id="inlineTranslationEnabled" type="checkbox">
@@ -61,13 +80,46 @@
           <span>同时翻译引用的历史邮件 <small>Include quoted history</small></span>
         </label>
         <p id="translatorStatus" class="hint" role="status">等待检查本机离线翻译组件。</p>
+        <div id="benchmarkPanel" class="benchmark-panel" aria-live="polite">
+          <div>
+            <strong>本机模型择优</strong>
+            <span>只使用 6 条内置脱敏样本，自动选择已安装模型中的最佳结果。</span>
+          </div>
+          <p id="benchmarkStatus" class="hint">尚未运行质量评测。</p>
+        </div>
         <div class="privacy-note">
           <strong>行业术语与隐私边界</strong>
           <span>译文先经过良固阀门术语库保护，再由本机 Argos Translate 生成；邮件正文不发送到 Google、DeepL、OpenAI 或其他云端服务。</span>
         </div>
       </section>
 
-      <section class="settings-card">
+      <section id="terminology-settings" class="settings-card" data-search="专业 术语 阀门 外贸 自定义">
+        <div class="section-heading">
+          <div>
+            <h2>专业术语库</h2>
+            <p>这里的译法优先于基础模型；适合固定阀门、材质、检测与外贸表达。</p>
+          </div>
+          <span id="customTermCount" class="count-badge">0 条</span>
+        </div>
+        <div id="customTermsList" class="custom-terms-list" aria-live="polite"></div>
+        <div class="inline-toolbar">
+          <button id="addCustomTerm" class="secondary-button" type="button">添加术语</button>
+          <span class="hint">英文与中文都填写后才会保存；可随时停用或删除。</span>
+        </div>
+      </section>
+
+      <section id="feedback-settings" class="settings-card" data-search="翻译 纠错 审批 确认 反馈">
+        <div class="section-heading">
+          <div>
+            <h2>纠错待确认</h2>
+            <p>邮件里记录的纠错先进入这里，批准后才成为长期术语。</p>
+          </div>
+          <span id="pendingFeedbackCount" class="count-badge">0 条待确认</span>
+        </div>
+        <div id="feedbackReviewList" class="feedback-review-list" aria-live="polite"></div>
+      </section>
+
+      <section id="identity-settings" class="settings-card" data-search="识别 我方 邮箱 域名">
         <div class="section-heading">
           <div>
             <h2>识别我方邮箱</h2>
@@ -86,7 +138,7 @@
         </div>
       </section>
 
-      <section class="settings-card">
+      <section id="customer-settings" class="settings-card" data-search="客户 资料 钉钉 映射 CSV JSON">
         <div class="section-heading">
           <div>
             <h2>客户资料与钉钉映射</h2>
@@ -120,9 +172,12 @@
         <button class="primary-button" type="submit">保存设置</button>
         <p id="status" role="status"></p>
       </div>
-    </form>
+      </form>
+    </div>
   </main>
   <script src="../src/customer-intelligence.js"></script>
+  <script src="../src/translation-preferences.js"></script>
+  <script src="translation-settings.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

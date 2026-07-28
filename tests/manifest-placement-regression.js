@@ -10,12 +10,16 @@ const nativeInstaller = fs.readFileSync(
   "utf8"
 );
 
-assert.strictEqual(manifest.version, "0.5.2");
+assert.strictEqual(manifest.version, "0.6.0");
 assert.ok(manifest.action, "The add-on should keep the main Thunderbird toolbar button.");
 assert.ok(manifest.action.default_title.length <= 8, "Keep the main toolbar title short.");
 assert.ok(
   manifest.permissions.includes("messagesRead") && manifest.permissions.includes("scripting"),
   "The add-on should use the Thunderbird 128+ scripting.messageDisplay API."
+);
+assert.ok(
+  manifest.permissions.includes("compose"),
+  "The multilingual reply assistant needs access to the active compose editor."
 );
 assert.ok(
   manifest.permissions.includes("nativeMessaging"),
@@ -27,14 +31,22 @@ assert.ok(
 );
 assert.ok(!manifest.message_display_scripts, "Do not use the TB151-only manifest property when supporting TB128.");
 assert.ok(!manifest.message_display_action, "Do not place the add-on near Reply/Archive/Delete.");
-assert.deepStrictEqual(
-  manifest.background.scripts,
-  [
-    "src/customer-intelligence.js",
-    "src/summary.js",
-    "src/translation-native.js",
-    "src/background.js"
-  ]
+const requiredBackgroundScripts = [
+  "src/customer-intelligence.js",
+  "src/translation-preferences.js",
+  "src/summary.js",
+  "src/translation-native.js",
+  "src/compose-assistant-core.js",
+  "src/compose-assistant-background.js",
+  "src/background.js"
+];
+for (const script of requiredBackgroundScripts) {
+  assert.ok(manifest.background.scripts.includes(script), `${script} must load in the background.`);
+}
+assert.strictEqual(
+  manifest.background.scripts.at(-1),
+  "src/background.js",
+  "The background event router must load after its dependencies."
 );
 
 for (const filePath of [
@@ -58,6 +70,19 @@ assert.ok(background.includes("getDisplayedMessages"), "Use the Manifest V3 mess
 assert.ok(background.includes("onMessagesDisplayed"), "Use the Manifest V3 message display event.");
 assert.ok(background.includes("scripting.messageDisplay.registerScripts"), "Register the inline script on TB128+.");
 assert.ok(background.includes("scripting.executeScript"), "Inject the inline entry into already-open message tabs.");
+const composeBackground = fs.readFileSync(
+  path.join(__dirname, "..", "src", "compose-assistant-background.js"),
+  "utf8"
+);
+assert.ok(
+  composeBackground.includes("scripting.compose") &&
+  composeBackground.includes("registerScripts"),
+  "Register the compose assistant through the Thunderbird 128+ scripting.compose API."
+);
+assert.ok(
+  composeBackground.includes("insertComposeSuggestion"),
+  "Selected language content should be sent back to the current compose editor."
+);
 assert.ok(!manifest.permissions.includes("tabs"), "Do not request broad tab metadata access.");
 assert.ok(
   fs.existsSync(path.join(__dirname, "..", "native-host", "valve_glossary.json")),
@@ -66,6 +91,10 @@ assert.ok(
 assert.ok(
   nativeInstaller.includes('cp "${SOURCE_DIR}/valve_glossary.json" "${APP_DIR}/valve_glossary.json"'),
   "The macOS installer should install the valve glossary next to the native host."
+);
+assert.ok(
+  nativeInstaller.includes("install_reply_models.py"),
+  "The macOS installer should install the three offline reply-language models."
 );
 
 console.log("manifest-placement-regression: ok");

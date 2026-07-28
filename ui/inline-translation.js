@@ -7,6 +7,8 @@
     `#${toggleId}`,
     "#game-mail-summary-inline-root",
     ".gms-inline-translation",
+    ".gms-translation-feedback-dialog",
+    ".gms-inline-feedback-button",
     "script",
     "style",
     "noscript",
@@ -16,6 +18,7 @@
   let translated = false;
   let translating = false;
   let hidden = false;
+  let activeFeedback = null;
 
   if (!api?.runtime?.sendMessage || !core || document.getElementById(toggleId)) return;
 
@@ -127,6 +130,79 @@
       .slice(0, 80);
   }
 
+  function getFeedbackDialog() {
+    const existing = document.getElementById("gms-translation-feedback-dialog");
+    if (existing) return existing;
+
+    const dialog = document.createElement("dialog");
+    dialog.id = "gms-translation-feedback-dialog";
+    dialog.className = "gms-translation-feedback-dialog";
+    dialog.innerHTML = `
+      <form id="gms-feedback-form">
+        <div class="gms-feedback-heading">
+          <strong>纠正本行译文</strong>
+          <button class="gms-feedback-close" type="button" aria-label="关闭纠错窗口">×</button>
+        </div>
+        <p>只保存在本机。确认后可在插件设置中批准为长期术语。</p>
+        <label>
+          英文术语或短语
+          <input id="gms-feedback-source" type="text" maxlength="240" required>
+        </label>
+        <label>
+          正确中文译法
+          <input id="gms-feedback-suggestion" type="text" maxlength="240" required>
+        </label>
+        <div class="gms-feedback-actions">
+          <span id="gms-feedback-status" role="status"></span>
+          <button class="gms-feedback-submit" type="submit">记录纠错</button>
+        </div>
+      </form>
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector(".gms-feedback-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", event => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.querySelector("#gms-feedback-form").addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!activeFeedback) return;
+      const source = dialog.querySelector("#gms-feedback-source").value.trim();
+      const suggestedTranslation = dialog.querySelector("#gms-feedback-suggestion").value.trim();
+      const status = dialog.querySelector("#gms-feedback-status");
+      if (!source || !suggestedTranslation) {
+        status.textContent = "请填写英文术语和正确中文译法。";
+        return;
+      }
+      status.textContent = "正在保存到本机…";
+      try {
+        await api.runtime.sendMessage({
+          type: "saveTranslationFeedback",
+          source,
+          currentTranslation: activeFeedback.translation,
+          suggestedTranslation
+        });
+        activeFeedback.button.dataset.saved = "true";
+        activeFeedback.button.setAttribute("aria-label", "本行纠错已记录");
+        activeFeedback.button.title = "已保存到本机，等待在设置中确认";
+        dialog.close();
+      } catch (error) {
+        status.textContent = error.message || "纠错记录保存失败。";
+      }
+    });
+    return dialog;
+  }
+
+  function openFeedback(plan, translation, button) {
+    const dialog = getFeedbackDialog();
+    activeFeedback = { plan, translation, button };
+    dialog.querySelector("#gms-feedback-source").value = plan.text;
+    dialog.querySelector("#gms-feedback-suggestion").value = translation;
+    dialog.querySelector("#gms-feedback-status").textContent = "";
+    dialog.showModal();
+    dialog.querySelector("#gms-feedback-source").focus();
+  }
+
   function insertTranslation(plan, translation) {
     if (!translation) return;
     const breakNode = document.createElement("br");
@@ -135,6 +211,15 @@
     translationNode.className = "gms-inline-translation";
     translationNode.lang = "zh-CN";
     translationNode.textContent = translation;
+    const feedbackButton = document.createElement("button");
+    feedbackButton.className = "gms-inline-feedback-button";
+    feedbackButton.type = "button";
+    feedbackButton.setAttribute("aria-label", "纠正这行翻译");
+    feedbackButton.title = "纠正这行翻译";
+    feedbackButton.addEventListener("click", () => {
+      openFeedback(plan, translation, feedbackButton);
+    });
+    translationNode.appendChild(feedbackButton);
 
     if (plan.anchor) {
       plan.element.insertBefore(breakNode, plan.anchor);

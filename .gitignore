@@ -11,6 +11,7 @@ __pycache__/
 *.log
 *.xpi
 *.zip
+native-host/model-selection.json
 
 # Local-only audits may read Thunderbird mailbox data. Never publish them.
 tests/live-inline-translation-private-audit.py

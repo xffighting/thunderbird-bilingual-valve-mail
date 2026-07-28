@@ -1,4 +1,4 @@
-/* global browser, messenger, CustomerIntelligence */
+/* global browser, messenger, CustomerIntelligence, TranslationSettingsUI */
 (function initOptions(global) {
   const api = global.messenger || global.browser;
   const form = document.getElementById("options-form");
@@ -6,6 +6,7 @@
   const registryStatus = document.getElementById("registryStatus");
   const registryCount = document.getElementById("registryCount");
   const fileInput = document.getElementById("registryFile");
+  const translationSettings = TranslationSettingsUI.create(api);
   let customerRecords = [];
   let registryUpdatedAt = "";
 
@@ -27,7 +28,8 @@
       ownDomains: splitLines(document.getElementById("ownDomains").value),
       ownEmails: splitLines(document.getElementById("ownEmails").value),
       customerRecords,
-      registryUpdatedAt
+      registryUpdatedAt,
+      ...translationSettings.read()
     };
   }
 
@@ -42,6 +44,7 @@
     document.getElementById("ownEmails").value = (options.ownEmails || []).join("\n");
     customerRecords = CustomerIntelligence.normalizeRegistry(options.customerRecords || []);
     registryUpdatedAt = options.registryUpdatedAt || "";
+    translationSettings.write(options);
     updateRegistryStatus();
   }
 
@@ -67,25 +70,6 @@
     const saved = await api.runtime.sendMessage({ type: "saveOptions", options: readForm() });
     writeForm(saved);
     status.textContent = "已保存。新的客户资料会立即用于后续摘要。/ Saved.";
-  }
-
-  async function checkTranslator() {
-    const translatorStatus = document.getElementById("translatorStatus");
-    translatorStatus.textContent = "正在检查本机离线翻译...";
-    try {
-      const result = await api.runtime.sendMessage({ type: "checkOfflineTranslator" });
-      if (result?.ok && result.terminology === "lianggu-valve-glossary") {
-        translatorStatus.textContent =
-          `离线翻译可用。良固阀门术语库 ${Number(result.termCount) || 0} 条已启用；` +
-          "邮件正文只在本机处理。";
-      } else {
-        translatorStatus.textContent = result?.ok
-          ? "离线翻译可用，但良固阀门术语库尚未启用。"
-          : "离线翻译组件未就绪。";
-      }
-    } catch (error) {
-      translatorStatus.textContent = `离线翻译不可用：${error.message || error}`;
-    }
   }
 
   async function importFile(file) {
@@ -158,7 +142,13 @@
     });
   });
   document.getElementById("downloadTemplate").addEventListener("click", downloadTemplate);
-  document.getElementById("checkTranslator").addEventListener("click", checkTranslator);
+  document.getElementById("settingsSearch").addEventListener("input", event => {
+    const query = String(event.target.value || "").trim().toLocaleLowerCase("zh-CN");
+    for (const card of document.querySelectorAll(".settings-card")) {
+      const searchable = `${card.dataset.search || ""} ${card.textContent}`.toLocaleLowerCase("zh-CN");
+      card.hidden = Boolean(query) && !searchable.includes(query);
+    }
+  });
   document.getElementById("clearRegistry").addEventListener("click", () => {
     if (!global.confirm("确定清空已导入的客户资料吗？现有邮件摘要功能不会受影响。")) return;
     customerRecords = [];

@@ -6,6 +6,7 @@ const { chromium } = require("playwright");
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
+  const feedbackRequests = [];
 
   await page.setContent(`
     <!doctype html>
@@ -28,6 +29,9 @@ The material shall be stainless steel.</pre>
     </html>
   `);
 
+  await page.exposeFunction("captureFeedbackRequest", request => {
+    feedbackRequests.push(request);
+  });
   await page.evaluate(() => {
     globalThis.browser = {
       runtime: {
@@ -50,6 +54,10 @@ The material shall be stainless steel.</pre>
                 return text;
               })
             };
+          }
+          if (request.type === "saveTranslationFeedback") {
+            await globalThis.captureFeedbackRequest(request);
+            return { ok: true, feedbackCount: 1 };
           }
           throw new Error(`Unexpected request: ${request.type}`);
         }
@@ -136,6 +144,32 @@ The material shall be stainless steel.</pre>
       color: "rgb(73, 103, 125)"
     },
     "translations should use a quiet, readable visual hierarchy"
+  );
+
+  assert.strictEqual(
+    await page.locator(".gms-inline-feedback-button").count(),
+    4,
+    "every usable translation should offer a local correction action"
+  );
+  await page.locator(".gms-inline-feedback-button").first().click();
+  await page.locator("#gms-feedback-source").fill("best price");
+  await page.locator("#gms-feedback-suggestion").fill("最优价格");
+  await page.locator("#gms-feedback-form button[type='submit']").click();
+  await page.waitForFunction(() => !document.getElementById("gms-translation-feedback-dialog").open);
+  assert.deepStrictEqual(
+    feedbackRequests.map(request => ({
+      type: request.type,
+      source: request.source,
+      suggestedTranslation: request.suggestedTranslation
+    })),
+    [
+      {
+        type: "saveTranslationFeedback",
+        source: "best price",
+        suggestedTranslation: "最优价格"
+      }
+    ],
+    "corrections should be stored locally for later approval"
   );
 
   const artifactDir = path.join(__dirname, ".artifacts");

@@ -1,7 +1,7 @@
 /* global browser, messenger */
 (function initGameMailSummary(global) {
   const SUMMARY_SCHEMA_VERSION = 3;
-  const ANALYSIS_ENGINE_VERSION = "0.5.2";
+  const ANALYSIS_ENGINE_VERSION = "0.6.0";
 
   const DEFAULT_OPTIONS = {
     maxMessages: 40,
@@ -15,6 +15,8 @@
     registryUpdatedAt: "",
     inlineTranslationEnabled: true,
     inlineTranslationIncludeQuoted: false,
+    customTerms: [],
+    translationFeedback: [],
     cacheEpoch: 0
   };
 

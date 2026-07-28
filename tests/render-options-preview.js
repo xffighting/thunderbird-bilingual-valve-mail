@@ -20,7 +20,27 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
       ownDomains: ["our-company.com"],
       ownEmails: [],
       customerRecords: [],
-      registryUpdatedAt: ""
+      registryUpdatedAt: "",
+      customTerms: [
+        {
+          id: "term-1",
+          en: "Quotation Sheet",
+          zh: "报价单",
+          category: "business",
+          context: "always",
+          enabled: true
+        }
+      ],
+      translationFeedback: [
+        {
+          id: "feedback-1",
+          source: "Please quote your best price.",
+          currentTranslation: "请报价你的最好价格。",
+          suggestedTranslation: "请提供最优价格。",
+          status: "pending",
+          createdAt: "2026-07-28T08:00:00.000Z"
+        }
+      ]
     };
     window.browser = {
       runtime: {
@@ -36,6 +56,16 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
               termCount: 45
             };
           }
+          if (request.type === "runTranslationBenchmark") {
+            return {
+              ok: true,
+              selectedModel: "translate-en_zh-1_9",
+              candidateCount: 1,
+              score: 96,
+              latencyMs: 138,
+              sampleCount: 6
+            };
+          }
           return {};
         }
       }
@@ -48,6 +78,17 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
   assert.ok(
     (await page.locator("#translatorStatus").textContent()).includes("45 条"),
     "The settings page should show the active valve terminology count."
+  );
+  assert.strictEqual(await page.locator("#customTermCount").textContent(), "1 条");
+  assert.strictEqual(await page.locator(".custom-term-row").count(), 1);
+  assert.strictEqual(await page.locator(".feedback-review-row").count(), 1);
+  await page.locator("#addCustomTerm").click();
+  assert.strictEqual(await page.locator(".custom-term-row").count(), 2);
+  await page.locator("#runTranslationBenchmark").click();
+  await page.waitForFunction(() => document.getElementById("benchmarkStatus").textContent.includes("96"));
+  assert.ok(
+    (await page.locator("#benchmarkStatus").textContent()).includes("translate-en_zh-1_9"),
+    "The selected local model should be visible after evaluation."
   );
 
   await page.setInputFiles("#registryFile", {
@@ -65,6 +106,15 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
     false,
     "Settings must not overflow horizontally."
   );
+  for (const width of [320, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    assert.strictEqual(
+      await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth),
+      false,
+      `Settings must not overflow horizontally at ${width}px.`
+    );
+  }
+  await page.setViewportSize({ width: 900, height: 1000 });
   await page.screenshot({ path: outputPath, fullPage: true });
   await page.locator("#saveTop").click();
   await page.waitForFunction(() => document.getElementById("status").textContent.includes("已保存"));

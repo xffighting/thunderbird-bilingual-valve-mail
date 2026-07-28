@@ -2,6 +2,35 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.6.0] - 2026-07-28
+
+### Added
+
+- Expanded the built-in valve and export-sales glossary from 54 to 153
+  reviewed terms covering valve types, components, structures, inspection,
+  certificates, trade documents, and quotation language.
+- Added a local custom terminology editor with enable, disable, valve-context,
+  and delete controls.
+- Added per-line translation correction in the Thunderbird reading view.
+  Corrections remain pending locally until approved in Settings.
+- Added a six-sample privacy-safe local model benchmark that automatically
+  selects the best installed English-to-Chinese model.
+- Added responsive macOS-style Settings navigation and search.
+
+### Changed
+
+- Custom terminology now takes priority over the built-in glossary and the
+  offline model.
+- Translation cache keys now include the active custom terminology so edits
+  take effect without stale translations.
+
+### Security
+
+- Model evaluation uses only bundled synthetic phrases and never reads or
+  uploads customer email.
+- Translation corrections and custom terminology remain in Thunderbird local
+  extension storage.
+
 ## [0.5.2] - 2026-07-28
 
 ### Added

@@ -1,4 +1,4 @@
-/* global browser, messenger, GameMailSummary, CustomerIntelligence, OfflineMailTranslator */
+/* global browser, messenger, GameMailSummary, CustomerIntelligence, OfflineMailTranslator, TranslationPreferences */
 (function initBackground(global) {
   const api = global.messenger || global.browser;
   const MESSAGE_DISPLAY_SCRIPT_ID = "game-mail-summary-inline-v4";
@@ -12,6 +12,18 @@
     "ui/message-summary-button.css",
     "ui/inline-translation.css"
   ];
+
+  async function getStoredOptions() {
+    const result = await api.storage.local.get("options");
+    return {
+      ...GameMailSummary.DEFAULT_OPTIONS,
+      ...(result.options || {}),
+      customTerms: TranslationPreferences.normalizeCustomTerms(result.options?.customTerms || []),
+      translationFeedback: TranslationPreferences.normalizeTranslationFeedback(
+        result.options?.translationFeedback || []
+      )
+    };
+  }
 
   function summaryBadgeText(summary) {
     if (summary?.orderStatus?.level === "done") return "成交";
@@ -222,10 +234,7 @@
     }
 
     if (request.type === "getOptions") {
-      return api.storage.local.get("options").then(result => ({
-        ...GameMailSummary.DEFAULT_OPTIONS,
-        ...(result.options || {})
-      }));
+      return getStoredOptions();
     }
 
     if (request.type === "saveOptions") {
@@ -236,6 +245,10 @@
         ownDomains: Array.isArray(incoming.ownDomains) ? incoming.ownDomains : [],
         ownEmails: Array.isArray(incoming.ownEmails) ? incoming.ownEmails : [],
         customerRecords: CustomerIntelligence.normalizeRegistry(incoming.customerRecords || []),
+        customTerms: TranslationPreferences.normalizeCustomTerms(incoming.customTerms || []),
+        translationFeedback: TranslationPreferences.normalizeTranslationFeedback(
+          incoming.translationFeedback || []
+        ),
         cacheEpoch: Date.now()
       };
       return api.storage.local.set({ options }).then(() => options);
@@ -246,11 +259,52 @@
     }
 
     if (request.type === "translateInlineBatch") {
-      return OfflineMailTranslator.translateBatch(request.texts || []);
+      return getStoredOptions().then(options => {
+        return OfflineMailTranslator.translateBatch(request.texts || [], options.customTerms);
+      });
     }
 
     if (request.type === "checkOfflineTranslator") {
       return OfflineMailTranslator.health();
+    }
+
+    if (request.type === "runTranslationBenchmark") {
+      return getStoredOptions().then(options => {
+        return OfflineMailTranslator.benchmark(options.customTerms);
+      });
+    }
+
+    if (request.type === "saveTranslationFeedback") {
+      return getStoredOptions().then(options => {
+        const feedback = TranslationPreferences.createTranslationFeedback(request);
+        if (!feedback) throw new Error("请填写英文术语和正确中文译法。");
+        options.translationFeedback = TranslationPreferences.normalizeTranslationFeedback([
+          ...options.translationFeedback,
+          feedback
+        ]);
+        return api.storage.local.set({ options }).then(() => ({
+          ok: true,
+          feedbackCount: options.translationFeedback.filter(item => item.status === "pending").length
+        }));
+      });
+    }
+
+    if (request.type === "reviewTranslationFeedback") {
+      return getStoredOptions().then(options => {
+        const reviewed = TranslationPreferences.reviewTranslationFeedback(
+          options.translationFeedback,
+          options.customTerms,
+          request.feedbackId,
+          request.action
+        );
+        const saved = {
+          ...options,
+          customTerms: reviewed.customTerms,
+          translationFeedback: reviewed.feedback,
+          cacheEpoch: Date.now()
+        };
+        return api.storage.local.set({ options: saved }).then(() => saved);
+      });
     }
 
     if (request.type === "openOptionsPage") {

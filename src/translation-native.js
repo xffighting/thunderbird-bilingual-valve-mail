@@ -22,6 +22,21 @@
     return output;
   }
 
+  function sanitizeCustomTerms(values) {
+    if (global.TranslationPreferences?.normalizeCustomTerms) {
+      return global.TranslationPreferences.normalizeCustomTerms(values)
+        .filter(term => term.enabled !== false);
+    }
+    return [];
+  }
+
+  function glossarySignature(customTerms) {
+    return customTerms
+      .map(term => `${term.en.toLocaleLowerCase("en-US")}=${term.zh}`)
+      .sort()
+      .join("\u001f");
+  }
+
   async function callNative(payload) {
     if (!api?.runtime?.sendNativeMessage) {
       throw new Error("当前 Thunderbird 不支持本机离线翻译连接。");
@@ -33,37 +48,68 @@
     return response;
   }
 
-  async function translateBatch(values) {
+  async function translateBatch(values, customTermValues) {
     const texts = sanitizeTexts(values);
-    const missing = [...new Set(texts.filter(text => !cache.has(text)))];
+    const customTerms = sanitizeCustomTerms(customTermValues);
+    const signature = glossarySignature(customTerms);
+    const cacheKey = text => `${signature}\u0000${text}`;
+    const missing = [...new Set(texts.filter(text => !cache.has(cacheKey(text))))];
 
     if (missing.length) {
       const response = await callNative({
         type: "translate",
         source: "en",
         target: "zh",
-        texts: missing
+        texts: missing,
+        customTerms
       });
       const translations = Array.isArray(response.translations) ? response.translations : [];
       for (let index = 0; index < missing.length; index += 1) {
-        cache.set(missing[index], String(translations[index] || "").trim());
+        cache.set(cacheKey(missing[index]), String(translations[index] || "").trim());
       }
     }
 
     return {
       ok: true,
       engine: "argos-offline",
-      translations: texts.map(text => cache.get(text) || "")
+      customTermCount: customTerms.length,
+      translations: texts.map(text => cache.get(cacheKey(text)) || "")
     };
+  }
+
+  async function composeSuggestions(source, customTermValues) {
+    const text = sanitizeTexts([source])[0] || "";
+    if (!text) {
+      throw new Error("请先输入简短中文回复。");
+    }
+    return callNative({
+      type: "compose_suggest",
+      source: "zh",
+      targets: ["zh", "en", "ru", "ar"],
+      text,
+      customTerms: sanitizeCustomTerms(customTermValues)
+    });
   }
 
   async function health() {
     return callNative({ type: "health" });
   }
 
+  async function benchmark(customTermValues) {
+    return callNative({
+      type: "benchmark",
+      source: "en",
+      target: "zh",
+      customTerms: sanitizeCustomTerms(customTermValues)
+    });
+  }
+
   global.OfflineMailTranslator = {
     HOST_NAME,
+    benchmark,
+    composeSuggestions,
     health,
+    sanitizeCustomTerms,
     sanitizeTexts,
     translateBatch
   };

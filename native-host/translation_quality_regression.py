@@ -1,16 +1,34 @@
 #!/usr/bin/env python3
 
 from translator_host import (
+    benchmark_score,
     get_glossary_metadata,
     is_usable_translation,
     post_process_translation,
     protect_valve_terms,
     restore_valve_terms,
+    sanitize_custom_terms,
     translate_with_glossary,
 )
 
 
 def main() -> None:
+    custom_terms = sanitize_custom_terms(
+        [
+            {"en": "quotation sheet", "zh": "正式报价单", "enabled": True},
+            {"en": "Quotation Sheet", "zh": "报价单", "enabled": False},
+            {"en": "", "zh": "无效"},
+        ]
+    )
+    assert custom_terms == [
+        {
+            "en": "quotation sheet",
+            "zh": "正式报价单",
+            "category": "custom",
+            "context": "always",
+        }
+    ]
+
     assert (
         post_process_translation(
             "Please quote your best price and delivery time.",
@@ -141,6 +159,22 @@ def main() -> None:
     assert "PTFE" in translated[1]
     assert "阀座" in translated[1]
     assert translated[2] == ""
+
+    custom_translation = translate_with_glossary(
+        ["Please review the commercial offer."],
+        lambda texts: texts,
+        [{"en": "commercial offer", "zh": "商务报价", "enabled": True}],
+    )[0]
+    assert "商务报价" in custom_translation
+
+    score = benchmark_score(
+        [
+            ("请提供球阀报价。", ("球阀", "报价")),
+            ("交期为四周。", ("交期",)),
+        ],
+        latency_ms=150,
+    )
+    assert 80 <= score <= 100, score
 
     metadata = get_glossary_metadata()
     assert metadata["name"] == "lianggu-valve-glossary"
