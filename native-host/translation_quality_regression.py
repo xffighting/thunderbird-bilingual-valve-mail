@@ -297,7 +297,7 @@ def main() -> None:
 
     reply_intents = get_reply_intents()
     assert reply_intents["name"] == "open-valve-reply-intents"
-    assert reply_intents["version"] == "1.1.0"
+    assert reply_intents["version"] == "1.2.0"
     assert len(reply_intents["intents"]) == 32
     assert sum(
         intent.get("requires_human_review") is True
@@ -403,6 +403,33 @@ def main() -> None:
     assert "WCB" in arabic_translation[1]
     assert any(value in arabic_translation[2] for value in ("商务报价", "报价单"))
 
+    russian_ndt_protected, russian_ndt_replacements = protect_valve_terms(
+        (
+            "Требуется вихретоковый контроль и ультразвуковой контроль "
+            "фазированными решётками."
+        ),
+        source_language="ru",
+    )
+    assert "вихретоковый контроль" not in russian_ndt_protected.casefold()
+    assert "фазированными решётками" not in russian_ndt_protected.casefold()
+    assert {"涡流检测", "相控阵超声检测"}.issubset(
+        {item["replacement"] for item in russian_ndt_replacements}
+    )
+
+    arabic_ndt_protected, arabic_ndt_replacements = protect_valve_terms(
+        "مطلوب فحص التيارات الدوامية واختبار الانبعاث الصوتي.",
+        source_language="ar",
+    )
+    assert "فحص التيارات الدوامية" not in arabic_ndt_protected
+    assert "اختبار الانبعاث الصوتي" not in arabic_ndt_protected
+    assert {"涡流检测", "声发射检测"}.issubset(
+        {item["replacement"] for item in arabic_ndt_replacements}
+    )
+    assert "و声发射检测" in restore_valve_terms(
+        arabic_ndt_protected,
+        arabic_ndt_replacements,
+    )
+
     russian_protected, russian_replacements = _protect_reply_terms(
         "The quotation for the Ball Valve DN50 PN16 is ready.",
         "en",
@@ -442,11 +469,11 @@ def main() -> None:
 
     metadata = get_glossary_metadata()
     assert metadata["name"] == "open-valve-glossary"
-    assert metadata["termCount"] == 310
-    assert metadata["multilingualTermCount"] == 310
-    assert metadata["russianTermCount"] == 310
-    assert metadata["arabicTermCount"] == 310
-    assert metadata["sourceCount"] == 123
+    assert metadata["termCount"] == 315
+    assert metadata["multilingualTermCount"] == 315
+    assert metadata["russianTermCount"] == 315
+    assert metadata["arabicTermCount"] == 315
+    assert metadata["sourceCount"] == 140
     print("translation quality regression passed")
 
 

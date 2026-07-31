@@ -429,7 +429,7 @@ def _source_phrase_pattern(value: str, source_language: str) -> re.Pattern[str]:
         if part
     ]
     return re.compile(
-        r"(?<![\w])(?:[وفبكل]|لل)?(?:ال)?"
+        r"(?<![\w])(?P<arabic_clitic>[وفبكل]|لل)?(?:ال)?"
         + r"[\s-]+".join(parts)
         + r"(?![\w])",
         re.IGNORECASE,
@@ -562,6 +562,11 @@ def protect_valve_terms(
 
     def replace_match(match: re.Match[str], replacement: str, kind: str) -> str:
         token = f"[TERM{len(replacements):03d}]"
+        arabic_clitic = (
+            match.groupdict().get("arabic_clitic", "")
+            if source_language == "ar"
+            else ""
+        )
         replacements.append(
             {
                 "token": token,
@@ -570,7 +575,7 @@ def protect_valve_terms(
                 "kind": kind,
             }
         )
-        return token
+        return f"{arabic_clitic or ''}{token}"
 
     custom_source_terms = [
         term

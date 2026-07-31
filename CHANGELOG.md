@@ -2,6 +2,19 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.12.4] - 2026-07-31
+
+### Changed
+
+- Updated the embedded offline fallback to Open Valve Glossary v1.2.0 with 315
+  approved four-language terms.
+- Added independently reviewed terminology for valve travel, generic eddy
+  current testing, PAUT, TOFD and acoustic emission testing.
+- Kept generic eddy current testing separate from pulsed eddy current (PEC),
+  and restricted PAUT, TOFD and AE short forms to inspection contexts.
+- Updated Russian and Arabic outputs to the conventional industry forms
+  supported by official standards and manufacturer sources.
+
 ## [0.12.3] - 2026-07-31
 
 ### Changed
