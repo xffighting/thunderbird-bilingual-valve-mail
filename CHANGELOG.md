@@ -2,6 +2,19 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.12.3] - 2026-07-31
+
+### Changed
+
+- Updated the embedded offline fallback to Open Valve Glossary v1.1.0 with 310
+  approved four-language terms.
+- Added reviewed Russian grammatical forms for valve seat, valve stem and stem
+  packing, plus a valve-context-gated Graphite material term.
+- Normalize the common Russian seat-material and stem-packing construction into
+  clear Chinese field wording instead of preserving awkward pivot word order.
+- Kept the rejected M2M100 shadow model isolated from email compose after it
+  failed the fixed professional valve-translation benchmark.
+
 ## [0.12.2] - 2026-07-31
 
 ### Fixed

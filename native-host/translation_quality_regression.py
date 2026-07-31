@@ -96,6 +96,13 @@ def main() -> None:
         )
         == "球阀 DN50 PN16 WCB."
     )
+    assert (
+        post_process_translation(
+            "Материал седла клапана — PEEK, а набивка штока — графит.",
+            "材料阀座 - PEEK和填料 - 石墨.",
+        )
+        == "阀座材料为 PEEK，阀杆填料为石墨。"
+    )
 
     source = "Globe Valve body, bonnet, stem and seat: DN50 PN16 WCB, RF."
     protected, replacements = protect_valve_terms(source)
@@ -135,6 +142,57 @@ def main() -> None:
     ordinary_protected, ordinary_replacements = protect_valve_terms(ordinary_text)
     assert ordinary_protected == ordinary_text
     assert ordinary_replacements == []
+
+    russian_morphology_terms = [
+        {
+            "en": source_term,
+            "zh": chinese,
+            "sourceLanguage": "ru",
+            "context": "valve",
+            "enabled": True,
+        }
+        for source_term, chinese in (
+            ("седла клапана", "阀座"),
+            ("набивка штока", "填料"),
+            ("штока клапана", "阀杆"),
+            ("графит", "石墨"),
+        )
+    ]
+    russian_valve_source = (
+        "Материал седла клапана — PTFE, а набивка штока — графит."
+    )
+    production_protected, production_replacements = protect_valve_terms(
+        russian_valve_source,
+        source_language="ru",
+    )
+    assert {"阀座", "填料", "石墨"}.issubset(
+        {item["replacement"] for item in production_replacements}
+    )
+    assert "седла клапана" not in production_protected.casefold()
+    assert "набивка штока" not in production_protected.casefold()
+    assert "графит" not in production_protected.casefold()
+    russian_protected, russian_replacements = protect_valve_terms(
+        russian_valve_source,
+        russian_morphology_terms,
+        "ru",
+    )
+    assert "седла клапана" not in russian_protected.casefold()
+    assert "набивка штока" not in russian_protected.casefold()
+    assert "графит" not in russian_protected.casefold()
+    assert {"阀座", "填料", "石墨"}.issubset(
+        {item["replacement"] for item in russian_replacements}
+    )
+    for ordinary_russian in (
+        "Карандаш содержит графит.",
+        "Название проекта — Graphite; русское имя — графит.",
+    ):
+        ordinary_protected, ordinary_replacements = protect_valve_terms(
+            ordinary_russian,
+            russian_morphology_terms,
+            "ru",
+        )
+        assert ordinary_protected == ordinary_russian
+        assert ordinary_replacements == []
 
     for body_source in (
         "Body",
@@ -239,7 +297,7 @@ def main() -> None:
 
     reply_intents = get_reply_intents()
     assert reply_intents["name"] == "open-valve-reply-intents"
-    assert reply_intents["version"] == "1.0.0"
+    assert reply_intents["version"] == "1.1.0"
     assert len(reply_intents["intents"]) == 32
     assert sum(
         intent.get("requires_human_review") is True
@@ -384,11 +442,11 @@ def main() -> None:
 
     metadata = get_glossary_metadata()
     assert metadata["name"] == "open-valve-glossary"
-    assert metadata["termCount"] == 309
-    assert metadata["multilingualTermCount"] == 309
-    assert metadata["russianTermCount"] == 309
-    assert metadata["arabicTermCount"] == 309
-    assert metadata["sourceCount"] == 118
+    assert metadata["termCount"] == 310
+    assert metadata["multilingualTermCount"] == 310
+    assert metadata["russianTermCount"] == 310
+    assert metadata["arabicTermCount"] == 310
+    assert metadata["sourceCount"] == 123
     print("translation quality regression passed")
 
 

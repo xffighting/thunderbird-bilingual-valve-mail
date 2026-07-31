@@ -472,7 +472,15 @@ def _is_valve_context(source: str, glossary: dict[str, Any]) -> bool:
 
 def _is_russian_valve_context(source: str, glossary: dict[str, Any]) -> bool:
     if re.search(
-        r"\b(?:клапан|задвижка|кран|затвор|арматура|фланец|привод)\b",
+        r"\b(?:"
+        r"клапан(?:а|у|ом|е|ы|ов|ам|ами|ах)?|"
+        r"задвижк(?:а|и|е|у|ой|ою|ами|ах)|"
+        r"кран(?:а|у|ом|е|ы|ов|ам|ами|ах)?|"
+        r"затвор(?:а|у|ом|е|ы|ов|ам|ами|ах)?|"
+        r"арматур(?:а|ы|е|у|ой|ою)|"
+        r"флан(?:ец|ца|цу|цем|це|цы|цев|цам|цами|цах)|"
+        r"привод(?:а|у|ом|е|ы|ов|ам|ами|ах)?"
+        r")\b",
         source,
         re.IGNORECASE,
     ):
@@ -847,6 +855,36 @@ def post_process_translation(source: str, translated: str) -> str:
     """Apply deterministic foreign-trade wording after valve terms are restored."""
     result = re.sub(r"\s*_{2,}\s*", "", translated.strip())
     source_lower = source.lower()
+
+    russian_material_statement = re.fullmatch(
+        r"\s*Материал\s+седл(?:о|а|у|ом|е)\s+клапана\s*[—–-]\s*"
+        r"(?P<seat>[^,.;]+)\s*,?\s+а\s+"
+        r"набивк(?:а|и|е|ой|у)\s+штока\s*[—–-]\s*"
+        r"(?P<packing>[^.;]+)\s*[.;]?\s*",
+        source,
+        re.IGNORECASE,
+    )
+    if russian_material_statement:
+        material_terms = {
+            item["en"].casefold(): item["zh"]
+            for item in _glossary_source_terms(get_valve_glossary(), "ru")
+            if item.get("category") == "material"
+        }
+
+        def material_to_chinese(value: str) -> str:
+            normalized = value.strip()
+            if re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9+\-./% ]*", normalized):
+                return normalized
+            return material_terms.get(normalized.casefold(), "")
+
+        seat_material = material_to_chinese(
+            russian_material_statement.group("seat")
+        )
+        packing_material = material_to_chinese(
+            russian_material_statement.group("packing")
+        )
+        if seat_material and packing_material:
+            return f"阀座材料为 {seat_material}，阀杆填料为{packing_material}。"
 
     if re.search(r"\b(?:quote|quotation)\b", source_lower):
         result = result.replace("引用", "报价")

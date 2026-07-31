@@ -216,7 +216,7 @@ assert.ok(
   fs.existsSync(
     path.join(__dirname, "..", "native-host", "glossary_provider.py")
   ),
-  "The native host should ship with the verified provider and v1.0.0 fallback bundle."
+  "The native host should ship with the verified provider and v1.1.0 fallback bundle."
 );
 assert.ok(
   nativeInstaller.includes('cp "${SOURCE_DIR}/valve_glossary.json" "${APP_DIR}/valve_glossary.json"'),
