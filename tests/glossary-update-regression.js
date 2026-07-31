@@ -5,6 +5,9 @@ const path = require("path");
 
 globalThis.crypto = crypto.webcrypto;
 globalThis.browser = {
+  permissions: {
+    contains: async () => true
+  },
   runtime: {
     sendNativeMessage: async () => ({
       ok: true,
@@ -85,6 +88,14 @@ require("../src/glossary-update.js");
     0
   );
   assert.strictEqual(
+    await globalThis.GlossaryUpdate.hasUpdatePermission(),
+    true
+  );
+  assert.strictEqual(
+    globalThis.GlossaryUpdate.UPDATE_ORIGINS.length,
+    5
+  );
+  assert.strictEqual(
     globalThis.GlossaryUpdate.expectedReleaseAssetUrl(
       "1.0.0",
       "bundle.json.gz"
@@ -106,6 +117,11 @@ require("../src/glossary-update.js");
     !source.includes("emailAddress") &&
     !source.includes("customerRecords"),
     "Version requests must not contain mail or customer fields."
+  );
+  assert.ok(
+    source.includes("HOST_PERMISSION_REQUIRED") &&
+    source.includes("permissions.contains"),
+    "An upgrade without newly granted host permissions must fail with an actionable status."
   );
 
   console.log("glossary update signature regression passed");

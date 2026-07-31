@@ -2,6 +2,17 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.12.2] - 2026-07-31
+
+### Fixed
+
+- Detect missing Manifest V3 host grants after an upgrade instead of reporting
+  an ambiguous network failure.
+- Let the user grant the five fixed glossary-download origins from the
+  Settings “立即检查” gesture; no mail or customer origin is requested.
+- Show a clear “待授权” state while the embedded offline glossary remains
+  available.
+
 ## [0.12.1] - 2026-07-31
 
 ### Fixed

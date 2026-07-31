@@ -15,6 +15,12 @@
     const glossaryStatus = document.getElementById("glossaryUpdateStatus");
     const glossaryCheckButton = document.getElementById("checkGlossaryUpdate");
     const glossaryRollbackButton = document.getElementById("rollbackGlossaryUpdate");
+    const glossaryPermissionOrigins = (
+      api.runtime.getManifest?.().host_permissions || []
+    ).filter(origin => (
+      origin.includes("open-valve-glossary") ||
+      origin.includes("release-assets.githubusercontent.com")
+    ));
     let customTerms = [];
     let translationFeedback = [];
 
@@ -246,7 +252,11 @@
         ? new Date(result.updatedAt).toLocaleString()
         : "随插件内置";
       glossaryRollbackButton.disabled = !result?.previousVersion;
-      if (result?.error?.message) {
+      if (result?.error?.code === "HOST_PERMISSION_REQUIRED") {
+        glossaryBadge.textContent = "待授权";
+        glossaryStatus.textContent =
+          "点击“立即检查”后批准访问；权限只用于下载公开词库版本文件。";
+      } else if (result?.error?.message) {
         glossaryStatus.textContent =
           `当前版本仍可用；${result.error.message}`;
       } else if (state === "ACTIVE") {
@@ -268,7 +278,21 @@
       return result;
     }
 
+    async function requestGlossaryUpdatePermission() {
+      if (!glossaryPermissionOrigins.length || !api.permissions?.request) {
+        return true;
+      }
+      const granted = await api.permissions.request({
+        origins: glossaryPermissionOrigins
+      });
+      if (!granted) {
+        throw new Error("未获得词库更新权限；当前内置词库仍可离线使用。");
+      }
+      return true;
+    }
+
     async function checkGlossaryUpdate() {
+      await requestGlossaryUpdatePermission();
       glossaryCheckButton.disabled = true;
       glossaryRollbackButton.disabled = true;
       glossaryBadge.textContent = "正在检查";

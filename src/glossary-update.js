@@ -5,6 +5,13 @@
   const LATEST_URL = `${BASE_URL}/v1/latest.json`;
   const GITHUB_RELEASES_API =
     "https://api.github.com/repos/xffighting/open-valve-glossary/releases/latest";
+  const UPDATE_ORIGINS = [
+    "https://xffighting.github.io/open-valve-glossary/*",
+    "https://feiver.net/open-valve-glossary/*",
+    "https://api.github.com/repos/xffighting/open-valve-glossary/releases/*",
+    "https://github.com/xffighting/open-valve-glossary/releases/*",
+    "https://release-assets.githubusercontent.com/*"
+  ];
   const PUBLIC_KEY_SPKI_BASE64 =
     "MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA077ZO7+o3r/DlHQvCD1KXDOv6GQc5NVpMHE1qxbD8z5eC7dIScmHiib/XIYr+Hxd5M49dY9eqUTJFQBXDsC03KCCTycNxVQkIWLBe2abGfnecN3mI6Z7Jf3PDJPUF2o5pjakB95knB/40eG8Lx6buAU01/DJR2wrNZWBeAXQ9Km2rDnEWVQqJZGBA7/ScEwopjzxD64yK84p6QPK22Gy2ojSHEZYY0OXkrurhGtRhOHM/RFtfGtVY2jQ3AYVA1UHwTvsZZq6izjXjte2aVAqisDz/sHgcfhkIbrsNRZKBn4Iaoh5d16GT71Em6CKtE8pAahtjQgoqUdBDgxAQA/yFTiqCuGM3VTAufIrVayPj/JiZt6IKyCdC83oD9zcKpeoiZDmncONVO/B3D+p48Sd3DQh3TDI27KgnPLug3CP7KxLFvN/kcXsVk75DCAmpNON7H3GymvKz1VOlx/OAWKnr4IeCm9Mwh+/cMTyi9sQ1mTF52SnpFkWE7cpeUR70pZzAgMBAAE=";
   const CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
@@ -39,6 +46,17 @@
       }
     }
     return 0;
+  }
+
+  function updateError(code, message) {
+    const error = new Error(message);
+    error.code = code;
+    return error;
+  }
+
+  async function hasUpdatePermission() {
+    if (!api.permissions?.contains) return true;
+    return api.permissions.contains({ origins: UPDATE_ORIGINS });
   }
 
   function expectedManifestUrl(version) {
@@ -267,6 +285,12 @@
       return status(stored.check.latestVersion || null);
     }
     try {
+      if (!await hasUpdatePermission()) {
+        throw updateError(
+          "HOST_PERMISSION_REQUIRED",
+          "请在设置页点击“立即检查”，批准仅用于下载公开词库版本文件的网络权限。"
+        );
+      }
       const descriptor = await releaseDescriptor();
       const version = descriptor.version;
       const manifestResponse = await fetchJson(
@@ -311,9 +335,10 @@
         bundleBase64: bytesToBase64(bundleBytes)
       });
     } catch (error) {
+      const errorCode = String(error?.code || "UPDATE_CHECK_FAILED");
       await recordCheck({
         error: {
-          code: "UPDATE_CHECK_FAILED",
+          code: errorCode,
           message: String(error?.message || error)
         }
       });
@@ -330,7 +355,7 @@
         previousVersion: current.previousVersion,
         updatedAt: current.updatedAt,
         error: {
-          code: "UPDATE_CHECK_FAILED",
+          code: errorCode,
           message: String(error?.message || error)
         }
       };
@@ -369,6 +394,7 @@
     BASE_URL,
     LATEST_URL,
     PUBLIC_KEY_SPKI_BASE64,
+    UPDATE_ORIGINS,
     check,
     compareVersions,
     configure,
@@ -377,6 +403,7 @@
     expectedReleaseAssetUrl,
     expectedSignatureUrl,
     githubReleaseDescriptor,
+    hasUpdatePermission,
     rollback,
     start,
     status,

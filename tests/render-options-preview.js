@@ -45,7 +45,15 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
       ]
     };
     window.browser = {
+      permissions: {
+        request: async () => true
+      },
       runtime: {
+        getManifest: () => ({
+          host_permissions: [
+            "https://api.github.com/repos/xffighting/open-valve-glossary/releases/*"
+          ]
+        }),
         sendMessage: async request => {
           if (request.type === "getOptions") return defaults;
           if (request.type === "saveOptions") return { ...defaults, ...request.options };
@@ -69,6 +77,17 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
             };
           }
           if (request.type === "getGlossaryUpdateStatus") {
+            return {
+              ok: true,
+              state: "CURRENT",
+              currentVersion: "1.0.0",
+              latestVersion: "1.0.0",
+              previousVersion: null,
+              updatedAt: "2026-07-31T00:00:00Z",
+              error: null
+            };
+          }
+          if (request.type === "checkGlossaryUpdate") {
             return {
               ok: true,
               state: "CURRENT",
@@ -136,6 +155,10 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
   assert.ok(
     (await page.locator("#benchmarkStatus").textContent()).includes("translate-en_zh-1_9"),
     "The selected local model should be visible after evaluation."
+  );
+  await page.locator("#checkGlossaryUpdate").click();
+  await page.waitForFunction(
+    () => document.getElementById("glossaryUpdateBadge").textContent === "已是最新"
   );
 
   await page.setInputFiles("#registryFile", {
