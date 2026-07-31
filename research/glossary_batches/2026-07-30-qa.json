@@ -1,0 +1,236 @@
+{
+  "status": "review_required",
+  "checks": {
+    "scope": {
+      "candidate_count": 60,
+      "runtime_base_term_count": 153,
+      "runtime_multilingual_term_count": 155,
+      "review_method": [
+        "Unicode NFKC normalization",
+        "case folding",
+        "hyphen, slash and whitespace normalization",
+        "category and context allow-list validation",
+        "source registry resolution",
+        "manual valve-domain semantic review",
+        "ordinary-email false-match review",
+        "business reminder and follow-up phrase review"
+      ]
+    },
+    "normalized_english_key_duplicates": {
+      "status": "passed",
+      "duplicate_count": 0,
+      "duplicate_keys": [],
+      "notes": [
+        "Socket-welding End is not a duplicate of the existing Socket Weld; it preserves the valve-end meaning.",
+        "Butt-welding End is not a duplicate of the existing Butt Weld; it preserves the valve-end meaning.",
+        "Backseat Test is not a duplicate of the existing Backseat; one is a test and the other is a component or structure."
+      ]
+    },
+    "schema": {
+      "status": "passed",
+      "allowed_categories": [
+        "business",
+        "business_phrase",
+        "component",
+        "connection",
+        "design",
+        "inspection",
+        "operator",
+        "packing",
+        "requirement",
+        "valve_type"
+      ],
+      "observed_categories": [
+        "business_phrase",
+        "component",
+        "connection",
+        "design",
+        "inspection",
+        "operator",
+        "requirement",
+        "valve_type"
+      ],
+      "allowed_contexts": [
+        "always",
+        "valve"
+      ],
+      "invalid_entries": []
+    },
+    "source_traceability": {
+      "status": "passed_with_findings",
+      "used_source_id_count": 22,
+      "unresolved_source_ids": [],
+      "registry": "research/glossary_batches/2026-07-30-zh-en.json",
+      "relevance_review": [
+        {
+          "en": "Resilient Seated Gate Valve",
+          "finding": "gb12238 is a butterfly-valve standard and is not an appropriate supporting source for a gate-valve term."
+        },
+        {
+          "en": "End-to-end Dimension",
+          "finding": "ISO 5752 is explicitly for face-to-face and centre-to-face dimensions, while ASME B16.34 is not the primary dimensional standard for end-to-end dimensions."
+        }
+      ]
+    },
+    "semantic_review": {
+      "status": "passed_with_findings",
+      "reviewed_count": 60,
+      "review_required_count": 6,
+      "rejected_count": 1,
+      "notes": [
+        "The main valve-type, component, actuation, material, testing and documentation translations are consistent with common valve-industry Chinese usage.",
+        "Technical distinctions such as Tilting Disc versus Swing Check, Backseat versus Backseat Test, and Face-to-face versus End-to-end are preserved.",
+        "No candidate was approved solely because it had high confidence; ambiguous matching and source relevance were reviewed independently."
+      ]
+    },
+    "false_match_risk": {
+      "status": "warning",
+      "review_required_keys": [
+        "Closure Member",
+        "Clapper",
+        "Fail Close",
+        "Fail Open"
+      ],
+      "low_risk_monitored_keys": [
+        "Floating Seat",
+        "Seat Insert",
+        "Stem Extension",
+        "Limit Switch"
+      ],
+      "notes": [
+        "Closure Member and Clapper are valid valve terms but are also generic or ambiguous English expressions; they must remain behind a reliable valve-context gate.",
+        "Fail Close and Fail Open are short data-sheet expressions. In the current runtime design, operator-category terms can themselves establish valve context, so context=valve alone does not fully prevent an ordinary-sentence false match.",
+        "The monitored compound terms have correct Chinese targets and are sufficiently specific when exact-boundary matching and valve context are both retained."
+      ]
+    },
+    "reminder_followup_phrases": {
+      "status": "passed_with_findings",
+      "candidate_phrase_count": 15,
+      "approved_phrase_count": 14,
+      "review_required_phrase_count": 0,
+      "rejected_phrase_count": 1,
+      "approved_nonliteral_examples": {
+        "This is a gentle reminder": "谨此提醒",
+        "Just a reminder": "提醒一下",
+        "A kind reminder": "友情提醒",
+        "I am following up on": "我想跟进一下",
+        "Please find attached": "附件请查收",
+        "Please do not hesitate to contact us": "如有任何问题，请随时联系我们"
+      },
+      "runtime_baseline_warning": {
+        "existing_key": "Soft Reminder",
+        "existing_zh": "温馨提醒",
+        "finding": "The priority batch does not replace this existing runtime key, so the user's reported Soft Reminder quality problem remains unless the baseline term is corrected separately.",
+        "recommendation": "For incoming recognition, translate by function as 友情提醒 or 谨此提醒 according to sentence context. For outbound English, do not generate Soft reminder; prefer Just a reminder or This is a gentle reminder."
+      },
+      "notes": [
+        "Approved reminder and follow-up entries translate the communicative function rather than individual words.",
+        "At your earliest convenience was rejected because its proposed Chinese target injects the verb 处理, which is not present in the source and can conflict with the surrounding request verb."
+      ]
+    }
+  },
+  "approved_keys": [
+    "Bellows Seal Globe Valve",
+    "Axial Flow Check Valve",
+    "Tilting Disc Check Valve",
+    "Wafer Check Valve",
+    "Slab Gate Valve",
+    "Three-way Ball Valve",
+    "V-port Ball Valve",
+    "Double-offset Butterfly Valve",
+    "Triple-offset Butterfly Valve",
+    "Lined Butterfly Valve",
+    "Emergency Shutdown Valve",
+    "Floating Seat",
+    "Self-relieving Seat",
+    "Seat Insert",
+    "Stem Extension",
+    "Sealant Injection Fitting",
+    "Part-turn Actuator",
+    "Multi-turn Actuator",
+    "Linear Actuator",
+    "Double-acting Actuator",
+    "Spring-return Actuator",
+    "Limit Switch",
+    "Valve Positioner",
+    "Face-to-face Dimension",
+    "Pressure-temperature Rating",
+    "Socket-welding End",
+    "Butt-welding End",
+    "Carbon Steel Forging",
+    "Carbon Steel Casting",
+    "Stainless Steel Casting",
+    "Spheroidal Graphite Iron Casting",
+    "High-pressure Closure Test",
+    "Low-pressure Closure Test",
+    "Backseat Test",
+    "Cavity Relief Test",
+    "Antistatic Continuity Test",
+    "Manufacturing Record Book",
+    "Welding Procedure Specification",
+    "Operation and Maintenance Manual",
+    "This is a gentle reminder",
+    "Just a reminder",
+    "A kind reminder",
+    "I am following up on",
+    "Further to our previous email",
+    "Could you please let us know",
+    "We would appreciate your prompt reply",
+    "We look forward to hearing from you",
+    "Please find attached",
+    "For your review and approval",
+    "Thank you for your patience",
+    "Thank you for your cooperation",
+    "Please do not hesitate to contact us",
+    "Could you confirm receipt"
+  ],
+  "review_required": [
+    {
+      "en": "Resilient Seated Gate Valve",
+      "reason": "The translation 弹性座封闸阀 is correct, but source_id gb12238 points to a butterfly-valve standard and weakens auditability.",
+      "recommendation": "Keep gb21465 only if the term is directly supported there, or add an authoritative resilient-seated gate-valve standard before approval."
+    },
+    {
+      "en": "Closure Member",
+      "reason": "关闭件 is valid as a valve-domain upper-level term, but the English phrase is generic and its concrete meaning may instead be disc, wedge, ball or plug.",
+      "recommendation": "Retain context=valve, require a second valve-specific anchor in the same sentence or field, and prefer the concrete component name when the valve type is known."
+    },
+    {
+      "en": "Clapper",
+      "reason": "阀瓣 is correct for a check valve, but Clapper is a short ambiguous word outside that context.",
+      "recommendation": "Require nearby Check Valve or Swing Check context; otherwise leave the source word for human review."
+    },
+    {
+      "en": "Fail Close",
+      "reason": "故障关 is common valve shorthand, but the two-word phrase can occur as ordinary English and operator-category matching can currently establish its own valve context.",
+      "recommendation": "Approve only after adding a stricter actuator or valve field gate; consider explicit aliases such as Fail Close (FC) without conflating them with Fail to Close."
+    },
+    {
+      "en": "Fail Open",
+      "reason": "故障开 is common valve shorthand, but the two-word phrase can occur as ordinary English and operator-category matching can currently establish its own valve context.",
+      "recommendation": "Approve only after adding a stricter actuator or valve field gate; consider explicit aliases such as Fail Open (FO) without conflating them with Fail to Open."
+    },
+    {
+      "en": "End-to-end Dimension",
+      "reason": "端到端尺寸 is semantically correct, but the cited standards are not the strongest direct dimensional references.",
+      "recommendation": "Replace or supplement the source_ids with GB/T 12221 and/or ASME B16.10 before approval."
+    }
+  ],
+  "rejected": [
+    {
+      "en": "At your earliest convenience",
+      "reason": "The proposed translation 请您方便时尽早处理 adds 处理 even when the surrounding verb is reply, confirm, send, call or review, causing duplicated or incorrect actions after static phrase restoration.",
+      "recommendation": "Do not use this fragment as an unconditional glossary replacement. Add complete sentence patterns such as Please reply at your earliest convenience -> 烦请您方便时尽早回复, or let the sentence-level translator handle it."
+    }
+  ],
+  "summary": {
+    "candidate_count": 60,
+    "approved_count": 53,
+    "review_required_count": 6,
+    "rejected_count": 1,
+    "normalized_duplicate_count": 0,
+    "unresolved_source_id_count": 0,
+    "decision": "Do not merge the full priority batch as-is. Merge only approved_keys, correct or gate the six review_required entries, and exclude the rejected phrase.",
+    "soft_reminder_decision": "The new whole-sentence reminder phrases are materially better than word-by-word translation, but the existing Soft Reminder runtime entry still needs a separate correction."
+  }
+}

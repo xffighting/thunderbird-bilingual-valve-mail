@@ -15,6 +15,7 @@
       </div>
       <div class="title-actions">
         <button id="openOptions" class="secondary-button" type="button">设置</button>
+        <button id="refreshResearch" class="secondary-button" type="button">更新背调</button>
         <button id="refresh" class="primary-button" type="button">重新分析</button>
       </div>
     </header>
@@ -35,6 +36,53 @@
           </div>
         </div>
         <div id="brief" class="bilingual-block hero-brief"></div>
+      </article>
+
+      <section class="intelligence-strip" aria-label="客户匹配和询盘质量">
+        <article class="score-card">
+          <div>
+            <div class="eyebrow">客户匹配 / Customer fit</div>
+            <div id="customerFitLabel" class="score-label">后台准备中</div>
+          </div>
+          <strong id="customerFitScore" class="score-value" data-band="pending">—</strong>
+        </article>
+        <article class="score-card">
+          <div>
+            <div class="eyebrow">询盘质量 / Inquiry quality</div>
+            <div id="inquiryQualityLabel" class="score-label">邮件分析中</div>
+          </div>
+          <strong id="inquiryQualityScore" class="score-value" data-band="pending">—</strong>
+        </article>
+        <article class="version-card">
+          <div class="eyebrow">背调版本 / Research version</div>
+          <strong id="researchVersion">v—</strong>
+          <span id="researchUpdatedAt">等待后台核验</span>
+        </article>
+      </section>
+
+      <article class="card research-card">
+        <div class="card-heading">
+          <div>
+            <div class="eyebrow">后台客户背调</div>
+            <h3>Background customer research</h3>
+          </div>
+          <span id="researchQuality" class="confidence-label">待准备</span>
+        </div>
+        <div id="researchBrief" class="bilingual-block"></div>
+        <dl id="researchFacts" class="fact-list"></dl>
+        <p id="researchStatus" class="research-status" aria-live="polite"></p>
+      </article>
+
+      <article class="card opportunity-card">
+        <div class="opportunity-copy">
+          <div class="eyebrow">良固销售流程 / Lianggu sales workflow</div>
+          <h3>把当前邮件建立为商机</h3>
+          <p>查重客户与商机 → 写入钉钉待审核 → 回读 SJ 号 → 本地同号归档</p>
+        </div>
+        <div class="opportunity-action">
+          <button id="createOpportunity" class="primary-button opportunity-button" type="button">一键建立商机</button>
+          <p id="opportunityStatus" class="hint" aria-live="polite">不会发送、移动或删除 Thunderbird 邮件。</p>
+        </div>
       </article>
 
       <div class="decision-grid">
@@ -119,7 +167,30 @@
         </div>
       </aside>
     </section>
+
+    <section id="opportunityConfirm" class="dialog-backdrop" hidden>
+      <div class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="opportunityConfirmTitle">
+        <div class="confirm-icon" aria-hidden="true">商</div>
+        <div>
+          <div class="eyebrow">执行确认 / Authorization</div>
+          <h2 id="opportunityConfirmTitle">建立当前邮件的完整商机</h2>
+          <p>确认后将执行以下本机流程：</p>
+          <ol class="confirm-list">
+            <li>按精确邮箱或唯一企业域名匹配客户，歧义时自动停止。</li>
+            <li>先查询钉钉现状，再并入已有商机或新建“AI 提取待审核”商机。</li>
+            <li>上传当前邮件附件并创建钉钉审核待办。</li>
+            <li>回读正式 SJ 号后，建立本地同号目录并归档原始资料。</li>
+          </ol>
+          <p class="confirm-note">不会发送客户邮件，也不会改动销售负责人、报价结果或已有人工作段。</p>
+        </div>
+        <div class="confirm-actions">
+          <button id="cancelOpportunity" class="secondary-button" type="button">取消</button>
+          <button id="confirmOpportunity" class="primary-button" type="button">确认建立商机</button>
+        </div>
+      </div>
+    </section>
   </main>
+  <script src="../src/customer-research.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

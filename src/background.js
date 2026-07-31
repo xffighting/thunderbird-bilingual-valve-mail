@@ -1,10 +1,14 @@
-/* global browser, messenger, GameMailSummary, CustomerIntelligence, OfflineMailTranslator, TranslationPreferences */
+/* global browser, messenger, GameMailSummary, CustomerIntelligence, CustomerResearch, OfflineMailTranslator, TranslationPreferences, LiangguOpportunityIntake */
 (function initBackground(global) {
   const api = global.messenger || global.browser;
-  const MESSAGE_DISPLAY_SCRIPT_ID = "game-mail-summary-inline-v4";
-  const LEGACY_MESSAGE_DISPLAY_SCRIPT_IDS = ["game-mail-summary-inline-v3"];
+  const MESSAGE_DISPLAY_SCRIPT_ID = "game-mail-summary-inline-v5";
+  const LEGACY_MESSAGE_DISPLAY_SCRIPT_IDS = [
+    "game-mail-summary-inline-v3",
+    "game-mail-summary-inline-v4"
+  ];
   const MESSAGE_DISPLAY_JS = [
     "src/inline-translation-core.js",
+    "src/customer-research.js",
     "ui/message-summary-button.js",
     "ui/inline-translation.js"
   ];
@@ -12,6 +16,10 @@
     "ui/message-summary-button.css",
     "ui/inline-translation.css"
   ];
+  let activeOpportunityRun = null;
+  const activeResearchRuns = new Map();
+  let researchCacheWrite = Promise.resolve();
+  let backgroundResearchQueue = Promise.resolve();
 
   async function getStoredOptions() {
     const result = await api.storage.local.get("options");
@@ -109,6 +117,157 @@
     return getSummaryForCurrentMessage(options || {});
   }
 
+  async function rawMessageBytes(messageId) {
+    if (!api.messages?.getRaw) {
+      const error = new Error("当前 Thunderbird 不支持读取原始邮件。");
+      error.reason = "get_raw_not_supported";
+      throw error;
+    }
+    const raw = await api.messages.getRaw(messageId);
+    if (typeof raw === "string") return new TextEncoder().encode(raw);
+    if (raw?.arrayBuffer) return new Uint8Array(await raw.arrayBuffer());
+    const error = new Error("当前邮件尚未完整下载，请先打开后重试。");
+    error.reason = "raw_message_unavailable";
+    throw error;
+  }
+
+  async function getResearchCache() {
+    const stored = await api.storage.local.get("customerResearchCache");
+    const cache = stored.customerResearchCache;
+    return cache && typeof cache === "object" ? cache : {};
+  }
+
+  function cacheIsFresh(entry, ttlMs) {
+    return Boolean(
+      entry?.savedAt
+      && entry?.result
+      && Date.now() - Number(entry.savedAt) < ttlMs
+    );
+  }
+
+  function saveResearchCache(messageId, result) {
+    researchCacheWrite = researchCacheWrite
+      .catch(() => undefined)
+      .then(async () => {
+        const cache = await getResearchCache();
+        cache[String(messageId)] = {
+          savedAt: Date.now(),
+          result
+        };
+        const entries = Object.entries(cache)
+          .sort((left, right) => Number(right[1]?.savedAt || 0) - Number(left[1]?.savedAt || 0))
+          .slice(0, 80);
+        await api.storage.local.set({
+          customerResearchCache: Object.fromEntries(entries)
+        });
+      });
+    return researchCacheWrite;
+  }
+
+  async function getCustomerResearchForMessageId(messageId, requestOptions) {
+    const key = String(messageId);
+    const options = {
+      ...(await getStoredOptions()),
+      ...(requestOptions || {})
+    };
+    const force = Boolean(requestOptions?.force);
+    if (!force) {
+      const cache = await getResearchCache();
+      const cached = cache[key];
+      if (cacheIsFresh(cached, options.customerResearchCacheTtlMs)) {
+        return {
+          ...cached.result,
+          cache: {
+            status: "hit",
+            savedAt: new Date(cached.savedAt).toISOString()
+          }
+        };
+      }
+    }
+    if (activeResearchRuns.has(key)) return activeResearchRuns.get(key);
+
+    const run = (async () => {
+      const bytes = await rawMessageBytes(messageId);
+      const response = await LiangguOpportunityIntake.analyzeCustomer(bytes, {
+        force,
+        autoUpdate: options.autoUpdateDingTalkResearch !== false
+      });
+      const result = response?.result;
+      if (!result || typeof result !== "object") {
+        const error = new Error("本机客户背调没有返回有效结果。");
+        error.reason = "invalid_customer_research_result";
+        throw error;
+      }
+      await saveResearchCache(messageId, result);
+      return {
+        ...result,
+        cache: {
+          status: "refreshed",
+          savedAt: new Date().toISOString()
+        }
+      };
+    })();
+    activeResearchRuns.set(key, run);
+    try {
+      return await run;
+    } finally {
+      activeResearchRuns.delete(key);
+    }
+  }
+
+  async function getCustomerResearchForSender(sender, options) {
+    const displayed = await getDisplayedMessageForTab(sender?.tab?.id);
+    const message = displayed || await getCurrentMessage();
+    return getCustomerResearchForMessageId(message.id, options || {});
+  }
+
+  function scheduleBackgroundResearch(message) {
+    if (!message?.id) return;
+    backgroundResearchQueue = backgroundResearchQueue
+      .catch(() => undefined)
+      .then(async () => {
+        const options = await getStoredOptions();
+        if (options.autoCustomerResearchEnabled === false) return;
+        const summary = await getSummaryForMessageId(message.id, { force: false });
+        if (["noise", "receipt"].includes(summary?.messageTriage?.category)) return;
+        await getCustomerResearchForMessageId(message.id, {
+          force: false,
+          autoUpdateDingTalkResearch: options.autoUpdateDingTalkResearch
+        });
+      })
+      .catch(error => {
+        console.warn("Background customer research deferred", error?.message || error);
+      });
+  }
+
+  async function createOpportunityForSender(sender) {
+    if (activeOpportunityRun) return activeOpportunityRun;
+    activeOpportunityRun = (async () => {
+      const displayed = await getDisplayedMessageForTab(sender?.tab?.id);
+      const message = displayed || await getCurrentMessage();
+      const bytes = await rawMessageBytes(message.id);
+      const response = await LiangguOpportunityIntake.submitEmail(bytes, "apply");
+      const result = response?.result;
+      if (!result || typeof result !== "object") {
+        const error = new Error("本机商机流程没有返回有效结果。");
+        error.reason = "invalid_intake_result";
+        throw error;
+      }
+      await api.storage.local.set({
+        lastOpportunityIntake: {
+          ...result,
+          savedAt: Date.now()
+        }
+      });
+      return result;
+    })();
+    try {
+      return await activeOpportunityRun;
+    } finally {
+      activeOpportunityRun = null;
+    }
+  }
+
   async function refreshActionForMessage(tabId, message) {
     try {
       const summary = await getSummaryForMessageId(message.id, { force: false });
@@ -127,6 +286,7 @@
       if (api.action?.setBadgeText) {
         await api.action.setBadgeText({ tabId, text: badgeText });
       }
+      scheduleBackgroundResearch(message);
     } catch (error) {
       if (api.messageDisplayAction?.setTitle) {
         await api.messageDisplayAction.setTitle({ tabId, title: `摘要生成失败：${error.message}` });
@@ -209,6 +369,15 @@
     });
   }
 
+  if (api.messages?.onNewMailReceived) {
+    api.messages.onNewMailReceived.addListener((_folder, messageList) => {
+      const messages = messageList?.messages || [];
+      for (const message of messages.slice(0, 3)) {
+        scheduleBackgroundResearch(message);
+      }
+    });
+  }
+
   if (api.mailTabs?.onSelectedMessagesChanged) {
     api.mailTabs.onSelectedMessagesChanged.addListener((tab, selectedMessages) => {
       const messages = selectedMessages?.messages || [];
@@ -233,6 +402,24 @@
       return getSummaryForMessageId(request.messageId, request.options || {});
     }
 
+    if (request.type === "getCustomerResearchForDisplayedMessage") {
+      return getCustomerResearchForSender(sender, request.options || {});
+    }
+
+    if (request.type === "getCustomerResearchForCurrentMessage") {
+      return getCurrentMessage().then(message => {
+        return getCustomerResearchForMessageId(message.id, request.options || {});
+      });
+    }
+
+    if (request.type === "getCustomerResearchByMessageId") {
+      return getCustomerResearchForMessageId(request.messageId, request.options || {});
+    }
+
+    if (request.type === "scoreInquiry") {
+      return Promise.resolve(CustomerResearch.scoreInquiry(request.summary || {}));
+    }
+
     if (request.type === "getOptions") {
       return getStoredOptions();
     }
@@ -245,6 +432,8 @@
         ownDomains: Array.isArray(incoming.ownDomains) ? incoming.ownDomains : [],
         ownEmails: Array.isArray(incoming.ownEmails) ? incoming.ownEmails : [],
         customerRecords: CustomerIntelligence.normalizeRegistry(incoming.customerRecords || []),
+        autoCustomerResearchEnabled: incoming.autoCustomerResearchEnabled !== false,
+        autoUpdateDingTalkResearch: incoming.autoUpdateDingTalkResearch !== false,
         customTerms: TranslationPreferences.normalizeCustomTerms(incoming.customTerms || []),
         translationFeedback: TranslationPreferences.normalizeTranslationFeedback(
           incoming.translationFeedback || []
@@ -256,6 +445,15 @@
 
     if (request.type === "openDingTalkLink") {
       return openDingTalkLink(request.url);
+    }
+
+    if (request.type === "createOpportunityFromCurrentMessage") {
+      if (request.authorized !== true) {
+        const error = new Error("请先确认本次钉钉写入与本地归档。");
+        error.reason = "authorization_required";
+        throw error;
+      }
+      return createOpportunityForSender(sender);
     }
 
     if (request.type === "translateInlineBatch") {

@@ -1,0 +1,2600 @@
+{
+  "name": "lianggu-valve-multilingual-glossary-batch",
+  "version": "2026.07.30.4",
+  "languages": [
+    "zh-CN",
+    "en",
+    "ru",
+    "ar"
+  ],
+  "fields": [
+    "en",
+    "zh",
+    "ru",
+    "ar",
+    "category",
+    "context"
+  ],
+  "review_policy": "Round-two independent-QA whitelist release: 89 approved, 30 deferred for review, and 1 rejected. Unapproved rows are excluded.",
+  "sources": [
+    {
+      "id": "round2-valve:gost24856",
+      "title": "ГОСТ 24856-2014 Арматура трубопроводная. Термины и определения",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/3e0903e6-d31b-48c6-8abe-e1e617d193a3",
+      "language": "ru/en",
+      "used_for": "Russian normative valve-type, component and parameter terminology.",
+      "original_id": "gost24856",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:gost31294",
+      "title": "ГОСТ 31294-2005 Клапаны предохранительные прямого действия. Общие технические условия",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/0eb77281-a297-43e8-8a95-90039eab2b7a",
+      "language": "ru",
+      "used_for": "Russian safety-valve design and set, opening, closing and capacity terminology.",
+      "original_id": "gost31294",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:gost34293",
+      "title": "ГОСТ 34293-2017 Краны шаровые стальные для нефтяной, нефтехимической и смежных отраслей промышленности",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/0d792936-d72e-4615-8e6c-a699e5986a8b",
+      "language": "ru/en",
+      "used_for": "Russian oil-and-gas ball-valve, antistatic and acceptance-test terminology.",
+      "original_id": "gost34293",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:gost33857",
+      "title": "ГОСТ 33857-2016 Арматура трубопроводная. Сварка и контроль качества сварных соединений",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/a73f6c4a-9ec3-4127-9cc7-2693fc20ca19",
+      "language": "ru/en",
+      "used_for": "Russian welding, weld-quality and post-weld-treatment terminology.",
+      "original_id": "gost33857",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:gost70796",
+      "title": "ГОСТ Р 70796-2023 Арматура трубопроводная. Электроприводы. Термины и определения",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/b081997e-6b5f-46b0-9485-98ad72ad0b65",
+      "language": "ru/en",
+      "used_for": "Russian actuator, torque and thrust terminology.",
+      "original_id": "gost70796",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso4126",
+      "title": "ISO 4126-1:2013 Safety devices for protection against excessive pressure — Part 1: Safety valves",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/50826.html",
+      "language": "en",
+      "used_for": "Safety-valve types, operating pressures and discharge terminology.",
+      "original_id": "iso4126",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso5208",
+      "title": "ISO 5208:2015 Industrial valves — Pressure testing of metallic valves",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/65111.html",
+      "language": "en",
+      "used_for": "Valve pressure-boundary, closure and leakage-test concepts.",
+      "original_id": "iso5208",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso10497",
+      "title": "ISO 10497:2022 Testing of valves — Fire type-testing requirements",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/78853.html",
+      "language": "en",
+      "used_for": "Fire type-testing, through-seat leakage, external leakage, operability and secondary sealing.",
+      "original_id": "iso10497",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso15156",
+      "title": "ISO 15156-1:2020 Petroleum and natural gas industries — Materials for use in H2S-containing environments",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/79658.html",
+      "language": "en",
+      "used_for": "Sour-service material qualification and H2S-related cracking mechanisms.",
+      "original_id": "iso15156",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso148",
+      "title": "ISO 148-1:2016 Metallic materials — Charpy pendulum impact test — Part 1: Test method",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/63802.html",
+      "language": "en",
+      "used_for": "Charpy V-notch impact testing and test-temperature wording.",
+      "original_id": "iso148",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso28921",
+      "title": "ISO 28921-1:2022 Industrial valves — Isolating valves for low-temperature applications",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/78445.html",
+      "language": "en",
+      "used_for": "Low- and cryogenic-temperature valve design, materials and production testing.",
+      "original_id": "iso28921",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso17292",
+      "title": "ISO 17292:2015 Metal ball valves for petroleum, petrochemical and allied industries",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/59736.html",
+      "language": "en",
+      "used_for": "Metal ball-valve construction, inspection and testing.",
+      "original_id": "iso17292",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iso5115",
+      "title": "ISO 5115:2023 Industrial valves — Part-turn valve actuation",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/80870.html",
+      "language": "en",
+      "used_for": "Actuator sizing, selection, assembly, torque and valve-actuator interfaces.",
+      "original_id": "iso5115",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:asmeb1634",
+      "title": "ASME B16.34-2025 Valves — Flanged, Threaded, and Welding End",
+      "authority": "American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-34-valves-flanged-threaded-welding-end/2017/pdf",
+      "language": "en",
+      "used_for": "Pressure-temperature ratings, materials, testing and marking.",
+      "original_id": "asmeb1634",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:api6d",
+      "title": "API Specification 6D, 25th Edition — Specification for Valves",
+      "authority": "American Petroleum Institute",
+      "url": "https://www.api.org/products-and-services/standards/important-standards-announcements/spec6d",
+      "language": "en",
+      "used_for": "Pipeline-valve constructions, design requirements and supplementary tests.",
+      "original_id": "api6d",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:api6dguide",
+      "title": "API Specification 6D Purchasing Guidelines, Annexes G/H/J/N/O",
+      "authority": "American Petroleum Institute",
+      "url": "https://api.org/~/media/files/certification/monogram-apiqr/purchasing%20guidelines/6d%20e24%20purchasing%20guideline%20r1%2020141029.pdf",
+      "language": "en",
+      "used_for": "Fire-test standards accepted for pipeline-valve purchasing specifications.",
+      "original_id": "api6dguide",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:api_plan",
+      "title": "API Standards Plan",
+      "authority": "American Petroleum Institute",
+      "url": "https://www.api.org/products-and-services/standards/standards-plan",
+      "language": "en",
+      "used_for": "Official API 607 and API 6FA publication identification.",
+      "original_id": "api_plan",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:slb_ball",
+      "title": "Ball Valves",
+      "authority": "SLB / Cameron",
+      "url": "https://www.slb.com/valves/ball-valves",
+      "language": "en",
+      "used_for": "Manufacturer usage for rising-stem and fully welded ball-valve constructions.",
+      "original_id": "slb_ball",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:velan_parallel",
+      "title": "Pressure Seal Parallel Slide Gate Valve",
+      "authority": "Velan",
+      "url": "https://velan.com/products/pressure-seal-parallel-slide-gate-valves/",
+      "language": "en",
+      "used_for": "Parallel-slide design, seat loading and thermal-binding context.",
+      "original_id": "velan_parallel",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:valmet_control",
+      "title": "Control Valves",
+      "authority": "Valmet / Neles",
+      "url": "https://www.valmet.com/flowcontrol/valves/control-valves/",
+      "language": "en",
+      "used_for": "Eccentric plug and segmented-ball control-valve terminology.",
+      "original_id": "valmet_control",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:valmet_manual",
+      "title": "Flow Control Manual",
+      "authority": "Valmet",
+      "url": "https://www.valmet.com/globalassets/sharepoint/imported/flowcontrol_manual.pdf",
+      "language": "en",
+      "used_for": "Inherent and installed characteristics, rangeability, choked flow, flashing and cavitation.",
+      "original_id": "valmet_manual",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:iec60534_2_4",
+      "title": "IEC 60534-2-4:2009 Industrial-process control valves — Inherent flow characteristics and rangeability",
+      "authority": "International Electrotechnical Commission",
+      "url": "https://webstore.iec.ch/en/publication/2463",
+      "language": "en/fr",
+      "used_for": "Normative control-valve characteristic and rangeability terminology.",
+      "original_id": "iec60534_2_4",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:isa75",
+      "title": "ISA75.11 Inherent Flow Characteristic and Rangeability of Control Valves",
+      "authority": "International Society of Automation",
+      "url": "https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa75-11",
+      "language": "en",
+      "used_for": "Linear, equal-percentage, quick-opening and rangeability terms.",
+      "original_id": "isa75",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:spirax_safety",
+      "title": "Safety Valves and Safety Valve Selection",
+      "authority": "Spirax Sarco",
+      "url": "https://www.spiraxsarco.com/learn-about-steam/safety-valves/safety-valves",
+      "language": "en",
+      "used_for": "Set pressure, reseating pressure, blowdown and overpressure explanations.",
+      "original_id": "spirax_safety",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:emerson_safety",
+      "title": "Birkett Pressure and Safety Relief Valves Technical Data",
+      "authority": "Emerson",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/pressure-management/documents/data-sheets-safety-relief-valves-technical-data-birkett-en.pdf",
+      "language": "en",
+      "used_for": "Balanced-bellows, pilot-operated designs, capacity and discharge coefficients.",
+      "original_id": "emerson_safety",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:emerson_actuator",
+      "title": "EFS 2000 Electric Actuators Technical Data",
+      "authority": "Emerson",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/actuation-technologies/electrics/general/documents/ACT-TDS-EFS-2000-Electric-Actuators-VCTDS-02829-EN.pdf",
+      "language": "en",
+      "used_for": "Actuator thrust, stroke time, breakout and running torque.",
+      "original_id": "emerson_actuator",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:emerson_packing",
+      "title": "Fisher HP and HPA Control Valves Instruction Manual",
+      "authority": "Emerson / Fisher",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/flow-controls/valves/documents/FCV-INS-Fisher%E2%80%9E%C2%A2-HP-HPA-Control-Valves-D101634X012-EN.pdf",
+      "language": "en",
+      "used_for": "Live-loaded packing, packing box, packing gland and lantern-ring arrangements.",
+      "original_id": "emerson_packing",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:emerson_instrument",
+      "title": "Fisher Digital Valve Controller Instruction Manual",
+      "authority": "Emerson / Fisher",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/flow-controls/documents/d103785x012.pdf",
+      "language": "en",
+      "used_for": "Position transmitter, filter regulator and pneumatic relay usage.",
+      "original_id": "emerson_instrument",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-valve:valmet_pst",
+      "title": "Neles ValvGuard VG9000H Safety Manual",
+      "authority": "Valmet / Neles",
+      "url": "https://www.valmet.com/globalassets/sharepoint/imported/10SM_VG9000H_en.pdf",
+      "language": "en",
+      "used_for": "Partial-stroke-test definition and safety-shutdown-valve context.",
+      "original_id": "valmet_pst",
+      "source_batch": "valve"
+    },
+    {
+      "id": "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "title": "Standard Procurement Document — Request for Bids, Goods, Two-Envelope Bidding Process and Framework Agreements",
+      "authority": "World Bank",
+      "url": "https://documents1.worldbank.org/curated/en/099249111042516085/pdf/IDU-98db112b-116a-4324-a32a-5de7a8f263e6.pdf",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Request for bids, technical and financial proposals, two-envelope process, instructions to bidders, bid data sheet, price schedules, framework agreements and award terminology",
+      "original_id": "WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "title": "Standard Procurement Document — Request for Bids, Works, without Prequalification",
+      "authority": "World Bank",
+      "url": "https://thedocs.worldbank.org/en/doc/459941509642870771-0290022017/render/SPDRequestforBidsWORKSwithoutprequalificationOCT2017.pdf",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Bidding documents, instructions, submission deadlines, bid validity, performance security and contract conditions",
+      "original_id": "WORLD-BANK-RFB-WORKS-2017",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-EN",
+      "title": "Glossary of procurement-related terms used in the UNCITRAL Model Law on Public Procurement",
+      "authority": "United Nations Commission on International Trade Law (UNCITRAL)",
+      "url": "https://uncitral.un.org/sites/uncitral.un.org/files/media-documents/uncitral/en/glossary-e.pdf",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Internationally harmonized procurement concepts, submissions, solicitation documents, qualification, award and framework agreements",
+      "original_id": "UNCITRAL-PROCUREMENT-GLOSSARY-EN",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-ZH",
+      "title": "《贸易法委员会公共采购示范法》中使用的采购相关术语表",
+      "authority": "联合国国际贸易法委员会（UNCITRAL）",
+      "url": "https://uncitral.un.org/sites/default/files/media-documents/uncitral/zh/glossary-c.pdf",
+      "languages": [
+        "zh"
+      ],
+      "used_for": "Official Chinese procurement terminology and distinctions among submission, tender security, qualification, evaluation and contract award",
+      "original_id": "UNCITRAL-PROCUREMENT-GLOSSARY-ZH",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:UNCITRAL-PROCUREMENT-RU",
+      "title": "Закупки и публично-частное партнерство",
+      "authority": "Комиссия Организации Объединенных Наций по праву международной торговли (ЮНСИТРАЛ)",
+      "url": "https://uncitral.un.org/ru/texts/procurement",
+      "languages": [
+        "ru"
+      ],
+      "used_for": "Official Russian public-procurement register and contract-award terminology",
+      "original_id": "UNCITRAL-PROCUREMENT-RU",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:UN-PROCUREMENT-AR-DEBRIEFING",
+      "title": "أسئلة شائعة حول التظلمات المتعلقة بالإحاطات والمشتريات",
+      "authority": "United Nations Procurement Division",
+      "url": "https://www.un.org/procurement/ar/debriefing-and-procurement-challenges-faq",
+      "languages": [
+        "ar"
+      ],
+      "used_for": "Official Arabic for request for proposals, invitation to bid, bidder, unsuccessful offer, contract award, notification and procurement challenge",
+      "original_id": "UN-PROCUREMENT-AR-DEBRIEFING",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:UN-PROCUREMENT-MULTILINGUAL-A75",
+      "title": "A/75/5/Add.8 — Official UN procurement reporting",
+      "authority": "United Nations",
+      "url": "https://digitallibrary.un.org/record/3877419/files/A_75_5_Add.8-AR.pdf?ln=ar",
+      "languages": [
+        "ar",
+        "en",
+        "ru",
+        "zh"
+      ],
+      "used_for": "Parallel official-language terminology for RFQ, RFP, invitation to bid, vendor, long-term agreement and award",
+      "original_id": "UN-PROCUREMENT-MULTILINGUAL-A75",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:QATARENERGY-VENDOR-REGISTRATION-EN",
+      "title": "Vendor Registration",
+      "authority": "QatarEnergy",
+      "url": "https://www.qatarenergy.qa/en/SupplyManagement/Pages/Vendorregistration.aspx",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Vendor registration, prospective supplier, SAP Vendor Code, ITT documentation, qualification and prequalification",
+      "original_id": "QATARENERGY-VENDOR-REGISTRATION-EN",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:QATARENERGY-VENDOR-REGISTRATION-AR",
+      "title": "تسجيل الموردين",
+      "authority": "قطر للطاقة",
+      "url": "https://www.qatarenergy.qa/ar/SupplyManagement/Pages/Vendorregistration.aspx",
+      "languages": [
+        "ar"
+      ],
+      "used_for": "Official Gulf Arabic for supplier registration, SAP vendor code, invitations to tender, bid submission, evaluation and award",
+      "original_id": "QATARENERGY-VENDOR-REGISTRATION-AR",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "title": "How to Tender — Contracts Department",
+      "authority": "QatarEnergy",
+      "url": "https://www.qatarenergy.qa/en/SupplyManagement/Tenders/Pages/Howtotendercontractsdepartment.aspx",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Invitation to tender, instructions to tenderers, tender documents, provisional bank guarantee, commercial registration, submission and written notification of award",
+      "original_id": "QATARENERGY-HOW-TO-TENDER-EN",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:QATARENERGY-HOW-TO-TENDER-AR",
+      "title": "كيفية المشاركة في المناقصات — قسم العقود",
+      "authority": "قطر للطاقة",
+      "url": "https://www.qatarenergy.qa/ar/SupplyManagement/Tenders/Pages/Howtotendercontractsdepartment.aspx",
+      "languages": [
+        "ar"
+      ],
+      "used_for": "Official Gulf Arabic for tender documents, tenderers, submission, tender bond, commercial registration, award and contract",
+      "original_id": "QATARENERGY-HOW-TO-TENDER-AR",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:QATARENERGY-TECHNICAL-SUBMISSIONS",
+      "title": "QGDL-IML-003 — Guidelines for Building Permit Technical Submissions to QP-RLC",
+      "authority": "QatarEnergy, Ras Laffan Industrial City",
+      "url": "https://www.qatarenergy.qa/en/Whatwedo/IndustrialCities/Documents/Procedures/DPE/QGDL-IML-003%20Guidelines%20for%20BP%20Technical%20Submissions%20to%20QP-RLC%20Rev02%2026Jul17.pdf",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Technical compliance statements, document submission, review, approval, checklists, drawings and project-owner interfaces",
+      "original_id": "QATARENERGY-TECHNICAL-SUBMISSIONS",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ADNOC-SUPPLIER-REGISTRATION",
+      "title": "ADNOC Supplier Hub — Registration",
+      "authority": "ADNOC",
+      "url": "https://supplierhub.adnoc.ae/services/registration",
+      "languages": [
+        "en",
+        "ar"
+      ],
+      "used_for": "Supplier registration request, profile questionnaire, Integrity Due Diligence, prequalification, supplier type and clarification",
+      "original_id": "ADNOC-SUPPLIER-REGISTRATION",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ADNOC-REGISTRATION-MANUAL",
+      "title": "ADNOC Supplier Hub Registration User Manual",
+      "authority": "ADNOC",
+      "url": "https://supplierhub.adnoc.ae/assets/content/services/registration/Registration%20User%20Manual.pdf",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Supplier registration and prequalification workflow terminology",
+      "original_id": "ADNOC-REGISTRATION-MANUAL",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ARAMCO-SUPPLIER-REGISTRATION-EN",
+      "title": "Become a Supplier",
+      "authority": "Saudi Aramco",
+      "url": "https://www.aramco.com/en/what-we-do/suppliers/become-a-supplier",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Supplier registration, qualification, manufacturer type, commercial registration, authorized signatory and iktva/local-value requirements",
+      "original_id": "ARAMCO-SUPPLIER-REGISTRATION-EN",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ARAMCO-SUPPLIER-REGISTRATION-AR",
+      "title": "الانضمام إلى قائمة الموردين",
+      "authority": "أرامكو السعودية",
+      "url": "https://www.aramco.com/ar/what-we-do/suppliers/become-a-supplier",
+      "languages": [
+        "ar"
+      ],
+      "used_for": "Official Saudi Arabic for supplier registration, qualification, manufacturer, commercial registration certificate, authorized signatory and local-value program",
+      "original_id": "ARAMCO-SUPPLIER-REGISTRATION-AR",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ICC-INCOTERMS-2020",
+      "title": "Incoterms 2020 — Practical guidance on C and D rules",
+      "authority": "International Chamber of Commerce (ICC)",
+      "url": "https://academy.iccwbo.org/incoterms/article/incoterms-2020-c-or-d-rules/",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Incoterms 2020, named place of destination, port of shipment, delivery point and risk transfer",
+      "original_id": "ICC-INCOTERMS-2020",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ICC-GUARANTEES",
+      "title": "Key trade finance products — Bank guarantees and their functions",
+      "authority": "International Chamber of Commerce (ICC)",
+      "url": "https://academy.iccwbo.org/trade-finance/article/key-trade-finance-products-definitions-and-use-cases/",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Bid/tender, advance-payment, performance, retention/warranty and parent-company-style contract security distinctions",
+      "original_id": "ICC-GUARANTEES",
+      "source_batch": "tender"
+    },
+    {
+      "id": "round2-tender:ICC-DOCUMENTARY-CREDITS",
+      "title": "Documentary credits — Rules, guidelines and terminology",
+      "authority": "International Chamber of Commerce (ICC)",
+      "url": "https://academy.iccwbo.org/international-trade/article/documentary-credits-rules-guidelines-terminology/",
+      "languages": [
+        "en"
+      ],
+      "used_for": "Letter of credit/documentary credit terminology and its distinction from demand guarantees",
+      "original_id": "ICC-DOCUMENTARY-CREDITS",
+      "source_batch": "tender"
+    }
+  ],
+  "category_source_refs": {
+    "valve_type": [
+      "round2-valve:velan_parallel",
+      "round2-valve:gost24856",
+      "round2-valve:slb_ball",
+      "round2-valve:api6d",
+      "round2-valve:iso17292",
+      "round2-valve:valmet_control",
+      "round2-valve:valmet_manual",
+      "round2-valve:iso4126",
+      "round2-valve:emerson_safety",
+      "round2-valve:gost31294"
+    ],
+    "design": [
+      "round2-valve:iso4126",
+      "round2-valve:gost31294",
+      "round2-valve:spirax_safety",
+      "round2-valve:emerson_safety",
+      "round2-valve:iec60534_2_4",
+      "round2-valve:isa75",
+      "round2-valve:valmet_manual",
+      "round2-valve:valmet_control",
+      "round2-valve:iso15156",
+      "round2-valve:asmeb1634"
+    ],
+    "operator": [
+      "round2-valve:iso5115",
+      "round2-valve:emerson_actuator",
+      "round2-valve:gost70796",
+      "round2-valve:valmet_pst",
+      "round2-valve:emerson_instrument"
+    ],
+    "component": [
+      "round2-valve:emerson_packing",
+      "round2-valve:gost24856",
+      "round2-valve:iso10497",
+      "round2-valve:iso5208",
+      "round2-valve:asmeb1634",
+      "round2-valve:api6dguide"
+    ],
+    "requirement": [
+      "round2-valve:iso15156"
+    ],
+    "inspection": [
+      "round2-valve:iso148",
+      "round2-valve:iso28921",
+      "round2-valve:gost33857",
+      "round2-valve:asmeb1634",
+      "round2-valve:api_plan",
+      "round2-valve:api6dguide",
+      "round2-valve:iso10497",
+      "round2-valve:gost34293",
+      "round2-valve:api6d"
+    ],
+    "tender_method": [
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "round2-tender:UN-PROCUREMENT-AR-DEBRIEFING",
+      "round2-tender:UN-PROCUREMENT-MULTILINGUAL-A75",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017"
+    ],
+    "tender_document": [
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-AR",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-ZH",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-EN"
+    ],
+    "bid_component": [
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-ZH",
+      "round2-tender:UN-PROCUREMENT-MULTILINGUAL-A75",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "round2-tender:UN-PROCUREMENT-AR-DEBRIEFING",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-EN"
+    ],
+    "tender_process": [
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-EN",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-ZH",
+      "round2-tender:UN-PROCUREMENT-AR-DEBRIEFING",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-AR"
+    ],
+    "tender_compliance": [
+      "round2-tender:QATARENERGY-TECHNICAL-SUBMISSIONS",
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "round2-tender:ADNOC-SUPPLIER-REGISTRATION",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-AR"
+    ],
+    "contract_security": [
+      "round2-tender:ICC-GUARANTEES",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:UN-PROCUREMENT-MULTILINGUAL-A75",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-EN",
+      "round2-tender:UNCITRAL-PROCUREMENT-RU"
+    ],
+    "trade_finance": [
+      "round2-tender:ICC-DOCUMENTARY-CREDITS",
+      "round2-tender:ICC-GUARANTEES"
+    ],
+    "supplier_onboarding": [
+      "round2-tender:QATARENERGY-VENDOR-REGISTRATION-EN",
+      "round2-tender:QATARENERGY-VENDOR-REGISTRATION-AR",
+      "round2-tender:ARAMCO-SUPPLIER-REGISTRATION-AR",
+      "round2-tender:ADNOC-SUPPLIER-REGISTRATION",
+      "round2-tender:ARAMCO-SUPPLIER-REGISTRATION-EN",
+      "round2-tender:ADNOC-REGISTRATION-MANUAL",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-AR",
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025"
+    ],
+    "project_party": [
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "round2-tender:UNCITRAL-PROCUREMENT-GLOSSARY-EN",
+      "round2-tender:QATARENERGY-TECHNICAL-SUBMISSIONS",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017"
+    ],
+    "award_contract": [
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-EN",
+      "round2-tender:QATARENERGY-HOW-TO-TENDER-AR",
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "round2-tender:UN-PROCUREMENT-AR-DEBRIEFING"
+    ],
+    "trade_delivery": [
+      "round2-tender:ICC-INCOTERMS-2020"
+    ],
+    "document_control": [
+      "round2-tender:QATARENERGY-TECHNICAL-SUBMISSIONS",
+      "round2-tender:WORLD-BANK-RFB-WORKS-2017",
+      "round2-tender:WORLD-BANK-RFB-TWO-ENVELOPE-2025"
+    ]
+  },
+  "terms": [
+    [
+      "Parallel Slide Gate Valve",
+      "平行双闸板闸阀",
+      "задвижка с параллельными дисками",
+      "صمام بوابة بقرصين متوازيين",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Rising Stem Ball Valve",
+      "升杆式球阀",
+      "шаровой кран с подъёмным штоком",
+      "صمام كروي بساق صاعد",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Fully Welded Ball Valve",
+      "全焊接球阀",
+      "цельносварной шаровой кран",
+      "صمام كروي ملحوم بالكامل",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Three-piece Ball Valve",
+      "三片式球阀",
+      "трёхсоставной шаровой кран",
+      "صمام كروي من ثلاث قطع",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Segmented Ball Valve",
+      "分段式球阀",
+      "сегментный шаровой кран",
+      "صمام كروي قطاعي",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Pilot Operated Safety Valve",
+      "先导式安全阀",
+      "предохранительный клапан с пилотным управлением",
+      "صمام أمان يعمل بصمام طيار",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Direct-loaded Safety Valve",
+      "直接载荷式安全阀",
+      "предохранительный клапан прямого действия",
+      "صمام أمان مباشر التحميل",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Balanced Bellows Safety Valve",
+      "平衡波纹管式安全阀",
+      "сбалансированный сильфонный предохранительный клапан",
+      "صمام أمان متوازن بمنفاخ",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Set Pressure",
+      "整定压力",
+      "давление настройки",
+      "ضغط الضبط",
+      "design",
+      "valve"
+    ],
+    [
+      "Reseating Pressure",
+      "回座压力",
+      "давление закрытия",
+      "ضغط إعادة الإغلاق",
+      "design",
+      "valve"
+    ],
+    [
+      "Overpressure",
+      "超压量",
+      "превышение давления над давлением настройки",
+      "الضغط الزائد فوق ضغط الضبط",
+      "design",
+      "valve"
+    ],
+    [
+      "Cold Differential Test Pressure",
+      "冷态差动试验压力",
+      "холодное дифференциальное испытательное давление",
+      "ضغط الاختبار التفاضلي على البارد",
+      "design",
+      "valve"
+    ],
+    [
+      "Certified Discharge Capacity",
+      "认证排放能力",
+      "сертифицированная пропускная способность",
+      "سعة التصريف المعتمدة",
+      "design",
+      "valve"
+    ],
+    [
+      "Coefficient of Discharge",
+      "排放系数",
+      "коэффициент расхода",
+      "معامل التصريف",
+      "design",
+      "valve"
+    ],
+    [
+      "Rangeability",
+      "可调比",
+      "диапазон регулирования",
+      "نسبة قابلية التحكم",
+      "design",
+      "valve"
+    ],
+    [
+      "Equal Percentage Flow Characteristic",
+      "等百分比流量特性",
+      "равнопроцентная расходная характеристика",
+      "خاصية تدفق متساوية النسبة",
+      "design",
+      "valve"
+    ],
+    [
+      "Linear Flow Characteristic",
+      "线性流量特性",
+      "линейная расходная характеристика",
+      "خاصية تدفق خطية",
+      "design",
+      "valve"
+    ],
+    [
+      "Quick Opening Flow Characteristic",
+      "快开流量特性",
+      "быстрооткрывающаяся расходная характеристика",
+      "خاصية تدفق سريعة الفتح",
+      "design",
+      "valve"
+    ],
+    [
+      "Inherent Flow Characteristic",
+      "固有流量特性",
+      "собственная расходная характеристика",
+      "خاصية التدفق الذاتية",
+      "design",
+      "valve"
+    ],
+    [
+      "Installed Flow Characteristic",
+      "安装后流量特性",
+      "расходная характеристика установленного клапана",
+      "خاصية التدفق بعد التركيب",
+      "design",
+      "valve"
+    ],
+    [
+      "Choked Flow",
+      "阻塞流",
+      "критическое течение",
+      "التدفق المختنق",
+      "design",
+      "valve"
+    ],
+    [
+      "Flashing",
+      "闪蒸",
+      "вскипание с устойчивой паровой фазой",
+      "التبخر الومضي",
+      "design",
+      "valve"
+    ],
+    [
+      "Cavitation",
+      "气蚀",
+      "кавитация",
+      "التكهف",
+      "design",
+      "valve"
+    ],
+    [
+      "Anti-cavitation Trim",
+      "抗气蚀内件",
+      "антикавитационные внутренние детали",
+      "الأجزاء الداخلية المضادة للتكهف",
+      "design",
+      "valve"
+    ],
+    [
+      "Actuator Thrust",
+      "执行机构推力",
+      "усилие привода",
+      "قوة دفع المشغل",
+      "operator",
+      "valve"
+    ],
+    [
+      "Stroke Time",
+      "全行程时间",
+      "время полного хода",
+      "زمن الشوط الكامل",
+      "operator",
+      "valve"
+    ],
+    [
+      "Partial Stroke Test",
+      "部分行程试验",
+      "испытание частичного хода",
+      "اختبار الشوط الجزئي",
+      "operator",
+      "valve"
+    ],
+    [
+      "Position Transmitter",
+      "阀位变送器",
+      "преобразователь положения клапана",
+      "مرسل موضع الصمام",
+      "operator",
+      "valve"
+    ],
+    [
+      "I/P Converter",
+      "电流-气压转换器",
+      "электропневматический преобразователь тока в давление",
+      "محول تيار إلى ضغط هوائي",
+      "operator",
+      "valve"
+    ],
+    [
+      "Air Filter Regulator",
+      "空气过滤减压阀",
+      "фильтр-регулятор воздуха",
+      "منظم مرشح الهواء",
+      "operator",
+      "valve"
+    ],
+    [
+      "Stuffing Box",
+      "填料函",
+      "сальниковая камера",
+      "حجرة الحشو",
+      "component",
+      "valve"
+    ],
+    [
+      "Lantern Ring",
+      "灯笼环",
+      "фонарное кольцо",
+      "حلقة الفانوس",
+      "component",
+      "valve"
+    ],
+    [
+      "Live-loaded Packing",
+      "恒载填料密封",
+      "сальниковое уплотнение с постоянным поджатием",
+      "حشوة ذات تحميل نابضي مستمر",
+      "component",
+      "valve"
+    ],
+    [
+      "Stem Seal",
+      "阀杆密封",
+      "уплотнение штока",
+      "مانع تسرب ساق الصمام",
+      "component",
+      "valve"
+    ],
+    [
+      "Body Joint Gasket",
+      "阀体连接垫片",
+      "прокладка разъёма корпуса",
+      "حشية وصلة جسم الصمام",
+      "component",
+      "valve"
+    ],
+    [
+      "Fire-safe Secondary Seal",
+      "防火二次密封",
+      "вторичное огнестойкое уплотнение",
+      "مانع تسرب ثانوي مقاوم للحريق",
+      "component",
+      "valve"
+    ],
+    [
+      "NACE MR0175 / ISO 15156 Compliance",
+      "符合 NACE MR0175 / ISO 15156",
+      "соответствие NACE MR0175 / ISO 15156",
+      "المطابقة لمعيار NACE MR0175 / ISO 15156",
+      "requirement",
+      "always"
+    ],
+    [
+      "Sulfide Stress Cracking",
+      "硫化物应力开裂",
+      "сульфидное коррозионное растрескивание под напряжением",
+      "التشقق الإجهادي بالكبريتيد",
+      "design",
+      "valve"
+    ],
+    [
+      "Hydrogen Induced Cracking",
+      "氢致开裂",
+      "водородоиндуцированное растрескивание",
+      "التشقق المستحث بالهيدروجين",
+      "design",
+      "valve"
+    ],
+    [
+      "Charpy V-notch Impact Test",
+      "夏比 V 型缺口冲击试验",
+      "испытание на ударный изгиб образца с V-образным надрезом по Шарпи",
+      "اختبار صدم شاربي بعينة ذات شق V",
+      "inspection",
+      "always"
+    ],
+    [
+      "Impact Test Temperature",
+      "冲击试验温度",
+      "температура испытания на ударный изгиб",
+      "درجة حرارة اختبار الصدم",
+      "inspection",
+      "always"
+    ],
+    [
+      "Material Hardness Limit",
+      "材料硬度上限",
+      "предельная твёрдость материала",
+      "الحد الأقصى لصلادة المادة",
+      "design",
+      "valve"
+    ],
+    [
+      "Post Weld Heat Treatment",
+      "焊后热处理",
+      "послесварочная термическая обработка",
+      "المعالجة الحرارية بعد اللحام",
+      "inspection",
+      "always"
+    ],
+    [
+      "API 607 Fire Test",
+      "API 607 防火试验",
+      "испытание на огнестойкость по API 607",
+      "اختبار الحريق وفقاً لـ API 607",
+      "inspection",
+      "always"
+    ],
+    [
+      "API 6FA Fire Test",
+      "API 6FA 防火试验",
+      "испытание на огнестойкость по API 6FA",
+      "اختبار الحريق وفقاً لـ API 6FA",
+      "inspection",
+      "always"
+    ],
+    [
+      "ISO 10497 Fire Test",
+      "ISO 10497 防火试验",
+      "испытание на огнестойкость по ISO 10497",
+      "اختبار الحريق وفقاً لـ ISO 10497",
+      "inspection",
+      "always"
+    ],
+    [
+      "Pressure-temperature Curve",
+      "压力-温度曲线",
+      "кривая «давление–температура»",
+      "منحنى الضغط ودرجة الحرارة",
+      "design",
+      "valve"
+    ],
+    [
+      "Breakaway Torque",
+      "启动扭矩",
+      "момент страгивания",
+      "عزم بدء الحركة",
+      "operator",
+      "valve"
+    ],
+    [
+      "Running Torque",
+      "运行扭矩",
+      "рабочий крутящий момент",
+      "عزم التشغيل أثناء الحركة",
+      "operator",
+      "valve"
+    ],
+    [
+      "Antistatic Resistance Test",
+      "防静电电阻试验",
+      "измерение сопротивления антистатической цепи",
+      "اختبار مقاومة الدائرة المضادة للكهرباء الساكنة",
+      "inspection",
+      "valve"
+    ],
+    [
+      "Request for Proposal",
+      "征求建议书",
+      "запрос предложений",
+      "طلب تقديم العروض",
+      "tender_method",
+      "always"
+    ],
+    [
+      "Tender Documents",
+      "招标文件",
+      "тендерная документация",
+      "وثائق المناقصة",
+      "tender_document",
+      "always"
+    ],
+    [
+      "Instructions to Tenderers",
+      "投标人须知",
+      "инструкции участникам тендера",
+      "التعليمات الموجهة إلى مقدمي العطاءات",
+      "tender_document",
+      "always"
+    ],
+    [
+      "Bid Data Sheet",
+      "投标数据表",
+      "информационная карта конкурсного предложения",
+      "ورقة بيانات العطاء",
+      "tender_document",
+      "always"
+    ],
+    [
+      "Financial Proposal",
+      "财务建议书",
+      "финансовое предложение",
+      "العرض المالي",
+      "bid_component",
+      "always"
+    ],
+    [
+      "Unpriced Commercial Bid",
+      "不含价格商务标",
+      "коммерческое предложение без цен",
+      "العرض التجاري غير المسعّر",
+      "bid_component",
+      "always"
+    ],
+    [
+      "Priced Commercial Bid",
+      "含价格商务标",
+      "коммерческое предложение с ценами",
+      "العرض التجاري المسعّر",
+      "bid_component",
+      "always"
+    ],
+    [
+      "Two-envelope Bidding Process",
+      "双信封投标程序",
+      "двухконвертная процедура торгов",
+      "عملية تقديم العطاءات بنظام المظروفين",
+      "tender_method",
+      "always"
+    ],
+    [
+      "Tender Addendum",
+      "招标补遗",
+      "дополнение к тендерной документации",
+      "ملحق وثائق المناقصة",
+      "tender_document",
+      "always"
+    ],
+    [
+      "Pre-bid Meeting",
+      "投标前会议",
+      "предтендерное совещание",
+      "اجتماع ما قبل تقديم العطاءات",
+      "tender_process",
+      "always"
+    ],
+    [
+      "Bid Clarification",
+      "投标澄清",
+      "разъяснение тендерного предложения",
+      "استيضاح العطاء",
+      "tender_process",
+      "always"
+    ],
+    [
+      "Compliance Matrix",
+      "合规矩阵",
+      "матрица соответствия",
+      "مصفوفة الامتثال",
+      "tender_compliance",
+      "always"
+    ],
+    [
+      "No Deviation Statement",
+      "无偏差声明",
+      "заявление об отсутствии отклонений",
+      "بيان عدم وجود انحرافات",
+      "tender_compliance",
+      "always"
+    ],
+    [
+      "Price Schedule",
+      "价格表",
+      "таблица цен",
+      "جدول الأسعار",
+      "bid_component",
+      "always"
+    ],
+    [
+      "Bill of Quantities",
+      "工程量清单",
+      "ведомость объёмов работ",
+      "جدول الكميات",
+      "bid_component",
+      "always"
+    ],
+    [
+      "Bid Submission Deadline",
+      "投标截止时间",
+      "крайний срок подачи конкурсных заявок",
+      "الموعد النهائي لتقديم العطاءات",
+      "tender_process",
+      "always"
+    ],
+    [
+      "Bid Validity Period",
+      "投标有效期",
+      "срок действия тендерного предложения",
+      "فترة سريان العطاء",
+      "tender_process",
+      "always"
+    ],
+    [
+      "Advance Payment Guarantee",
+      "预付款保函",
+      "гарантия возврата авансового платежа",
+      "ضمان الدفعة المقدمة",
+      "contract_security",
+      "always"
+    ],
+    [
+      "Parent Company Guarantee",
+      "母公司担保",
+      "гарантия материнской компании",
+      "ضمان الشركة الأم",
+      "contract_security",
+      "always"
+    ],
+    [
+      "Letter of Credit",
+      "信用证",
+      "аккредитив",
+      "اعتماد مستندي",
+      "trade_finance",
+      "always"
+    ],
+    [
+      "Supplier Registration",
+      "供应商注册",
+      "регистрация поставщика",
+      "تسجيل المورد",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Vendor Prequalification",
+      "供应商资格预审",
+      "предварительная квалификация поставщика",
+      "التأهيل المسبق للمورد",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Prequalification Questionnaire",
+      "资格预审问卷",
+      "анкета предварительной квалификации",
+      "استبيان التأهيل المسبق",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Approved Vendor List",
+      "合格供应商名录",
+      "список одобренных поставщиков",
+      "قائمة الموردين المعتمدين",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Manufacturer Prequalification",
+      "制造商资格预审",
+      "предварительная квалификация изготовителя",
+      "التأهيل المسبق للمصنّع",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Integrity Due Diligence",
+      "诚信尽职调查",
+      "комплексная проверка добросовестности",
+      "العناية الواجبة للنزاهة",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Supplier Code of Conduct",
+      "供应商行为准则",
+      "кодекс поведения поставщиков",
+      "مدونة قواعد سلوك الموردين",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Commercial Registration Certificate",
+      "商业登记证书",
+      "свидетельство о коммерческой регистрации",
+      "شهادة السجل التجاري",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "Authorized Signatory Letter",
+      "授权签字人函",
+      "письмо об уполномоченных подписантах",
+      "خطاب المفوّض بالتوقيع",
+      "supplier_onboarding",
+      "always"
+    ],
+    [
+      "End User",
+      "最终用户",
+      "конечный пользователь",
+      "المستخدم النهائي",
+      "project_party",
+      "always"
+    ],
+    [
+      "EPC Contractor",
+      "EPC总承包商",
+      "EPC-подрядчик",
+      "مقاول الهندسة والتوريد والإنشاء",
+      "project_party",
+      "always"
+    ],
+    [
+      "Letter of Award",
+      "授标函",
+      "письмо о присуждении контракта",
+      "خطاب الترسية",
+      "award_contract",
+      "always"
+    ],
+    [
+      "Notification of Award",
+      "中标通知",
+      "уведомление о присуждении контракта",
+      "إشعار الترسية",
+      "award_contract",
+      "always"
+    ],
+    [
+      "Incoterms 2020",
+      "《国际贸易术语解释通则2020》",
+      "Инкотермс 2020",
+      "قواعد إنكوترمز 2020",
+      "trade_delivery",
+      "always"
+    ],
+    [
+      "Named Place of Destination",
+      "指定目的地",
+      "поименованное место назначения",
+      "مكان الوصول المسمّى",
+      "trade_delivery",
+      "always"
+    ],
+    [
+      "Port of Shipment",
+      "装运港",
+      "порт отгрузки",
+      "ميناء الشحن",
+      "trade_delivery",
+      "always"
+    ],
+    [
+      "Document Transmittal",
+      "文件传递单",
+      "сопроводительный лист передачи документов",
+      "مذكرة إحالة المستندات",
+      "document_control",
+      "always"
+    ],
+    [
+      "Supplier Document Register",
+      "供应商文件清单",
+      "реестр документов поставщика",
+      "سجل مستندات المورد",
+      "document_control",
+      "always"
+    ],
+    [
+      "Document Submission Schedule",
+      "文件提交计划",
+      "график предоставления документации",
+      "جدول تقديم المستندات",
+      "document_control",
+      "always"
+    ]
+  ],
+  "aliases": {
+    "Parallel Slide Gate Valve": {
+      "zh": [
+        "平行式闸阀"
+      ],
+      "ru": [
+        "параллельная задвижка"
+      ],
+      "ar": [
+        "صمام بوابة متوازي الأقراص"
+      ]
+    },
+    "Rising Stem Ball Valve": {
+      "zh": [
+        "升降杆球阀"
+      ],
+      "ru": [
+        "шаровой кран с поднимающимся штоком"
+      ],
+      "ar": [
+        "صمام كروي ذو ساق صاعدة"
+      ]
+    },
+    "Fully Welded Ball Valve": {
+      "zh": [
+        "全焊式球阀"
+      ],
+      "ru": [
+        "полностью сварной шаровой кран"
+      ],
+      "ar": [
+        "صمام كرة كامل اللحام"
+      ]
+    },
+    "Three-piece Ball Valve": {
+      "zh": [
+        "三件式球阀"
+      ],
+      "ru": [
+        "трёхсекционный шаровой кран"
+      ],
+      "ar": [
+        "صمام كرة ثلاثي القطع"
+      ]
+    },
+    "Segmented Ball Valve": {
+      "zh": [
+        "球面扇形调节阀"
+      ],
+      "ru": [
+        "шаровой сегментный клапан"
+      ],
+      "ar": [
+        "صمام كرة قطاعي"
+      ]
+    },
+    "Pilot Operated Safety Valve": {
+      "zh": [
+        "先导操作安全阀"
+      ],
+      "ru": [
+        "пилотно-управляемый предохранительный клапан"
+      ],
+      "ar": [
+        "صمام أمان طياري"
+      ]
+    },
+    "Direct-loaded Safety Valve": {
+      "zh": [
+        "直接作用式安全阀"
+      ],
+      "ru": [
+        "прямонагруженный предохранительный клапан"
+      ],
+      "ar": [
+        "صمام أمان ذو تحميل مباشر"
+      ]
+    },
+    "Balanced Bellows Safety Valve": {
+      "zh": [
+        "波纹管平衡式安全阀"
+      ],
+      "ru": [
+        "предохранительный клапан с уравновешивающим сильфоном"
+      ],
+      "ar": [
+        "صمام أمان بمنفاخ موازن"
+      ]
+    },
+    "Set Pressure": {
+      "zh": [
+        "设定压力"
+      ],
+      "ru": [
+        "установочное давление"
+      ],
+      "ar": [
+        "ضغط المعايرة"
+      ]
+    },
+    "Reseating Pressure": {
+      "zh": [
+        "再关闭压力"
+      ],
+      "ru": [
+        "давление обратной посадки"
+      ],
+      "ar": [
+        "ضغط إعادة الجلوس"
+      ]
+    },
+    "Overpressure": {
+      "zh": [
+        "超过整定压力的压力增量"
+      ],
+      "ru": [
+        "избыточное повышение над давлением настройки"
+      ],
+      "ar": [
+        "زيادة الضغط فوق ضغط الضبط"
+      ]
+    },
+    "Cold Differential Test Pressure": {
+      "zh": [
+        "冷态差压试验压力"
+      ],
+      "ru": [
+        "холодное дифференциальное давление настройки"
+      ],
+      "ar": [
+        "ضغط الضبط التفاضلي البارد"
+      ]
+    },
+    "Certified Discharge Capacity": {
+      "zh": [
+        "认证泄放量"
+      ],
+      "ru": [
+        "сертифицированная расходная способность"
+      ],
+      "ar": [
+        "قدرة التصريف المعتمدة"
+      ]
+    },
+    "Coefficient of Discharge": {
+      "zh": [
+        "泄放系数"
+      ],
+      "ru": [
+        "коэффициент пропускной способности при сбросе"
+      ],
+      "ar": [
+        "معامل سعة التصريف"
+      ]
+    },
+    "Rangeability": {
+      "zh": [
+        "调节范围比"
+      ],
+      "ru": [
+        "регулируемость клапана"
+      ],
+      "ar": [
+        "نسبة المدى القابل للتحكم"
+      ]
+    },
+    "Equal Percentage Flow Characteristic": {
+      "zh": [
+        "等百分比特性"
+      ],
+      "ru": [
+        "равнопроцентная характеристика"
+      ],
+      "ar": [
+        "خاصية النسبة المتساوية"
+      ]
+    },
+    "Linear Flow Characteristic": {
+      "zh": [
+        "线性特性"
+      ],
+      "ru": [
+        "линейная характеристика клапана"
+      ],
+      "ar": [
+        "خاصية الجريان الخطية"
+      ]
+    },
+    "Quick Opening Flow Characteristic": {
+      "zh": [
+        "快开特性"
+      ],
+      "ru": [
+        "характеристика быстрого открытия"
+      ],
+      "ar": [
+        "خاصية الفتح السريع"
+      ]
+    },
+    "Inherent Flow Characteristic": {
+      "zh": [
+        "本征流量特性"
+      ],
+      "ru": [
+        "внутренняя расходная характеристика"
+      ],
+      "ar": [
+        "خاصية التدفق المتأصلة"
+      ]
+    },
+    "Installed Flow Characteristic": {
+      "zh": [
+        "工作流量特性"
+      ],
+      "ru": [
+        "рабочая расходная характеристика"
+      ],
+      "ar": [
+        "خاصية التدفق المركبة"
+      ]
+    },
+    "Choked Flow": {
+      "zh": [
+        "临界流"
+      ],
+      "ru": [
+        "запертый расход"
+      ],
+      "ar": [
+        "الجريان المختنق"
+      ]
+    },
+    "Flashing": {
+      "zh": [
+        "持续闪蒸"
+      ],
+      "ru": [
+        "необратимое вскипание жидкости"
+      ],
+      "ar": [
+        "وميض السائل"
+      ]
+    },
+    "Cavitation": {
+      "zh": [
+        "空化侵蚀"
+      ],
+      "ru": [
+        "кавитационное разрушение"
+      ],
+      "ar": [
+        "التجويف"
+      ]
+    },
+    "Anti-cavitation Trim": {
+      "zh": [
+        "防气蚀阀内件"
+      ],
+      "ru": [
+        "антикавитационный затворный узел"
+      ],
+      "ar": [
+        "حشوة داخلية مقاومة للتكهف"
+      ]
+    },
+    "Actuator Thrust": {
+      "zh": [
+        "执行器轴向推力"
+      ],
+      "ru": [
+        "осевое усилие исполнительного механизма"
+      ],
+      "ar": [
+        "الدفع المحوري للمشغل"
+      ]
+    },
+    "Stroke Time": {
+      "zh": [
+        "阀门行程时间"
+      ],
+      "ru": [
+        "время хода клапана"
+      ],
+      "ar": [
+        "زمن حركة الصمام"
+      ]
+    },
+    "Partial Stroke Test": {
+      "zh": [
+        "局部行程测试"
+      ],
+      "ru": [
+        "тест частичного хода"
+      ],
+      "ar": [
+        "اختبار الحركة الجزئية"
+      ]
+    },
+    "Position Transmitter": {
+      "zh": [
+        "位置变送器"
+      ],
+      "ru": [
+        "датчик-передатчик положения"
+      ],
+      "ar": [
+        "ناقل موضع الصمام"
+      ]
+    },
+    "I/P Converter": {
+      "zh": [
+        "电气转换器"
+      ],
+      "ru": [
+        "I/P-преобразователь"
+      ],
+      "ar": [
+        "محول I/P"
+      ]
+    },
+    "Air Filter Regulator": {
+      "zh": [
+        "气源过滤调压器"
+      ],
+      "ru": [
+        "воздушный фильтр-регулятор"
+      ],
+      "ar": [
+        "مرشح ومنظم هواء"
+      ]
+    },
+    "Stuffing Box": {
+      "zh": [
+        "填料箱"
+      ],
+      "ru": [
+        "камера сальника"
+      ],
+      "ar": [
+        "صندوق الحشو"
+      ]
+    },
+    "Lantern Ring": {
+      "zh": [
+        "水封环"
+      ],
+      "ru": [
+        "сальниковое фонарное кольцо"
+      ],
+      "ar": [
+        "حلقة توزيع الحشو"
+      ]
+    },
+    "Live-loaded Packing": {
+      "zh": [
+        "碟簧加载填料"
+      ],
+      "ru": [
+        "подпружиненное сальниковое уплотнение"
+      ],
+      "ar": [
+        "حشوة محملة بنابض"
+      ]
+    },
+    "Stem Seal": {
+      "zh": [
+        "阀轴密封"
+      ],
+      "ru": [
+        "уплотнение шпинделя"
+      ],
+      "ar": [
+        "ختم ساق الصمام"
+      ]
+    },
+    "Body Joint Gasket": {
+      "zh": [
+        "阀体接合面垫片"
+      ],
+      "ru": [
+        "прокладка корпусного соединения"
+      ],
+      "ar": [
+        "حشية مفصل الجسم"
+      ]
+    },
+    "Fire-safe Secondary Seal": {
+      "zh": [
+        "火灾工况备用密封"
+      ],
+      "ru": [
+        "резервное огнестойкое уплотнение"
+      ],
+      "ar": [
+        "ختم احتياطي مقاوم للحريق"
+      ]
+    },
+    "NACE MR0175 / ISO 15156 Compliance": {
+      "zh": [
+        "抗硫化氢材料符合性"
+      ],
+      "ru": [
+        "соответствие требованиям для H2S-сред"
+      ],
+      "ar": [
+        "مطابقة مواد خدمة H2S"
+      ]
+    },
+    "Sulfide Stress Cracking": {
+      "zh": [
+        "硫化物应力腐蚀开裂"
+      ],
+      "ru": [
+        "сульфидное растрескивание под напряжением"
+      ],
+      "ar": [
+        "تشقق إجهاد الكبريتيد"
+      ]
+    },
+    "Hydrogen Induced Cracking": {
+      "zh": [
+        "氢诱发裂纹"
+      ],
+      "ru": [
+        "водородное растрескивание"
+      ],
+      "ar": [
+        "التشقق المحفز بالهيدروجين"
+      ]
+    },
+    "Charpy V-notch Impact Test": {
+      "zh": [
+        "V缺口夏比冲击试验"
+      ],
+      "ru": [
+        "испытание Шарпи с V-образным надрезом"
+      ],
+      "ar": [
+        "اختبار شاربي بشق V"
+      ]
+    },
+    "Impact Test Temperature": {
+      "zh": [
+        "冲击温度"
+      ],
+      "ru": [
+        "температура испытания Шарпи"
+      ],
+      "ar": [
+        "حرارة اختبار الصدمة"
+      ]
+    },
+    "Material Hardness Limit": {
+      "zh": [
+        "硬度限制"
+      ],
+      "ru": [
+        "ограничение твёрдости"
+      ],
+      "ar": [
+        "حد الصلادة"
+      ]
+    },
+    "Post Weld Heat Treatment": {
+      "zh": [
+        "焊后热处置"
+      ],
+      "ru": [
+        "термообработка после сварки"
+      ],
+      "ar": [
+        "المعالجة الحرارية التالية للحام"
+      ]
+    },
+    "API 607 Fire Test": {
+      "zh": [
+        "API 607 火烧试验"
+      ],
+      "ru": [
+        "огневое испытание API 607"
+      ],
+      "ar": [
+        "اختبار النار API 607"
+      ]
+    },
+    "API 6FA Fire Test": {
+      "zh": [
+        "API 6FA 火烧试验"
+      ],
+      "ru": [
+        "огневое испытание API 6FA"
+      ],
+      "ar": [
+        "اختبار النار API 6FA"
+      ]
+    },
+    "ISO 10497 Fire Test": {
+      "zh": [
+        "ISO 10497 火灾型式试验"
+      ],
+      "ru": [
+        "огневое типовое испытание ISO 10497"
+      ],
+      "ar": [
+        "اختبار النار ISO 10497"
+      ]
+    },
+    "Pressure-temperature Curve": {
+      "zh": [
+        "压温曲线"
+      ],
+      "ru": [
+        "диаграмма давление–температура"
+      ],
+      "ar": [
+        "منحنى الضغط-الحرارة"
+      ]
+    },
+    "Breakaway Torque": {
+      "zh": [
+        "脱座起始扭矩"
+      ],
+      "ru": [
+        "начальный момент страгивания"
+      ],
+      "ar": [
+        "عزم الانفصال الابتدائي"
+      ]
+    },
+    "Running Torque": {
+      "zh": [
+        "中间行程扭矩"
+      ],
+      "ru": [
+        "момент движения клапана"
+      ],
+      "ar": [
+        "عزم الحركة التشغيلي"
+      ]
+    },
+    "Antistatic Resistance Test": {
+      "zh": [
+        "防静电导通电阻测试"
+      ],
+      "ru": [
+        "испытание сопротивления антистатического устройства"
+      ],
+      "ar": [
+        "اختبار مقاومة التوصيل المضاد للكهرباء الساكنة"
+      ]
+    },
+    "Request for Proposal": {
+      "en": [
+        "RFP"
+      ],
+      "zh": [
+        "建议书征询书",
+        "征求提案"
+      ],
+      "ru": [
+        "ЗП",
+        "запрос на представление предложений"
+      ],
+      "ar": [
+        "طلب العروض",
+        "طلب تقديم مقترحات"
+      ]
+    },
+    "Tender Documents": {
+      "en": [
+        "Bidding Documents",
+        "ITT Documents"
+      ],
+      "zh": [
+        "投标邀请文件",
+        "招标资料"
+      ],
+      "ru": [
+        "конкурсная документация",
+        "документация о закупке"
+      ],
+      "ar": [
+        "مستندات المناقصة",
+        "وثائق الدعوة للمناقصة"
+      ]
+    },
+    "Instructions to Tenderers": {
+      "en": [
+        "Instructions to Bidders"
+      ],
+      "zh": [
+        "投标须知",
+        "投标人指示"
+      ],
+      "ru": [
+        "инструкции участникам торгов"
+      ],
+      "ar": [
+        "تعليمات مقدمي العطاءات",
+        "تعليمات المناقصين"
+      ]
+    },
+    "Bid Data Sheet": {
+      "en": [
+        "BDS"
+      ],
+      "zh": [
+        "招标数据表"
+      ],
+      "ru": [
+        "информационная карта тендера",
+        "тендерная карта данных"
+      ],
+      "ar": [
+        "جدول بيانات العطاء",
+        "ورقة بيانات المناقصة"
+      ]
+    },
+    "Financial Proposal": {
+      "en": [
+        "Price Proposal"
+      ],
+      "zh": [
+        "价格建议书",
+        "财务标"
+      ],
+      "ru": [
+        "финансовая часть предложения"
+      ],
+      "ar": [
+        "المقترح المالي",
+        "الجزء المالي"
+      ]
+    },
+    "Unpriced Commercial Bid": {
+      "en": [
+        "Unpriced Bid",
+        "Unpriced Commercial Offer"
+      ],
+      "zh": [
+        "无价格商务标"
+      ],
+      "ru": [
+        "неценовая коммерческая часть",
+        "коммерческая заявка без указания цен"
+      ],
+      "ar": [
+        "العرض التجاري من دون أسعار",
+        "العطاء التجاري غير المسعّر"
+      ]
+    },
+    "Priced Commercial Bid": {
+      "en": [
+        "Priced Bid",
+        "Priced Commercial Offer"
+      ],
+      "zh": [
+        "价格商务标"
+      ],
+      "ru": [
+        "ценовая коммерческая часть"
+      ],
+      "ar": [
+        "العرض التجاري المتضمن الأسعار",
+        "العطاء التجاري المسعّر"
+      ]
+    },
+    "Two-envelope Bidding Process": {
+      "en": [
+        "Two-Envelope Process"
+      ],
+      "zh": [
+        "两信封制",
+        "技术商务分封投标"
+      ],
+      "ru": [
+        "двухконвертная система подачи заявок"
+      ],
+      "ar": [
+        "نظام المظروفين",
+        "عملية المناقصة ذات المظروفين"
+      ]
+    },
+    "Tender Addendum": {
+      "en": [
+        "Addendum to Tender Documents",
+        "Bid Addendum"
+      ],
+      "zh": [
+        "招标补充文件",
+        "招标文件修正"
+      ],
+      "ru": [
+        "дополнение к документации о закупке",
+        "изменение тендерной документации"
+      ],
+      "ar": [
+        "ملحق المناقصة",
+        "تعديل وثائق المناقصة"
+      ]
+    },
+    "Pre-bid Meeting": {
+      "en": [
+        "Pre-tender Meeting"
+      ],
+      "zh": [
+        "标前会",
+        "招标前会议"
+      ],
+      "ru": [
+        "предконкурсное совещание"
+      ],
+      "ar": [
+        "اجتماع ما قبل المناقصة",
+        "الاجتماع التمهيدي للمناقصين"
+      ]
+    },
+    "Bid Clarification": {
+      "en": [
+        "Tender Clarification"
+      ],
+      "zh": [
+        "标后澄清",
+        "投标文件澄清"
+      ],
+      "ru": [
+        "разъяснение заявки",
+        "тендерное разъяснение"
+      ],
+      "ar": [
+        "إيضاح العطاء",
+        "استفسار بشأن العرض المقدم"
+      ]
+    },
+    "Compliance Matrix": {
+      "en": [
+        "Compliance Table"
+      ],
+      "zh": [
+        "逐条响应表",
+        "符合性矩阵"
+      ],
+      "ru": [
+        "таблица соответствия",
+        "матрица выполнения требований"
+      ],
+      "ar": [
+        "جدول الامتثال",
+        "مصفوفة مطابقة المتطلبات"
+      ]
+    },
+    "No Deviation Statement": {
+      "en": [
+        "No Exception Statement"
+      ],
+      "zh": [
+        "零偏差声明"
+      ],
+      "ru": [
+        "декларация об отсутствии отклонений"
+      ],
+      "ar": [
+        "إقرار بعدم وجود انحرافات",
+        "بيان عدم التحفظ"
+      ]
+    },
+    "Price Schedule": {
+      "en": [
+        "Pricing Schedule"
+      ],
+      "zh": [
+        "投标报价表",
+        "价格清单"
+      ],
+      "ru": [
+        "ценовая ведомость",
+        "форма ценового предложения"
+      ],
+      "ar": [
+        "كشف الأسعار",
+        "جدول التسعير"
+      ]
+    },
+    "Bill of Quantities": {
+      "en": [
+        "BOQ"
+      ],
+      "zh": [
+        "数量清单"
+      ],
+      "ru": [
+        "ведомость объёмов",
+        "сметная ведомость"
+      ],
+      "ar": [
+        "كشف الكميات",
+        "جدول كميات الأعمال"
+      ]
+    },
+    "Bid Submission Deadline": {
+      "en": [
+        "Deadline for Bid Submission"
+      ],
+      "zh": [
+        "递交投标文件截止时间"
+      ],
+      "ru": [
+        "срок окончания подачи заявок",
+        "крайний срок подачи тендерных предложений"
+      ],
+      "ar": [
+        "آخر موعد لتقديم العطاءات",
+        "الموعد الختامي لتقديم العطاء"
+      ]
+    },
+    "Bid Validity Period": {
+      "en": [
+        "Tender Validity Period"
+      ],
+      "zh": [
+        "标书有效期"
+      ],
+      "ru": [
+        "срок действия конкурсной заявки"
+      ],
+      "ar": [
+        "مدة صلاحية العطاء",
+        "فترة نفاذ العرض"
+      ]
+    },
+    "Advance Payment Guarantee": {
+      "en": [
+        "Advance Payment Bond",
+        "APG"
+      ],
+      "zh": [
+        "预付款担保"
+      ],
+      "ru": [
+        "гарантия возврата аванса",
+        "авансовая гарантия"
+      ],
+      "ar": [
+        "خطاب ضمان الدفعة المقدمة",
+        "ضمان استرداد الدفعة المقدمة"
+      ]
+    },
+    "Parent Company Guarantee": {
+      "en": [
+        "PCG"
+      ],
+      "zh": [
+        "母公司履约担保"
+      ],
+      "ru": [
+        "корпоративная гарантия материнской компании"
+      ],
+      "ar": [
+        "كفالة الشركة الأم",
+        "تعهد ضمان من الشركة الأم"
+      ]
+    },
+    "Letter of Credit": {
+      "en": [
+        "LC",
+        "Documentary Credit"
+      ],
+      "zh": [
+        "跟单信用证"
+      ],
+      "ru": [
+        "документарный аккредитив"
+      ],
+      "ar": [
+        "خطاب اعتماد",
+        "ائتمان مستندي"
+      ]
+    },
+    "Supplier Registration": {
+      "en": [
+        "Vendor Registration"
+      ],
+      "zh": [
+        "供应商登记"
+      ],
+      "ru": [
+        "регистрация продавца",
+        "регистрация контрагента"
+      ],
+      "ar": [
+        "تسجيل المورّدين",
+        "قيد المورد"
+      ]
+    },
+    "Vendor Prequalification": {
+      "en": [
+        "Supplier Prequalification",
+        "Vendor PQ"
+      ],
+      "zh": [
+        "供应商预审",
+        "供应商预资格"
+      ],
+      "ru": [
+        "предквалификация поставщика"
+      ],
+      "ar": [
+        "التأهيل الأولي للمورد",
+        "التأهيل المسبق للمورّدين"
+      ]
+    },
+    "Prequalification Questionnaire": {
+      "en": [
+        "PQQ",
+        "Prequalification Questionnaire Form"
+      ],
+      "zh": [
+        "预审调查表"
+      ],
+      "ru": [
+        "опросный лист предварительной квалификации"
+      ],
+      "ar": [
+        "استمارة التأهيل المسبق",
+        "نموذج استبيان التأهيل"
+      ]
+    },
+    "Approved Vendor List": {
+      "en": [
+        "AVL",
+        "Approved Supplier List"
+      ],
+      "zh": [
+        "批准供应商清单",
+        "认可供应商名单"
+      ],
+      "ru": [
+        "перечень утверждённых поставщиков"
+      ],
+      "ar": [
+        "قائمة المورّدين المؤهلين",
+        "قائمة الموردين الموافق عليهم"
+      ]
+    },
+    "Manufacturer Prequalification": {
+      "en": [
+        "Manufacturer PQ",
+        "Manufacturer Qualification"
+      ],
+      "zh": [
+        "工厂资格预审",
+        "制造厂预审"
+      ],
+      "ru": [
+        "предквалификация завода-изготовителя"
+      ],
+      "ar": [
+        "التأهيل الأولي للمصنع",
+        "تأهيل الشركة المصنّعة"
+      ]
+    },
+    "Integrity Due Diligence": {
+      "en": [
+        "IDD"
+      ],
+      "zh": [
+        "合规诚信尽调"
+      ],
+      "ru": [
+        "проверка деловой добросовестности",
+        "проверка благонадёжности"
+      ],
+      "ar": [
+        "الفحص النافي للجهالة بشأن النزاهة",
+        "التحقق من النزاهة"
+      ]
+    },
+    "Supplier Code of Conduct": {
+      "en": [
+        "Vendor Code of Conduct"
+      ],
+      "zh": [
+        "供应商道德准则"
+      ],
+      "ru": [
+        "кодекс делового поведения поставщиков"
+      ],
+      "ar": [
+        "مدونة سلوك المورّدين",
+        "قواعد السلوك للموردين"
+      ]
+    },
+    "Commercial Registration Certificate": {
+      "en": [
+        "CR Certificate",
+        "Commercial Registration"
+      ],
+      "zh": [
+        "商业注册证",
+        "公司登记证书"
+      ],
+      "ru": [
+        "свидетельство о регистрации коммерческой деятельности"
+      ],
+      "ar": [
+        "شهادة التسجيل التجاري",
+        "السجل التجاري"
+      ]
+    },
+    "Authorized Signatory Letter": {
+      "en": [
+        "Authorized Signature Letter"
+      ],
+      "zh": [
+        "授权签署函",
+        "签字授权书"
+      ],
+      "ru": [
+        "письмо о праве подписи",
+        "письмо об уполномоченном лице"
+      ],
+      "ar": [
+        "خطاب المخوّل بالتوقيع",
+        "تفويض التوقيع"
+      ]
+    },
+    "End User": {
+      "en": [
+        "Ultimate End User"
+      ],
+      "zh": [
+        "终端用户"
+      ],
+      "ru": [
+        "конечный заказчик"
+      ],
+      "ar": [
+        "الجهة المستخدمة النهائية",
+        "المستفيد النهائي"
+      ]
+    },
+    "EPC Contractor": {
+      "en": [
+        "Engineering, Procurement and Construction Contractor"
+      ],
+      "zh": [
+        "设计采购施工总承包商"
+      ],
+      "ru": [
+        "подрядчик по проектированию, закупкам и строительству"
+      ],
+      "ar": [
+        "مقاول EPC",
+        "مقاول التصميم والتوريد والتشييد"
+      ]
+    },
+    "Letter of Award": {
+      "en": [
+        "LOA",
+        "Award Letter"
+      ],
+      "zh": [
+        "中标函"
+      ],
+      "ru": [
+        "письмо о присуждении",
+        "письмо о заключении контракта"
+      ],
+      "ar": [
+        "رسالة الترسية",
+        "خطاب منح العقد"
+      ]
+    },
+    "Notification of Award": {
+      "en": [
+        "Notice of Award",
+        "Award Notification"
+      ],
+      "zh": [
+        "授标通知书",
+        "中标通知书"
+      ],
+      "ru": [
+        "уведомление о результатах присуждения"
+      ],
+      "ar": [
+        "إخطار الترسية",
+        "إشعار منح العقد"
+      ]
+    },
+    "Incoterms 2020": {
+      "en": [
+        "Incoterms® 2020"
+      ],
+      "zh": [
+        "2020版国际贸易术语"
+      ],
+      "ru": [
+        "правила Инкотермс 2020"
+      ],
+      "ar": [
+        "مصطلحات التجارة الدولية 2020",
+        "إنكوتيرمز 2020"
+      ]
+    },
+    "Named Place of Destination": {
+      "en": [
+        "Named Destination"
+      ],
+      "zh": [
+        "指定到达地点"
+      ],
+      "ru": [
+        "указанное место назначения"
+      ],
+      "ar": [
+        "مكان الوجهة المحدد",
+        "المكان المسمى للوصول"
+      ]
+    },
+    "Port of Shipment": {
+      "en": [
+        "Port of Loading"
+      ],
+      "zh": [
+        "起运港",
+        "装货港"
+      ],
+      "ru": [
+        "порт погрузки",
+        "порт отправления"
+      ],
+      "ar": [
+        "ميناء التحميل",
+        "ميناء الإرسال"
+      ]
+    },
+    "Document Transmittal": {
+      "en": [
+        "Transmittal",
+        "Document Transmittal Sheet"
+      ],
+      "zh": [
+        "文件发送单",
+        "资料传递单"
+      ],
+      "ru": [
+        "реестр передачи документов",
+        "сопроводительное письмо к документам"
+      ],
+      "ar": [
+        "خطاب إرسال المستندات",
+        "نموذج إحالة الوثائق"
+      ]
+    },
+    "Supplier Document Register": {
+      "en": [
+        "SDR",
+        "Vendor Document Register"
+      ],
+      "zh": [
+        "供应商文件登记表",
+        "厂商文件清单"
+      ],
+      "ru": [
+        "реестр документации поставщика"
+      ],
+      "ar": [
+        "قائمة مستندات المورد",
+        "سجل وثائق المورّد"
+      ]
+    },
+    "Document Submission Schedule": {
+      "en": [
+        "Document Submittal Schedule",
+        "Document Delivery Schedule"
+      ],
+      "zh": [
+        "文件报审计划",
+        "资料提交进度表"
+      ],
+      "ru": [
+        "график подачи документов",
+        "график выдачи документации"
+      ],
+      "ar": [
+        "الجدول الزمني لتقديم المستندات",
+        "برنامج تسليم الوثائق"
+      ]
+    }
+  },
+  "qa": {
+    "source_file": "research/glossary_batches/2026-07-30-round2-independent-qa.json",
+    "approved": 89,
+    "review_required": 30,
+    "rejected": 1,
+    "whole_batch_release": false,
+    "excluded_colliding_aliases": [
+      {
+        "key": "Financial Proposal",
+        "language": "ru",
+        "alias": "ценовое предложение",
+        "conflicts_with": "Commercial Offer"
+      }
+    ]
+  }
+}

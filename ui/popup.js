@@ -1,16 +1,24 @@
-/* global browser, messenger */
+/* global browser, messenger, CustomerResearch */
 (function initPopup(global) {
   const api = global.messenger || global.browser;
   const state = document.getElementById("state");
   const summaryNode = document.getElementById("summary");
   const refreshButton = document.getElementById("refresh");
+  const refreshResearchButton = document.getElementById("refreshResearch");
   const optionsButton = document.getElementById("openOptions");
   const dingTalkButton = document.getElementById("openDingTalk");
+  const createOpportunityButton = document.getElementById("createOpportunity");
+  const opportunityStatus = document.getElementById("opportunityStatus");
+  const opportunityConfirm = document.getElementById("opportunityConfirm");
+  const cancelOpportunityButton = document.getElementById("cancelOpportunity");
+  const confirmOpportunityButton = document.getElementById("confirmOpportunity");
   const drawerBackdrop = document.getElementById("customerDrawer");
   const showDrawerButton = document.getElementById("showCustomerBackground");
   const closeDrawerButton = document.getElementById("closeCustomerBackground");
   let activeSummary = null;
+  let activeResearch = null;
   let previousFocus = null;
+  let confirmPreviousFocus = null;
 
   function clear(node) {
     node.replaceChildren();
@@ -50,6 +58,22 @@
   function applyConfidence(node, value) {
     node.textContent = confidenceText(value);
     node.dataset.confidence = value || "unknown";
+  }
+
+  function setScore(scoreId, labelId, result) {
+    const score = document.getElementById(scoreId);
+    const label = document.getElementById(labelId);
+    score.textContent = String(Number(result?.score || 0));
+    score.dataset.band = result?.band || "pending";
+    label.textContent = result?.labelZh || "待评估";
+  }
+
+  function renderInquiryQuality(summary) {
+    setScore(
+      "inquiryQualityScore",
+      "inquiryQualityLabel",
+      CustomerResearch.scoreInquiry(summary)
+    );
   }
 
   function renderChips(node, values, fallback) {
@@ -250,6 +274,7 @@
       summary.brief?.inquiry?.en || summary.overview?.en || "No overall summary generated."
     );
     renderInquiry(summary);
+    renderInquiryQuality(summary);
     renderProject(summary);
     renderCustomer(summary);
     renderKeyPointGroups(summary);
@@ -263,6 +288,137 @@
       : "";
   }
 
+  function updateStatusText(research) {
+    const update = research?.update || {};
+    if (update.status === "updated") {
+      return `钉钉已补全并回读：${update.updatedFields?.join("、") || "背调资料"}。`;
+    }
+    if (update.status === "local_version_saved") {
+      return "本地版本已保存；钉钉当前不可写或该客户尚未建档。";
+    }
+    if (update.status === "review_required") {
+      return "发现多个钉钉客户候选，系统已停止自动关联。";
+    }
+    if (update.status === "evidence_required") {
+      return "公开证据质量低于 60 分，已保留待补版本，没有覆盖钉钉资料。";
+    }
+    return research?.dingtalk?.status === "matched"
+      ? "已直接读取钉钉客户资料；资料完整且未过期时不会重复背调。"
+      : "未命中钉钉客户，已完成本地背景版本，不会自动创建客户档案。";
+  }
+
+  function researchReasons(research) {
+    const output = [];
+    if (research?.research?.fitHits?.length) {
+      output.push({
+        zh: `业务匹配信号：${research.research.fitHits.join("、")}`,
+        en: `Business-fit signals: ${research.research.fitHits.join(", ")}`
+      });
+    }
+    if (research?.research?.buyerHits?.length) {
+      output.push({
+        zh: `采购角色信号：${research.research.buyerHits.join("、")}`,
+        en: `Buyer-role signals: ${research.research.buyerHits.join(", ")}`
+      });
+    }
+    if (research?.research?.competitorHits?.length) {
+      output.push({
+        zh: `竞品/代理信号：${research.research.competitorHits.join("、")}`,
+        en: `Competitor/principal signals: ${research.research.competitorHits.join(", ")}`
+      });
+    }
+    return output;
+  }
+
+  function renderResearchDrawer(research) {
+    const identity = research.identity || {};
+    const profile = research.profile || {};
+    const completeness = profile.completeness || {};
+    document.getElementById("drawerTitle").textContent = identity.company || "客户资料";
+    document.getElementById("drawerMatch").textContent = research.dingtalk?.status === "matched"
+      ? `钉钉已匹配 · ${research.dingtalk.matchEvidence === "exact_email" ? "精确邮箱" : "唯一公司域名"}`
+      : research.dingtalk?.status === "review_required"
+        ? "多个候选，需人工确认"
+        : "未命中钉钉客户";
+    renderBilingualBlock(
+      document.getElementById("drawerBackground"),
+      research.research?.summaryZh || "背景资料待补强。",
+      `Customer fit ${research.research?.matchScore || 0}/100; research quality ${research.research?.quality || 0}/100.`
+    );
+    const facts = document.getElementById("drawerFacts");
+    clear(facts);
+    appendFact(facts, "联系人", "Contact", identity.contact);
+    appendFact(facts, "邮箱", "Email", identity.email);
+    appendFact(facts, "域名", "Domain", identity.domain);
+    appendFact(facts, "国家", "Country", identity.country);
+    appendFact(facts, "官网", "Website", profile.website);
+    appendFact(facts, "行业", "Industry", profile.industry);
+    appendFact(facts, "资料完整度", "Completeness", `${completeness.score || 0}/100`);
+    appendFact(facts, "背调版本", "Research version", `v${research.version?.number || 0}`);
+    appendFact(facts, "更新日期", "Updated", research.version?.updatedAt
+      ? new Date(research.version.updatedAt).toLocaleString()
+      : "");
+    renderReasons(document.getElementById("drawerReasons"), researchReasons(research), 8);
+    renderChips(
+      document.getElementById("drawerTags"),
+      [
+        ...(research.research?.fitHits || []),
+        ...(research.research?.buyerHits || []),
+        ...(research.research?.groupHits || [])
+      ],
+      "暂无标签 / No tags"
+    );
+  }
+
+  function renderResearch(research) {
+    activeResearch = research;
+    const match = CustomerResearch.customerMatch(research);
+    setScore("customerFitScore", "customerFitLabel", match);
+    document.getElementById("researchVersion").textContent = `v${research.version?.number || 0}`;
+    document.getElementById("researchUpdatedAt").textContent = research.version?.updatedAt
+      ? `更新 ${new Date(research.version.updatedAt).toLocaleString()} · 核验 ${new Date(research.version.checkedAt).toLocaleString()}`
+      : "等待后台核验";
+    document.getElementById("researchQuality").textContent =
+      `质量 ${research.research?.quality || 0}/100`;
+    renderBilingualBlock(
+      document.getElementById("researchBrief"),
+      research.research?.summaryZh || "客户背景尚待补强。",
+      `Customer fit ${match.score}/100 · ${match.labelEn}.`
+    );
+    const facts = document.getElementById("researchFacts");
+    clear(facts);
+    appendFact(facts, "钉钉匹配", "DingTalk match", research.dingtalk?.status === "matched"
+      ? (research.dingtalk.matchEvidence === "exact_email" ? "精确邮箱" : "唯一公司域名")
+      : research.dingtalk?.status === "review_required" ? "多个候选，需确认" : "未命中");
+    appendFact(facts, "资料完整度", "Completeness", `${research.profile?.completeness?.score || 0}/100`);
+    appendFact(facts, "公开证据", "Public sources", `${research.research?.sourceCount || 0} 条`);
+    appendFact(facts, "待补字段", "Missing fields", research.profile?.completeness?.missing);
+    document.getElementById("researchStatus").textContent = updateStatusText(research);
+
+    document.getElementById("customerName").textContent =
+      research.identity?.company || activeSummary?.customer?.identity?.company || "待确认客户";
+    document.getElementById("customerMatch").textContent =
+      `${match.labelZh} · ${match.score}/100 / ${match.labelEn}`;
+    const importanceBadge = document.getElementById("importanceBadge");
+    importanceBadge.textContent = `匹配 ${match.score}`;
+    importanceBadge.className = `status-pill research-${match.band}`;
+    renderBilingualBlock(
+      document.getElementById("customerBrief"),
+      research.research?.summaryZh || "客户重要度待评估。",
+      `Customer fit ${match.score}/100; research quality ${research.research?.quality || 0}/100.`
+    );
+    renderReasons(document.getElementById("importanceReasons"), researchReasons(research), 3);
+
+    const available = research.dingtalk?.status === "matched" && Boolean(research.dingtalk?.url);
+    dingTalkButton.disabled = !available;
+    dingTalkButton.textContent = available ? "打开钉钉客户" : "钉钉未匹配";
+    const hint = document.getElementById("dingtalkHint");
+    hint.textContent = available
+      ? "只读打开钉钉客户表；自动补强仅写 AI 背调区块和空白官网字段。"
+      : updateStatusText(research);
+    renderResearchDrawer(research);
+  }
+
   function openDrawer() {
     previousFocus = document.activeElement;
     drawerBackdrop.hidden = false;
@@ -274,7 +430,65 @@
     if (previousFocus?.focus) previousFocus.focus();
   }
 
-  async function load(force) {
+  function opportunityResultText(result) {
+    const number = result.dingtalk_opportunity_number
+      ? `商机号 ${result.dingtalk_opportunity_number}。`
+      : "";
+    if (result.status === "completed") {
+      return `${number}钉钉待审核记录和本地同号归档均已完成。`;
+    }
+    if (result.status === "already_completed") {
+      return `${number}此邮件此前已完成商机建档，本次没有重复创建。`;
+    }
+    if (result.status === "partial") {
+      return `${number}钉钉记录已建立或命中；本地归档仍需人工复核。`;
+    }
+    if (result.status === "blocked") {
+      return "客户、商机或收件人角色存在歧义，流程已安全停止，没有强行写入。";
+    }
+    return "商机流程未完成，请检查本机助手和良固任务卡。";
+  }
+
+  function openOpportunityConfirm() {
+    confirmPreviousFocus = document.activeElement;
+    opportunityConfirm.hidden = false;
+    confirmOpportunityButton.focus();
+  }
+
+  function closeOpportunityConfirm() {
+    opportunityConfirm.hidden = true;
+    if (confirmPreviousFocus?.focus) confirmPreviousFocus.focus();
+  }
+
+  async function createOpportunity() {
+    closeOpportunityConfirm();
+    createOpportunityButton.disabled = true;
+    confirmOpportunityButton.disabled = true;
+    createOpportunityButton.textContent = "正在建立…";
+    createOpportunityButton.dataset.status = "";
+    opportunityStatus.classList.remove("error-text");
+    opportunityStatus.textContent = "正在查重客户与商机，并等待钉钉正式号回读…";
+    try {
+      const result = await api.runtime.sendMessage({
+        type: "createOpportunityFromCurrentMessage",
+        authorized: true
+      });
+      opportunityStatus.textContent = opportunityResultText(result || {});
+      const finished = ["completed", "already_completed"].includes(result?.status);
+      createOpportunityButton.dataset.status = finished ? "completed" : "warning";
+      createOpportunityButton.textContent = finished ? "商机已建立 ✓" : "需要复核";
+    } catch (error) {
+      opportunityStatus.textContent = error.message || "本机商机流程执行失败。";
+      opportunityStatus.classList.add("error-text");
+      createOpportunityButton.dataset.status = "warning";
+      createOpportunityButton.textContent = "重新建立商机";
+    } finally {
+      createOpportunityButton.disabled = false;
+      confirmOpportunityButton.disabled = false;
+    }
+  }
+
+  async function loadSummary(force) {
     try {
       state.setAttribute("aria-busy", "true");
       setState(force ? "正在重新分析 / Re-analyzing..." : "正在读取当前邮件 / Reading current email...", false);
@@ -290,10 +504,44 @@
     }
   }
 
-  refreshButton.addEventListener("click", () => load(true));
+  async function loadResearch(force) {
+    const previous = state.textContent;
+    state.hidden = false;
+    state.setAttribute("aria-busy", "true");
+    state.textContent = force ? "正在更新背调与钉钉版本…" : "正在读取后台客户情报…";
+    try {
+      const research = await api.runtime.sendMessage({
+        type: "getCustomerResearchForCurrentMessage",
+        options: { force: Boolean(force) }
+      });
+      renderResearch(research);
+      state.hidden = true;
+    } catch (error) {
+      document.getElementById("researchStatus").textContent =
+        `背调暂未完成：${error.message || error}。邮件摘要仍可正常使用。`;
+      state.hidden = true;
+    } finally {
+      state.setAttribute("aria-busy", "false");
+      if (!state.hidden) state.textContent = previous;
+    }
+  }
+
+  async function loadAll() {
+    await loadSummary(false);
+    await loadResearch(false);
+  }
+
+  refreshButton.addEventListener("click", () => loadSummary(true));
+  refreshResearchButton.addEventListener("click", () => loadResearch(true));
   optionsButton.addEventListener("click", () => api.runtime.sendMessage({ type: "openOptionsPage" }));
+  createOpportunityButton.addEventListener("click", openOpportunityConfirm);
+  cancelOpportunityButton.addEventListener("click", closeOpportunityConfirm);
+  confirmOpportunityButton.addEventListener("click", createOpportunity);
+  opportunityConfirm.addEventListener("click", event => {
+    if (event.target === opportunityConfirm) closeOpportunityConfirm();
+  });
   dingTalkButton.addEventListener("click", async () => {
-    const url = activeSummary?.customer?.dingtalk?.url;
+    const url = activeResearch?.dingtalk?.url || activeSummary?.customer?.dingtalk?.url;
     if (!url) return;
     try {
       await api.runtime.sendMessage({ type: "openDingTalkLink", url });
@@ -309,6 +557,10 @@
     if (event.target === drawerBackdrop) closeDrawer();
   });
   document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !opportunityConfirm.hidden) {
+      closeOpportunityConfirm();
+      return;
+    }
     if (event.key === "Escape" && !drawerBackdrop.hidden) closeDrawer();
     if (event.key === "Tab" && !drawerBackdrop.hidden) {
       const focusable = [...drawerBackdrop.querySelectorAll("button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex='-1'])")];
@@ -325,5 +577,5 @@
     }
   });
 
-  load(false);
+  loadAll();
 })(globalThis);

@@ -23,6 +23,8 @@
       bodyLimitPerMessage: Number(document.getElementById("bodyLimitPerMessage").value),
       keyPointLimit: Number(document.getElementById("keyPointLimit").value),
       includeSubFolders: document.getElementById("includeSubFolders").checked,
+      autoCustomerResearchEnabled: document.getElementById("autoCustomerResearchEnabled").checked,
+      autoUpdateDingTalkResearch: document.getElementById("autoUpdateDingTalkResearch").checked,
       inlineTranslationEnabled: document.getElementById("inlineTranslationEnabled").checked,
       inlineTranslationIncludeQuoted: document.getElementById("inlineTranslationIncludeQuoted").checked,
       composeAssistantEnabled: document.getElementById("composeAssistantEnabled").checked,
@@ -39,6 +41,8 @@
     document.getElementById("bodyLimitPerMessage").value = options.bodyLimitPerMessage;
     document.getElementById("keyPointLimit").value = options.keyPointLimit;
     document.getElementById("includeSubFolders").checked = Boolean(options.includeSubFolders);
+    document.getElementById("autoCustomerResearchEnabled").checked = options.autoCustomerResearchEnabled !== false;
+    document.getElementById("autoUpdateDingTalkResearch").checked = options.autoUpdateDingTalkResearch !== false;
     document.getElementById("inlineTranslationEnabled").checked = options.inlineTranslationEnabled !== false;
     document.getElementById("inlineTranslationIncludeQuoted").checked = Boolean(options.inlineTranslationIncludeQuoted);
     document.getElementById("composeAssistantEnabled").checked = options.composeAssistantEnabled !== false;

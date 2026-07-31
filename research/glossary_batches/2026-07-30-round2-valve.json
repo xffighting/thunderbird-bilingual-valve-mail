@@ -1,0 +1,379 @@
+{
+  "batch_id": "2026-07-30-round2-valve",
+  "focus": "Second-round multilingual terminology for valve selection, quotation, testing and technical email",
+  "scope": "Four-language candidates that are absent by case-insensitive English key from the production multilingual and batch glossaries and from every existing research batch as of 2026-07-30. The batch focuses on valve constructions, safety-valve parameters, control-valve behaviour, actuation, sealing, sour-service materials, low-temperature service, fire testing and torque.",
+  "research_date": "2026-07-30",
+  "sources": [
+    {
+      "id": "gost24856",
+      "title": "ГОСТ 24856-2014 Арматура трубопроводная. Термины и определения",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/3e0903e6-d31b-48c6-8abe-e1e617d193a3",
+      "language": "ru/en",
+      "used_for": "Russian normative valve-type, component and parameter terminology."
+    },
+    {
+      "id": "gost31294",
+      "title": "ГОСТ 31294-2005 Клапаны предохранительные прямого действия. Общие технические условия",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/0eb77281-a297-43e8-8a95-90039eab2b7a",
+      "language": "ru",
+      "used_for": "Russian safety-valve design and set, opening, closing and capacity terminology."
+    },
+    {
+      "id": "gost33257",
+      "title": "ГОСТ 33257-2015 Арматура трубопроводная. Методы контроля и испытаний",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/61cb855a-0504-42bf-9d89-9c840500af35",
+      "language": "ru/en",
+      "used_for": "Russian inspection, pressure-test and leakage-test terminology."
+    },
+    {
+      "id": "gost34293",
+      "title": "ГОСТ 34293-2017 Краны шаровые стальные для нефтяной, нефтехимической и смежных отраслей промышленности",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/0d792936-d72e-4615-8e6c-a699e5986a8b",
+      "language": "ru/en",
+      "used_for": "Russian oil-and-gas ball-valve, antistatic and acceptance-test terminology."
+    },
+    {
+      "id": "gost33857",
+      "title": "ГОСТ 33857-2016 Арматура трубопроводная. Сварка и контроль качества сварных соединений",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/a73f6c4a-9ec3-4127-9cc7-2693fc20ca19",
+      "language": "ru/en",
+      "used_for": "Russian welding, weld-quality and post-weld-treatment terminology."
+    },
+    {
+      "id": "gost70796",
+      "title": "ГОСТ Р 70796-2023 Арматура трубопроводная. Электроприводы. Термины и определения",
+      "authority": "Росстандарт",
+      "url": "https://protect.gost.ru/gost/details/b081997e-6b5f-46b0-9485-98ad72ad0b65",
+      "language": "ru/en",
+      "used_for": "Russian actuator, torque and thrust terminology."
+    },
+    {
+      "id": "iso4126",
+      "title": "ISO 4126-1:2013 Safety devices for protection against excessive pressure — Part 1: Safety valves",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/50826.html",
+      "language": "en",
+      "used_for": "Safety-valve types, operating pressures and discharge terminology."
+    },
+    {
+      "id": "iso5208",
+      "title": "ISO 5208:2015 Industrial valves — Pressure testing of metallic valves",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/65111.html",
+      "language": "en",
+      "used_for": "Valve pressure-boundary, closure and leakage-test concepts."
+    },
+    {
+      "id": "iso10497",
+      "title": "ISO 10497:2022 Testing of valves — Fire type-testing requirements",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/78853.html",
+      "language": "en",
+      "used_for": "Fire type-testing, through-seat leakage, external leakage, operability and secondary sealing."
+    },
+    {
+      "id": "iso15156",
+      "title": "ISO 15156-1:2020 Petroleum and natural gas industries — Materials for use in H2S-containing environments",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/79658.html",
+      "language": "en",
+      "used_for": "Sour-service material qualification and H2S-related cracking mechanisms."
+    },
+    {
+      "id": "iso148",
+      "title": "ISO 148-1:2016 Metallic materials — Charpy pendulum impact test — Part 1: Test method",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/63802.html",
+      "language": "en",
+      "used_for": "Charpy V-notch impact testing and test-temperature wording."
+    },
+    {
+      "id": "iso21157",
+      "title": "ISO 21157:2018 Ships and marine technology — Ball valves for low temperature applications",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/69991.html",
+      "language": "en",
+      "used_for": "Cryogenic ball-valve design and low-temperature leakage stability."
+    },
+    {
+      "id": "iso28921",
+      "title": "ISO 28921-1:2022 Industrial valves — Isolating valves for low-temperature applications",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/78445.html",
+      "language": "en",
+      "used_for": "Low- and cryogenic-temperature valve design, materials and production testing."
+    },
+    {
+      "id": "iso17292",
+      "title": "ISO 17292:2015 Metal ball valves for petroleum, petrochemical and allied industries",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/59736.html",
+      "language": "en",
+      "used_for": "Metal ball-valve construction, inspection and testing."
+    },
+    {
+      "id": "iso5115",
+      "title": "ISO 5115:2023 Industrial valves — Part-turn valve actuation",
+      "authority": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/80870.html",
+      "language": "en",
+      "used_for": "Actuator sizing, selection, assembly, torque and valve-actuator interfaces."
+    },
+    {
+      "id": "asmeb1634",
+      "title": "ASME B16.34-2025 Valves — Flanged, Threaded, and Welding End",
+      "authority": "American Society of Mechanical Engineers",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-34-valves-flanged-threaded-welding-end/2017/pdf",
+      "language": "en",
+      "used_for": "Pressure-temperature ratings, materials, testing and marking."
+    },
+    {
+      "id": "api6d",
+      "title": "API Specification 6D, 25th Edition — Specification for Valves",
+      "authority": "American Petroleum Institute",
+      "url": "https://www.api.org/products-and-services/standards/important-standards-announcements/spec6d",
+      "language": "en",
+      "used_for": "Pipeline-valve constructions, design requirements and supplementary tests."
+    },
+    {
+      "id": "api6dguide",
+      "title": "API Specification 6D Purchasing Guidelines, Annexes G/H/J/N/O",
+      "authority": "American Petroleum Institute",
+      "url": "https://api.org/~/media/files/certification/monogram-apiqr/purchasing%20guidelines/6d%20e24%20purchasing%20guideline%20r1%2020141029.pdf",
+      "language": "en",
+      "used_for": "Fire-test standards accepted for pipeline-valve purchasing specifications."
+    },
+    {
+      "id": "api_plan",
+      "title": "API Standards Plan",
+      "authority": "American Petroleum Institute",
+      "url": "https://www.api.org/products-and-services/standards/standards-plan",
+      "language": "en",
+      "used_for": "Official API 607 and API 6FA publication identification."
+    },
+    {
+      "id": "slb_ball",
+      "title": "Ball Valves",
+      "authority": "SLB / Cameron",
+      "url": "https://www.slb.com/valves/ball-valves",
+      "language": "en",
+      "used_for": "Manufacturer usage for rising-stem and fully welded ball-valve constructions."
+    },
+    {
+      "id": "slb_low_emission",
+      "title": "Low-Emission Valves",
+      "authority": "SLB / Cameron",
+      "url": "https://www.slb.com/valves/valve-applications/low-emission-valves",
+      "language": "en",
+      "used_for": "Manufacturer usage for double expanding gate valves and low-emission constructions."
+    },
+    {
+      "id": "velan_parallel",
+      "title": "Pressure Seal Parallel Slide Gate Valve",
+      "authority": "Velan",
+      "url": "https://velan.com/products/pressure-seal-parallel-slide-gate-valves/",
+      "language": "en",
+      "used_for": "Parallel-slide design, seat loading and thermal-binding context."
+    },
+    {
+      "id": "valmet_control",
+      "title": "Control Valves",
+      "authority": "Valmet / Neles",
+      "url": "https://www.valmet.com/flowcontrol/valves/control-valves/",
+      "language": "en",
+      "used_for": "Eccentric plug and segmented-ball control-valve terminology."
+    },
+    {
+      "id": "valmet_manual",
+      "title": "Flow Control Manual",
+      "authority": "Valmet",
+      "url": "https://www.valmet.com/globalassets/sharepoint/imported/flowcontrol_manual.pdf",
+      "language": "en",
+      "used_for": "Inherent and installed characteristics, rangeability, choked flow, flashing and cavitation."
+    },
+    {
+      "id": "iec60534_2_4",
+      "title": "IEC 60534-2-4:2009 Industrial-process control valves — Inherent flow characteristics and rangeability",
+      "authority": "International Electrotechnical Commission",
+      "url": "https://webstore.iec.ch/en/publication/2463",
+      "language": "en/fr",
+      "used_for": "Normative control-valve characteristic and rangeability terminology."
+    },
+    {
+      "id": "isa75",
+      "title": "ISA75.11 Inherent Flow Characteristic and Rangeability of Control Valves",
+      "authority": "International Society of Automation",
+      "url": "https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa75-11",
+      "language": "en",
+      "used_for": "Linear, equal-percentage, quick-opening and rangeability terms."
+    },
+    {
+      "id": "spirax_safety",
+      "title": "Safety Valves and Safety Valve Selection",
+      "authority": "Spirax Sarco",
+      "url": "https://www.spiraxsarco.com/learn-about-steam/safety-valves/safety-valves",
+      "language": "en",
+      "used_for": "Set pressure, reseating pressure, blowdown and overpressure explanations."
+    },
+    {
+      "id": "emerson_safety",
+      "title": "Birkett Pressure and Safety Relief Valves Technical Data",
+      "authority": "Emerson",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/pressure-management/documents/data-sheets-safety-relief-valves-technical-data-birkett-en.pdf",
+      "language": "en",
+      "used_for": "Balanced-bellows, pilot-operated designs, capacity and discharge coefficients."
+    },
+    {
+      "id": "emerson_actuator",
+      "title": "EFS 2000 Electric Actuators Technical Data",
+      "authority": "Emerson",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/actuation-technologies/electrics/general/documents/ACT-TDS-EFS-2000-Electric-Actuators-VCTDS-02829-EN.pdf",
+      "language": "en",
+      "used_for": "Actuator thrust, stroke time, breakout and running torque."
+    },
+    {
+      "id": "emerson_packing",
+      "title": "Fisher HP and HPA Control Valves Instruction Manual",
+      "authority": "Emerson / Fisher",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/flow-controls/valves/documents/FCV-INS-Fisher%E2%80%9E%C2%A2-HP-HPA-Control-Valves-D101634X012-EN.pdf",
+      "language": "en",
+      "used_for": "Live-loaded packing, packing box, packing gland and lantern-ring arrangements."
+    },
+    {
+      "id": "emerson_instrument",
+      "title": "Fisher Digital Valve Controller Instruction Manual",
+      "authority": "Emerson / Fisher",
+      "url": "https://www.emerson.com/is/content/emerson/en/final-control/flow-controls/documents/d103785x012.pdf",
+      "language": "en",
+      "used_for": "Position transmitter, filter regulator and pneumatic relay usage."
+    },
+    {
+      "id": "valmet_pst",
+      "title": "Neles ValvGuard VG9000H Safety Manual",
+      "authority": "Valmet / Neles",
+      "url": "https://www.valmet.com/globalassets/sharepoint/imported/10SM_VG9000H_en.pdf",
+      "language": "en",
+      "used_for": "Partial-stroke-test definition and safety-shutdown-valve context."
+    }
+  ],
+  "entries": [
+    {"en":"Parallel Slide Gate Valve","zh":"平行双闸板闸阀","ru":"задвижка с параллельными дисками","ar":"صمام بوابة بقرصين متوازيين","category":"valve_type","context":"always","aliases":{"en":[],"zh":["平行式闸阀"],"ru":["параллельная задвижка"],"ar":["صمام بوابة متوازي الأقراص"]},"definition_zh":"采用相互平行的闸板，依靠介质压力或弹簧使下游闸板贴紧阀座；与楔式闸阀的楔紧密封机理不同。","confidence":"high","source_ids":["velan_parallel","gost24856"]},
+    {"en":"Expanding Gate Valve","zh":"撑开式闸阀","ru":"задвижка с распорным шибером","ar":"صمام بوابة ببوابة متمددة","category":"valve_type","context":"always","aliases":{"en":[],"zh":["膨胀式闸阀"],"ru":["распорная задвижка"],"ar":["صمام بوابة متمدد"]},"definition_zh":"闸板组件在关闭终点产生机械撑开，使两个密封面分别压向阀座的闸阀结构。","confidence":"medium","source_ids":["slb_low_emission","gost24856"]},
+    {"en":"Rising Stem Ball Valve","zh":"升杆式球阀","ru":"шаровой кран с подъёмным штоком","ar":"صمام كروي بساق صاعد","category":"valve_type","context":"always","aliases":{"en":[],"zh":["升降杆球阀"],"ru":["шаровой кран с поднимающимся штоком"],"ar":["صمام كروي ذو ساق صاعدة"]},"definition_zh":"启闭时阀杆先使球体脱离阀座再旋转，从而降低阀座摩擦，适合频繁动作和严密切断。","confidence":"high","source_ids":["slb_ball","gost24856"]},
+    {"en":"Fully Welded Ball Valve","zh":"全焊接球阀","ru":"цельносварной шаровой кран","ar":"صمام كروي ملحوم بالكامل","category":"valve_type","context":"always","aliases":{"en":[],"zh":["全焊式球阀"],"ru":["полностью сварной шаровой кран"],"ar":["صمام كرة كامل اللحام"]},"definition_zh":"阀体各承压壳体通过焊接形成整体、无可拆阀体法兰连接的球阀，可减少潜在外漏路径。","confidence":"high","source_ids":["slb_ball","api6d"]},
+    {"en":"Three-piece Ball Valve","zh":"三片式球阀","ru":"трёхсоставной шаровой кран","ar":"صمام كروي من ثلاث قطع","category":"valve_type","context":"always","aliases":{"en":[],"zh":["三件式球阀"],"ru":["трёхсекционный шаровой кран"],"ar":["صمام كرة ثلاثي القطع"]},"definition_zh":"阀体由中体和两个端部三部分连接组成，检修时通常可拆下中体而保留管端连接。","confidence":"high","source_ids":["iso17292","gost24856"]},
+    {"en":"Eccentric Plug Valve","zh":"偏心旋塞阀","ru":"эксцентриковый пробковый клапан","ar":"صمام سدادي لا مركزي","category":"valve_type","context":"always","aliases":{"en":[],"zh":["偏心旋转塞阀"],"ru":["эксцентриковый поворотно-пробковый клапан"],"ar":["صمام قابس لامركزي"]},"definition_zh":"旋塞轴线或运动轨迹相对阀座偏心，使关闭件在离座后减少摩擦的旋转阀，常用于调节含颗粒或苛刻介质。","confidence":"high","source_ids":["valmet_control","gost24856"]},
+    {"en":"Segmented Ball Valve","zh":"分段式球阀","ru":"сегментный шаровой кран","ar":"صمام كروي قطاعي","category":"valve_type","context":"always","aliases":{"en":[],"zh":["球面扇形调节阀"],"ru":["шаровой сегментный клапан"],"ar":["صمام كرة قطاعي"]},"definition_zh":"以球面的一段作为节流关闭件的旋转调节阀，常配V形流道以获得较高可调比。","confidence":"high","source_ids":["valmet_control","valmet_manual"]},
+    {"en":"Pilot Operated Safety Valve","zh":"先导式安全阀","ru":"предохранительный клапан с пилотным управлением","ar":"صمام أمان يعمل بصمام طيار","category":"valve_type","context":"always","aliases":{"en":[],"zh":["先导操作安全阀"],"ru":["пилотно-управляемый предохранительный клапан"],"ar":["صمام أمان طياري"]},"definition_zh":"由先导阀感受系统压力并控制主阀启闭的安全泄压装置；不得简化为普通先导调压阀。","confidence":"high","source_ids":["iso4126","emerson_safety"]},
+    {"en":"Direct-loaded Safety Valve","zh":"直接载荷式安全阀","ru":"предохранительный клапан прямого действия","ar":"صمام أمان مباشر التحميل","category":"valve_type","context":"always","aliases":{"en":[],"zh":["直接作用式安全阀"],"ru":["прямонагруженный предохранительный клапан"],"ar":["صمام أمان ذو تحميل مباشر"]},"definition_zh":"关闭件承受的关闭载荷由弹簧、重锤或其他机械载荷直接施加的安全阀。","confidence":"high","source_ids":["iso4126","gost31294"]},
+    {"en":"Balanced Bellows Safety Valve","zh":"平衡波纹管式安全阀","ru":"сбалансированный сильфонный предохранительный клапан","ar":"صمام أمان متوازن بمنفاخ","category":"valve_type","context":"always","aliases":{"en":[],"zh":["波纹管平衡式安全阀"],"ru":["предохранительный клапан с уравновешивающим сильфоном"],"ar":["صمام أمان بمنفاخ موازن"]},"definition_zh":"利用波纹管抵消或降低背压对整定压力和开启性能影响的弹簧直接载荷式安全阀。","confidence":"high","source_ids":["emerson_safety","iso4126"]},
+
+    {"en":"Set Pressure","zh":"整定压力","ru":"давление настройки","ar":"ضغط الضبط","category":"design","context":"valve","aliases":{"en":[],"zh":["设定压力"],"ru":["установочное давление"],"ar":["ضغط المعايرة"]},"definition_zh":"安全阀在规定工况下开始呈现规定开启特性的入口静压力；报价时应同时注明表压/绝压和温度补偿条件。","confidence":"high","source_ids":["iso4126","gost31294","spirax_safety"]},
+    {"en":"Reseating Pressure","zh":"回座压力","ru":"давление закрытия","ar":"ضغط إعادة الإغلاق","category":"design","context":"valve","aliases":{"en":[],"zh":["再关闭压力"],"ru":["давление обратной посадки"],"ar":["ضغط إعادة الجلوس"]},"definition_zh":"安全阀泄压后，阀瓣重新与阀座接触并恢复关闭时的入口静压力。","confidence":"high","source_ids":["iso4126","gost31294","spirax_safety"]},
+    {"en":"Safety Valve Blowdown","zh":"安全阀启闭压差","ru":"дифференциал закрытия предохранительного клапана","ar":"فرق ضغط إعادة الإغلاق لصمام الأمان","category":"design","context":"valve","aliases":{"en":[],"zh":["安全阀回座压差"],"ru":["перепад между давлением настройки и давлением закрытия"],"ar":["فرق النفخ لصمام الأمان"]},"definition_zh":"安全阀整定压力与回座压力之差，可用压力值或整定压力的百分比表示；不是排污阀的“排污”。","confidence":"high","source_ids":["iso4126","spirax_safety"]},
+    {"en":"Overpressure","zh":"超压量","ru":"превышение давления над давлением настройки","ar":"الضغط الزائد فوق ضغط الضبط","category":"design","context":"valve","aliases":{"en":[],"zh":["超过整定压力的压力增量"],"ru":["избыточное повышение над давлением настройки"],"ar":["زيادة الضغط فوق ضغط الضبط"]},"definition_zh":"泄压装置排放过程中，入口压力高于整定压力的增量，通常以压力值或整定压力百分比表示。","confidence":"high","source_ids":["iso4126","spirax_safety"]},
+    {"en":"Accumulation","zh":"压力积聚增量","ru":"накопление давления при сбросе","ar":"تراكم الضغط أثناء التصريف","category":"design","context":"valve","aliases":{"en":[],"zh":["累积超压"],"ru":["повышение давления над максимально допустимым"],"ar":["زيادة الضغط المتراكمة"]},"definition_zh":"安全装置排放时，被保护设备内压力高于最大允许工作压力的增量；仅当整定压力等于最大允许工作压力时才可能与超压量相同。","confidence":"high","source_ids":["iso4126","emerson_safety"]},
+    {"en":"Cold Differential Test Pressure","zh":"冷态差动试验压力","ru":"холодное дифференциальное испытательное давление","ar":"ضغط الاختبار التفاضلي على البارد","category":"design","context":"valve","aliases":{"en":[],"zh":["冷态差压试验压力"],"ru":["холодное дифференциальное давление настройки"],"ar":["ضغط الضبط التفاضلي البارد"]},"definition_zh":"在试验台常温条件下对安全阀进行设定的压力，已考虑实际工况背压、温度或其他服务条件对整定值的修正。","confidence":"high","source_ids":["iso4126","emerson_safety"]},
+    {"en":"Certified Discharge Capacity","zh":"认证排放能力","ru":"сертифицированная пропускная способность","ar":"سعة التصريف المعتمدة","category":"design","context":"valve","aliases":{"en":[],"zh":["认证泄放量"],"ru":["сертифицированная расходная способность"],"ar":["قدرة التصريف المعتمدة"]},"definition_zh":"依据规定试验和适用规范确认，可在铭牌、证书或选型计算中采用的安全阀排放能力。","confidence":"high","source_ids":["iso4126","emerson_safety","gost31294"]},
+    {"en":"Coefficient of Discharge","zh":"排放系数","ru":"коэффициент расхода","ar":"معامل التصريف","category":"design","context":"valve","aliases":{"en":[],"zh":["泄放系数"],"ru":["коэффициент пропускной способности при сбросе"],"ar":["معامل سعة التصريف"]},"definition_zh":"安全阀实测排放能力与相同条件下理论排放能力之比，用于能力认证或选型计算。","confidence":"high","source_ids":["iso4126","emerson_safety","gost31294"]},
+
+    {"en":"Rangeability","zh":"可调比","ru":"диапазон регулирования","ar":"نسبة قابلية التحكم","category":"design","context":"valve","aliases":{"en":[],"zh":["调节范围比"],"ru":["регулируемость клапана"],"ar":["نسبة المدى القابل للتحكم"]},"definition_zh":"在规定偏差限度内，调节阀最大可控流量系数与最小可控流量系数之比；不能用口径比代替。","confidence":"high","source_ids":["iec60534_2_4","isa75","valmet_manual"]},
+    {"en":"Equal Percentage Flow Characteristic","zh":"等百分比流量特性","ru":"равнопроцентная расходная характеристика","ar":"خاصية تدفق متساوية النسبة","category":"design","context":"valve","aliases":{"en":[],"zh":["等百分比特性"],"ru":["равнопроцентная характеристика"],"ar":["خاصية النسبة المتساوية"]},"definition_zh":"阀门每增加相同的额定行程百分比，流量系数按其当时数值的近似相同比例增加的固有特性。","confidence":"high","source_ids":["iec60534_2_4","isa75"]},
+    {"en":"Linear Flow Characteristic","zh":"线性流量特性","ru":"линейная расходная характеристика","ar":"خاصية تدفق خطية","category":"design","context":"valve","aliases":{"en":[],"zh":["线性特性"],"ru":["линейная характеристика клапана"],"ar":["خاصية الجريان الخطية"]},"definition_zh":"在规定范围内，流量系数随额定行程近似成正比变化的固有流量特性。","confidence":"high","source_ids":["iec60534_2_4","isa75"]},
+    {"en":"Quick Opening Flow Characteristic","zh":"快开流量特性","ru":"быстрооткрывающаяся расходная характеристика","ar":"خاصية تدفق سريعة الفتح","category":"design","context":"valve","aliases":{"en":[],"zh":["快开特性"],"ru":["характеристика быстрого открытия"],"ar":["خاصية الفتح السريع"]},"definition_zh":"在较小初始行程内迅速获得较大流量系数，随后增幅减小的固有流量特性。","confidence":"high","source_ids":["iec60534_2_4","isa75"]},
+    {"en":"Inherent Flow Characteristic","zh":"固有流量特性","ru":"собственная расходная характеристика","ar":"خاصية التدفق الذاتية","category":"design","context":"valve","aliases":{"en":[],"zh":["本征流量特性"],"ru":["внутренняя расходная характеристика"],"ar":["خاصية التدفق المتأصلة"]},"definition_zh":"阀门前后压差保持恒定时，流量系数与阀门行程之间的关系；应与装入系统后的安装流量特性区分。","confidence":"high","source_ids":["iec60534_2_4","isa75","valmet_manual"]},
+    {"en":"Installed Flow Characteristic","zh":"安装后流量特性","ru":"расходная характеристика установленного клапана","ar":"خاصية التدفق بعد التركيب","category":"design","context":"valve","aliases":{"en":[],"zh":["工作流量特性"],"ru":["рабочая расходная характеристика"],"ar":["خاصية التدفق المركبة"]},"definition_zh":"调节阀装入实际管路后，受系统压差随流量变化影响所呈现的流量与行程关系。","confidence":"high","source_ids":["valmet_manual"]},
+    {"en":"Choked Flow","zh":"阻塞流","ru":"критическое течение","ar":"التدفق المختنق","category":"design","context":"valve","aliases":{"en":[],"zh":["临界流"],"ru":["запертый расход"],"ar":["الجريان المختنق"]},"definition_zh":"在给定上游状态下，继续降低下游压力也不能显著增加通过阀门的流量的受限流动状态。","confidence":"high","source_ids":["valmet_manual"]},
+    {"en":"Flashing","zh":"闪蒸","ru":"вскипание с устойчивой паровой фазой","ar":"التبخر الومضي","category":"design","context":"valve","aliases":{"en":[],"zh":["持续闪蒸"],"ru":["необратимое вскипание жидкости"],"ar":["وميض السائل"]},"definition_zh":"液体在阀内压力降至蒸气压以下产生气泡，且下游压力不足以使气泡重新凝结的现象；与气泡随后破裂的气蚀不同。","confidence":"high","source_ids":["valmet_manual"]},
+    {"en":"Cavitation","zh":"气蚀","ru":"кавитация","ar":"التكهف","category":"design","context":"valve","aliases":{"en":[],"zh":["空化侵蚀"],"ru":["кавитационное разрушение"],"ar":["التجويف"]},"definition_zh":"液体局部压力低于蒸气压形成气泡，随后压力恢复使气泡塌陷并可能引起噪声、振动和材料损伤的现象。","confidence":"high","source_ids":["valmet_manual"]},
+    {"en":"Anti-cavitation Trim","zh":"抗气蚀内件","ru":"антикавитационные внутренние детали","ar":"الأجزاء الداخلية المضادة للتكهف","category":"design","context":"valve","aliases":{"en":[],"zh":["防气蚀阀内件"],"ru":["антикавитационный затворный узел"],"ar":["حشوة داخلية مقاومة للتكهف"]},"definition_zh":"通过多级降压、分流或专用几何结构限制气泡形成和塌陷强度的调节阀内件。","confidence":"high","source_ids":["valmet_control","valmet_manual"]},
+
+    {"en":"Actuator Thrust","zh":"执行机构推力","ru":"усилие привода","ar":"قوة دفع المشغل","category":"operator","context":"valve","aliases":{"en":[],"zh":["执行器轴向推力"],"ru":["осевое усилие исполнительного механизма"],"ar":["الدفع المحوري للمشغل"]},"definition_zh":"直行程执行机构沿阀杆轴向可施加的力，选型时需覆盖压差力、填料摩擦和阀座密封力并留有规定裕量。","confidence":"high","source_ids":["iso5115","emerson_actuator","gost70796"]},
+    {"en":"Stroke Time","zh":"全行程时间","ru":"время полного хода","ar":"زمن الشوط الكامل","category":"operator","context":"valve","aliases":{"en":[],"zh":["阀门行程时间"],"ru":["время хода клапана"],"ar":["زمن حركة الصمام"]},"definition_zh":"阀门组件从一个规定终位运动到另一规定终位所需的时间，应注明开启或关闭方向及测试条件。","confidence":"high","source_ids":["iso5115","emerson_actuator"]},
+    {"en":"Partial Stroke Test","zh":"部分行程试验","ru":"испытание частичного хода","ar":"اختبار الشوط الجزئي","category":"operator","context":"valve","aliases":{"en":[],"zh":["局部行程测试"],"ru":["тест частичного хода"],"ar":["اختبار الحركة الجزئية"]},"definition_zh":"在不使工艺完全停车的情况下，使紧急切断阀从正常位置向失效安全方向移动规定小行程，以诊断阀门和执行机构可动性。","confidence":"high","source_ids":["valmet_pst","iso5115"]},
+    {"en":"Position Transmitter","zh":"阀位变送器","ru":"преобразователь положения клапана","ar":"مرسل موضع الصمام","category":"operator","context":"valve","aliases":{"en":[],"zh":["位置变送器"],"ru":["датчик-передатчик положения"],"ar":["ناقل موضع الصمام"]},"definition_zh":"把阀门实际位置转换为连续电信号（常见4–20 mA）供远程指示、控制或诊断的装置。","confidence":"high","source_ids":["emerson_instrument"]},
+    {"en":"I/P Converter","zh":"电流-气压转换器","ru":"электропневматический преобразователь тока в давление","ar":"محول تيار إلى ضغط هوائي","category":"operator","context":"valve","aliases":{"en":[],"zh":["电气转换器"],"ru":["I/P-преобразователь"],"ar":["محول I/P"]},"definition_zh":"将标准电流输入信号转换为成比例气动压力输出的电气转换器，常用于气动执行机构和定位器。","confidence":"high","source_ids":["emerson_instrument"]},
+    {"en":"Air Filter Regulator","zh":"空气过滤减压阀","ru":"фильтр-регулятор воздуха","ar":"منظم مرشح الهواء","category":"operator","context":"valve","aliases":{"en":[],"zh":["气源过滤调压器"],"ru":["воздушный фильтр-регулятор"],"ar":["مرشح ومنظم هواء"]},"definition_zh":"对仪表空气进行颗粒过滤并将供气压力稳定在设定值的组合气源处理装置。","confidence":"high","source_ids":["emerson_instrument"]},
+    {"en":"Booster Relay","zh":"气动放大器","ru":"пневматический усилитель мощности","ar":"مرحل معزز هوائي","category":"operator","context":"valve","aliases":{"en":[],"zh":["气动增速器"],"ru":["пневматический бустер"],"ar":["مقوي هوائي"]},"definition_zh":"按控制信号快速向执行机构供气或排气、增大气流能力以缩短动作时间的气动继动装置。","confidence":"high","source_ids":["emerson_instrument"]},
+    {"en":"Lock-up Valve","zh":"气动保位阀","ru":"пневматический фиксирующий клапан","ar":"صمام تثبيت هوائي","category":"operator","context":"valve","aliases":{"en":[],"zh":["锁止阀"],"ru":["клапан блокировки пневмосигнала"],"ar":["صمام قفل الضغط الهوائي"]},"definition_zh":"当气源或控制信号低于设定值时隔离执行机构气路，使阀门保持当前位置或按设计策略动作的附件。","confidence":"medium","source_ids":["emerson_instrument","iso5115"]},
+
+    {"en":"Stuffing Box","zh":"填料函","ru":"сальниковая камера","ar":"حجرة الحشو","category":"component","context":"valve","aliases":{"en":[],"zh":["填料箱"],"ru":["камера сальника"],"ar":["صندوق الحشو"]},"definition_zh":"阀盖或阀体中容纳阀杆填料、导向件和压紧件的腔体。","confidence":"high","source_ids":["emerson_packing","gost24856"]},
+    {"en":"Packing Gland","zh":"填料压套","ru":"нажимная втулка сальника","ar":"جلبة ضغط الحشو","category":"component","context":"valve","aliases":{"en":[],"zh":["填料压盖"],"ru":["грундбукса сальника"],"ar":["ضاغط الحشو"]},"definition_zh":"把填料压紧力传递到填料组的套筒或压盖部件；在具体图纸中需与gland follower的外部随动压板区分。","confidence":"medium","source_ids":["emerson_packing","gost24856"]},
+    {"en":"Lantern Ring","zh":"灯笼环","ru":"фонарное кольцо","ar":"حلقة الفانوس","category":"component","context":"valve","aliases":{"en":[],"zh":["水封环"],"ru":["сальниковое фонарное кольцо"],"ar":["حلقة توزيع الحشو"]},"definition_zh":"位于填料组中的带孔间隔环，用于引入冲洗、润滑或检漏介质；不能泛译为普通填料隔环。","confidence":"high","source_ids":["emerson_packing"]},
+    {"en":"Live-loaded Packing","zh":"恒载填料密封","ru":"сальниковое уплотнение с постоянным поджатием","ar":"حشوة ذات تحميل نابضي مستمر","category":"component","context":"valve","aliases":{"en":[],"zh":["碟簧加载填料"],"ru":["подпружиненное сальниковое уплотнение"],"ar":["حشوة محملة بنابض"]},"definition_zh":"利用碟簧或弹簧组持续补偿填料松弛和磨损、维持压紧载荷的阀杆填料系统。","confidence":"high","source_ids":["emerson_packing"]},
+    {"en":"Stem Seal","zh":"阀杆密封","ru":"уплотнение штока","ar":"مانع تسرب ساق الصمام","category":"component","context":"valve","aliases":{"en":[],"zh":["阀轴密封"],"ru":["уплотнение шпинделя"],"ar":["ختم ساق الصمام"]},"definition_zh":"防止介质沿阀杆或阀轴与承压壳体之间通道外泄的密封系统，上位概念可包括填料、O形圈或波纹管。","confidence":"high","source_ids":["iso10497","gost24856"]},
+    {"en":"Body Joint Gasket","zh":"阀体连接垫片","ru":"прокладка разъёма корпуса","ar":"حشية وصلة جسم الصمام","category":"component","context":"valve","aliases":{"en":[],"zh":["阀体接合面垫片"],"ru":["прокладка корпусного соединения"],"ar":["حشية مفصل الجسم"]},"definition_zh":"用于分体式阀体或阀体—阀盖承压连接面的静密封垫片。","confidence":"high","source_ids":["iso5208","asmeb1634"]},
+    {"en":"Spiral Wound Gasket","zh":"缠绕垫片","ru":"спирально-навитая прокладка","ar":"حشية ملفوفة حلزونياً","category":"component","context":"valve","aliases":{"en":[],"zh":["金属缠绕垫"],"ru":["спиральная навитая прокладка"],"ar":["حشية حلزونية ملفوفة"]},"definition_zh":"由成形金属带与软质填充带交替螺旋缠绕制成的静密封垫片，选型需注明金属、填料和内外环材料。","confidence":"high","source_ids":["asmeb1634"]},
+    {"en":"Fire-safe Secondary Seal","zh":"防火二次密封","ru":"вторичное огнестойкое уплотнение","ar":"مانع تسرب ثانوي مقاوم للحريق","category":"component","context":"valve","aliases":{"en":[],"zh":["火灾工况备用密封"],"ru":["резервное огнестойкое уплотнение"],"ar":["ختم احتياطي مقاوم للحريق"]},"definition_zh":"软密封在火灾中受损后，由金属接触或耐火结构提供的备用密封路径；是否“防火安全”仍须由适用试验证书证明。","confidence":"medium","source_ids":["iso10497","api6dguide"]},
+
+    {"en":"NACE MR0175 / ISO 15156 Compliance","zh":"符合 NACE MR0175 / ISO 15156","ru":"соответствие NACE MR0175 / ISO 15156","ar":"المطابقة لمعيار NACE MR0175 / ISO 15156","category":"requirement","context":"always","aliases":{"en":[],"zh":["抗硫化氢材料符合性"],"ru":["соответствие требованиям для H2S-сред"],"ar":["مطابقة مواد خدمة H2S"]},"definition_zh":"材料选择、制造状态、硬度及适用环境满足NACE MR0175/ISO 15156所规定的含H2S油气生产环境要求；并非一句“耐酸气”即可替代。","confidence":"high","source_ids":["iso15156"]},
+    {"en":"Sulfide Stress Cracking","zh":"硫化物应力开裂","ru":"сульфидное коррозионное растрескивание под напряжением","ar":"التشقق الإجهادي بالكبريتيد","category":"design","context":"valve","aliases":{"en":[],"zh":["硫化物应力腐蚀开裂"],"ru":["сульфидное растрескивание под напряжением"],"ar":["تشقق إجهاد الكبريتيد"]},"definition_zh":"金属在含H2S水相环境和拉应力共同作用下发生的开裂机制，是酸性工况材料选型的关键限制之一。","confidence":"high","source_ids":["iso15156"]},
+    {"en":"Hydrogen Induced Cracking","zh":"氢致开裂","ru":"водородоиндуцированное растрескивание","ar":"التشقق المستحث بالهيدروجين","category":"design","context":"valve","aliases":{"en":[],"zh":["氢诱发裂纹"],"ru":["водородное растрескивание"],"ar":["التشقق المحفز بالهيدروجين"]},"definition_zh":"氢进入金属并在缺陷处聚集导致的内部裂纹，可在无外加应力时发生；需与硫化物应力开裂区分。","confidence":"high","source_ids":["iso15156"]},
+    {"en":"Charpy V-notch Impact Test","zh":"夏比 V 型缺口冲击试验","ru":"испытание на ударный изгиб образца с V-образным надрезом по Шарпи","ar":"اختبار صدم شاربي بعينة ذات شق V","category":"inspection","context":"always","aliases":{"en":[],"zh":["V缺口夏比冲击试验"],"ru":["испытание Шарпи с V-образным надрезом"],"ar":["اختبار شاربي بشق V"]},"definition_zh":"用V形缺口试样测定金属在规定温度下冲击吸收能量的试验，低温阀材料验收时应同时核对试样方向、温度和合格值。","confidence":"high","source_ids":["iso148","iso28921"]},
+    {"en":"Impact Test Temperature","zh":"冲击试验温度","ru":"температура испытания на ударный изгиб","ar":"درجة حرارة اختبار الصدم","category":"inspection","context":"always","aliases":{"en":[],"zh":["冲击温度"],"ru":["температура испытания Шарпи"],"ar":["حرارة اختبار الصدمة"]},"definition_zh":"冲击试样在试验时达到并保持的规定温度，不能与阀门最低设计温度无条件视为同一个数值。","confidence":"high","source_ids":["iso148","iso28921"]},
+    {"en":"Material Hardness Limit","zh":"材料硬度上限","ru":"предельная твёрдость материала","ar":"الحد الأقصى لصلادة المادة","category":"design","context":"valve","aliases":{"en":[],"zh":["硬度限制"],"ru":["ограничение твёрдости"],"ar":["حد الصلادة"]},"definition_zh":"适用材料规范或酸性工况标准允许的最大硬度；报价和MTC审核必须保留硬度标尺及测量位置。","confidence":"high","source_ids":["iso15156"]},
+    {"en":"Post Weld Heat Treatment","zh":"焊后热处理","ru":"послесварочная термическая обработка","ar":"المعالجة الحرارية بعد اللحام","category":"inspection","context":"always","aliases":{"en":[],"zh":["焊后热处置"],"ru":["термообработка после сварки"],"ar":["المعالجة الحرارية التالية للحام"]},"definition_zh":"焊接完成后按规定温度—时间制度进行的热处理，用于控制残余应力和组织性能；需与预热、层间温度分开记录。","confidence":"high","source_ids":["gost33857","asmeb1634"]},
+
+    {"en":"API 607 Fire Test","zh":"API 607 防火试验","ru":"испытание на огнестойкость по API 607","ar":"اختبار الحريق وفقاً لـ API 607","category":"inspection","context":"always","aliases":{"en":[],"zh":["API 607 火烧试验"],"ru":["огневое испытание API 607"],"ar":["اختبار النار API 607"]},"definition_zh":"按API 607对软座四分之一回转阀等规定范围阀门进行的火灾型式试验；证书须核对版次、阀型、口径、压力等级和材料覆盖范围。","confidence":"high","source_ids":["api_plan","api6dguide"]},
+    {"en":"API 6FA Fire Test","zh":"API 6FA 防火试验","ru":"испытание на огнестойкость по API 6FA","ar":"اختبار الحريق وفقاً لـ API 6FA","category":"inspection","context":"always","aliases":{"en":[],"zh":["API 6FA 火烧试验"],"ru":["огневое испытание API 6FA"],"ar":["اختبار النار API 6FA"]},"definition_zh":"按API 6FA对阀门设计进行的火灾型式试验，常用于API 6D等油气阀门采购要求；不得仅写“fire safe”代替证书范围。","confidence":"high","source_ids":["api_plan","api6dguide"]},
+    {"en":"ISO 10497 Fire Test","zh":"ISO 10497 防火试验","ru":"испытание на огнестойкость по ISO 10497","ar":"اختبار الحريق وفقاً لـ ISO 10497","category":"inspection","context":"always","aliases":{"en":[],"zh":["ISO 10497 火灾型式试验"],"ru":["огневое типовое испытание ISO 10497"],"ar":["اختبار النار ISO 10497"]},"definition_zh":"按ISO 10497评价阀座内漏、外漏、中腔超压泄放和可操作性的阀门火灾型式试验。","confidence":"high","source_ids":["iso10497","api6dguide"]},
+    {"en":"Cryogenic Leakage Test","zh":"低温泄漏试验","ru":"испытание на герметичность при криогенной температуре","ar":"اختبار التسرب عند درجات الحرارة المبردة","category":"inspection","context":"always","aliases":{"en":[],"zh":["深冷泄漏试验"],"ru":["криогенное испытание на герметичность"],"ar":["اختبار التسرب المبرد"]},"definition_zh":"将阀门冷却到规定低温或深冷温度后测量阀座和外部密封泄漏的试验；必须注明介质、温度、压差、测量方法和限值。","confidence":"high","source_ids":["iso21157","iso28921","gost33257"]},
+    {"en":"Pressure-temperature Curve","zh":"压力-温度曲线","ru":"кривая «давление–температура»","ar":"منحنى الضغط ودرجة الحرارة","category":"design","context":"valve","aliases":{"en":[],"zh":["压温曲线"],"ru":["диаграмма давление–температура"],"ar":["منحنى الضغط-الحرارة"]},"definition_zh":"表示特定材料组、压力等级和结构在不同温度下允许工作压力的曲线；不能脱离材料和标准版次单独引用。","confidence":"high","source_ids":["asmeb1634"]},
+    {"en":"Maximum Differential Pressure","zh":"最大允许压差","ru":"максимальный допустимый перепад давления","ar":"أقصى فرق ضغط مسموح","category":"design","context":"valve","aliases":{"en":[],"zh":["最大阀前后压差"],"ru":["максимальный перепад давления на клапане"],"ar":["الحد الأقصى لفرق الضغط"]},"definition_zh":"阀门在指定温度、开度或动作条件下允许承受或可可靠启闭的最大上下游压力差；选执行机构时必须说明对应动作方向。","confidence":"high","source_ids":["iso5115","asmeb1634"]},
+    {"en":"Breakaway Torque","zh":"启动扭矩","ru":"момент страгивания","ar":"عزم بدء الحركة","category":"operator","context":"valve","aliases":{"en":[],"zh":["脱座起始扭矩"],"ru":["начальный момент страгивания"],"ar":["عزم الانفصال الابتدائي"]},"definition_zh":"使静止阀门从阀座或初始位置开始运动所需的峰值扭矩；与中间行程运行扭矩和终座扭矩不同。","confidence":"high","source_ids":["iso5115","emerson_actuator","gost70796"]},
+    {"en":"Running Torque","zh":"运行扭矩","ru":"рабочий крутящий момент","ar":"عزم التشغيل أثناء الحركة","category":"operator","context":"valve","aliases":{"en":[],"zh":["中间行程扭矩"],"ru":["момент движения клапана"],"ar":["عزم الحركة التشغيلي"]},"definition_zh":"阀门离座后在中间行程连续运动所需的扭矩，执行机构选型时不应拿它代替更高的启动或终座扭矩。","confidence":"high","source_ids":["iso5115","emerson_actuator","gost70796"]},
+    {"en":"Antistatic Resistance Test","zh":"防静电电阻试验","ru":"измерение сопротивления антистатической цепи","ar":"اختبار مقاومة الدائرة المضادة للكهرباء الساكنة","category":"inspection","context":"valve","aliases":{"en":[],"zh":["防静电导通电阻测试"],"ru":["испытание сопротивления антистатического устройства"],"ar":["اختبار مقاومة التوصيل المضاد للكهرباء الساكنة"]},"definition_zh":"测量球体或关闭件、阀杆与阀体之间防静电导电路径电阻是否满足规定限值的试验；与仅判断通断的连续性检查需按规范区分。","confidence":"high","source_ids":["gost34293","api6d"]}
+  ],
+  "risk_items": [
+    {
+      "en": "Expanding Gate Valve",
+      "risk": "中文存在“撑开式/膨胀式”，俄文存在“распорная/с распорным шибером”；本批采用能明确机械撑开动作的主译名，具体项目仍应结合制造商剖面图。"
+    },
+    {
+      "en": "Packing Gland",
+      "risk": "不同制造商图纸可能把gland、gland follower和packing flange分成不同零件；BOM翻译必须以图号为准。"
+    },
+    {
+      "en": "Lock-up Valve",
+      "risk": "有的回路失气后保位，有的按储气和电磁阀逻辑转入安全位；不能仅凭名称推断失效动作。"
+    },
+    {
+      "en": "Fire-safe Secondary Seal",
+      "risk": "这是结构功能描述，不等同API 607、API 6FA或ISO 10497证书；对外报价必须单独核认证书覆盖范围。"
+    },
+    {
+      "en": "NACE MR0175 / ISO 15156 Compliance",
+      "risk": "ISO 15156系列正在修订，但截至研究日现行发布版仍为2020版；正式订单应按客户指定版次、H2S分压、温度、氯离子和材料状态复核。"
+    }
+  ],
+  "summary": {
+    "entry_count": 60,
+    "by_category": {
+      "valve_type": 10,
+      "design": 23,
+      "operator": 10,
+      "component": 8,
+      "requirement": 1,
+      "inspection": 8
+    },
+    "by_confidence": {
+      "high": 56,
+      "medium": 4
+    },
+    "qa": {
+      "duplicate_primary_keys": 0,
+      "duplicate_english_aliases": 0,
+      "empty_required_fields": 0,
+      "production_overlap": 0,
+      "research_overlap": 0,
+      "unknown_source_ids": 0
+    },
+    "overlap_method": "Case-insensitive trimmed English primary-key comparison against native-host/valve_glossary_multilingual.json, native-host/valve_glossary_batch_2026_07_30.json, native-host/valve_glossary.json and every pre-existing JSON file in research/glossary_batches. English aliases were also checked against all primary keys and aliases.",
+    "translation_note": "Russian terms were aligned with Rosstandart terminology and manufacturer usage. Arabic terms use Modern Standard Arabic technical wording; standard identifiers, abbreviations and units remain unchanged."
+  }
+}

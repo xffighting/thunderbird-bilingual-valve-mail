@@ -4,7 +4,7 @@
   right: 14px;
   bottom: 14px;
   z-index: 2147483647;
-  width: min(360px, calc(100vw - 28px));
+  width: min(390px, calc(100vw - 28px));
   color: #1d1d1f;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
   font-size: 13px;
@@ -22,28 +22,73 @@
   display: none !important;
 }
 
-#game-mail-summary-inline-root .gms-summary-trigger {
+#game-mail-summary-inline-root .gms-trigger-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  pointer-events: auto;
+}
+
+#game-mail-summary-inline-root .gms-summary-trigger,
+#game-mail-summary-inline-root .gms-reply-trigger,
+#game-mail-summary-inline-root .gms-opportunity-trigger {
   all: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  float: right;
   min-width: 44px;
   min-height: 30px;
   padding: 0 10px;
-  border: 1px solid #0a84ff;
+  border: 1px solid rgba(60, 60, 67, 0.18);
   border-radius: 8px;
-  color: #ffffff;
-  background: #0a84ff;
-  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
+  color: #1d1d1f;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   font: 600 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  pointer-events: auto;
   user-select: none;
 }
 
+#game-mail-summary-inline-root .gms-summary-trigger {
+  min-width: 126px;
+  justify-content: flex-start;
+  font-variant-numeric: tabular-nums;
+}
+
+#game-mail-summary-inline-root .gms-opportunity-trigger {
+  border-color: #0a84ff;
+  color: #ffffff;
+  background: #0a84ff;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
+}
+
 #game-mail-summary-inline-root .gms-summary-trigger:hover {
+  background: #f5f5f7;
+}
+
+#game-mail-summary-inline-root .gms-reply-trigger {
+  color: #0068d9;
+}
+
+#game-mail-summary-inline-root .gms-reply-trigger:hover {
+  background: #f0f6ff;
+}
+
+#game-mail-summary-inline-root .gms-reply-trigger:disabled {
+  color: #8e8e93;
+  background: #f5f5f7;
+  cursor: default;
+}
+
+#game-mail-summary-inline-root .gms-opportunity-trigger:hover {
   background: #0071e3;
+}
+
+#game-mail-summary-inline-root .gms-opportunity-trigger:disabled {
+  border-color: rgba(60, 60, 67, 0.14);
+  color: #8e8e93;
+  background: #e9e9ed;
+  cursor: default;
 }
 
 #game-mail-summary-inline-root .gms-summary-trigger:focus-visible,
@@ -54,7 +99,7 @@
 
 #game-mail-summary-inline-root .gms-panel {
   clear: both;
-  max-height: min(460px, calc(100vh - 64px));
+  max-height: min(560px, calc(100vh - 64px));
   margin-top: 8px;
   overflow: auto;
   border: 1px solid rgba(60, 60, 67, 0.18);
@@ -62,6 +107,64 @@
   background: rgba(255, 255, 255, 0.98);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
   pointer-events: auto;
+}
+
+#game-mail-summary-inline-root .gms-score-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px 10px 2px;
+}
+
+#game-mail-summary-inline-root .gms-score-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 8px;
+  min-width: 0;
+  padding: 9px 10px;
+  border: 1px solid rgba(60, 60, 67, 0.14);
+  border-radius: 10px;
+  background: #f7f7f9;
+}
+
+#game-mail-summary-inline-root .gms-score-title,
+#game-mail-summary-inline-root .gms-score-label {
+  overflow: hidden;
+  color: #6e6e73;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#game-mail-summary-inline-root .gms-score-value {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  color: #6e6e73;
+  font: 720 25px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+#game-mail-summary-inline-root .gms-score-value[data-band="high"] {
+  color: #18733f;
+}
+
+#game-mail-summary-inline-root .gms-score-value[data-band="medium-high"] {
+  color: #0068d9;
+}
+
+#game-mail-summary-inline-root .gms-score-value[data-band="medium"] {
+  color: #9a5b00;
+}
+
+#game-mail-summary-inline-root .gms-score-value[data-band="low"],
+#game-mail-summary-inline-root .gms-score-value[data-band="review"] {
+  color: #b42318;
+}
+
+#game-mail-summary-inline-root .gms-score-value[data-band="not-inquiry"],
+#game-mail-summary-inline-root .gms-score-value[data-band="pending"] {
+  color: #6e6e73;
 }
 
 #game-mail-summary-inline-root .gms-panel-header,
@@ -148,6 +251,14 @@
   padding: 2px 10px 10px;
 }
 
+#game-mail-summary-inline-root .gms-research-content {
+  padding: 2px 10px 0;
+}
+
+#game-mail-summary-inline-root .gms-research-content + .gms-content {
+  border-top: 1px solid rgba(60, 60, 67, 0.12);
+}
+
 #game-mail-summary-inline-root .gms-field {
   padding: 9px 0;
   border-top: 1px solid #edf1f4;
@@ -195,4 +306,24 @@
   border-radius: 6px;
   background: #f6f8fa;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 420px) {
+  #game-mail-summary-inline-root {
+    right: 8px;
+    bottom: 8px;
+    width: calc(100vw - 16px);
+  }
+
+  #game-mail-summary-inline-root .gms-opportunity-trigger {
+    min-width: 40px;
+  }
+
+  #game-mail-summary-inline-root .gms-panel-footer {
+    flex-wrap: wrap;
+  }
+
+  #game-mail-summary-inline-root .gms-dingtalk {
+    margin-right: 0;
+  }
 }

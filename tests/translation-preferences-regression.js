@@ -89,8 +89,20 @@ const russianFeedback = preferences.upsertTranslationFeedback(
 assert.strictEqual(russianFeedback.created, true);
 assert.strictEqual(russianFeedback.record.sourceLanguage, "ru");
 
-const approved = preferences.reviewTranslationFeedback(
+const arabicFeedback = preferences.upsertTranslationFeedback(
   russianFeedback.feedback,
+  {
+    source: "مادة جسم الصمام",
+    sourceLanguage: "ar",
+    currentTranslation: "مادة الجسم",
+    suggestedTranslation: "阀体材质"
+  }
+);
+assert.strictEqual(arabicFeedback.created, true);
+assert.strictEqual(arabicFeedback.record.sourceLanguage, "ar");
+
+const approved = preferences.reviewTranslationFeedback(
+  arabicFeedback.feedback,
   normalizedTerms,
   russianFeedback.record.id,
   "approve"

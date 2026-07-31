@@ -14,6 +14,14 @@ import zipfile
 
 MODEL_SPECS = [
     {
+        "model_id": "translate-ar_en-1_0",
+        "source": "ar",
+        "target": "en",
+        "archive_root": "ar_en",
+        "url": "https://argos-net.com/v1/translate-ar_en-1_0.argosmodel",
+        "sha256": "bc98cd4e27ca1cebfae9b7086b2ebc635e4dbed45e7cb5f0891cb7d22feacfad",
+    },
+    {
         "model_id": "translate-ru_en-1_0",
         "source": "ru",
         "target": "en",
@@ -56,6 +64,16 @@ def sha256(path: pathlib.Path) -> str:
     return digest.hexdigest()
 
 
+def download(url: str, destination: pathlib.Path) -> None:
+    request = urllib.request.Request(
+        url,
+        headers={"User-Agent": "Lianggu-Thunderbird-Offline-Translator/0.10"},
+    )
+    with urllib.request.urlopen(request, timeout=180) as response:
+        with destination.open("wb") as output:
+            shutil.copyfileobj(response, output)
+
+
 def is_installed(model_dir: pathlib.Path, spec: dict[str, str]) -> bool:
     metadata_path = model_dir / "lianggu-model.json"
     try:
@@ -86,7 +104,7 @@ def install_spec(
     archive_path = archive_dir / f"{spec['model_id']}.argosmodel"
     if not archive_path.is_file() or sha256(archive_path) != spec["sha256"]:
         print(f"Downloading {spec['model_id']}...")
-        urllib.request.urlretrieve(spec["url"], archive_path)
+        download(spec["url"], archive_path)
     if sha256(archive_path) != spec["sha256"]:
         raise RuntimeError(f"Checksum verification failed for {spec['model_id']}")
 

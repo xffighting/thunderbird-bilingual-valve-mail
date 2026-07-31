@@ -2,6 +2,136 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.11.0] - 2026-07-30
+
+### Added
+
+- Added 89 independently approved Chinese-English-Russian-Arabic valve and
+  tender terms from a 120-entry expert candidate set.
+- Added 32 controlled four-language export-sales reply intents covering
+  inquiry, quotation, payment, delivery, shipping, inspection, tender,
+  samples, after-sales, purchase orders, and production.
+- Added visible human confirmation before inserting any of the 22 approved
+  high-risk reply templates.
+
+### Changed
+
+- The compose assistant now follows eligible Chinese drafts after a 500 ms
+  pause, refreshes without taking keyboard focus, supports monitors with
+  negative screen coordinates, and discards stale translation results.
+- The assistant opens for an eligible draft that already exists when the
+  compose window loads.
+- Pattern-only matching is disabled for the controlled intent library. Seven
+  broad templates that could reverse a negated sentence remain outside
+  production.
+- The production glossary now contains 297 complete four-language rows and
+  309 runtime search terms.
+
+### Quality and safety
+
+- Independent QA approved only 89 of 120 glossary candidates and 32 of 42
+  reply intents; 39 items remain under review and 2 were rejected.
+- Outward English generation rejects `Soft reminder` in any capitalization.
+- One colliding Russian alias for `Financial Proposal` was excluded at release
+  build time instead of being allowed to overwrite `Commercial Offer`.
+
+## [0.10.1] - 2026-07-30
+
+### Added
+
+- Added 53 independently reviewed Chinese-English-Russian-Arabic valve terms
+  and export-sales phrases from a 60-entry complete candidate batch.
+- Added controlled reminder phrases for payment, quotation, delivery, and
+  follow-up correspondence.
+
+### Changed
+
+- Expanded the production glossary to 208 complete four-language rows and 220
+  runtime search terms.
+- Incoming `Soft Reminder` now reads naturally as `友情提醒`; outgoing Chinese
+  reminders use native business English such as `Just a reminder` instead of
+  the non-native heading `Soft Reminder`.
+- Deferred six technically ambiguous terms for a later expert decision and
+  rejected one phrase that could change the source action.
+
+## [0.10.0] - 2026-07-30
+
+### Added
+
+- Added a reviewed 149-entry Chinese-English-Russian-Arabic valve and export
+  glossary, normalized from official Chinese, Russian, international, and
+  Saudi standards plus Lianggu export correspondence.
+- Added automatic Arabic-line detection and private offline
+  Arabic-to-English-to-Chinese translation.
+- Added Arabic-to-Chinese custom terminology and correction-review support.
+- Added the pinned offline Arabic-to-English model with SHA-256 verification.
+
+### Changed
+
+- Russian incoming mail and Russian/Arabic reply candidates now use the same
+  multilingual terminology asset instead of small hardcoded term lists.
+- Technical terms, standards, pressure classes, dimensions, and materials are
+  restored in place in Russian and Arabic output.
+
+### Security
+
+- English, Russian, Arabic, and Chinese translation content remains inside
+  Thunderbird and the local Native Messaging host. Web access is used only
+  during installation to download checksum-pinned offline models.
+
+## [0.9.2] - 2026-07-30
+
+### Changed
+
+- Removed the correction button and correction dialog from every translated
+  message row to keep the reading view quiet and uncluttered.
+- Existing approved terminology and pending local correction records remain
+  available in Settings; no stored translation data is removed.
+
+## [0.9.0] - 2026-07-29
+
+### Added
+
+- Added queued customer research for new messages and displayed-message
+  preparation with per-message cache and in-flight deduplication.
+- Added customer-match and inquiry-quality scores to the floating message
+  control, inline detail panel, and toolbar popup.
+- Reused uniquely matched DingTalk customer research and refreshed incomplete
+  or 90-day-stale profiles with public evidence.
+- Added immutable local customer-research versions with separate content
+  update and latest-check timestamps.
+- Added Settings controls for background preparation and guarded DingTalk
+  research updates.
+
+### Security
+
+- DingTalk matching still accepts only a unique exact email or unique
+  non-generic company domain; ambiguous matches stop for review.
+- Automatic writes are limited to the AI-managed research remark block and an
+  empty website field. Human remarks, grade, owner, follower, and sales fields
+  are preserved.
+- Research below the evidence threshold and unmatched customers are stored
+  locally only; no customer record is created automatically.
+
+## [0.8.0] - 2026-07-28
+
+### Added
+
+- Added “一键建立商机” to the popup and the message-view floating controls.
+- Reused the Lianggu sales operating system flow for exact customer matching,
+  DingTalk GET-before-write opportunity handling, attachment upload, review
+  todo creation, formal `SJ` readback, and same-number local archiving.
+- Added a local authorization card before any DingTalk write or archive action.
+- Added chunked Native Messaging with size, sequence, and SHA-256 validation.
+
+### Security
+
+- Only the user-selected raw email is passed to the fixed local host
+  `com.lianggu.thunderbird_intake`.
+- Duplicate clicks use the Lianggu Message-ID/content fingerprint receipt.
+- The extension does not send, move, or delete Thunderbird messages and does
+  not expose message content, customer identity, or DingTalk record IDs.
+
 ## [0.7.1] - 2026-07-28
 
 ### Added

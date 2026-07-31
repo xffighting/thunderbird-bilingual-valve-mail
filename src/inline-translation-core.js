@@ -4,11 +4,13 @@
   const WORD_PATTERN = /[A-Za-z]{2,}/gu;
   const CYRILLIC_PATTERN = /[\u0400-\u04ff]/gu;
   const RUSSIAN_WORD_PATTERN = /[\u0400-\u04ff]{2,}/gu;
+  const ARABIC_PATTERN = /[\u0600-\u06ff\u0750-\u077f\u08a0-\u08ff]/gu;
+  const ARABIC_WORD_PATTERN = /[\u0600-\u06ff\u0750-\u077f\u08a0-\u08ff]{2,}/gu;
   const URL_PATTERN = /\b(?:https?:\/\/|www\.)\S+/giu;
   const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/giu;
   const TECHNICAL_TOKEN_PATTERN = /\b(?:DN|NPS|PN|CL|CLASS|ANSI|API|ASME|ASTM|ISO|EN|DIN|JIS|BS|RFQ|BOQ|PO|WCB|WC6|WC9|CF8M?|SS(?:304|316L?)?|PTFE|NACE|PED|PMI|RT|UT)[-./\s]*[A-Z0-9./-]*\b/giu;
-  const EMAIL_HEADER_PATTERN = /^(?:(?:from|sent|to|cc|bcc|subject|date|reply-to|return-path)|(?:от|отправлено|кому|копия|тема|дата))\s*:/iu;
-  const ORIGINAL_MESSAGE_PATTERN = /^(?:-{2,}\s*)?(?:(?:original|forwarded)\s+message|исходное\s+сообщение|пересланное\s+сообщение)(?:\s*-{2,})?$/iu;
+  const EMAIL_HEADER_PATTERN = /^(?:(?:from|sent|to|cc|bcc|subject|date|reply-to|return-path)|(?:от|отправлено|кому|копия|тема|дата)|(?:من|أرسل|إلى|نسخة|نسخة\s+مخفية|الموضوع|التاريخ|الرد\s+إلى))\s*:/iu;
+  const ORIGINAL_MESSAGE_PATTERN = /^(?:-{2,}\s*)?(?:(?:original|forwarded)\s+message|исходное\s+сообщение|пересланное\s+сообщение|الرسالة\s+الأصلية|رسالة\s+معاد\s+توجيهها)(?:\s*-{2,})?$/iu;
   const REPEATED_CJK_PATTERN = /([\u3400-\u9fff]{1,4})\1{4,}/u;
 
   function cleanLine(value) {
@@ -48,6 +50,7 @@
 
     const latinCount = (withoutContacts.match(LATIN_PATTERN) || []).length;
     const cyrillicCount = (withoutContacts.match(CYRILLIC_PATTERN) || []).length;
+    const arabicCount = (withoutContacts.match(ARABIC_PATTERN) || []).length;
 
     const naturalText = withoutContacts
       .replace(TECHNICAL_TOKEN_PATTERN, " ")
@@ -55,6 +58,15 @@
       .replace(/\s+/gu, " ")
       .trim();
     const visibleCount = withoutContacts.replace(/\s/gu, "").length || 1;
+    const arabicWords = naturalText.match(ARABIC_WORD_PATTERN) || [];
+    if (
+      arabicCount >= 4
+      && arabicWords.length >= 2
+      && arabicCount / visibleCount >= 0.28
+    ) {
+      return "ar";
+    }
+
     const russianWords = naturalText.match(RUSSIAN_WORD_PATTERN) || [];
     if (
       cyrillicCount >= 4
@@ -81,6 +93,10 @@
 
   function isRussianLine(value) {
     return detectSourceLanguage(value) === "ru";
+  }
+
+  function isArabicLine(value) {
+    return detectSourceLanguage(value) === "ar";
   }
 
   function isTranslatableLine(value) {
@@ -126,6 +142,7 @@
     isEmailHeaderLine,
     isEnglishLine,
     isRussianLine,
+    isArabicLine,
     isTranslatableLine,
     isUsableTranslation,
     normalizeTranslationResponse

@@ -1,0 +1,586 @@
+{
+  "summary": {
+    "qa_id": "2026-07-30-round2-independent-qa",
+    "review_role": "independent_release_gate",
+    "review_date": "2026-07-30",
+    "candidate_files": [
+      "research/glossary_batches/2026-07-30-round2-valve.json",
+      "research/glossary_batches/2026-07-30-round2-tender.json",
+      "research/glossary_batches/2026-07-30-round2-trade-intents.json"
+    ],
+    "production_files_checked": [
+      "native-host/valve_glossary_multilingual.json",
+      "native-host/valve_glossary_batch_2026_07_30.json",
+      "native-host/valve_glossary.json",
+      "native-host/translator_host.py"
+    ],
+    "candidate_counts": {
+      "glossary_terms": 120,
+      "trade_intents": 42
+    },
+    "releaseable_now": {
+      "glossary_terms": 89,
+      "trade_intents": 32
+    },
+    "requires_review_or_correction": {
+      "glossary_terms": 30,
+      "trade_intents": 9
+    },
+    "rejected": {
+      "glossary_terms": 1,
+      "trade_intents": 1
+    },
+    "overall_verdict": "CONDITIONAL_NO_GO_FOR_WHOLE_BATCH",
+    "verdict_note": "The complete candidate batches must not be merged as-is. A whitelist-only release of the explicitly approved 89 glossary keys and 32 intent IDs is acceptable after the runtime controls in release_recommendation are enforced."
+  },
+  "glossary": {
+    "approved_keys": [
+      "Parallel Slide Gate Valve",
+      "Rising Stem Ball Valve",
+      "Fully Welded Ball Valve",
+      "Three-piece Ball Valve",
+      "Segmented Ball Valve",
+      "Pilot Operated Safety Valve",
+      "Direct-loaded Safety Valve",
+      "Balanced Bellows Safety Valve",
+      "Set Pressure",
+      "Reseating Pressure",
+      "Overpressure",
+      "Cold Differential Test Pressure",
+      "Certified Discharge Capacity",
+      "Coefficient of Discharge",
+      "Rangeability",
+      "Equal Percentage Flow Characteristic",
+      "Linear Flow Characteristic",
+      "Quick Opening Flow Characteristic",
+      "Inherent Flow Characteristic",
+      "Installed Flow Characteristic",
+      "Choked Flow",
+      "Flashing",
+      "Cavitation",
+      "Anti-cavitation Trim",
+      "Actuator Thrust",
+      "Stroke Time",
+      "Partial Stroke Test",
+      "Position Transmitter",
+      "I/P Converter",
+      "Air Filter Regulator",
+      "Stuffing Box",
+      "Lantern Ring",
+      "Live-loaded Packing",
+      "Stem Seal",
+      "Body Joint Gasket",
+      "Fire-safe Secondary Seal",
+      "NACE MR0175 / ISO 15156 Compliance",
+      "Sulfide Stress Cracking",
+      "Hydrogen Induced Cracking",
+      "Charpy V-notch Impact Test",
+      "Impact Test Temperature",
+      "Material Hardness Limit",
+      "Post Weld Heat Treatment",
+      "API 607 Fire Test",
+      "API 6FA Fire Test",
+      "ISO 10497 Fire Test",
+      "Pressure-temperature Curve",
+      "Breakaway Torque",
+      "Running Torque",
+      "Antistatic Resistance Test",
+      "Request for Proposal",
+      "Tender Documents",
+      "Instructions to Tenderers",
+      "Bid Data Sheet",
+      "Financial Proposal",
+      "Unpriced Commercial Bid",
+      "Priced Commercial Bid",
+      "Two-envelope Bidding Process",
+      "Tender Addendum",
+      "Pre-bid Meeting",
+      "Bid Clarification",
+      "Compliance Matrix",
+      "No Deviation Statement",
+      "Price Schedule",
+      "Bill of Quantities",
+      "Bid Submission Deadline",
+      "Bid Validity Period",
+      "Advance Payment Guarantee",
+      "Parent Company Guarantee",
+      "Letter of Credit",
+      "Supplier Registration",
+      "Vendor Prequalification",
+      "Prequalification Questionnaire",
+      "Approved Vendor List",
+      "Manufacturer Prequalification",
+      "Integrity Due Diligence",
+      "Supplier Code of Conduct",
+      "Commercial Registration Certificate",
+      "Authorized Signatory Letter",
+      "End User",
+      "EPC Contractor",
+      "Letter of Award",
+      "Notification of Award",
+      "Incoterms 2020",
+      "Named Place of Destination",
+      "Port of Shipment",
+      "Document Transmittal",
+      "Supplier Document Register",
+      "Document Submission Schedule"
+    ],
+    "review_required": [
+      {
+        "key": "Expanding Gate Valve",
+        "reason": "The Chinese and Russian names vary by manufacturer and by the actual expanding mechanism. The current four-language row is understandable but can misidentify a double-expanding or wedge-expanding construction without a section drawing.",
+        "recommended_handling": "Keep only as a drawing-dependent term. Prefer 撑开式闸阀 / задвижка с распорным шибером / صمام بوابة متمددة, and require the manufacturer drawing before using it in a specification or compliance statement."
+      },
+      {
+        "key": "Eccentric Plug Valve",
+        "reason": "The Russian primary эксцентриковый пробковый клапан is understandable but not the safest universal industry label. Russian usage distinguishes a shut-off plug cock from an eccentric rotary control valve.",
+        "recommended_handling": "Use кран с эксцентричной пробкой for a shut-off design or регулирующий клапан с эксцентрической пробкой for a control-valve design. Do not release one unconditional Russian primary for both."
+      },
+      {
+        "key": "Safety Valve Blowdown",
+        "reason": "The Russian primary дифференциал закрытия предохранительного клапана is a calque and is less natural than the candidate's own explanatory alias.",
+        "recommended_handling": "Promote перепад между давлением настройки и давлением закрытия to the Russian primary. Keep the Chinese 安全阀启闭压差 and Arabic فرق ضغط إعادة الإغلاق لصمام الأمان."
+      },
+      {
+        "key": "Accumulation",
+        "reason": "The definition correctly distinguishes accumulation from overpressure, but the Chinese 压力积聚增量 and Russian накопление давления при сбросе are descriptive rather than stable term labels.",
+        "recommended_handling": "Use 压力积聚（累积压力增量） and повышение давления над максимально допустимым рабочим давлением, or keep this as a definition-only concept until the project standard fixes its terminology."
+      },
+      {
+        "key": "Booster Relay",
+        "reason": "The Arabic primary مرحل معزز هوائي is understandable but reads as a literal calque rather than normal instrument terminology.",
+        "recommended_handling": "Prefer معزز هوائي or مرحل تضخيم هوائي. Keep the Chinese 气动放大器 and Russian пневматический усилитель мощности."
+      },
+      {
+        "key": "Lock-up Valve",
+        "reason": "The same device name can mean pneumatic signal lock-up or a circuit that moves to a safe position depending on stored-air and solenoid logic. The term alone must not determine the failure action.",
+        "recommended_handling": "Prefer клапан блокировки пневмосигнала and صمام تثبيت الضغط الهوائي. Require the pneumatic schematic for any fail-open, fail-close or hold-position statement."
+      },
+      {
+        "key": "Spiral Wound Gasket",
+        "reason": "The four translations are acceptable, but ASME B16.34 is not the most direct normative terminology source for spiral-wound gaskets.",
+        "recommended_handling": "Add the applicable official ASME B16.20 source before publication and retain 缠绕垫片 / спирально-навитая прокладка / حشية ملفوفة حلزونياً."
+      },
+      {
+        "key": "Cryogenic Leakage Test",
+        "reason": "The Arabic عند درجات الحرارة المبردة means refrigerated/cooled temperatures and does not strictly express cryogenic or deep-low-temperature service.",
+        "recommended_handling": "Use اختبار التسرب عند درجات الحرارة شديدة الانخفاض or اختبار التسرب في ظروف التبريد العميق."
+      },
+      {
+        "key": "Maximum Differential Pressure",
+        "reason": "The English key does not explicitly say allowable, while the Chinese, Russian and Arabic primaries add that qualification. That can turn an observed maximum into a design limit.",
+        "recommended_handling": "Use 最大压差 / максимальный перепад давления / الحد الأقصى لفرق الضغط by default. Use the allowed/allowable variants only when the source explicitly states an allowable limit."
+      },
+      {
+        "key": "Invitation to Tender",
+        "reason": "Its Chinese alias 投标邀请函 and Russian alias приглашение к участию в торгах collide with Invitation for Bids.",
+        "recommended_handling": "Retain the owner-defined ITT heading and acronym, but remove the colliding aliases or apply an owner-document context gate."
+      },
+      {
+        "key": "Invitation for Bids",
+        "reason": "Its Chinese and Russian aliases collide with Invitation to Tender, so the runtime cannot make a stable reverse-language choice.",
+        "recommended_handling": "Keep 投标邀请函 / приглашение к подаче конкурсных заявок / دعوة لتقديم العطاءات as the primary row and remove aliases shared with ITT."
+      },
+      {
+        "key": "Expression of Interest",
+        "reason": "The Chinese primary 意向表达 is an unnatural calque. The alias 意向征集 describes a buyer's solicitation process rather than a supplier's EOI submission.",
+        "recommended_handling": "Use 意向书 or 意向表达书 for the supplier document. Use 征求意向书 only for a Request for Expressions of Interest."
+      },
+      {
+        "key": "Technical Bid",
+        "reason": "Its Russian alias техническое предложение and Arabic alias العرض الفني collide with Technical Proposal.",
+        "recommended_handling": "Use техническая часть тендерной заявки and العطاء الفني for Technical Bid, and remove the colliding aliases."
+      },
+      {
+        "key": "Commercial Bid",
+        "reason": "Commercial Offer is already a production primary key. The new Commercial Bid alias, Russian коммерческое предложение and Arabic العرض التجاري collide with that production row.",
+        "recommended_handling": "Do not alias Commercial Bid to Commercial Offer. Prefer 商务标 / коммерческая часть тендерной заявки / العطاء التجاري, subject to the owner's envelope definitions."
+      },
+      {
+        "key": "Technical Proposal",
+        "reason": "Its Russian and Arabic forms collide with Technical Bid and can erase the distinction between a bid envelope and a technical proposal document.",
+        "recommended_handling": "Use 技术建议书 / техническое предложение / المقترح الفني and remove aliases shared with Technical Bid."
+      },
+      {
+        "key": "Schedule of Deviations",
+        "reason": "Gulf owner templates use جدول الانحرافات, جدول الاستثناءات or جدول التحفظات with different legal effects.",
+        "recommended_handling": "Default to جدول الانحرافات only for discovery. For any outward tender document, copy the exact owner-template heading."
+      },
+      {
+        "key": "Scope of Work",
+        "reason": "The Russian alias техническое задание also appears under Technical Specification, creating a reverse-language collision.",
+        "recommended_handling": "Keep объём работ / نطاق العمل / 工作范围 and remove техническое задание unless the owner explicitly uses it as the SOW heading."
+      },
+      {
+        "key": "Technical Specification",
+        "reason": "The Russian alias техническое задание collides with Scope of Work and can materially change contractual scope.",
+        "recommended_handling": "Keep техническая спецификация or технические требования. Do not publish техническое задание as an unconditional alias."
+      },
+      {
+        "key": "Retention Guarantee",
+        "reason": "Retention security and warranty/maintenance security may be issued at different milestones and must not be merged.",
+        "recommended_handling": "Keep ضمان المحتجزات and гарантия возврата удерживаемых сумм only after checking the contract security clause."
+      },
+      {
+        "key": "Warranty Bond",
+        "reason": "Warranty Bond, Maintenance Bond and retention-release security are not interchangeable in every Gulf contract.",
+        "recommended_handling": "Use ضمان فترة الضمان / гарантия исполнения гарантийных обязательств only when the covered obligations and effective period are confirmed."
+      },
+      {
+        "key": "Bank Guarantee",
+        "reason": "Demand Guarantee is a specific form of guarantee and is not a safe unconditional alias for every Bank Guarantee.",
+        "recommended_handling": "Remove Demand Guarantee from the English aliases unless the instrument is expressly on-demand."
+      },
+      {
+        "key": "Performance Security",
+        "reason": "This is a generic security concept, while Performance Bond is a specific instrument already represented in production terminology.",
+        "recommended_handling": "Retain 履约担保 / обеспечение исполнения контракта as the generic concept only with a tender/contract context gate; do not merge it with Performance Bond."
+      },
+      {
+        "key": "SAP Vendor Code",
+        "reason": "The alias Vendor Code is broader than SAP and can falsely turn another owner's or ERP's vendor number into an SAP code.",
+        "recommended_handling": "Remove Vendor Code as an unconditional alias. Keep SAP Vendor Code and SAP Supplier Code."
+      },
+      {
+        "key": "In-Country Value",
+        "reason": "ADNOC ICV, Saudi Aramco iktva and other local-content programs use different formulas, certificates and official names.",
+        "recommended_handling": "Keep the generic translation for discovery, but preserve the owner's program name and never replace iktva or another operator's scheme with ICV."
+      },
+      {
+        "key": "Project Owner",
+        "reason": "Owner, Employer, Company, Buyer, End User and investor may be different legal entities. The aliases Owner, Employer, Company and инвестор проекта are unsafe for automatic replacement.",
+        "recommended_handling": "Remove generic party aliases and use the capitalized party name defined in the tender or contract."
+      },
+      {
+        "key": "Framework Agreement",
+        "reason": "The alias FA is too short for an always-on runtime matcher and has many unrelated technical meanings.",
+        "recommended_handling": "Keep Framework Agreement / 框架协议 / рамочное соглашение / اتفاقية إطارية, but disable FA unless a procurement context gate is active."
+      },
+      {
+        "key": "General Conditions of Contract",
+        "reason": "The acronym GCC can mean Gulf Cooperation Council and is unsafe in an always-on multilingual matcher.",
+        "recommended_handling": "Keep the full phrase and enable GCC only in a tender-document context or when the source defines the acronym."
+      },
+      {
+        "key": "Special Conditions of Contract",
+        "reason": "SCC is a short ambiguous acronym and should not trigger contract terminology without document context.",
+        "recommended_handling": "Keep the full phrase and enable SCC only after a tender-document context gate or an explicit acronym definition."
+      },
+      {
+        "key": "Document Submittal",
+        "reason": "A submittal is normally a controlled review/approval package, not any document delivery. The broad alias Document Submission loses that workflow distinction.",
+        "recommended_handling": "Use 文件报审 / представление документации на согласование / تقديم المستندات للمراجعة only for a controlled review workflow; remove broad aliases or gate them by document-control context."
+      },
+      {
+        "key": "Vendor Data Book",
+        "reason": "VDB, Manufacturing Record Book and final dossier may overlap or be separate owner deliverables.",
+        "recommended_handling": "Map VDB to the owner's document index before merging with Manufacturing Record Book or any final dossier term."
+      }
+    ],
+    "rejected": [
+      {
+        "key": "Packing Gland",
+        "reason": "The Chinese primary 填料压套 already maps to the production key Gland Follower. The candidate itself notes that gland, gland follower and packing flange can be separate drawing items, so automatic publication would create a component-level collision.",
+        "recommended_handling": "Do not publish automatically. If the drawing distinguishes them, use Packing Gland = 填料压盖 or 填料压环 and Gland Follower = 填料压套 or 填料压板, with the BOM item number controlling the final term."
+      }
+    ],
+    "risk_item_adjudication": [
+      {
+        "key": "Expanding Gate Valve",
+        "decision": "review_required",
+        "guard": "Manufacturer section drawing required."
+      },
+      {
+        "key": "Packing Gland",
+        "decision": "rejected",
+        "guard": "BOM/drawing distinction from Gland Follower required."
+      },
+      {
+        "key": "Lock-up Valve",
+        "decision": "review_required",
+        "guard": "Pneumatic schematic required; never infer fail action from the name."
+      },
+      {
+        "key": "Fire-safe Secondary Seal",
+        "decision": "approved_as_term_only",
+        "guard": "The term must never be used as proof of API 607, API 6FA or ISO 10497 certification."
+      },
+      {
+        "key": "NACE MR0175 / ISO 15156 Compliance",
+        "decision": "approved_as_source-preserving-term_only",
+        "guard": "Any outward compliance claim still requires the customer edition, H2S partial pressure, temperature, chloride level and material condition to be reviewed."
+      }
+    ]
+  },
+  "trade_intents": {
+    "approved_ids": [
+      "inquiry_acknowledged",
+      "specs_missing_core_parameters",
+      "specs_standard_conflict",
+      "quotation_sent_with_validity",
+      "quotation_revised_supersedes",
+      "quotation_scope_exclusions",
+      "price_target_gap",
+      "price_concession_conditions",
+      "followup_quotation_feedback",
+      "reminder_missing_parameters",
+      "reminder_reply_by_date",
+      "payment_status_confirmation",
+      "payment_due_by_date",
+      "advance_payment_before_production",
+      "lead_time_start_conditions",
+      "delivery_delay_notification",
+      "delivery_expedite_review",
+      "delivery_partial_shipment_option",
+      "shipment_ready_request_instructions",
+      "shipping_draft_documents_review",
+      "shipping_document_discrepancy_correction",
+      "inspection_propose_date_location",
+      "inspection_witness_point_confirm",
+      "tender_clarification_request",
+      "tender_bid_validity_subject_to_clarification",
+      "sample_offer_cost_freight",
+      "sample_lead_time_and_purpose",
+      "aftersales_case_acknowledged",
+      "aftersales_root_cause_pending",
+      "aftersales_corrective_action",
+      "po_received_scope_check",
+      "production_start_after_approval"
+    ],
+    "review_required": [
+      {
+        "id": "inquiry_can_quote_subject_to_specs",
+        "reason": "The no-variable trigger 可以.*参与报价 also matches negated text such as 我们不可以参与报价 and reverses the source meaning.",
+        "recommended_handling": "Require an affirmative intent classifier or an anchored pattern with explicit negation rejection. Do not execute from this regex alone."
+      },
+      {
+        "id": "specs_missing_actuator_data",
+        "reason": "The trigger 确认.*电源 also matches statements such as 我们确认电源已经满足要求, which do not say actuator data is missing.",
+        "recommended_handling": "Require both an actuator anchor and a missing/request anchor, or match the full approved Chinese template."
+      },
+      {
+        "id": "specs_confirm_service_conditions",
+        "reason": "The triggers 确认.*介质 and 确认.*温度 are too broad and can rewrite unrelated confirmations into a full material-selection request.",
+        "recommended_handling": "Require valve/material-selection context plus at least two service-condition fields, or use full-template matching only."
+      },
+      {
+        "id": "quotation_budgetary_not_firm",
+        "reason": "The trigger 预算报价 matches negated text such as 这不是预算报价 and can incorrectly downgrade a firm offer.",
+        "recommended_handling": "Reject negation and require an explicit non-binding/budgetary intent before normalization."
+      },
+      {
+        "id": "price_best_sustainable_offer",
+        "reason": "The trigger 无法.*再降 matches embedded or quoted statements such as 买方无法接受不能再降价 and can invent a seller price position.",
+        "recommended_handling": "Use full-template matching or require a seller-subject and final-price intent gate."
+      },
+      {
+        "id": "inspection_witness_waiver_request",
+        "reason": "无法.*出席 and 书面.*放行 match tender meetings, shipment releases and other non-inspection contexts.",
+        "recommended_handling": "Require ITP/inspection/witness anchors and disable trigger-only execution for this high-risk intent."
+      },
+      {
+        "id": "aftersales_safe_isolation_request",
+        "reason": "停止.*操作 matches unrelated portal or process instructions and can generate unsafe valve isolation/depressurization guidance.",
+        "recommended_handling": "Require after-sales plus affected-valve plus site-safety context. This intent must never be selected from a single broad regex."
+      },
+      {
+        "id": "tender_deviation_schedule",
+        "reason": "The sentence All other requirements will be followed is a broad compliance commitment and may waive unlisted commercial, documentary or technical qualifications.",
+        "recommended_handling": "Require tender-manager review and add an explicit boundary such as except as otherwise stated in our bid, clarification responses and attachments."
+      },
+      {
+        "id": "tender_addendum_acknowledged",
+        "reason": "The template both acknowledges receipt and declares precedence over original documents. The actual tender order-of-precedence clause may differ.",
+        "recommended_handling": "Require bid-manager review. Preserve receipt acknowledgment, but take precedence wording only from the tender documents."
+      }
+    ],
+    "rejected": [
+      {
+        "id": "quotation_incoterm_named_place",
+        "reason": "The sentence The price and allocation of responsibilities apply only to the stated place is not a precise statement of Incoterms. The named place or port identifies a delivery/cost/risk point depending on the selected rule; responsibilities are not simply limited to that place. The template also accepts incompatible combinations such as FOB plus an inland warehouse.",
+        "recommended_handling": "Replace with: This quotation is based on {incoterm} {named_place}, Incoterms® 2020. Please confirm the exact named place or port; costs, delivery and risk will be allocated in accordance with the selected rule. Add rule/place compatibility validation before release."
+      }
+    ],
+    "placeholder_findings": {
+      "status": "passed",
+      "intent_count_checked": 42,
+      "finding": "Every intent uses the same placeholder set across zh, en, ru and ar. No missing, extra or renamed placeholders were found.",
+      "runtime_note": "For intents with variables, translator_host.py currently performs exact full-template matching and substitutes only captured values. For intents without variables, it falls back to trigger regexes; the seven unsafe trigger-only cases above must be corrected."
+    },
+    "do_not_use_findings": {
+      "status": "content_pass_runtime_enforcement_missing",
+      "finding": "No prohibited do_not_use sentence is copied into an approved generated reply, and no outward English intent contains Soft reminder. However, do_not_use is currently metadata only; get_reply_intents and controlled_reply_intent do not enforce it as a runtime ban list.",
+      "required_control": "Turn every do_not_use string and the case-insensitive pattern soft reminder into negative regression assertions over all outward English suggestions."
+    },
+    "high_risk_approved_with_mandatory_pre_send_review": [
+      "specs_standard_conflict",
+      "quotation_revised_supersedes",
+      "quotation_scope_exclusions",
+      "price_target_gap",
+      "price_concession_conditions",
+      "payment_due_by_date",
+      "advance_payment_before_production",
+      "lead_time_start_conditions",
+      "delivery_delay_notification",
+      "delivery_expedite_review",
+      "delivery_partial_shipment_option",
+      "shipping_draft_documents_review",
+      "shipping_document_discrepancy_correction",
+      "inspection_witness_point_confirm",
+      "tender_clarification_request",
+      "tender_bid_validity_subject_to_clarification",
+      "sample_lead_time_and_purpose",
+      "aftersales_case_acknowledged",
+      "aftersales_root_cause_pending",
+      "aftersales_corrective_action",
+      "po_received_scope_check",
+      "production_start_after_approval"
+    ],
+    "high_risk_gate": "Approval means the multilingual wording preserves conditions and scope when the source facts are true. It does not authorize automatic sending. Price, payment, delivery, Incoterms, inspection release, tender deviation/addendum, warranty, safety and production-state replies require a visible human pre-send confirmation."
+  },
+  "cross_batch_findings": [
+    {
+      "severity": "blocker",
+      "type": "cross_language_collision",
+      "finding": "Packing Gland uses Chinese 填料压套, already used by production Gland Follower.",
+      "action": "Reject Packing Gland until the BOM/drawing distinction is encoded."
+    },
+    {
+      "severity": "blocker",
+      "type": "production_alias_collision",
+      "finding": "Commercial Bid aliases Commercial Offer, which is already a production primary. Russian коммерческое предложение and Arabic العرض التجاري also collide.",
+      "action": "Remove the aliases and keep the tender-envelope concept separate."
+    },
+    {
+      "severity": "blocker",
+      "type": "candidate_alias_collision",
+      "finding": "Technical Bid and Technical Proposal share Russian техническое предложение and Arabic العرض الفني.",
+      "action": "Use distinct owner-document terms and remove shared aliases."
+    },
+    {
+      "severity": "required",
+      "type": "candidate_alias_collision",
+      "finding": "Invitation to Tender and Invitation for Bids share Chinese 投标邀请函 or 投标邀请 and Russian приглашение к участию в торгах.",
+      "action": "Preserve owner acronym/document heading and remove cross-key aliases."
+    },
+    {
+      "severity": "required",
+      "type": "candidate_alias_collision",
+      "finding": "Scope of Work and Technical Specification both use Russian техническое задание as an alias.",
+      "action": "Do not release the shared alias without owner-document context."
+    },
+    {
+      "severity": "required",
+      "type": "short_alias_false_positive",
+      "finding": "FA, GCC, SCC, Owner, Employer, Company and Vendor Code are unsafe as always-on aliases. The runtime has word boundaries, which prevents substring hits, but isolated occurrences remain ambiguous.",
+      "action": "Disable these aliases or add procurement/document context gates."
+    },
+    {
+      "severity": "required",
+      "type": "dedup_method_gap",
+      "finding": "Candidate self-checks compare case-insensitive English primary keys, but that does not detect cross-language primary/alias collisions that affect reverse-language lookup.",
+      "action": "Future merge validation must index every en/zh/ru/ar primary and alias and fail when one surface form maps to different keys."
+    },
+    {
+      "severity": "baseline_watch",
+      "type": "existing_production_collision",
+      "finding": "The existing production glossary already shares translations among Soft Reminder, Gentle Reminder and Kind Reminder. This batch does not create that collision.",
+      "action": "Keep the outbound override that maps 友情提醒 to Just a reminder and 温馨提醒 to This is a gentle reminder; never use the glossary English key Soft Reminder for outward generation."
+    }
+  ],
+  "source_findings": {
+    "url_audit": {
+      "unique_external_urls_checked": 59,
+      "http_200": 42,
+      "http_403_or_bot_protected": 17,
+      "broken_urls_confirmed": 0,
+      "local_non_url_sources": 1,
+      "note": "The 403 results are access-control or anti-bot responses from official ISO, UN, UNCITRAL, British Council, UNECE and Velan sites, not confirmed dead links. Representative official pages were also opened in a browser."
+    },
+    "verified_current_or_applicable": [
+      "ISO 4126-1:2013 remains current and was confirmed in 2025.",
+      "ISO 5208:2015 remains current and was confirmed in 2025.",
+      "ISO 10497:2022 is the current published fire type-test edition.",
+      "ISO 17292:2015 remains current and was confirmed in 2025.",
+      "ISO 21157:2018 remains current and was confirmed in 2024.",
+      "ISO 28921-1:2022 and ISO 5115:2023 are current published editions.",
+      "ГОСТ 24856-2014 is marked Действует on the Rosstandart portal.",
+      "ASME B16.34 official page currently identifies the 2025 edition even though the supplied URL path contains 2017.",
+      "API's official page identifies API Specification 6D, 25th Edition."
+    ],
+    "edition_watch": [
+      {
+        "source_id": "iso15156",
+        "finding": "ISO 15156-1:2020 is still published but is expected to be replaced by a draft revision.",
+        "action": "The candidate risk note is appropriate; formal orders must use the customer-specified edition and service conditions."
+      },
+      {
+        "source_id": "iso148",
+        "finding": "ISO 148-1:2016 remains current but is expected to be replaced by ISO/DIS 148-1.",
+        "action": "Keep an edition watch and do not hard-code the edition into future customer commitments."
+      }
+    ],
+    "source_scope_issues": [
+      {
+        "key": "Spiral Wound Gasket",
+        "finding": "ASME B16.34 is not the direct normative source for spiral-wound gasket terminology.",
+        "action": "Add official ASME B16.20 support."
+      },
+      {
+        "key": "Request for Proposal",
+        "finding": "The cited World Bank source is a Request for Bids document, not a Request for Proposals document.",
+        "action": "Retain UN/UNCITRAL support or add an official World Bank RFP/consulting-services source; do not cite the RFB title as direct evidence for RFP."
+      },
+      {
+        "key": "Commercial Bid",
+        "finding": "The World Bank two-envelope source primarily uses Financial Proposal, while Gulf owners may use Commercial Bid.",
+        "action": "Treat Commercial Bid as an owner-specific term and rely on the owner's tender definitions."
+      },
+      {
+        "scope": "trade_intents",
+        "finding": "The listed email and trade sources support clarity, document roles and risk boundaries, but the 42 replies are authored templates rather than quotations or official prescribed wording.",
+        "action": "Keep the source_policy statement and never describe the templates as official standard text."
+      }
+    ],
+    "standard_claim_boundary": "A terminology source establishes naming and context only. It does not prove a product certificate, test coverage, material suitability, bid compliance or contractual acceptance."
+  },
+  "soft_reminder_gate": {
+    "status": "passed_with_runtime_regression_required",
+    "outward_english_occurrences_in_candidate_templates": 0,
+    "allowed_outward_phrases": [
+      "Just a reminder",
+      "This is a gentle reminder",
+      "A gentle reminder"
+    ],
+    "forbidden_outward_pattern": "(?i)\\bsoft\\s+reminder\\b",
+    "existing_runtime_evidence": [
+      "translator_host.py maps 友情提醒 to Just a reminder.",
+      "translator_host.py maps 温馨提醒 to This is a gentle reminder.",
+      "translation_quality_regression.py asserts that outward English does not contain Soft Reminder."
+    ],
+    "note": "Soft Reminder may remain as an incoming-recognition key or inside do_not_use test data, but it must never be selected as outward English."
+  },
+  "release_recommendation": {
+    "status": "WHITELIST_ONLY_AFTER_REQUIRED_CONTROLS",
+    "publishable_glossary_count": 89,
+    "publishable_trade_intent_count": 32,
+    "whole_batch_release": false,
+    "required_before_merge": [
+      "Build the production batch from glossary.approved_keys only.",
+      "Build the intent library from trade_intents.approved_ids only.",
+      "Do not allow trigger-only matching for high-risk intents; fix or exclude the seven broad-regex cases listed in review_required.",
+      "Add cross-language primary-and-alias collision validation.",
+      "Enforce a visible pre-send human confirmation for the 22 approved high-risk intent IDs.",
+      "Add negative tests for every do_not_use sentence and for the forbidden outward Soft reminder pattern.",
+      "Add Incoterms rule/place compatibility validation before re-submitting quotation_incoterm_named_place.",
+      "Re-run source-local tests, packaged-host tests and installed-runtime tests after filtering."
+    ],
+    "release_invariants": [
+      "No unapproved key or intent ID is present in the production artifact.",
+      "No outward English suggestion contains Soft reminder in any capitalization.",
+      "No unresolved placeholder remains in zh/en/ru/ar output.",
+      "No one surface form in en/zh/ru/ar maps to different production keys unless a documented context gate resolves it.",
+      "No high-risk price, payment, delivery, Incoterms, inspection, tender, warranty, safety or production-state reply is sent without human confirmation."
+    ]
+  }
+}

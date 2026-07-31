@@ -52,19 +52,35 @@
         sourceLanguage.innerHTML = `
           <option value="en">英语 → 中文</option>
           <option value="ru">俄语 → 中文</option>
+          <option value="ar">阿拉伯语 → 中文</option>
         `;
-        sourceLanguage.value = term.sourceLanguage === "ru" ? "ru" : "en";
+        sourceLanguage.value = ["en", "ru", "ar"].includes(term.sourceLanguage)
+          ? term.sourceLanguage
+          : "en";
 
         const english = document.createElement("input");
         english.type = "text";
         english.maxLength = 240;
         const updateSourcePlaceholder = () => {
-          english.placeholder = sourceLanguage.value === "ru"
-            ? "俄文术语，如 шаровой кран"
-            : "英文术语，如 Quotation Sheet";
+          const labels = {
+            en: {
+              name: "英文",
+              placeholder: "英文术语，如 Quotation Sheet"
+            },
+            ru: {
+              name: "俄文",
+              placeholder: "俄文术语，如 шаровой кран"
+            },
+            ar: {
+              name: "阿拉伯文",
+              placeholder: "阿拉伯文术语，如 صمام كروي"
+            }
+          };
+          const selected = labels[sourceLanguage.value] || labels.en;
+          english.placeholder = selected.placeholder;
           english.setAttribute(
             "aria-label",
-            `第 ${index + 1} 条${sourceLanguage.value === "ru" ? "俄文" : "英文"}术语`
+            `第 ${index + 1} 条${selected.name}术语`
           );
         };
         updateSourcePlaceholder();
@@ -155,8 +171,13 @@
         const copy = document.createElement("div");
         copy.className = "feedback-copy";
         const source = document.createElement("strong");
+        const sourceLanguageLabel = {
+          en: "英语",
+          ru: "俄语",
+          ar: "阿拉伯语"
+        }[item.sourceLanguage] || "英语";
         source.textContent =
-          `${item.sourceLanguage === "ru" ? "俄语" : "英语"} → 中文：${item.source}`;
+          `${sourceLanguageLabel} → 中文：${item.source}`;
         const current = document.createElement("span");
         current.textContent = `当前：${item.currentTranslation || "无可用译文"}`;
         const suggested = document.createElement("span");
@@ -202,11 +223,18 @@
         const result = await api.runtime.sendMessage({ type: "checkOfflineTranslator" });
         if (result?.ok && result.terminology === "lianggu-valve-glossary") {
           const model = result.modelId ? `；模型 ${result.modelId}` : "";
-          const sourceText = Array.isArray(result.sources) && result.sources.includes("ru")
-            ? "英语、俄语"
-            : "英语";
+          const sourceLabels = { en: "英语", ru: "俄语", ar: "阿拉伯语" };
+          const sourceText = (Array.isArray(result.sources) ? result.sources : ["en"])
+            .map(code => sourceLabels[code])
+            .filter(Boolean)
+            .join("、");
+          const multilingualCount = Number(result.multilingualTermCount) || 0;
+          const multilingualSummary = multilingualCount
+            ? `，其中四语专业术语 ${multilingualCount} 条`
+            : "";
           translatorStatus.textContent =
-            `${sourceText}转中文可用。良固阀门术语库 ${Number(result.termCount) || 0} 条${model}；邮件正文只在本机处理。`;
+            `${sourceText}转中文可用。良固阀门术语库 ${Number(result.termCount) || 0} 条` +
+            `${multilingualSummary}${model}；邮件正文只在本机处理。`;
         } else {
           translatorStatus.textContent = result?.ok
             ? "离线翻译可用，但良固阀门术语库尚未启用。"

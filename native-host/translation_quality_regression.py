@@ -2,14 +2,19 @@
 
 from translator_host import (
     benchmark_score,
+    _protect_reply_terms,
+    _restore_reply_terms,
     compose_reply_warnings,
+    controlled_reply_intent,
     controlled_reply_translation,
     extract_technical_terms,
     get_glossary_metadata,
+    get_reply_intents,
     is_usable_translation,
     optimize_chinese_reply,
     post_process_translation,
     protect_valve_terms,
+    reply_intent_review,
     restore_valve_terms,
     sanitize_custom_terms,
     translate_with_glossary,
@@ -126,7 +131,7 @@ def main() -> None:
         body_protected, body_replacements = protect_valve_terms(body_source)
         assert "body" not in body_protected.lower(), body_source
         assert any(
-            item["replacement"] == "阀体"
+            item["replacement"] in {"阀体", "阀体材质"}
             for item in body_replacements
         ), body_source
 
@@ -186,6 +191,90 @@ def main() -> None:
         assert expected_phrase in common_business_translation
     assert "_" not in common_business_translation
 
+    soft_reminder_translation = translate_with_glossary(
+        ["Soft reminder: please confirm the payment status."],
+        lambda texts: texts,
+    )[0]
+    assert "友情提醒" in soft_reminder_translation
+    assert "软提醒" not in soft_reminder_translation
+    assert post_process_translation(
+        "Soft reminder: please confirm the payment status.",
+        "友情提醒:请确认支付状况.",
+    ) == "友情提醒：请确认付款状态。"
+    outbound_reminder, _ = _protect_reply_terms(
+        "友情提醒，请确认付款状态。",
+        "zh",
+        "en",
+    )
+    assert "Just a reminder" in outbound_reminder
+    assert "Soft Reminder" not in outbound_reminder
+    assert controlled_reply_translation(
+        "友情提醒，请确认付款状态。",
+        "en",
+    ) == "Just a reminder—please confirm the payment status."
+    assert controlled_reply_translation(
+        "友情提醒，请确认付款状态。",
+        "ru",
+    ) == "Напоминаем Вам: пожалуйста, подтвердите статус оплаты."
+    assert controlled_reply_translation(
+        "友情提醒，请确认付款状态。",
+        "ar",
+    ) == "نود تذكيركم بلطف؛ يرجى تأكيد حالة الدفع."
+
+    reply_intents = get_reply_intents()
+    assert reply_intents["name"] == "lianggu-reply-intents-multilingual"
+    assert reply_intents["version"] == "2026.07.30.4"
+    assert len(reply_intents["intents"]) == 32
+    assert sum(
+        intent.get("requires_human_review") is True
+        for intent in reply_intents["intents"]
+    ) == 22
+    assert all(
+        intent.get("allow_pattern_match") is False
+        for intent in reply_intents["intents"]
+    )
+    quotation_intent_source = (
+        "随附报价单 Q-2026-071，有效期至 2026-08-15。"
+        "请重点核对技术范围、数量、贸易术语和交期。"
+    )
+    assert controlled_reply_intent(quotation_intent_source, "en") == (
+        "Please find quotation Q-2026-071 attached, valid until 2026-08-15. "
+        "Kindly review the technical scope, quantities, Incoterms rule and lead time."
+    )
+    assert "Q-2026-071" in controlled_reply_intent(
+        quotation_intent_source,
+        "ru",
+    )
+    assert "2026-08-15" in controlled_reply_intent(
+        quotation_intent_source,
+        "ar",
+    )
+    high_risk_source = (
+        "根据已确认的付款条件，USD 10,000 应于 2026-08-15 前支付。"
+        "请确认能否按期安排。"
+    )
+    review = reply_intent_review(high_risk_source)
+    assert review["requiresHumanReview"] is True
+    assert review["highRiskIntentIds"] == ["payment_due_by_date"]
+    assert controlled_reply_intent(high_risk_source, "en") == (
+        "Under the agreed payment terms, USD 10,000 is due by 2026-08-15. "
+        "Please confirm whether payment can be arranged by that date."
+    )
+    for negative_source in (
+        "不可以参与报价。",
+        "无法出席投标前会议。",
+        "停止操作供应商门户。",
+        "确认电源已满足。",
+        "这不是预算报价。",
+    ):
+        assert controlled_reply_intent(negative_source, "en") is None
+        assert reply_intent_review(negative_source)["requiresHumanReview"] is False
+    outward_english = [intent["en"].casefold() for intent in reply_intents["intents"]]
+    assert all("soft reminder" not in value for value in outward_english)
+    for intent in reply_intents["intents"]:
+        for forbidden in intent.get("do_not_use", []):
+            assert str(forbidden).casefold() not in outward_english
+
     translated = translate_with_glossary(
         [
             "Please quote Gate Valve with Raised Face.",
@@ -222,7 +311,51 @@ def main() -> None:
     assert "PN16" in russian_translation[0]
     assert "阀体材质" in russian_translation[1]
     assert "WCB" in russian_translation[1]
-    assert "报价单" in russian_translation[2]
+    assert any(value in russian_translation[2] for value in ("商务报价", "报价单"))
+
+    arabic_translation = translate_with_glossary(
+        [
+            "يرجى تقديم أفضل سعر لصمام كروي DN50 PN16.",
+            "مادة جسم الصمام: WCB.",
+            "عرض السعر مرفق.",
+        ],
+        lambda texts: texts,
+        source_language="ar",
+    )
+    assert "球阀" in arabic_translation[0]
+    assert "DN50" in arabic_translation[0]
+    assert "PN16" in arabic_translation[0]
+    assert "阀体材质" in arabic_translation[1]
+    assert "WCB" in arabic_translation[1]
+    assert any(value in arabic_translation[2] for value in ("商务报价", "报价单"))
+
+    russian_protected, russian_replacements = _protect_reply_terms(
+        "The quotation for the Ball Valve DN50 PN16 is ready.",
+        "en",
+        "ru",
+    )
+    russian_restored = _restore_reply_terms(
+        russian_protected,
+        russian_replacements,
+    )
+    assert "Шаровой кран" in russian_restored
+    assert "DN50" in russian_restored
+    assert "PN16" in russian_restored
+    assert "Ball Valve" not in russian_restored
+
+    arabic_protected, arabic_replacements = _protect_reply_terms(
+        "The quotation for the Ball Valve DN50 PN16 is ready.",
+        "en",
+        "ar",
+    )
+    arabic_restored = _restore_reply_terms(
+        arabic_protected,
+        arabic_replacements,
+    )
+    assert "صمام كروي" in arabic_restored
+    assert "DN50" in arabic_restored
+    assert "PN16" in arabic_restored
+    assert "Ball Valve" not in arabic_restored
 
     score = benchmark_score(
         [
@@ -235,8 +368,11 @@ def main() -> None:
 
     metadata = get_glossary_metadata()
     assert metadata["name"] == "lianggu-valve-glossary"
-    assert metadata["termCount"] >= 35
-    assert metadata["sourceCount"] >= 3
+    assert metadata["termCount"] == 309
+    assert metadata["multilingualTermCount"] == 297
+    assert metadata["russianTermCount"] == 297
+    assert metadata["arabicTermCount"] == 297
+    assert metadata["sourceCount"] == 105
     print("translation quality regression passed")
 
 

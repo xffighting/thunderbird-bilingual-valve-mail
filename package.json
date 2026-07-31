@@ -1,6 +1,6 @@
 {
   "name": "thunderbird-sales-mail-brief",
-  "version": "0.7.1",
+  "version": "0.11.0",
   "private": true,
   "description": "Regression and UI preview tooling for the Thunderbird Sales Mail Brief extension.",
   "license": "MIT",
@@ -14,9 +14,9 @@
   },
   "scripts": {
     "test": "npm run test:node && npm run test:native-static",
-    "test:node": "node tests/customer-intelligence-regression.js && node tests/manifest-placement-regression.js && node tests/order-status-regression.js && node tests/summary-schema-regression.js && node tests/thread-isolation-cache-regression.js && node tests/live-pattern-regression.js && node tests/inline-translation-regression.js && node tests/translation-preferences-regression.js && node tests/translation-native-regression.js && node tests/compose-assistant-core-regression.js",
+    "test:node": "node tests/customer-intelligence-regression.js && node tests/customer-research-regression.js && node tests/manifest-placement-regression.js && node tests/order-status-regression.js && node tests/summary-schema-regression.js && node tests/thread-isolation-cache-regression.js && node tests/live-pattern-regression.js && node tests/inline-translation-regression.js && node tests/translation-preferences-regression.js && node tests/translation-native-regression.js && node tests/opportunity-intake-regression.js && node tests/compose-assistant-core-regression.js && node tests/compose-assistant-background-regression.js && node tests/thread-keeper-regression.js",
     "test:native-static": "python3 native-host/translation_quality_regression.py",
-    "test:ui": "mkdir -p tests/.artifacts && node tests/render-popup-preview.js tests/.artifacts/popup.png && node tests/render-options-preview.js tests/.artifacts/options.png && node tests/inline-translation-browser-regression.js && node tests/compose-assistant-browser-regression.js"
+    "test:ui": "mkdir -p tests/.artifacts && node tests/render-popup-preview.js tests/.artifacts/popup.png && node tests/render-options-preview.js tests/.artifacts/options.png && node tests/inline-translation-browser-regression.js && node tests/opportunity-intake-browser-regression.js && node tests/compose-assistant-browser-regression.js"
   },
   "devDependencies": {
     "playwright": "^1.61.1"

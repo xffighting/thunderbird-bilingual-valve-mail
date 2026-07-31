@@ -5,6 +5,7 @@ const { chromium } = require("playwright");
 
 const outputPath = process.argv[2] || path.join(__dirname, "popup-preview.png");
 const drawerOutputPath = outputPath.replace(/(\.[^.]+)$/u, "-drawer$1");
+const confirmOutputPath = outputPath.replace(/(\.[^.]+)$/u, "-confirm$1");
 const popupUrl = pathToFileURL(path.join(__dirname, "..", "ui", "popup.html")).href;
 
 const mockSummary = {
@@ -107,30 +108,117 @@ const mockSummary = {
   }
 };
 
+const mockResearch = {
+  schemaVersion: 1,
+  status: "ready",
+  preparedAt: "2026-07-29T08:00:00Z",
+  identity: {
+    company: "Example Industrial",
+    contact: "Alex",
+    email: "buyer@example-industrial.com",
+    domain: "example-industrial.com",
+    country: "UAE",
+    customerCode: "C26070001"
+  },
+  dingtalk: {
+    status: "matched",
+    matchEvidence: "exact_email",
+    url: "https://docs.dingtalk.com/i/nodes/example"
+  },
+  profile: {
+    website: "https://example-industrial.com/",
+    industry: "Oil & Gas EPC",
+    grade: 4,
+    completeness: { score: 92, missing: [], complete: true }
+  },
+  research: {
+    quality: 88,
+    status: "verified",
+    matchScore: 84,
+    matchLabelZh: "高度匹配",
+    sourceCount: 4,
+    fitHits: ["valves", "oil and gas", "EPC"],
+    buyerHits: ["procurement", "projects"],
+    competitorHits: ["kitz"],
+    groupHits: ["group"],
+    summaryZh: "Example Industrial 是已验证的油气 EPC 客户，与良固阀门业务高度匹配。",
+    sources: []
+  },
+  version: {
+    number: 3,
+    previous: 2,
+    changed: true,
+    updatedAt: "2026-07-29T08:00:00Z",
+    checkedAt: "2026-07-29T08:00:00Z"
+  },
+  update: {
+    status: "updated",
+    updatedFields: ["background_remark", "website"],
+    verifiedAt: "2026-07-29T08:00:00Z"
+  },
+  cache: { status: "refreshed" }
+};
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 760, height: 900 }, deviceScaleFactor: 1 });
   const pageErrors = [];
+  const opportunityRequests = [];
   page.on("pageerror", error => pageErrors.push(error.message));
-  await page.addInitScript(summary => {
+  await page.exposeFunction("captureOpportunityRequest", request => {
+    opportunityRequests.push(request);
+  });
+  await page.addInitScript(({ summary, research }) => {
     window.browser = {
       runtime: {
         sendMessage: async request => {
           if (request.type === "getSummaryForCurrentMessage") return summary;
+          if (request.type === "getCustomerResearchForCurrentMessage") return research;
           if (request.type === "openDingTalkLink") return { opened: true };
           if (request.type === "openOptionsPage") return true;
+          if (request.type === "createOpportunityFromCurrentMessage") {
+            await globalThis.captureOpportunityRequest(request);
+            return {
+              status: "completed",
+              dingtalk_opportunity_number: "SJ-SYNTHETIC"
+            };
+          }
           return {};
         }
       }
     };
-  }, mockSummary);
+  }, { summary: mockSummary, research: mockResearch });
   await page.goto(popupUrl);
   await page.waitForSelector("#summary:not([hidden])");
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   assert.strictEqual(overflow, false, "Popup must not overflow horizontally at 760px.");
   assert.strictEqual(await page.locator("#openDingTalk").isEnabled(), true);
+  assert.strictEqual(await page.locator("#customerFitScore").textContent(), "84");
+  assert.strictEqual(await page.locator("#researchVersion").textContent(), "v3");
   await page.screenshot({ path: outputPath, fullPage: true });
+
+  await page.locator("#createOpportunity").click();
+  await page.waitForSelector("#opportunityConfirm:not([hidden])");
+  assert.strictEqual(
+    opportunityRequests.length,
+    0,
+    "Opening the authorization card must not start the DingTalk write flow."
+  );
+  await page.screenshot({ path: confirmOutputPath });
+  await page.locator("#confirmOpportunity").click();
+  await page.waitForFunction(() => {
+    return document.getElementById("createOpportunity").textContent.includes("商机已建立");
+  });
+  assert.deepStrictEqual(
+    opportunityRequests,
+    [{ type: "createOpportunityFromCurrentMessage", authorized: true }],
+    "The opportunity flow may run only after explicit confirmation."
+  );
+  assert.ok(
+    (await page.locator("#opportunityStatus").textContent()).includes("SJ-SYNTHETIC"),
+    "The local UI should show the DingTalk opportunity number read back by the Lianggu flow."
+  );
 
   await page.locator("#showCustomerBackground").click();
   await page.waitForSelector("#customerDrawer:not([hidden])");
@@ -145,7 +233,7 @@ const mockSummary = {
   assert.deepStrictEqual(pageErrors, [], `Popup should render without page errors: ${pageErrors.join("; ")}`);
 
   await browser.close();
-  console.log(`popup-ui-regression: ok (${outputPath}, ${drawerOutputPath})`);
+  console.log(`popup-ui-regression: ok (${outputPath}, ${drawerOutputPath}, ${confirmOutputPath})`);
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;

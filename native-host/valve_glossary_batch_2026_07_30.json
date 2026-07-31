@@ -1,0 +1,1532 @@
+{
+  "name": "lianggu-valve-multilingual-glossary-batch",
+  "version": "2026.07.30.3",
+  "languages": [
+    "zh-CN",
+    "en",
+    "ru",
+    "ar"
+  ],
+  "fields": [
+    "en",
+    "zh",
+    "ru",
+    "ar",
+    "category",
+    "context"
+  ],
+  "review_policy": "Production batch approved by independent QA: 53 approved, 6 deferred for review, and 1 rejected.",
+  "sources": [
+    {
+      "id": "zh-en:gb21465",
+      "focus": "zh-en",
+      "title": "GB/T 21465-2008 阀门 术语 / Terminology for valves",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=9902AC4B3E7FDC9B920211A31A6DF48B",
+      "language": "zh/en",
+      "used_for": "阀型、结构部件、通用阀门术语的中英基线"
+    },
+    {
+      "id": "zh-en:gb12224",
+      "focus": "zh-en",
+      "title": "GB/T 12224-2015 钢制阀门 一般要求 / General requirements for industrial steel valves",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=ACE7E1C5B0A31E5CC7F16BC1C39384EE",
+      "language": "zh/en",
+      "used_for": "钢制阀门结构、连接、设计和材料语境"
+    },
+    {
+      "id": "zh-en:gb12238",
+      "focus": "zh-en",
+      "title": "GB/T 12238-2008 法兰和对夹连接弹性密封蝶阀",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=EF682E1459A71302420FFA623452BB51",
+      "language": "zh/en",
+      "used_for": "法兰、对夹、弹性密封蝶阀术语"
+    },
+    {
+      "id": "zh-en:gb2025notice",
+      "focus": "zh-en",
+      "title": "2025年第29号国家标准公告阀门标准清单（含GB/T 12221、12226、12227、12228、12229、12235、12236、21385、21387）",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/nd?no=2561",
+      "language": "zh",
+      "used_for": "结构长度、铸铁、球墨铸铁、碳钢锻铸件、止回阀和金属密封球阀的现行标准题名"
+    },
+    {
+      "id": "zh-en:gb12230",
+      "focus": "zh-en",
+      "title": "GB/T 12230-2023 通用阀门 不锈钢铸件技术条件",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=AF3F4373D2B49319BCC0493F678B092C",
+      "language": "zh/en",
+      "used_for": "不锈钢铸件"
+    },
+    {
+      "id": "zh-en:gb13927",
+      "focus": "zh-en",
+      "title": "GB/T 13927-2022 工业阀门 压力试验 / Industrial valves—Pressure testing",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=27CEF6988106C4695900FE295F54D6E8",
+      "language": "zh/en",
+      "used_for": "壳体、密封、上密封、试验压力和泄漏率"
+    },
+    {
+      "id": "zh-en:gb26481",
+      "focus": "zh-en",
+      "title": "GB/T 26481-2022 工业阀门的逸散性试验",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=D9057F21A1829E000459F9702BE2B4CA",
+      "language": "zh/en",
+      "used_for": "逸散性及外漏检测语境"
+    },
+    {
+      "id": "zh-en:gb24919",
+      "focus": "zh-en",
+      "title": "GB/T 24919-2010 工业阀门 安装使用维护 一般要求",
+      "authority": "SAMR/SAC",
+      "url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=F8963D848C18CC2A5767BB5824CDAACE",
+      "language": "zh/en",
+      "used_for": "操作维护文件和安装使用语境"
+    },
+    {
+      "id": "zh-en:iso5208",
+      "focus": "zh-en",
+      "title": "ISO 5208:2015 Industrial valves—Pressure testing of metallic valves",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/65111.html",
+      "language": "en",
+      "used_for": "承压边界、关闭密封性和压力试验术语"
+    },
+    {
+      "id": "zh-en:iso5210",
+      "focus": "zh-en",
+      "title": "ISO 5210:2026 Industrial valves—Multi-turn actuator attachments",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/89905.html",
+      "language": "en",
+      "used_for": "多回转执行机构、转矩、推力和驱动件"
+    },
+    {
+      "id": "zh-en:iso5211",
+      "focus": "zh-en",
+      "title": "ISO 5211:2026 Industrial valves—Part-turn actuator attachments",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/89904.html",
+      "language": "en",
+      "used_for": "部分回转执行机构、安装组件和联轴件"
+    },
+    {
+      "id": "zh-en:iso5752",
+      "focus": "zh-en",
+      "title": "ISO 5752:2021 Metal valves for use in flanged pipe systems—Face-to-face and centre-to-face dimensions",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/77335.html",
+      "language": "en",
+      "used_for": "结构长度、端到端和中心至端面尺寸"
+    },
+    {
+      "id": "zh-en:iso10434",
+      "focus": "zh-en",
+      "title": "ISO 10434:2020 Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/78350.html",
+      "language": "en",
+      "used_for": "闸阀的外螺纹支架、平行阀座、双闸板和焊接端"
+    },
+    {
+      "id": "zh-en:iso17292",
+      "focus": "zh-en",
+      "title": "ISO 17292:2015 Metal ball valves for petroleum, petrochemical and allied industries",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/59736.html",
+      "language": "en",
+      "used_for": "球阀阀座、孔径和端部连接"
+    },
+    {
+      "id": "zh-en:iso10497",
+      "focus": "zh-en",
+      "title": "ISO 10497:2022 Testing of valves—Fire type-testing requirements",
+      "authority": "ISO",
+      "url": "https://www.iso.org/standard/78853.html",
+      "language": "en",
+      "used_for": "耐火型式试验、阀座贯穿泄漏、外漏和可操作性"
+    },
+    {
+      "id": "zh-en:api6d",
+      "focus": "zh-en",
+      "title": "API Specification 6D, 25th Edition—Specification for Valves",
+      "authority": "API",
+      "url": "https://www.api.org/products-and-services/standards/important-standards-announcements/spec6d",
+      "language": "en",
+      "used_for": "管线阀门、驱动链、阀座泄压和API文件语境"
+    },
+    {
+      "id": "zh-en:api6dguide",
+      "focus": "zh-en",
+      "title": "API Monogram Purchasing Guidelines—API Specification 6D",
+      "authority": "API",
+      "url": "https://www.api.org/~/media/files/certification/monogram-apiqr/purchasing%20guidelines/6d%20e24%20purchasing%20guideline%20r1%2020141029.pdf",
+      "language": "en",
+      "used_for": "自泄压阀座、中腔泄压、驱动链和转矩试验"
+    },
+    {
+      "id": "zh-en:asmeb1634",
+      "focus": "zh-en",
+      "title": "ASME B16.34 Valves—Flanged, Threaded, and Welding End",
+      "authority": "ASME",
+      "url": "https://www.asme.org/codes-standards/find-codes-standards/b16-34-valves-flanged-threaded-welding-end/2017/pdf",
+      "language": "en",
+      "used_for": "压力温度额定值、无法兰结构、端部连接、材料及标志"
+    },
+    {
+      "id": "zh-en:bc_email",
+      "focus": "zh-en",
+      "title": "English for emails",
+      "authority": "British Council LearnEnglish",
+      "url": "https://learnenglish.britishcouncil.org/business/english-emails",
+      "language": "en",
+      "used_for": "正式商务邮件组织、请求、开头和结尾"
+    },
+    {
+      "id": "zh-en:bc_enquiries",
+      "focus": "zh-en",
+      "title": "English for emails—Unit 6: Enquiries",
+      "authority": "British Council LearnEnglish",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/business/english-emails/unit-6-enquiries",
+      "language": "en",
+      "used_for": "礼貌询问、Could you please和let me know语块"
+    },
+    {
+      "id": "zh-en:gcs_email",
+      "focus": "zh-en",
+      "title": "Writing effective emails",
+      "authority": "UK Government Communication Service",
+      "url": "https://www.communications.gov.uk/guidance/digital-communication/writing-effective-emails/",
+      "language": "en",
+      "used_for": "简洁、礼貌、明确行动和截止日期的商务邮件规范"
+    },
+    {
+      "id": "zh-en:govuk_email",
+      "focus": "zh-en",
+      "title": "Planning and writing text messages and emails",
+      "authority": "GOV.UK Service Manual",
+      "url": "https://www.gov.uk/service-manual/design/sending-emails-and-text-messages",
+      "language": "en",
+      "used_for": "清晰指令、截止日期、主题和避免含混表达"
+    },
+    {
+      "id": "ru:gost24856",
+      "focus": "ru",
+      "title": "ГОСТ 24856-2014 Арматура трубопроводная. Термины и определения",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/3e0903e6-d31b-48c6-8abe-e1e617d193a3",
+      "language": "ru/en",
+      "used_for": "Нормативные названия типов, видов, элементов и параметров трубопроводной арматуры."
+    },
+    {
+      "id": "ru:gost33257",
+      "focus": "ru",
+      "title": "ГОСТ 33257-2015 Арматура трубопроводная. Методы контроля и испытаний",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/61cb855a-0504-42bf-9d89-9c840500af35",
+      "language": "ru/en",
+      "used_for": "Категории испытаний, обязательный контроль и критерии приемки."
+    },
+    {
+      "id": "ru:gost33259",
+      "focus": "ru",
+      "title": "ГОСТ 33259-2015 Фланцы арматуры, соединительных частей и трубопроводов на номинальное давление до PN 250",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/66ebf93e-1d81-4202-b092-e10a05ad5c1d",
+      "language": "ru/en",
+      "used_for": "Нормативные названия присоединительных фланцев, уплотнительных поверхностей и комплектующих."
+    },
+    {
+      "id": "ru:gost34294",
+      "focus": "ru",
+      "title": "ГОСТ 34294-2017 Арматура трубопроводная криогенная. Общие технические условия",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/fcbba067-230b-46bc-a654-f5ee935e13ce",
+      "language": "ru/en",
+      "used_for": "Криогенная арматура, низкотемпературные материалы, комплектность, приемка и испытания."
+    },
+    {
+      "id": "ru:gost33423",
+      "focus": "ru",
+      "title": "ГОСТ 33423-2015 Арматура трубопроводная. Затворы и клапаны обратные. Общие технические условия",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/86d76978-09a6-4d49-8d0c-9ef426fe866e",
+      "language": "ru/en",
+      "used_for": "Обратные, невозвратно-запорные и невозвратно-управляемые исполнения."
+    },
+    {
+      "id": "ru:gost33852",
+      "focus": "ru",
+      "title": "ГОСТ 33852-2016 Арматура трубопроводная. Задвижки шиберные для магистральных нефтепроводов",
+      "authority": "Росстандарт; разработчики НПФ ЦКБА и НИИ Транснефть",
+      "url": "https://protect.gost.ru/gost/details/940d1f17-1867-4f16-8a8e-da1782ac223b",
+      "language": "ru/en",
+      "used_for": "Шиберные задвижки, нефтепроводные исполнения, герметичность и методы испытаний."
+    },
+    {
+      "id": "ru:gost34293",
+      "focus": "ru",
+      "title": "ГОСТ 34293-2017 Краны шаровые стальные для нефтяной, нефтехимической и смежных отраслей промышленности",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/0d792936-d72e-4615-8e6c-a699e5986a8b",
+      "language": "ru/en",
+      "used_for": "Нефтегазовые исполнения, ручные и механизированные приводы, антистатичность, сейсмостойкость и приемка."
+    },
+    {
+      "id": "ru:gost33857",
+      "focus": "ru",
+      "title": "ГОСТ 33857-2016 Арматура трубопроводная. Сварка и контроль качества сварных соединений",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/a73f6c4a-9ec3-4127-9cc7-2693fc20ca19",
+      "language": "ru/en",
+      "used_for": "Технология сварки, сварочные материалы, производственные записи и контроль качества сварных соединений."
+    },
+    {
+      "id": "ru:gost34610",
+      "focus": "ru",
+      "title": "ГОСТ 34610-2019 Арматура трубопроводная. Электроприводы. Общие технические условия",
+      "authority": "Росстандарт, приказ 1124-ст; текущий межгосударственный стандарт взамен ГОСТ Р 55511-2013",
+      "url": "https://protect.gost.ru/gost?month=0&page=1356&search=&year=0",
+      "language": "ru/en",
+      "used_for": "Типы электроприводов, органы управления, выключатели, защита и испытания приводов."
+    },
+    {
+      "id": "ru:gost12_2_063",
+      "focus": "ru",
+      "title": "ГОСТ 12.2.063-2015 Арматура трубопроводная. Общие требования безопасности",
+      "authority": "Росстандарт; разработчик ТК 259 / НПФ ЦКБА",
+      "url": "https://protect.gost.ru/gost/details/ba7389f5-50dc-4c72-bb9f-42494846daa4",
+      "language": "ru/en",
+      "used_for": "Эксплуатационные документы, безопасность, монтаж, ремонт, транспортирование и хранение."
+    },
+    {
+      "id": "ru:eaeu_tr032",
+      "focus": "ru",
+      "title": "ТР ТС 032/2013 О безопасности оборудования, работающего под избыточным давлением",
+      "authority": "Евразийская экономическая комиссия",
+      "url": "https://eec.eaeunion.org/comission/department/deptexreg/tr/%D0%A2%D0%A0-%D0%A2%D0%A1-032.php",
+      "language": "ru",
+      "used_for": "Формы подтверждения соответствия, сертификат на тип, декларация, ЕАС и комплект технических документов."
+    },
+    {
+      "id": "ru:omk_valve_catalog",
+      "focus": "ru",
+      "title": "Каталог трубопроводной арматуры ОМК / Благовещенский арматурный завод",
+      "authority": "ОМК, крупный российский изготовитель трубопроводной арматуры",
+      "url": "https://omk.ru/upload/docs/OMK_TPA_Cat.pdf",
+      "language": "ru",
+      "used_for": "Живое употребление в опросных листах и заказах: материалы, приводы, ручной дублер, концевой выключатель, герметичность, присоединение, климатическое исполнение и комплект поставки."
+    },
+    {
+      "id": "ru:hse_business_correspondence",
+      "focus": "ru",
+      "title": "Деловая переписка = Focus on business correspondence",
+      "authority": "НИУ ВШЭ, учебно-методическое пособие по Business English",
+      "url": "https://publications.hse.ru/books/75656997",
+      "language": "ru/en",
+      "used_for": "Русские клише деловой переписки и функциональные, а не пословные, соответствия английским письмам."
+    },
+    {
+      "id": "ru:hse_business_strategy",
+      "focus": "ru",
+      "title": "Стратегии деловой коммуникации и их языковое выражение",
+      "authority": "НИУ ВШЭ, исследование русско- и англоязычного делового письма",
+      "url": "https://publications.hse.ru/chapters/67764560",
+      "language": "ru",
+      "used_for": "Межкультурная адаптация вежливости, просьб, напоминаний и побуждения к ответу."
+    },
+    {
+      "id": "ru:hse_email_ethics",
+      "focus": "ru",
+      "title": "Как соблюдать этику деловой переписки",
+      "authority": "НИУ ВШЭ, рекомендации по нормам электронной деловой переписки",
+      "url": "https://www.hse.ru/our/news/440630882.html",
+      "language": "ru",
+      "used_for": "Ясная тема, конкретный вопрос, указание срока ответа, корректные формулировки и пояснение вложений."
+    },
+    {
+      "id": "ar:SASO-PRESSURE-EQUIPMENT-2025",
+      "focus": "ar",
+      "title": "اللائحة الفنية لمعدات الضغط وملحقاتها",
+      "authority": "الهيئة السعودية للمواصفات والمقاييس والجودة (SASO)",
+      "url": "https://www.saso.gov.sa/ar/Laws-And-Regulations/Technical_regulations/Documents/TR-Pressure-Equipment.pdf",
+      "language": "Arabic with English technical abbreviations",
+      "used_for": "Pressure-equipment definitions, safety accessories, maximum allowable pressure, conformity, inspection and technical documentation terminology"
+    },
+    {
+      "id": "ar:GSO-EN-558-2021",
+      "focus": "ar",
+      "title": "GSO EN 558:2021 — Industrial valves — Face-to-face and centre-to-face dimensions",
+      "authority": "GCC Standardization Organization (GSO)",
+      "url": "https://dgsm.gso.org.sa/store/standards/GSO%3A790142?lang=en",
+      "language": "English",
+      "used_for": "Normative valve dimension and pressure-class terminology"
+    },
+    {
+      "id": "ar:GSO-ISO-13703-2010",
+      "focus": "ar",
+      "title": "GSO ISO 13703:2010 — Petroleum and natural gas industries — Design and installation of piping systems on offshore production platforms",
+      "authority": "GCC Standardization Organization (GSO)",
+      "url": "https://www.gso.org.sa/store/standards/GSO%3A536817/GSO%20ISO%2013703%3A2010/?lang=en",
+      "language": "English",
+      "used_for": "Oil-and-gas piping design, materials, operating conditions and sour-service context"
+    },
+    {
+      "id": "ar:ARAMCO-2025-SOURCING-GAPS",
+      "focus": "ar",
+      "title": "2025 Material Sourcing Gaps List",
+      "authority": "Aramco Europe",
+      "url": "https://europe.aramco.com/-/media/aramcoaoc/pdf/2025-sourcing-gaps-list.pdf",
+      "language": "English",
+      "used_for": "High-frequency procurement descriptions for non-slam checks, triple-eccentric butterflies, through-conduit gates, flexible wedges, body materials and end connections"
+    },
+    {
+      "id": "ar:QATARENERGY-QGDL-IML-003",
+      "focus": "ar",
+      "title": "QGDL-IML-003 — Guidelines for Building Permit Technical Submissions to QP-RLC",
+      "authority": "QatarEnergy, Ras Laffan Industrial City",
+      "url": "https://www.qatarenergy.qa/en/Whatwedo/IndustrialCities/Documents/Procedures/DPE/QGDL-IML-003%20Guidelines%20for%20BP%20Technical%20Submissions%20to%20QP-RLC%20Rev02%2026Jul17.pdf",
+      "language": "English",
+      "used_for": "Isolation and tie-in valves, post-indicator assembly, valve chamber, dismantling joint, design pressure and temperature, ductile iron and compliance submissions"
+    },
+    {
+      "id": "ar:QATARENERGY-SUSTAINABILITY-2021",
+      "focus": "ar",
+      "title": "QatarEnergy Sustainability Report 2021",
+      "authority": "QatarEnergy",
+      "url": "https://www.qatarenergy.qa/en/MediaCenter/Publications/QatarEnergy%202021%20Sustainability%20Report.pdf",
+      "language": "English",
+      "used_for": "Pressure safety valve and emergency shutdown valve terminology in process-safety studies"
+    },
+    {
+      "id": "ar:ADNOC-DIGITAL-WELL-CONTROL-2024",
+      "focus": "ar",
+      "title": "أدنوك تُرسي عقداً لتوسعة برنامج تطبيق الحلول الرقمية في الآبار",
+      "authority": "ADNOC",
+      "url": "https://www.adnoc.ae/ar/news-and-media/press-releases/2024/adnoc-awards-920-million-contract-to-extend-aipowered",
+      "language": "Arabic",
+      "used_for": "Official Gulf Arabic wording for digital control valves, measuring equipment, wells and pipelines"
+    },
+    {
+      "id": "ar:UNESCWA-CORRESPONDENCE-GUIDE",
+      "focus": "ar",
+      "title": "United Nations Correspondence Manual and ESCWA editorial resources",
+      "authority": "United Nations Economic and Social Commission for Western Asia (ESCWA)",
+      "url": "https://guides.unescwa.org/webgover/standards-documents",
+      "language": "English and Arabic",
+      "used_for": "Formal Arabic correspondence register and non-literal business-email phrasing"
+    },
+    {
+      "id": "ar:UNIDO-ARABIC-CORRESPONDENCE-2023",
+      "focus": "ar",
+      "title": "IDB.51/13 — Official Arabic correspondence to UNIDO",
+      "authority": "United Nations Industrial Development Organization (UNIDO)",
+      "url": "https://documents.un.org/api/symbol/access?l=ar&s=IDB.51%2F13&t=pdf",
+      "language": "Arabic, original correspondence context",
+      "used_for": "Attested formal constructions such as يرجى التكرم and polite request/consideration register"
+    }
+  ],
+  "category_source_refs": {
+    "business_phrase": [
+      "zh-en:bc_email",
+      "zh-en:gcs_email",
+      "ru:hse_business_correspondence",
+      "ru:hse_business_strategy",
+      "ar:UNESCWA-CORRESPONDENCE-GUIDE",
+      "ar:UNIDO-ARABIC-CORRESPONDENCE-2023",
+      "zh-en:bc_enquiries",
+      "ru:hse_email_ethics",
+      "zh-en:govuk_email"
+    ],
+    "inspection": [
+      "zh-en:api6d",
+      "zh-en:iso17292",
+      "ru:gost34293",
+      "ru:gost33257",
+      "ar:SASO-PRESSURE-EQUIPMENT-2025",
+      "ar:GSO-ISO-13703-2010",
+      "zh-en:gb13927",
+      "zh-en:iso5208",
+      "ru:gost24856",
+      "zh-en:api6dguide",
+      "zh-en:iso10497",
+      "ar:ARAMCO-2025-SOURCING-GAPS"
+    ],
+    "valve_type": [
+      "zh-en:gb2025notice",
+      "zh-en:api6d",
+      "ru:gost24856",
+      "ru:gost33423",
+      "ar:ARAMCO-2025-SOURCING-GAPS",
+      "ar:GSO-ISO-13703-2010",
+      "zh-en:gb21465",
+      "zh-en:gb26481",
+      "ru:gost12_2_063",
+      "ar:SASO-PRESSURE-EQUIPMENT-2025",
+      "zh-en:gb12238",
+      "ar:QATARENERGY-SUSTAINABILITY-2021",
+      "ru:gost33852",
+      "ru:omk_valve_catalog",
+      "zh-en:iso17292",
+      "ru:gost34293",
+      "ar:ADNOC-DIGITAL-WELL-CONTROL-2024",
+      "zh-en:asmeb1634",
+      "ru:gost33259"
+    ],
+    "connection": [
+      "zh-en:iso10434",
+      "zh-en:iso17292",
+      "zh-en:asmeb1634",
+      "ru:gost24856",
+      "ru:gost33259",
+      "ru:omk_valve_catalog",
+      "ar:ARAMCO-2025-SOURCING-GAPS",
+      "ar:GSO-ISO-13703-2010"
+    ],
+    "design": [
+      "zh-en:gb2025notice",
+      "zh-en:gb12224",
+      "ru:gost34294",
+      "ru:gost34293",
+      "ru:omk_valve_catalog",
+      "ar:ARAMCO-2025-SOURCING-GAPS",
+      "ar:SASO-PRESSURE-EQUIPMENT-2025",
+      "ru:gost24856",
+      "zh-en:iso5752",
+      "ar:GSO-EN-558-2021",
+      "zh-en:asmeb1634",
+      "ru:gost33259",
+      "ar:GSO-ISO-13703-2010",
+      "ar:QATARENERGY-QGDL-IML-003",
+      "zh-en:gb12230"
+    ],
+    "operator": [
+      "zh-en:iso5211",
+      "zh-en:api6d",
+      "ru:gost24856",
+      "ru:omk_valve_catalog",
+      "ar:GSO-ISO-13703-2010",
+      "ru:gost34610",
+      "ar:ADNOC-DIGITAL-WELL-CONTROL-2024",
+      "zh-en:gb21465",
+      "zh-en:iso5210",
+      "ar:ARAMCO-2025-SOURCING-GAPS",
+      "ar:QATARENERGY-SUSTAINABILITY-2021"
+    ],
+    "component": [
+      "zh-en:iso17292",
+      "zh-en:api6d",
+      "ru:gost34293",
+      "ru:omk_valve_catalog",
+      "ar:ARAMCO-2025-SOURCING-GAPS",
+      "zh-en:api6dguide",
+      "ar:GSO-ISO-13703-2010",
+      "zh-en:gb21465",
+      "ar:SASO-PRESSURE-EQUIPMENT-2025",
+      "ru:gost24856",
+      "ar:QATARENERGY-QGDL-IML-003"
+    ],
+    "requirement": [
+      "zh-en:api6d",
+      "zh-en:gb24919",
+      "ru:gost33857",
+      "ru:gost34293",
+      "ru:eaeu_tr032",
+      "ar:SASO-PRESSURE-EQUIPMENT-2025",
+      "ar:ARAMCO-2025-SOURCING-GAPS",
+      "ru:gost12_2_063",
+      "ru:gost34294",
+      "ar:QATARENERGY-QGDL-IML-003",
+      "zh-en:asmeb1634",
+      "ar:GSO-ISO-13703-2010"
+    ]
+  },
+  "terms": [
+    [
+      "A kind reminder",
+      "友情提醒",
+      "Хотели бы напомнить о данном вопросе.",
+      "نود تذكيركم بكل لطف بأن",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Antistatic Continuity Test",
+      "防静电连续性试验",
+      "проверка электрической непрерывности антистатической цепи",
+      "اختبار الاستمرارية المضادة للكهرباء الساكنة",
+      "inspection",
+      "valve"
+    ],
+    [
+      "Axial Flow Check Valve",
+      "轴流式止回阀",
+      "осесимметричный обратный клапан",
+      "صمام عدم رجوع بالتدفق المحوري",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Backseat Test",
+      "上密封试验",
+      "испытание на герметичность верхнего уплотнения",
+      "اختبار المقعد الخلفي",
+      "inspection",
+      "valve"
+    ],
+    [
+      "Bellows Seal Globe Valve",
+      "波纹管密封截止阀",
+      "запорный клапан с сильфонным уплотнением",
+      "صمام غلوب محكم بمنفاخ معدني",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Butt-welding End",
+      "对焊端",
+      "конец под приварку встык",
+      "طرف لحام تناكبي",
+      "connection",
+      "always"
+    ],
+    [
+      "Carbon Steel Casting",
+      "碳素钢铸件",
+      "отливка из углеродистой стали",
+      "مسبوكات من الفولاذ الكربوني",
+      "design",
+      "valve"
+    ],
+    [
+      "Carbon Steel Forging",
+      "碳素钢锻件",
+      "поковка из углеродистой стали",
+      "مطروقات من الفولاذ الكربوني",
+      "design",
+      "valve"
+    ],
+    [
+      "Cavity Relief Test",
+      "中腔泄压试验",
+      "испытание системы сброса давления из полости корпуса",
+      "اختبار تنفيس تجويف الجسم",
+      "inspection",
+      "valve"
+    ],
+    [
+      "Could you confirm receipt",
+      "烦请确认收悉",
+      "Просим подтвердить получение.",
+      "يرجى تأكيد الاستلام",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Could you please let us know",
+      "烦请告知",
+      "Просим сообщить",
+      "يرجى التكرم بإفادتنا",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Double-acting Actuator",
+      "双作用执行机构",
+      "привод двустороннего действия",
+      "مشغّل مزدوج الفعل",
+      "operator",
+      "always"
+    ],
+    [
+      "Double-offset Butterfly Valve",
+      "双偏心蝶阀",
+      "дисковый затвор с двойным эксцентриситетом",
+      "صمام فراشة مزدوج اللامركزية",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Emergency Shutdown Valve",
+      "紧急切断阀",
+      "клапан аварийного отключения",
+      "صمام الإغلاق الطارئ",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Face-to-face Dimension",
+      "结构长度",
+      "строительная длина",
+      "البعد بين الوجهين",
+      "design",
+      "always"
+    ],
+    [
+      "Floating Seat",
+      "浮动阀座",
+      "плавающее седло",
+      "مقعد عائم",
+      "component",
+      "valve"
+    ],
+    [
+      "For your review and approval",
+      "供您审核批准",
+      "Для рассмотрения и утверждения.",
+      "لمراجعتكم واعتمادكم",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Further to our previous email",
+      "关于我们之前的邮件，现进一步说明",
+      "В продолжение нашего предыдущего письма",
+      "إلحاقا برسالتنا الإلكترونية السابقة",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "High-pressure Closure Test",
+      "高压密封试验",
+      "испытание на герметичность затвора высоким давлением",
+      "اختبار الإغلاق بالضغط العالي",
+      "inspection",
+      "always"
+    ],
+    [
+      "I am following up on",
+      "我想跟进一下",
+      "Возвращаюсь к вопросу о",
+      "أتواصل معكم للمتابعة بشأن",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Just a reminder",
+      "提醒一下",
+      "Напоминаем о данном вопросе.",
+      "نود فقط التذكير بأن",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Limit Switch",
+      "限位开关",
+      "концевой выключатель",
+      "مفتاح نهاية المشوار",
+      "operator",
+      "valve"
+    ],
+    [
+      "Linear Actuator",
+      "直行程执行机构",
+      "прямоходный привод",
+      "مشغّل خطي",
+      "operator",
+      "always"
+    ],
+    [
+      "Lined Butterfly Valve",
+      "衬里蝶阀",
+      "дисковый затвор с футеровкой",
+      "صمام فراشة مبطّن",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Low-pressure Closure Test",
+      "低压密封试验",
+      "испытание на герметичность затвора низким давлением",
+      "اختبار الإغلاق بالضغط المنخفض",
+      "inspection",
+      "always"
+    ],
+    [
+      "Manufacturing Record Book",
+      "制造记录册",
+      "комплект производственной документации",
+      "سجل وثائق التصنيع",
+      "requirement",
+      "always"
+    ],
+    [
+      "Multi-turn Actuator",
+      "多回转执行机构",
+      "многооборотный привод",
+      "مشغّل متعدد الدورات",
+      "operator",
+      "always"
+    ],
+    [
+      "Operation and Maintenance Manual",
+      "操作维护手册",
+      "руководство по эксплуатации и техническому обслуживанию",
+      "دليل التشغيل والصيانة",
+      "requirement",
+      "always"
+    ],
+    [
+      "Part-turn Actuator",
+      "部分回转执行机构",
+      "неполноповоротный привод",
+      "مشغّل جزئي الدوران",
+      "operator",
+      "always"
+    ],
+    [
+      "Please do not hesitate to contact us",
+      "如有任何问题，请随时联系我们",
+      "Если у Вас возникнут вопросы, пожалуйста, свяжитесь с нами.",
+      "يرجى عدم التردد في التواصل معنا",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Please find attached",
+      "附件请查收",
+      "Направляем во вложении",
+      "يرجى الاطلاع على المرفق",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Pressure-temperature Rating",
+      "压力-温度额定值",
+      "зависимость допустимого давления от температуры",
+      "تصنيف الضغط ودرجة الحرارة",
+      "design",
+      "always"
+    ],
+    [
+      "Sealant Injection Fitting",
+      "密封脂注入接头",
+      "штуцер подачи уплотнительной смазки",
+      "وصلة حقن مادة مانعة للتسرب",
+      "component",
+      "valve"
+    ],
+    [
+      "Seat Insert",
+      "阀座嵌件",
+      "вставка седла",
+      "بطانة المقعد",
+      "component",
+      "valve"
+    ],
+    [
+      "Self-relieving Seat",
+      "自泄压阀座",
+      "саморазгружающееся седло",
+      "مقعد ذاتي التنفيس",
+      "component",
+      "valve"
+    ],
+    [
+      "Slab Gate Valve",
+      "平板闸阀",
+      "шиберная задвижка с плоским шибером",
+      "صمام بوابة بلوح منزلق",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Socket-welding End",
+      "承插焊端",
+      "конец под приварку в раструб",
+      "طرف لحام بالمقبس",
+      "connection",
+      "always"
+    ],
+    [
+      "Spheroidal Graphite Iron Casting",
+      "球墨铸铁件",
+      "отливка из высокопрочного чугуна с шаровидным графитом",
+      "مسبوكات حديد بجرافيت كروي",
+      "design",
+      "valve"
+    ],
+    [
+      "Spring-return Actuator",
+      "弹簧复位执行机构",
+      "привод с пружинным возвратом",
+      "مشغّل بعودة نابضية",
+      "operator",
+      "always"
+    ],
+    [
+      "Stainless Steel Casting",
+      "不锈钢铸件",
+      "отливка из коррозионно-стойкой стали",
+      "مسبوكات من الفولاذ المقاوم للصدأ",
+      "design",
+      "valve"
+    ],
+    [
+      "Stem Extension",
+      "加长阀杆",
+      "удлинитель шпинделя",
+      "امتداد ساق الصمام",
+      "component",
+      "valve"
+    ],
+    [
+      "Thank you for your cooperation",
+      "感谢您的配合",
+      "Благодарим за сотрудничество.",
+      "نشكر لكم تعاونكم",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Thank you for your patience",
+      "感谢您的耐心等待",
+      "Благодарим за терпение.",
+      "نشكر لكم صبركم",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "This is a gentle reminder",
+      "谨此提醒",
+      "Хотели бы напомнить о нашем предыдущем письме.",
+      "نود التذكير بلطف بأن",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Three-way Ball Valve",
+      "三通球阀",
+      "трехходовой шаровой кран",
+      "صمام كروي ثلاثي المنافذ",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Tilting Disc Check Valve",
+      "斜盘式止回阀",
+      "обратный клапан с наклонным диском",
+      "صمام عدم رجوع بقرص مائل",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Triple-offset Butterfly Valve",
+      "三偏心蝶阀",
+      "дисковый затвор с тройным эксцентриситетом",
+      "صمام فراشة ثلاثي اللامركزية",
+      "valve_type",
+      "always"
+    ],
+    [
+      "V-port Ball Valve",
+      "V形球阀",
+      "шаровой кран с V-образным проходом",
+      "صمام كروي بفتحة على شكل V",
+      "valve_type",
+      "always"
+    ],
+    [
+      "Valve Positioner",
+      "阀门定位器",
+      "позиционер арматуры",
+      "محدّد موضع الصمام",
+      "operator",
+      "always"
+    ],
+    [
+      "Wafer Check Valve",
+      "对夹式止回阀",
+      "межфланцевый обратный клапан",
+      "صمام عدم رجوع رقائقي",
+      "valve_type",
+      "always"
+    ],
+    [
+      "We look forward to hearing from you",
+      "期待您的回复",
+      "Будем ждать Вашего ответа.",
+      "نتطلع إلى تلقي ردكم",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "We would appreciate your prompt reply",
+      "如蒙尽快回复，不胜感激",
+      "Будем признательны за оперативный ответ.",
+      "نقدّر تفضلكم بالرد في أقرب وقت",
+      "business_phrase",
+      "always"
+    ],
+    [
+      "Welding Procedure Specification",
+      "焊接工艺规程",
+      "технологическая инструкция по сварке",
+      "مواصفة إجراء اللحام",
+      "requirement",
+      "always"
+    ]
+  ],
+  "aliases": {
+    "A kind reminder": {
+      "ru": [
+        "Напоминаем о нашем предыдущем письме.",
+        "Просим обратить внимание на наш запрос."
+      ],
+      "ar": [
+        "نرجو التكرم بملاحظة أن",
+        "تذكير ودي بشأن"
+      ]
+    },
+    "Antistatic Continuity Test": {
+      "ru": [
+        "испытание антистатической цепи",
+        "проверка антистатической проводимости",
+        "испытание антистатического устройства"
+      ],
+      "ar": [
+        "اختبار التوصيل المضاد للشحنات الساكنة",
+        "اختبار الاستمرارية الكهربائية للخاصية المضادة للسكون"
+      ]
+    },
+    "Axial Flow Check Valve": {
+      "ru": [
+        "осевой обратный клапан",
+        "аксиальный обратный клапан"
+      ],
+      "ar": [
+        "صمام لا رجعي محوري",
+        "صمام عدم رجوع محوري الجريان"
+      ]
+    },
+    "Backseat Test": {
+      "ru": [
+        "испытание верхнего уплотнения",
+        "проверка герметичности верхнего уплотнения",
+        "испытание обратного уплотнения"
+      ],
+      "ar": [
+        "اختبار إحكام المقعد الخلفي",
+        "فحص المقعد الخلفي"
+      ]
+    },
+    "Bellows Seal Globe Valve": {
+      "ru": [
+        "сильфонный запорный клапан",
+        "вентиль с сильфонным уплотнением"
+      ],
+      "ar": [
+        "صمام غلوب بمانع تسرب منفاخي",
+        "صمام كروي المقعد ذو مانع تسرب بمنفاخ"
+      ]
+    },
+    "Butt-welding End": {
+      "ru": [
+        "патрубок под сварку встык",
+        "приварной встык конец"
+      ],
+      "ar": [
+        "نهاية لحام طرفي",
+        "طرف لحام بات"
+      ]
+    },
+    "Carbon Steel Casting": {
+      "ru": [
+        "углеродистая стальная отливка",
+        "литая углеродистая сталь",
+        "стальное литье из углеродистой стали"
+      ],
+      "ar": [
+        "فولاذ كربوني مصبوب",
+        "قطعة مسبوكة من الصلب الكربوني"
+      ]
+    },
+    "Carbon Steel Forging": {
+      "ru": [
+        "углеродистая стальная поковка",
+        "кованая углеродистая сталь",
+        "углеродистая сталь — поковка"
+      ],
+      "ar": [
+        "فولاذ كربوني مطروق",
+        "قطعة مطروقة من الصلب الكربوني"
+      ]
+    },
+    "Cavity Relief Test": {
+      "ru": [
+        "проверка сброса давления из полости корпуса",
+        "испытание разгрузки полости",
+        "проверка самосброса давления из полости"
+      ],
+      "ar": [
+        "اختبار تخفيف ضغط التجويف",
+        "اختبار تصريف ضغط حجرة الصمام"
+      ]
+    },
+    "Could you confirm receipt": {
+      "ru": [
+        "Пожалуйста, подтвердите получение.",
+        "Будем признательны за подтверждение получения."
+      ],
+      "ar": [
+        "هل تتفضلون بتأكيد الاستلام",
+        "نرجو إشعارنا باستلامكم"
+      ]
+    },
+    "Could you please let us know": {
+      "ru": [
+        "Пожалуйста, сообщите нам",
+        "Будем признательны, если Вы сообщите"
+      ],
+      "ar": [
+        "هل تتفضلون بإبلاغنا",
+        "نرجو موافاتنا بـ"
+      ]
+    },
+    "Double-acting Actuator": {
+      "ru": [
+        "двухсторонний пневмопривод",
+        "пневмопривод двойного действия"
+      ],
+      "ar": [
+        "مشغل ثنائي الفعل",
+        "مشغل مزدوج التأثير"
+      ]
+    },
+    "Double-offset Butterfly Valve": {
+      "ru": [
+        "двухэксцентриковый дисковый затвор",
+        "двухэксцентриковый затвор"
+      ],
+      "ar": [
+        "صمام فراشة مزدوج الإزاحة",
+        "صمام فراشي ثنائي التعويض"
+      ]
+    },
+    "Emergency Shutdown Valve": {
+      "ru": [
+        "аварийный отсечной клапан",
+        "отсечной клапан ESD",
+        "клапан ESD"
+      ],
+      "ar": [
+        "صمام الإيقاف في حالات الطوارئ",
+        "صمام عزل طارئ"
+      ]
+    },
+    "Face-to-face Dimension": {
+      "ru": [
+        "монтажная длина",
+        "длина между торцами"
+      ],
+      "ar": [
+        "مسافة وجه إلى وجه",
+        "طول وجه لوجه"
+      ]
+    },
+    "Floating Seat": {
+      "ru": [
+        "подвижное седло",
+        "плавающее седло шара"
+      ],
+      "ar": [
+        "حلقة مقعد عائمة",
+        "مقعد حر الحركة"
+      ]
+    },
+    "For your review and approval": {
+      "ru": [
+        "На рассмотрение и согласование.",
+        "Просим рассмотреть и утвердить."
+      ],
+      "ar": [
+        "للاطلاع والموافقة",
+        "يرجى المراجعة والاعتماد"
+      ]
+    },
+    "Further to our previous email": {
+      "ru": [
+        "Возвращаясь к нашему предыдущему письму",
+        "Дополнительно к нашему предыдущему письму"
+      ],
+      "ar": [
+        "بالإشارة إلى رسالتنا السابقة",
+        "متابعة لرسالتنا السابقة"
+      ]
+    },
+    "High-pressure Closure Test": {
+      "ru": [
+        "испытание затвора при высоком давлении",
+        "проверка герметичности затвора высоким давлением",
+        "высоконапорное испытание затвора"
+      ],
+      "ar": [
+        "اختبار إحكام المقعد بالضغط العالي",
+        "اختبار الغلق عالي الضغط"
+      ]
+    },
+    "I am following up on": {
+      "ru": [
+        "Хотел бы уточнить статус",
+        "Повторно обращаюсь по вопросу"
+      ],
+      "ar": [
+        "أود المتابعة بخصوص",
+        "أكتب إليكم للمتابعة بشأن"
+      ]
+    },
+    "Just a reminder": {
+      "ru": [
+        "Хотели бы напомнить.",
+        "Кратко напоминаем о нашем запросе."
+      ],
+      "ar": [
+        "للتذكير فقط",
+        "مجرد تذكير بشأن"
+      ]
+    },
+    "Limit Switch": {
+      "ru": [
+        "выключатель конечного положения",
+        "концевик"
+      ],
+      "ar": [
+        "مفتاح حدي",
+        "مفتاح تحديد نهاية الحركة"
+      ]
+    },
+    "Linear Actuator": {
+      "ru": [
+        "линейный привод",
+        "прямоходный исполнительный механизм"
+      ],
+      "ar": [
+        "مشغل بحركة خطية",
+        "مشغلات خطية"
+      ]
+    },
+    "Lined Butterfly Valve": {
+      "ru": [
+        "футерованный дисковый затвор",
+        "дисковый затвор с внутренней облицовкой"
+      ],
+      "ar": [
+        "صمام فراشي ذو بطانة",
+        "صمام فراشة مبطن بالكامل"
+      ]
+    },
+    "Low-pressure Closure Test": {
+      "ru": [
+        "испытание затвора при низком давлении",
+        "проверка герметичности затвора низким давлением",
+        "низконапорное испытание затвора"
+      ],
+      "ar": [
+        "اختبار إحكام المقعد بالضغط المنخفض",
+        "اختبار الغلق منخفض الضغط"
+      ]
+    },
+    "Manufacturing Record Book": {
+      "ru": [
+        "досье изготовителя",
+        "комплект отчетной документации по изготовлению",
+        "книга производственных записей",
+        "MRB"
+      ],
+      "ar": [
+        "ملف سجلات التصنيع",
+        "كتاب سجل التصنيع"
+      ]
+    },
+    "Multi-turn Actuator": {
+      "ru": [
+        "многооборотный электропривод"
+      ],
+      "ar": [
+        "مشغل متعدد اللفات",
+        "مشغلات متعددة الدورات"
+      ]
+    },
+    "Operation and Maintenance Manual": {
+      "ru": [
+        "руководство по эксплуатации и ТО",
+        "инструкция по эксплуатации и техническому обслуживанию",
+        "руководство O&M"
+      ],
+      "ar": [
+        "كتيب التشغيل والصيانة",
+        "دليل الاستخدام والصيانة"
+      ]
+    },
+    "Part-turn Actuator": {
+      "ru": [
+        "частично-поворотный привод",
+        "четвертьоборотный привод"
+      ],
+      "ar": [
+        "مشغل محدود الزاوية",
+        "مشغل ربع دورة"
+      ]
+    },
+    "Please do not hesitate to contact us": {
+      "ru": [
+        "Пожалуйста, обращайтесь к нам по любым вопросам.",
+        "Мы всегда готовы ответить на Ваши вопросы."
+      ],
+      "ar": [
+        "لا تترددوا في الاتصال بنا",
+        "نحن على استعداد للإجابة عن أي استفسار"
+      ]
+    },
+    "Please find attached": {
+      "ru": [
+        "Во вложении направляем",
+        "К письму прилагается",
+        "Пожалуйста, ознакомьтесь с приложенным файлом"
+      ],
+      "ar": [
+        "مرفق طيه",
+        "نرفق لكم"
+      ]
+    },
+    "Pressure-temperature Rating": {
+      "ru": [
+        "давление-температура",
+        "температурно-давленческая характеристика",
+        "номинальные параметры PN/T"
+      ],
+      "ar": [
+        "حدود الضغط والحرارة",
+        "معدل الضغط ودرجة الحرارة"
+      ]
+    },
+    "Sealant Injection Fitting": {
+      "ru": [
+        "инъекционный штуцер",
+        "фитинг подачи герметика",
+        "штуцер набивки герметика"
+      ],
+      "ar": [
+        "فتحة حقن مانع التسرب",
+        "وصلة حقن مادة الإحكام"
+      ]
+    },
+    "Seat Insert": {
+      "ru": [
+        "вкладыш седла",
+        "уплотнительная вставка седла"
+      ],
+      "ar": [
+        "حشوة المقعد",
+        "حلقة إدخال المقعد"
+      ]
+    },
+    "Self-relieving Seat": {
+      "ru": [
+        "самосбрасывающее седло",
+        "седло с самосбросом давления"
+      ],
+      "ar": [
+        "مقعد ذاتي تخفيف الضغط",
+        "مقعد يخفف الضغط تلقائيا"
+      ]
+    },
+    "Slab Gate Valve": {
+      "ru": [
+        "плоскопараллельная шиберная задвижка",
+        "слябовая задвижка"
+      ],
+      "ar": [
+        "صمام بوابي من نوع البلاطة",
+        "صمام بوابة سلاب"
+      ]
+    },
+    "Socket-welding End": {
+      "ru": [
+        "конец под раструбную сварку",
+        "присоединение под муфтовую сварку"
+      ],
+      "ar": [
+        "نهاية لحام سوكيت",
+        "طرف ملحوم بالتجويف"
+      ]
+    },
+    "Spheroidal Graphite Iron Casting": {
+      "ru": [
+        "отливка из ВЧШГ",
+        "чугунная отливка с шаровидным графитом",
+        "отливка из шаровидного графитового чугуна"
+      ],
+      "ar": [
+        "حديد زهر كروي الجرافيت",
+        "مسبوكات حديد مطيل"
+      ]
+    },
+    "Spring-return Actuator": {
+      "ru": [
+        "пружинно-возвратный привод",
+        "односторонний привод с возвратной пружиной"
+      ],
+      "ar": [
+        "مشغل بزنبرك رجوع",
+        "مشغل مرتد بنابض"
+      ]
+    },
+    "Stainless Steel Casting": {
+      "ru": [
+        "отливка из нержавеющей стали",
+        "нержавеющая стальная отливка",
+        "литая коррозионно-стойкая сталь"
+      ],
+      "ar": [
+        "فولاذ مقاوم للصدأ مصبوب",
+        "مسبوكات ستانلس ستيل"
+      ]
+    },
+    "Stem Extension": {
+      "ru": [
+        "удлинитель штока",
+        "удлиненный шпиндель"
+      ],
+      "ar": [
+        "وصلة إطالة الساق",
+        "ساق صمام ممتدة"
+      ]
+    },
+    "Thank you for your cooperation": {
+      "ru": [
+        "Спасибо за сотрудничество.",
+        "Благодарим за содействие."
+      ],
+      "ar": [
+        "شكرا لحسن تعاونكم",
+        "نقدّر تعاونكم"
+      ]
+    },
+    "Thank you for your patience": {
+      "ru": [
+        "Спасибо за Ваше терпение.",
+        "Благодарим за ожидание."
+      ],
+      "ar": [
+        "شكرا لتفهمكم وصبركم",
+        "نقدّر لكم سعة صدركم"
+      ]
+    },
+    "This is a gentle reminder": {
+      "ru": [
+        "Напоминаем о нашем предыдущем обращении.",
+        "Позвольте напомнить о данном вопросе."
+      ],
+      "ar": [
+        "تذكير ودي بشأن",
+        "نود تذكيركم بكل لطف بأن"
+      ]
+    },
+    "Three-way Ball Valve": {
+      "ru": [
+        "трёхходовой шаровой кран",
+        "кран шаровой трехходовой"
+      ],
+      "ar": [
+        "صمام كروي ثلاثي الاتجاهات",
+        "صمام كروي بثلاث فتحات"
+      ]
+    },
+    "Tilting Disc Check Valve": {
+      "ru": [
+        "обратный затвор с наклонным диском",
+        "клапан обратный с поворотно-наклонным диском"
+      ],
+      "ar": [
+        "صمام لا رجعي بقرص متأرجح مائل",
+        "صمام عدم رجوع ذو قرص مائل"
+      ]
+    },
+    "Triple-offset Butterfly Valve": {
+      "ru": [
+        "трехэксцентриковый дисковый затвор",
+        "трёхэксцентриковый затвор"
+      ],
+      "ar": [
+        "صمام فراشة ثلاثي الإزاحة",
+        "صمام فراشي ثلاثي التعويض"
+      ]
+    },
+    "V-port Ball Valve": {
+      "ru": [
+        "V-образный шаровой кран",
+        "регулирующий шаровой кран с V-портом"
+      ],
+      "ar": [
+        "صمام كروي بمنفذ V",
+        "صمام كروي بقطاع حرف V"
+      ]
+    },
+    "Valve Positioner": {
+      "ru": [
+        "позиционер клапана",
+        "позиционер пневмопривода"
+      ],
+      "ar": [
+        "مضبط وضع الصمام",
+        "مموضع الصمام"
+      ]
+    },
+    "Wafer Check Valve": {
+      "ru": [
+        "обратный клапан межфланцевого исполнения",
+        "межфланцевый обратный затвор"
+      ],
+      "ar": [
+        "صمام عدم رجوع من نوع ويفر",
+        "صمام لا رجعي بين الفلنجات"
+      ]
+    },
+    "We look forward to hearing from you": {
+      "ru": [
+        "Ожидаем Вашего ответа.",
+        "Будем признательны за обратную связь."
+      ],
+      "ar": [
+        "نتطلع إلى سماع رأيكم",
+        "بانتظار إفادتكم"
+      ]
+    },
+    "We would appreciate your prompt reply": {
+      "ru": [
+        "Просим ответить при первой возможности.",
+        "Будем благодарны за скорый ответ."
+      ],
+      "ar": [
+        "سنكون شاكرين لردكم السريع",
+        "نرجو التكرم بالرد العاجل"
+      ]
+    },
+    "Welding Procedure Specification": {
+      "ru": [
+        "спецификация процедуры сварки",
+        "инструкция по технологии сварки",
+        "технология сварки",
+        "WPS"
+      ],
+      "ar": [
+        "مواصفة إجراءات اللحام",
+        "وثيقة إجراءات اللحام",
+        "مستند WPS"
+      ]
+    }
+  },
+  "qa": {
+    "source_file": "2026-07-30-qa.json",
+    "approved": 53,
+    "review_required": 6,
+    "rejected": 1
+  }
+}

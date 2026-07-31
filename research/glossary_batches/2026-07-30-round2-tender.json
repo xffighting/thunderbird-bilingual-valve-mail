@@ -1,0 +1,1249 @@
+{
+  "batch_id": "2026-07-30-round2-tender",
+  "focus": "Valve-export tendering, supplier onboarding, contract security and document-submittal terminology",
+  "scope": "Four-language high-value candidates for RFQ/RFP/ITT, technical and commercial bids, supplier prequalification, Gulf energy-project tender documents, contract guarantees, Incoterms and vendor-document workflows. English keys were checked case-insensitively against both production glossaries and all pre-existing research batches.",
+  "sources": [
+    {
+      "id": "WORLD-BANK-RFB-TWO-ENVELOPE-2025",
+      "title": "Standard Procurement Document — Request for Bids, Goods, Two-Envelope Bidding Process and Framework Agreements",
+      "authority": "World Bank",
+      "url": "https://documents1.worldbank.org/curated/en/099249111042516085/pdf/IDU-98db112b-116a-4324-a32a-5de7a8f263e6.pdf",
+      "languages": ["en"],
+      "used_for": "Request for bids, technical and financial proposals, two-envelope process, instructions to bidders, bid data sheet, price schedules, framework agreements and award terminology"
+    },
+    {
+      "id": "WORLD-BANK-RFB-WORKS-2017",
+      "title": "Standard Procurement Document — Request for Bids, Works, without Prequalification",
+      "authority": "World Bank",
+      "url": "https://thedocs.worldbank.org/en/doc/459941509642870771-0290022017/render/SPDRequestforBidsWORKSwithoutprequalificationOCT2017.pdf",
+      "languages": ["en"],
+      "used_for": "Bidding documents, instructions, submission deadlines, bid validity, performance security and contract conditions"
+    },
+    {
+      "id": "UNCITRAL-PROCUREMENT-GLOSSARY-EN",
+      "title": "Glossary of procurement-related terms used in the UNCITRAL Model Law on Public Procurement",
+      "authority": "United Nations Commission on International Trade Law (UNCITRAL)",
+      "url": "https://uncitral.un.org/sites/uncitral.un.org/files/media-documents/uncitral/en/glossary-e.pdf",
+      "languages": ["en"],
+      "used_for": "Internationally harmonized procurement concepts, submissions, solicitation documents, qualification, award and framework agreements"
+    },
+    {
+      "id": "UNCITRAL-PROCUREMENT-GLOSSARY-ZH",
+      "title": "《贸易法委员会公共采购示范法》中使用的采购相关术语表",
+      "authority": "联合国国际贸易法委员会（UNCITRAL）",
+      "url": "https://uncitral.un.org/sites/default/files/media-documents/uncitral/zh/glossary-c.pdf",
+      "languages": ["zh"],
+      "used_for": "Official Chinese procurement terminology and distinctions among submission, tender security, qualification, evaluation and contract award"
+    },
+    {
+      "id": "UNCITRAL-PROCUREMENT-RU",
+      "title": "Закупки и публично-частное партнерство",
+      "authority": "Комиссия Организации Объединенных Наций по праву международной торговли (ЮНСИТРАЛ)",
+      "url": "https://uncitral.un.org/ru/texts/procurement",
+      "languages": ["ru"],
+      "used_for": "Official Russian public-procurement register and contract-award terminology"
+    },
+    {
+      "id": "UN-PROCUREMENT-AR-DEBRIEFING",
+      "title": "أسئلة شائعة حول التظلمات المتعلقة بالإحاطات والمشتريات",
+      "authority": "United Nations Procurement Division",
+      "url": "https://www.un.org/procurement/ar/debriefing-and-procurement-challenges-faq",
+      "languages": ["ar"],
+      "used_for": "Official Arabic for request for proposals, invitation to bid, bidder, unsuccessful offer, contract award, notification and procurement challenge"
+    },
+    {
+      "id": "UN-PROCUREMENT-MULTILINGUAL-A75",
+      "title": "A/75/5/Add.8 — Official UN procurement reporting",
+      "authority": "United Nations",
+      "url": "https://digitallibrary.un.org/record/3877419/files/A_75_5_Add.8-AR.pdf?ln=ar",
+      "languages": ["ar", "en", "ru", "zh"],
+      "used_for": "Parallel official-language terminology for RFQ, RFP, invitation to bid, vendor, long-term agreement and award"
+    },
+    {
+      "id": "QATARENERGY-VENDOR-REGISTRATION-EN",
+      "title": "Vendor Registration",
+      "authority": "QatarEnergy",
+      "url": "https://www.qatarenergy.qa/en/SupplyManagement/Pages/Vendorregistration.aspx",
+      "languages": ["en"],
+      "used_for": "Vendor registration, prospective supplier, SAP Vendor Code, ITT documentation, qualification and prequalification"
+    },
+    {
+      "id": "QATARENERGY-VENDOR-REGISTRATION-AR",
+      "title": "تسجيل الموردين",
+      "authority": "قطر للطاقة",
+      "url": "https://www.qatarenergy.qa/ar/SupplyManagement/Pages/Vendorregistration.aspx",
+      "languages": ["ar"],
+      "used_for": "Official Gulf Arabic for supplier registration, SAP vendor code, invitations to tender, bid submission, evaluation and award"
+    },
+    {
+      "id": "QATARENERGY-HOW-TO-TENDER-EN",
+      "title": "How to Tender — Contracts Department",
+      "authority": "QatarEnergy",
+      "url": "https://www.qatarenergy.qa/en/SupplyManagement/Tenders/Pages/Howtotendercontractsdepartment.aspx",
+      "languages": ["en"],
+      "used_for": "Invitation to tender, instructions to tenderers, tender documents, provisional bank guarantee, commercial registration, submission and written notification of award"
+    },
+    {
+      "id": "QATARENERGY-HOW-TO-TENDER-AR",
+      "title": "كيفية المشاركة في المناقصات — قسم العقود",
+      "authority": "قطر للطاقة",
+      "url": "https://www.qatarenergy.qa/ar/SupplyManagement/Tenders/Pages/Howtotendercontractsdepartment.aspx",
+      "languages": ["ar"],
+      "used_for": "Official Gulf Arabic for tender documents, tenderers, submission, tender bond, commercial registration, award and contract"
+    },
+    {
+      "id": "QATARENERGY-TECHNICAL-SUBMISSIONS",
+      "title": "QGDL-IML-003 — Guidelines for Building Permit Technical Submissions to QP-RLC",
+      "authority": "QatarEnergy, Ras Laffan Industrial City",
+      "url": "https://www.qatarenergy.qa/en/Whatwedo/IndustrialCities/Documents/Procedures/DPE/QGDL-IML-003%20Guidelines%20for%20BP%20Technical%20Submissions%20to%20QP-RLC%20Rev02%2026Jul17.pdf",
+      "languages": ["en"],
+      "used_for": "Technical compliance statements, document submission, review, approval, checklists, drawings and project-owner interfaces"
+    },
+    {
+      "id": "ADNOC-SUPPLIER-REGISTRATION",
+      "title": "ADNOC Supplier Hub — Registration",
+      "authority": "ADNOC",
+      "url": "https://supplierhub.adnoc.ae/services/registration",
+      "languages": ["en", "ar"],
+      "used_for": "Supplier registration request, profile questionnaire, Integrity Due Diligence, prequalification, supplier type and clarification"
+    },
+    {
+      "id": "ADNOC-REGISTRATION-MANUAL",
+      "title": "ADNOC Supplier Hub Registration User Manual",
+      "authority": "ADNOC",
+      "url": "https://supplierhub.adnoc.ae/assets/content/services/registration/Registration%20User%20Manual.pdf",
+      "languages": ["en"],
+      "used_for": "Supplier registration and prequalification workflow terminology"
+    },
+    {
+      "id": "ARAMCO-SUPPLIER-REGISTRATION-EN",
+      "title": "Become a Supplier",
+      "authority": "Saudi Aramco",
+      "url": "https://www.aramco.com/en/what-we-do/suppliers/become-a-supplier",
+      "languages": ["en"],
+      "used_for": "Supplier registration, qualification, manufacturer type, commercial registration, authorized signatory and iktva/local-value requirements"
+    },
+    {
+      "id": "ARAMCO-SUPPLIER-REGISTRATION-AR",
+      "title": "الانضمام إلى قائمة الموردين",
+      "authority": "أرامكو السعودية",
+      "url": "https://www.aramco.com/ar/what-we-do/suppliers/become-a-supplier",
+      "languages": ["ar"],
+      "used_for": "Official Saudi Arabic for supplier registration, qualification, manufacturer, commercial registration certificate, authorized signatory and local-value program"
+    },
+    {
+      "id": "ICC-INCOTERMS-2020",
+      "title": "Incoterms 2020 — Practical guidance on C and D rules",
+      "authority": "International Chamber of Commerce (ICC)",
+      "url": "https://academy.iccwbo.org/incoterms/article/incoterms-2020-c-or-d-rules/",
+      "languages": ["en"],
+      "used_for": "Incoterms 2020, named place of destination, port of shipment, delivery point and risk transfer"
+    },
+    {
+      "id": "ICC-GUARANTEES",
+      "title": "Key trade finance products — Bank guarantees and their functions",
+      "authority": "International Chamber of Commerce (ICC)",
+      "url": "https://academy.iccwbo.org/trade-finance/article/key-trade-finance-products-definitions-and-use-cases/",
+      "languages": ["en"],
+      "used_for": "Bid/tender, advance-payment, performance, retention/warranty and parent-company-style contract security distinctions"
+    },
+    {
+      "id": "ICC-DOCUMENTARY-CREDITS",
+      "title": "Documentary credits — Rules, guidelines and terminology",
+      "authority": "International Chamber of Commerce (ICC)",
+      "url": "https://academy.iccwbo.org/international-trade/article/documentary-credits-rules-guidelines-terminology/",
+      "languages": ["en"],
+      "used_for": "Letter of credit/documentary credit terminology and its distinction from demand guarantees"
+    }
+  ],
+  "entries": [
+    {
+      "en": "Request for Proposal",
+      "zh": "征求建议书",
+      "ru": "запрос предложений",
+      "ar": "طلب تقديم العروض",
+      "category": "tender_method",
+      "context": "Formal solicitation where the buyer evaluates technical approach and commercial terms, not price alone; RFP",
+      "aliases": {
+        "en": ["RFP"],
+        "zh": ["建议书征询书", "征求提案"],
+        "ru": ["ЗП", "запрос на представление предложений"],
+        "ar": ["طلب العروض", "طلب تقديم مقترحات"]
+      },
+      "definition_zh": "采购方邀请供应商提交技术方案、商务条件和价格建议的正式采购文件，通常采用综合评审。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UN-PROCUREMENT-AR-DEBRIEFING", "UN-PROCUREMENT-MULTILINGUAL-A75"]
+    },
+    {
+      "en": "Invitation to Tender",
+      "zh": "投标邀请书",
+      "ru": "приглашение к участию в тендере",
+      "ar": "دعوة للمشاركة في المناقصة",
+      "category": "tender_method",
+      "context": "Owner-issued invitation to selected or registered suppliers to collect documents and submit a tender; ITT",
+      "aliases": {
+        "en": ["ITT", "Tender Invitation"],
+        "zh": ["招标邀请", "投标邀请函"],
+        "ru": ["приглашение к участию в торгах"],
+        "ar": ["دعوة لتقديم عطاء", "الدعوة للمناقصة"]
+      },
+      "definition_zh": "业主向特定或已注册供应商发出的参加招标并提交投标文件的正式邀请。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-VENDOR-REGISTRATION-EN", "QATARENERGY-VENDOR-REGISTRATION-AR", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Invitation for Bids",
+      "zh": "投标邀请函",
+      "ru": "приглашение к подаче конкурсных заявок",
+      "ar": "دعوة لتقديم العطاءات",
+      "category": "tender_method",
+      "context": "Formal invitation used in competitive bidding; IFB",
+      "aliases": {
+        "en": ["IFB", "Invitation to Bid"],
+        "zh": ["招标公告", "投标邀请"],
+        "ru": ["приглашение к участию в торгах"],
+        "ar": ["الدعوة إلى تقديم عطاءات", "دعوة للمناقصين"]
+      },
+      "definition_zh": "采购方向市场或受邀供应商正式发出的竞争性投标邀请，通常用于规格和评审规则较明确的采购。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UN-PROCUREMENT-AR-DEBRIEFING", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Expression of Interest",
+      "zh": "意向表达",
+      "ru": "выражение заинтересованности",
+      "ar": "إبداء الاهتمام",
+      "category": "tender_method",
+      "context": "Early-stage supplier response used to identify interested and potentially qualified firms; EOI",
+      "aliases": {
+        "en": ["EOI"],
+        "zh": ["意向征集", "兴趣函"],
+        "ru": ["заявление о заинтересованности"],
+        "ar": ["خطاب إبداء الاهتمام", "طلب إبداء الاهتمام"]
+      },
+      "definition_zh": "供应商在正式招标前表达参与意愿并提供初步资质信息的文件，不等同于正式投标。",
+      "confidence": "high",
+      "source_ids": ["UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH", "UNCITRAL-PROCUREMENT-RU"]
+    },
+    {
+      "en": "Tender Documents",
+      "zh": "招标文件",
+      "ru": "тендерная документация",
+      "ar": "وثائق المناقصة",
+      "category": "tender_document",
+      "context": "Complete owner-issued package governing tender preparation and submission",
+      "aliases": {
+        "en": ["Bidding Documents", "ITT Documents"],
+        "zh": ["投标邀请文件", "招标资料"],
+        "ru": ["конкурсная документация", "документация о закупке"],
+        "ar": ["مستندات المناقصة", "وثائق الدعوة للمناقصة"]
+      },
+      "definition_zh": "业主发布的完整招标资料包，通常包括投标人须知、技术规范、数据表、合同条件、报价表和提交要求。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR", "WORLD-BANK-RFB-WORKS-2017"]
+    },
+    {
+      "en": "Instructions to Tenderers",
+      "zh": "投标人须知",
+      "ru": "инструкции участникам тендера",
+      "ar": "التعليمات الموجهة إلى مقدمي العطاءات",
+      "category": "tender_document",
+      "context": "Mandatory procedural instructions for preparing, signing, securing and submitting a tender",
+      "aliases": {
+        "en": ["Instructions to Bidders"],
+        "zh": ["投标须知", "投标人指示"],
+        "ru": ["инструкции участникам торгов"],
+        "ar": ["تعليمات مقدمي العطاءات", "تعليمات المناقصين"]
+      },
+      "definition_zh": "规定投标文件组成、签署、密封、截止时间、担保、澄清和提交程序的强制性说明。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR", "WORLD-BANK-RFB-TWO-ENVELOPE-2025"]
+    },
+    {
+      "en": "Bid Data Sheet",
+      "zh": "投标数据表",
+      "ru": "информационная карта конкурсного предложения",
+      "ar": "ورقة بيانات العطاء",
+      "category": "tender_document",
+      "context": "Project-specific data that supplements the general instructions to bidders; BDS",
+      "aliases": {
+        "en": ["BDS"],
+        "zh": ["招标数据表"],
+        "ru": ["информационная карта тендера", "тендерная карта данных"],
+        "ar": ["جدول بيانات العطاء", "ورقة بيانات المناقصة"]
+      },
+      "definition_zh": "对通用投标人须知进行项目化补充的数据表，载明日期、地址、币种、担保、有效期和评审等具体要求。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Technical Bid",
+      "zh": "技术标",
+      "ru": "техническая часть тендерного предложения",
+      "ar": "العطاء الفني",
+      "category": "bid_component",
+      "context": "Technical portion of a tender covering compliance, design, materials, testing, drawings and delivery capability",
+      "aliases": {
+        "en": ["Technical Offer"],
+        "zh": ["技术投标文件"],
+        "ru": ["техническая заявка", "техническое предложение"],
+        "ar": ["العرض الفني", "الجزء الفني من العطاء"]
+      },
+      "definition_zh": "投标文件中说明产品技术符合性、设计、材料、检验、文件和供货能力的部分，通常不应包含价格。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "QATARENERGY-HOW-TO-TENDER-EN", "UN-PROCUREMENT-AR-DEBRIEFING"]
+    },
+    {
+      "en": "Commercial Bid",
+      "zh": "商务标",
+      "ru": "коммерческая часть тендерного предложения",
+      "ar": "العرض التجاري",
+      "category": "bid_component",
+      "context": "Commercial portion containing prices and contractual terms; owner usage may call it financial proposal",
+      "aliases": {
+        "en": ["Commercial Offer"],
+        "zh": ["商务投标文件"],
+        "ru": ["коммерческое предложение"],
+        "ar": ["العطاء التجاري", "الجزء التجاري من العطاء"]
+      },
+      "definition_zh": "投标文件中包含价格、付款、交货、贸易术语、有效期和商务条件的部分；部分业主称为财务建议书。",
+      "confidence": "medium",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "QATARENERGY-HOW-TO-TENDER-EN", "UN-PROCUREMENT-MULTILINGUAL-A75"]
+    },
+    {
+      "en": "Technical Proposal",
+      "zh": "技术建议书",
+      "ru": "техническое предложение",
+      "ar": "العرض الفني",
+      "category": "bid_component",
+      "context": "World Bank and project-procurement term for the non-price technical part submitted in a separate envelope",
+      "aliases": {
+        "en": ["Technical Submission"],
+        "zh": ["技术方案"],
+        "ru": ["техническая часть предложения"],
+        "ar": ["المقترح الفني", "الجزء الفني"]
+      },
+      "definition_zh": "在双信封或综合评审采购中单独提交的技术方案文件，强调方法、符合性和实施能力。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UN-PROCUREMENT-AR-DEBRIEFING"]
+    },
+    {
+      "en": "Financial Proposal",
+      "zh": "财务建议书",
+      "ru": "финансовое предложение",
+      "ar": "العرض المالي",
+      "category": "bid_component",
+      "context": "Price and financial part of a two-envelope submission",
+      "aliases": {
+        "en": ["Price Proposal"],
+        "zh": ["价格建议书", "财务标"],
+        "ru": ["ценовое предложение", "финансовая часть предложения"],
+        "ar": ["المقترح المالي", "الجزء المالي"]
+      },
+      "definition_zh": "双信封投标中载明价格、费用和财务条件的独立部分，在技术评审完成后按规则开启。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH", "UN-PROCUREMENT-MULTILINGUAL-A75"]
+    },
+    {
+      "en": "Unpriced Commercial Bid",
+      "zh": "不含价格商务标",
+      "ru": "коммерческое предложение без цен",
+      "ar": "العرض التجاري غير المسعّر",
+      "category": "bid_component",
+      "context": "Commercial terms and schedules submitted without any price figures for early review",
+      "aliases": {
+        "en": ["Unpriced Bid", "Unpriced Commercial Offer"],
+        "zh": ["无价格商务标"],
+        "ru": ["неценовая коммерческая часть", "коммерческая заявка без указания цен"],
+        "ar": ["العرض التجاري من دون أسعار", "العطاء التجاري غير المسعّر"]
+      },
+      "definition_zh": "用于先行审查商务条件和偏差、但不显示任何价格数字的商务投标文件。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-HOW-TO-TENDER-EN", "WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UN-PROCUREMENT-AR-DEBRIEFING"]
+    },
+    {
+      "en": "Priced Commercial Bid",
+      "zh": "含价格商务标",
+      "ru": "коммерческое предложение с ценами",
+      "ar": "العرض التجاري المسعّر",
+      "category": "bid_component",
+      "context": "Commercial bid containing unit prices, totals and financial conditions",
+      "aliases": {
+        "en": ["Priced Bid", "Priced Commercial Offer"],
+        "zh": ["价格商务标"],
+        "ru": ["ценовая коммерческая часть"],
+        "ar": ["العرض التجاري المتضمن الأسعار", "العطاء التجاري المسعّر"]
+      },
+      "definition_zh": "包含单价、总价和财务条件的商务标，需按招标文件要求与技术标隔离提交。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-HOW-TO-TENDER-EN", "WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UN-PROCUREMENT-AR-DEBRIEFING"]
+    },
+    {
+      "en": "Two-envelope Bidding Process",
+      "zh": "双信封投标程序",
+      "ru": "двухконвертная процедура торгов",
+      "ar": "عملية تقديم العطاءات بنظام المظروفين",
+      "category": "tender_method",
+      "context": "Technical and financial proposals are sealed separately and opened in sequence",
+      "aliases": {
+        "en": ["Two-Envelope Process"],
+        "zh": ["两信封制", "技术商务分封投标"],
+        "ru": ["двухконвертная система подачи заявок"],
+        "ar": ["نظام المظروفين", "عملية المناقصة ذات المظروفين"]
+      },
+      "definition_zh": "技术文件和财务文件分别密封并按规定顺序开启、评审的投标程序。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "WORLD-BANK-RFB-WORKS-2017"]
+    },
+    {
+      "en": "Tender Addendum",
+      "zh": "招标补遗",
+      "ru": "дополнение к тендерной документации",
+      "ar": "ملحق وثائق المناقصة",
+      "category": "tender_document",
+      "context": "Formal owner-issued amendment or supplement that becomes part of the tender documents",
+      "aliases": {
+        "en": ["Addendum to Tender Documents", "Bid Addendum"],
+        "zh": ["招标补充文件", "招标文件修正"],
+        "ru": ["дополнение к документации о закупке", "изменение тендерной документации"],
+        "ar": ["ملحق المناقصة", "تعديل وثائق المناقصة"]
+      },
+      "definition_zh": "招标方在投标截止前正式发布、对原招标文件进行补充或修改并构成其组成部分的文件。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Pre-bid Meeting",
+      "zh": "投标前会议",
+      "ru": "предтендерное совещание",
+      "ar": "اجتماع ما قبل تقديم العطاءات",
+      "category": "tender_process",
+      "context": "Owner-hosted meeting before bid submission to explain requirements and receive questions",
+      "aliases": {
+        "en": ["Pre-tender Meeting"],
+        "zh": ["标前会", "招标前会议"],
+        "ru": ["предконкурсное совещание"],
+        "ar": ["اجتماع ما قبل المناقصة", "الاجتماع التمهيدي للمناقصين"]
+      },
+      "definition_zh": "投标截止前由招标方组织、用于说明要求并集中接收投标人问题的会议。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "QATARENERGY-HOW-TO-TENDER-EN"]
+    },
+    {
+      "en": "Bid Clarification",
+      "zh": "投标澄清",
+      "ru": "разъяснение тендерного предложения",
+      "ar": "استيضاح العطاء",
+      "category": "tender_process",
+      "context": "Post-submission question or response used to clarify a bid without unauthorized material change",
+      "aliases": {
+        "en": ["Tender Clarification"],
+        "zh": ["标后澄清", "投标文件澄清"],
+        "ru": ["разъяснение заявки", "тендерное разъяснение"],
+        "ar": ["إيضاح العطاء", "استفسار بشأن العرض المقدم"]
+      },
+      "definition_zh": "投标提交后，招标方或投标人为解释文件内容而提出和回复的问题，不应借此实质性改变投标。",
+      "confidence": "high",
+      "source_ids": ["UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH", "UN-PROCUREMENT-AR-DEBRIEFING"]
+    },
+    {
+      "en": "Compliance Matrix",
+      "zh": "合规矩阵",
+      "ru": "матрица соответствия",
+      "ar": "مصفوفة الامتثال",
+      "category": "tender_compliance",
+      "context": "Clause-by-clause table mapping tender requirements to bidder response and supporting documents",
+      "aliases": {
+        "en": ["Compliance Table"],
+        "zh": ["逐条响应表", "符合性矩阵"],
+        "ru": ["таблица соответствия", "матрица выполнения требований"],
+        "ar": ["جدول الامتثال", "مصفوفة مطابقة المتطلبات"]
+      },
+      "definition_zh": "按招标条款逐项列明是否符合、响应位置、证明文件和偏差情况的对照表。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-TECHNICAL-SUBMISSIONS", "WORLD-BANK-RFB-TWO-ENVELOPE-2025", "ADNOC-SUPPLIER-REGISTRATION"]
+    },
+    {
+      "en": "Schedule of Deviations",
+      "zh": "偏差表",
+      "ru": "перечень отклонений",
+      "ar": "جدول الانحرافات",
+      "category": "tender_compliance",
+      "context": "Consolidated schedule of all technical and commercial exceptions to tender requirements",
+      "aliases": {
+        "en": ["Deviation Schedule", "List of Exceptions"],
+        "zh": ["偏差清单", "例外事项表"],
+        "ru": ["таблица отклонений", "перечень исключений и оговорок"],
+        "ar": ["قائمة الانحرافات", "جدول الاستثناءات والتحفظات"]
+      },
+      "definition_zh": "集中列明投标文件相对招标要求的全部技术和商务偏差、例外及投标人建议条件的表格。",
+      "confidence": "medium",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "No Deviation Statement",
+      "zh": "无偏差声明",
+      "ru": "заявление об отсутствии отклонений",
+      "ar": "بيان عدم وجود انحرافات",
+      "category": "tender_compliance",
+      "context": "Bidder declaration that the offer contains no exceptions to tender requirements",
+      "aliases": {
+        "en": ["No Exception Statement"],
+        "zh": ["零偏差声明"],
+        "ru": ["декларация об отсутствии отклонений"],
+        "ar": ["إقرار بعدم وجود انحرافات", "بيان عدم التحفظ"]
+      },
+      "definition_zh": "投标人正式确认其投标对招标技术和商务要求不存在未披露偏差或保留的声明。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Scope of Work",
+      "zh": "工作范围",
+      "ru": "объём работ",
+      "ar": "نطاق العمل",
+      "category": "tender_document",
+      "context": "Contractual description of required engineering, supply, inspection, documentation and services; SOW",
+      "aliases": {
+        "en": ["SOW", "Work Scope"],
+        "zh": ["服务范围", "作业范围"],
+        "ru": ["состав работ", "техническое задание"],
+        "ar": ["مجال العمل", "نطاق الأعمال"]
+      },
+      "definition_zh": "界定承包商或供应商需完成的设计、供货、检验、文件和服务责任边界的合同文件。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Technical Specification",
+      "zh": "技术规范书",
+      "ru": "техническая спецификация",
+      "ar": "المواصفات الفنية",
+      "category": "tender_document",
+      "context": "Mandatory product, material, design, testing and documentation requirements",
+      "aliases": {
+        "en": ["Technical Specifications"],
+        "zh": ["技术规格书", "技术要求"],
+        "ru": ["технические требования", "техническое задание"],
+        "ar": ["المواصفة الفنية", "المتطلبات الفنية"]
+      },
+      "definition_zh": "规定阀门产品、材料、设计、制造、检验和文件要求的强制性技术文件。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "ARAMCO-SUPPLIER-REGISTRATION-EN", "QATARENERGY-TECHNICAL-SUBMISSIONS"]
+    },
+    {
+      "en": "Price Schedule",
+      "zh": "价格表",
+      "ru": "таблица цен",
+      "ar": "جدول الأسعار",
+      "category": "bid_component",
+      "context": "Owner-prescribed form for item prices, quantities, currencies, totals and related charges",
+      "aliases": {
+        "en": ["Pricing Schedule"],
+        "zh": ["投标报价表", "价格清单"],
+        "ru": ["ценовая ведомость", "форма ценового предложения"],
+        "ar": ["كشف الأسعار", "جدول التسعير"]
+      },
+      "definition_zh": "按招标方格式填写物料、数量、单价、币种、总价及相关费用的投标表格。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "WORLD-BANK-RFB-WORKS-2017", "UN-PROCUREMENT-MULTILINGUAL-A75"]
+    },
+    {
+      "en": "Bill of Quantities",
+      "zh": "工程量清单",
+      "ru": "ведомость объёмов работ",
+      "ar": "جدول الكميات",
+      "category": "bid_component",
+      "context": "Measured quantities used for tender pricing and contract valuation; BOQ",
+      "aliases": {
+        "en": ["BOQ"],
+        "zh": ["数量清单"],
+        "ru": ["ведомость объёмов", "сметная ведомость"],
+        "ar": ["كشف الكميات", "جدول كميات الأعمال"]
+      },
+      "definition_zh": "列明各项工作或供货项目及其计量数量、供投标人填写价格并用于合同计价的清单。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Bid Submission Deadline",
+      "zh": "投标截止时间",
+      "ru": "крайний срок подачи конкурсных заявок",
+      "ar": "الموعد النهائي لتقديم العطاءات",
+      "category": "tender_process",
+      "context": "Final date and time by which a complete bid must be received",
+      "aliases": {
+        "en": ["Deadline for Bid Submission"],
+        "zh": ["递交投标文件截止时间"],
+        "ru": ["срок окончания подачи заявок", "крайний срок подачи тендерных предложений"],
+        "ar": ["آخر موعد لتقديم العطاءات", "الموعد الختامي لتقديم العطاء"]
+      },
+      "definition_zh": "招标方必须收到完整投标文件的最终日期和时间，逾期提交通常会被拒绝。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Bid Validity Period",
+      "zh": "投标有效期",
+      "ru": "срок действия тендерного предложения",
+      "ar": "فترة سريان العطاء",
+      "category": "tender_process",
+      "context": "Period during which the bidder's offer and commitments remain binding",
+      "aliases": {
+        "en": ["Tender Validity Period"],
+        "zh": ["标书有效期"],
+        "ru": ["срок действия конкурсной заявки"],
+        "ar": ["مدة صلاحية العطاء", "فترة نفاذ العرض"]
+      },
+      "definition_zh": "投标人承诺其投标价格和条件保持有效并可被招标方接受的期限，不等同于普通报价有效期。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Advance Payment Guarantee",
+      "zh": "预付款保函",
+      "ru": "гарантия возврата авансового платежа",
+      "ar": "ضمان الدفعة المقدمة",
+      "category": "contract_security",
+      "context": "Bank or demand guarantee securing repayment of the advance if the supplier fails to perform",
+      "aliases": {
+        "en": ["Advance Payment Bond", "APG"],
+        "zh": ["预付款担保"],
+        "ru": ["гарантия возврата аванса", "авансовая гарантия"],
+        "ar": ["خطاب ضمان الدفعة المقدمة", "ضمان استرداد الدفعة المقدمة"]
+      },
+      "definition_zh": "买方支付预付款后，由银行或担保人出具、在供应商不履约时保障预付款返还的担保。",
+      "confidence": "high",
+      "source_ids": ["ICC-GUARANTEES", "WORLD-BANK-RFB-WORKS-2017", "UN-PROCUREMENT-MULTILINGUAL-A75"]
+    },
+    {
+      "en": "Retention Guarantee",
+      "zh": "保留款保函",
+      "ru": "гарантия возврата удерживаемых сумм",
+      "ar": "ضمان المحتجزات",
+      "category": "contract_security",
+      "context": "Guarantee replacing cash retention or securing obligations during the defects/warranty period",
+      "aliases": {
+        "en": ["Retention Bond"],
+        "zh": ["质保金保函", "留置款保函"],
+        "ru": ["гарантия удержания", "гарантия на сумму удержания"],
+        "ar": ["خطاب ضمان المحتجزات", "ضمان مبلغ الاستقطاع"]
+      },
+      "definition_zh": "用于替代合同保留款或保障缺陷责任期义务的保函；是否等同质保保函须按业主文本判断。",
+      "confidence": "medium",
+      "source_ids": ["ICC-GUARANTEES", "WORLD-BANK-RFB-WORKS-2017"]
+    },
+    {
+      "en": "Warranty Bond",
+      "zh": "质保保函",
+      "ru": "гарантия исполнения гарантийных обязательств",
+      "ar": "ضمان فترة الضمان",
+      "category": "contract_security",
+      "context": "Security for repair, replacement or defect-remedy obligations after delivery or completion",
+      "aliases": {
+        "en": ["Warranty Guarantee", "Maintenance Bond"],
+        "zh": ["质量保证保函", "维修保函"],
+        "ru": ["гарантийное обеспечение", "гарантия на гарантийный период"],
+        "ar": ["ضمان الصيانة", "خطاب ضمان الالتزامات خلال فترة الضمان"]
+      },
+      "definition_zh": "保障供应商在质保期内履行维修、更换和缺陷整改责任的担保，部分业主与保留款保函合并使用。",
+      "confidence": "medium",
+      "source_ids": ["ICC-GUARANTEES", "WORLD-BANK-RFB-WORKS-2017"]
+    },
+    {
+      "en": "Parent Company Guarantee",
+      "zh": "母公司担保",
+      "ru": "гарантия материнской компании",
+      "ar": "ضمان الشركة الأم",
+      "category": "contract_security",
+      "context": "Corporate undertaking by the bidder's parent to support subsidiary performance",
+      "aliases": {
+        "en": ["PCG"],
+        "zh": ["母公司履约担保"],
+        "ru": ["корпоративная гарантия материнской компании"],
+        "ar": ["كفالة الشركة الأم", "تعهد ضمان من الشركة الأم"]
+      },
+      "definition_zh": "由投标人或供应商的母公司出具、承诺支持子公司履行合同义务的公司担保，不等同银行保函。",
+      "confidence": "high",
+      "source_ids": ["ICC-GUARANTEES", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-RU"]
+    },
+    {
+      "en": "Bank Guarantee",
+      "zh": "银行保函",
+      "ru": "банковская гарантия",
+      "ar": "ضمان مصرفي",
+      "category": "contract_security",
+      "context": "Independent bank undertaking securing tender or contract obligations",
+      "aliases": {
+        "en": ["Bank Bond", "Demand Guarantee"],
+        "zh": ["银行担保函"],
+        "ru": ["гарантия банка"],
+        "ar": ["خطاب ضمان بنكي", "ضمان بنكي"]
+      },
+      "definition_zh": "由银行出具、按规定条件向受益人付款的独立担保，可用于投标、履约、预付款或质保等目的。",
+      "confidence": "high",
+      "source_ids": ["ICC-GUARANTEES", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Letter of Credit",
+      "zh": "信用证",
+      "ru": "аккредитив",
+      "ar": "اعتماد مستندي",
+      "category": "trade_finance",
+      "context": "Bank payment undertaking against compliant documents; LC",
+      "aliases": {
+        "en": ["LC", "Documentary Credit"],
+        "zh": ["跟单信用证"],
+        "ru": ["документарный аккредитив"],
+        "ar": ["خطاب اعتماد", "ائتمان مستندي"]
+      },
+      "definition_zh": "银行依据申请人指示，在受益人提交相符单据时履行付款责任的结算工具，不应与违约触发的银行保函混用。",
+      "confidence": "high",
+      "source_ids": ["ICC-DOCUMENTARY-CREDITS", "ICC-GUARANTEES"]
+    },
+    {
+      "en": "Performance Security",
+      "zh": "履约担保",
+      "ru": "обеспечение исполнения контракта",
+      "ar": "ضمان حسن التنفيذ",
+      "category": "contract_security",
+      "context": "Generic procurement-law term for security ensuring contract performance; may be a bond, guarantee or other permitted instrument",
+      "aliases": {
+        "en": ["Contract Performance Security"],
+        "zh": ["合同履约担保"],
+        "ru": ["обеспечение исполнения обязательств"],
+        "ar": ["ضمان التنفيذ", "تأمين حسن التنفيذ"]
+      },
+      "definition_zh": "确保中标人履行合同义务的通用担保概念，形式可能为银行保函、保证金或其他招标文件允许的工具。",
+      "confidence": "medium",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Supplier Registration",
+      "zh": "供应商注册",
+      "ru": "регистрация поставщика",
+      "ar": "تسجيل المورد",
+      "category": "supplier_onboarding",
+      "context": "Creating and approving a supplier record in the owner's procurement system",
+      "aliases": {
+        "en": ["Vendor Registration"],
+        "zh": ["供应商登记"],
+        "ru": ["регистрация продавца", "регистрация контрагента"],
+        "ar": ["تسجيل المورّدين", "قيد المورد"]
+      },
+      "definition_zh": "在业主采购系统中建立并审核供应商主体资料、联系人和必要证照的准入步骤，不代表已获得产品资格。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-VENDOR-REGISTRATION-EN", "QATARENERGY-VENDOR-REGISTRATION-AR", "ARAMCO-SUPPLIER-REGISTRATION-AR"]
+    },
+    {
+      "en": "Vendor Prequalification",
+      "zh": "供应商资格预审",
+      "ru": "предварительная квалификация поставщика",
+      "ar": "التأهيل المسبق للمورد",
+      "category": "supplier_onboarding",
+      "context": "Owner assessment of supplier capability for defined product or service groups before tender eligibility",
+      "aliases": {
+        "en": ["Supplier Prequalification", "Vendor PQ"],
+        "zh": ["供应商预审", "供应商预资格"],
+        "ru": ["предквалификация поставщика"],
+        "ar": ["التأهيل الأولي للمورد", "التأهيل المسبق للمورّدين"]
+      },
+      "definition_zh": "业主在邀请投标前，针对特定产品或服务类别评估供应商技术、质量、财务和履约能力的过程。",
+      "confidence": "high",
+      "source_ids": ["ADNOC-SUPPLIER-REGISTRATION", "QATARENERGY-VENDOR-REGISTRATION-EN", "QATARENERGY-VENDOR-REGISTRATION-AR"]
+    },
+    {
+      "en": "Prequalification Questionnaire",
+      "zh": "资格预审问卷",
+      "ru": "анкета предварительной квалификации",
+      "ar": "استبيان التأهيل المسبق",
+      "category": "supplier_onboarding",
+      "context": "Structured questionnaire collecting legal, financial, technical, quality and manufacturing evidence; PQQ",
+      "aliases": {
+        "en": ["PQQ", "Prequalification Questionnaire Form"],
+        "zh": ["预审调查表"],
+        "ru": ["опросный лист предварительной квалификации"],
+        "ar": ["استمارة التأهيل المسبق", "نموذج استبيان التأهيل"]
+      },
+      "definition_zh": "用于收集供应商法律、财务、技术、质量、制造和业绩资料的结构化预审表。",
+      "confidence": "high",
+      "source_ids": ["ARAMCO-SUPPLIER-REGISTRATION-EN", "ADNOC-REGISTRATION-MANUAL", "ARAMCO-SUPPLIER-REGISTRATION-AR"]
+    },
+    {
+      "en": "SAP Vendor Code",
+      "zh": "SAP供应商代码",
+      "ru": "код поставщика SAP",
+      "ar": "رمز المورد في نظام SAP",
+      "category": "supplier_onboarding",
+      "context": "Unique ERP identifier issued after supplier registration and required for QatarEnergy procurement documents",
+      "aliases": {
+        "en": ["Vendor Code", "SAP Supplier Code"],
+        "zh": ["SAP供应商编号"],
+        "ru": ["SAP-код поставщика"],
+        "ar": ["كود المورد في SAP", "رقم المورد على نظام SAP"]
+      },
+      "definition_zh": "供应商注册获批后由业主ERP系统分配的唯一编号，常是接收RFQ、ITT和订单文件的必要条件。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-VENDOR-REGISTRATION-EN", "QATARENERGY-VENDOR-REGISTRATION-AR", "QATARENERGY-HOW-TO-TENDER-EN"]
+    },
+    {
+      "en": "Approved Vendor List",
+      "zh": "合格供应商名录",
+      "ru": "список одобренных поставщиков",
+      "ar": "قائمة الموردين المعتمدين",
+      "category": "supplier_onboarding",
+      "context": "Owner or project list of suppliers approved for specific commodities; AVL",
+      "aliases": {
+        "en": ["AVL", "Approved Supplier List"],
+        "zh": ["批准供应商清单", "认可供应商名单"],
+        "ru": ["перечень утверждённых поставщиков"],
+        "ar": ["قائمة المورّدين المؤهلين", "قائمة الموردين الموافق عليهم"]
+      },
+      "definition_zh": "业主或项目针对特定物料类别批准可参与供货的供应商名单，注册供应商不一定已进入该名单。",
+      "confidence": "high",
+      "source_ids": ["ADNOC-SUPPLIER-REGISTRATION", "ARAMCO-SUPPLIER-REGISTRATION-EN", "QATARENERGY-VENDOR-REGISTRATION-EN"]
+    },
+    {
+      "en": "Manufacturer Prequalification",
+      "zh": "制造商资格预审",
+      "ru": "предварительная квалификация изготовителя",
+      "ar": "التأهيل المسبق للمصنّع",
+      "category": "supplier_onboarding",
+      "context": "Plant-specific qualification of a manufacturer, including technical review, quality review and factory audit",
+      "aliases": {
+        "en": ["Manufacturer PQ", "Manufacturer Qualification"],
+        "zh": ["工厂资格预审", "制造厂预审"],
+        "ru": ["предквалификация завода-изготовителя"],
+        "ar": ["التأهيل الأولي للمصنع", "تأهيل الشركة المصنّعة"]
+      },
+      "definition_zh": "针对实际生产工厂开展的技术、质量、财务和现场审核，区别于贸易商或一般供应商注册。",
+      "confidence": "high",
+      "source_ids": ["ARAMCO-SUPPLIER-REGISTRATION-EN", "ARAMCO-SUPPLIER-REGISTRATION-AR", "ADNOC-SUPPLIER-REGISTRATION"]
+    },
+    {
+      "en": "Integrity Due Diligence",
+      "zh": "诚信尽职调查",
+      "ru": "комплексная проверка добросовестности",
+      "ar": "العناية الواجبة للنزاهة",
+      "category": "supplier_onboarding",
+      "context": "ADNOC onboarding review covering ownership, sanctions, ethics and integrity risks; IDD",
+      "aliases": {
+        "en": ["IDD"],
+        "zh": ["合规诚信尽调"],
+        "ru": ["проверка деловой добросовестности", "проверка благонадёжности"],
+        "ar": ["الفحص النافي للجهالة بشأن النزاهة", "التحقق من النزاهة"]
+      },
+      "definition_zh": "供应商准入中对所有权、制裁、反腐败、道德和商业诚信风险进行的专项尽职调查。",
+      "confidence": "high",
+      "source_ids": ["ADNOC-SUPPLIER-REGISTRATION", "ADNOC-REGISTRATION-MANUAL"]
+    },
+    {
+      "en": "Supplier Code of Conduct",
+      "zh": "供应商行为准则",
+      "ru": "кодекс поведения поставщиков",
+      "ar": "مدونة قواعد سلوك الموردين",
+      "category": "supplier_onboarding",
+      "context": "Mandatory ethical, legal, labor, environmental and compliance expectations for suppliers",
+      "aliases": {
+        "en": ["Vendor Code of Conduct"],
+        "zh": ["供应商道德准则"],
+        "ru": ["кодекс делового поведения поставщиков"],
+        "ar": ["مدونة سلوك المورّدين", "قواعد السلوك للموردين"]
+      },
+      "definition_zh": "业主要求供应商遵守的道德、反腐败、劳动、环境、安全和合规行为规范。",
+      "confidence": "high",
+      "source_ids": ["ARAMCO-SUPPLIER-REGISTRATION-EN", "ARAMCO-SUPPLIER-REGISTRATION-AR", "QATARENERGY-VENDOR-REGISTRATION-EN"]
+    },
+    {
+      "en": "In-Country Value",
+      "zh": "本地价值贡献",
+      "ru": "доля внутристрановой добавленной стоимости",
+      "ar": "القيمة المحلية المضافة",
+      "category": "local_content",
+      "context": "ADNOC/Gulf metric for value retained in the host economy through local spend, employment and investment; ICV",
+      "aliases": {
+        "en": ["ICV", "Local Value"],
+        "zh": ["国内价值", "本地增值"],
+        "ru": ["локальная добавленная стоимость", "внутристрановая ценность"],
+        "ar": ["برنامج القيمة المحلية المضافة", "القيمة داخل الدولة"]
+      },
+      "definition_zh": "衡量采购在项目所在国形成的本地采购、就业、投资和经济增值的指标；ADNOC称ICV，Aramco对应体系为iktva。",
+      "confidence": "high",
+      "source_ids": ["ADNOC-SUPPLIER-REGISTRATION", "ARAMCO-SUPPLIER-REGISTRATION-EN", "ARAMCO-SUPPLIER-REGISTRATION-AR"]
+    },
+    {
+      "en": "Commercial Registration Certificate",
+      "zh": "商业登记证书",
+      "ru": "свидетельство о коммерческой регистрации",
+      "ar": "شهادة السجل التجاري",
+      "category": "supplier_onboarding",
+      "context": "Government-issued evidence that the company is legally registered to conduct business; CR",
+      "aliases": {
+        "en": ["CR Certificate", "Commercial Registration"],
+        "zh": ["商业注册证", "公司登记证书"],
+        "ru": ["свидетельство о регистрации коммерческой деятельности"],
+        "ar": ["شهادة التسجيل التجاري", "السجل التجاري"]
+      },
+      "definition_zh": "政府签发、证明公司合法登记并获准从事相应经营活动的证书，是海湾业主供应商注册和投标常见必交件。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR", "ARAMCO-SUPPLIER-REGISTRATION-AR"]
+    },
+    {
+      "en": "Authorized Signatory Letter",
+      "zh": "授权签字人函",
+      "ru": "письмо об уполномоченных подписантах",
+      "ar": "خطاب المفوّض بالتوقيع",
+      "category": "supplier_onboarding",
+      "context": "Company letter identifying persons authorized to sign bids, contracts or portal transactions",
+      "aliases": {
+        "en": ["Authorized Signature Letter"],
+        "zh": ["授权签署函", "签字授权书"],
+        "ru": ["письмо о праве подписи", "письмо об уполномоченном лице"],
+        "ar": ["خطاب المخوّل بالتوقيع", "تفويض التوقيع"]
+      },
+      "definition_zh": "公司正式确认哪些人员有权代表其签署投标、合同或采购平台交易文件的授权函。",
+      "confidence": "high",
+      "source_ids": ["ARAMCO-SUPPLIER-REGISTRATION-EN", "ARAMCO-SUPPLIER-REGISTRATION-AR", "WORLD-BANK-RFB-TWO-ENVELOPE-2025"]
+    },
+    {
+      "en": "End User",
+      "zh": "最终用户",
+      "ru": "конечный пользователь",
+      "ar": "المستخدم النهائي",
+      "category": "project_party",
+      "context": "Organization that will operate or consume the supplied valves, which may differ from buyer or EPC contractor",
+      "aliases": {
+        "en": ["Ultimate End User"],
+        "zh": ["终端用户"],
+        "ru": ["конечный заказчик"],
+        "ar": ["الجهة المستخدمة النهائية", "المستفيد النهائي"]
+      },
+      "definition_zh": "最终安装、运行或使用阀门的组织，可能不同于询价方、采购方或EPC承包商。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "QATARENERGY-TECHNICAL-SUBMISSIONS"]
+    },
+    {
+      "en": "Project Owner",
+      "zh": "项目业主",
+      "ru": "владелец проекта",
+      "ar": "مالك المشروع",
+      "category": "project_party",
+      "context": "Entity owning the project and setting ultimate technical and commercial requirements",
+      "aliases": {
+        "en": ["Owner", "Employer", "Company"],
+        "zh": ["业主", "项目公司"],
+        "ru": ["заказчик проекта", "инвестор проекта"],
+        "ar": ["صاحب المشروع", "الجهة المالكة للمشروع"]
+      },
+      "definition_zh": "拥有项目并最终确定技术、商务和批准要求的主体；合同中也可能称Employer或Company，须按文件定义使用。",
+      "confidence": "medium",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-TECHNICAL-SUBMISSIONS", "ICC-GUARANTEES"]
+    },
+    {
+      "en": "EPC Contractor",
+      "zh": "EPC总承包商",
+      "ru": "EPC-подрядчик",
+      "ar": "مقاول الهندسة والتوريد والإنشاء",
+      "category": "project_party",
+      "context": "Contractor responsible for engineering, procurement and construction and often issuing valve RFQs",
+      "aliases": {
+        "en": ["Engineering, Procurement and Construction Contractor"],
+        "zh": ["设计采购施工总承包商"],
+        "ru": ["подрядчик по проектированию, закупкам и строительству"],
+        "ar": ["مقاول EPC", "مقاول التصميم والتوريد والتشييد"]
+      },
+      "definition_zh": "承担项目设计、采购和施工整体责任的总承包商，常代业主向阀门制造商发出询价和技术澄清。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-TECHNICAL-SUBMISSIONS", "UNCITRAL-PROCUREMENT-GLOSSARY-EN"]
+    },
+    {
+      "en": "Letter of Award",
+      "zh": "授标函",
+      "ru": "письмо о присуждении контракта",
+      "ar": "خطاب الترسية",
+      "category": "award_contract",
+      "context": "Formal letter informing the successful bidder that the contract has been awarded; LOA",
+      "aliases": {
+        "en": ["LOA", "Award Letter"],
+        "zh": ["中标函"],
+        "ru": ["письмо о присуждении", "письмо о заключении контракта"],
+        "ar": ["رسالة الترسية", "خطاب منح العقد"]
+      },
+      "definition_zh": "招标方正式通知中标人合同已授予的函件，是否立即形成合同义务取决于招标文件和函件措辞。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "QATARENERGY-HOW-TO-TENDER-EN", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Notification of Award",
+      "zh": "中标通知",
+      "ru": "уведомление о присуждении контракта",
+      "ar": "إشعار الترسية",
+      "category": "award_contract",
+      "context": "Official notification of the procurement award to the successful bidder and sometimes other bidders",
+      "aliases": {
+        "en": ["Notice of Award", "Award Notification"],
+        "zh": ["授标通知书", "中标通知书"],
+        "ru": ["уведомление о результатах присуждения"],
+        "ar": ["إخطار الترسية", "إشعار منح العقد"]
+      },
+      "definition_zh": "正式告知采购授标结果的通知，可发给中标人并按规则通知其他投标人。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UN-PROCUREMENT-AR-DEBRIEFING", "QATARENERGY-HOW-TO-TENDER-AR"]
+    },
+    {
+      "en": "Framework Agreement",
+      "zh": "框架协议",
+      "ru": "рамочное соглашение",
+      "ar": "اتفاقية إطارية",
+      "category": "award_contract",
+      "context": "Agreement establishing terms for future call-off contracts without necessarily guaranteeing quantity",
+      "aliases": {
+        "en": ["FA", "Framework Contract"],
+        "zh": ["采购框架协议"],
+        "ru": ["рамочный договор"],
+        "ar": ["عقد إطاري", "اتفاق إطار"]
+      },
+      "definition_zh": "在一定期限内预先约定价格机制、范围和条件，以便后续下达订单或分合同的协议，通常不保证最低采购量。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-TWO-ENVELOPE-2025", "UN-PROCUREMENT-MULTILINGUAL-A75", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "General Conditions of Contract",
+      "zh": "合同通用条款",
+      "ru": "общие условия контракта",
+      "ar": "الشروط العامة للعقد",
+      "category": "award_contract",
+      "context": "Standard contractual provisions applying across projects; GCC",
+      "aliases": {
+        "en": ["GCC", "General Contract Conditions"],
+        "zh": ["通用合同条件"],
+        "ru": ["общие условия договора"],
+        "ar": ["الشروط التعاقدية العامة", "الأحكام العامة للعقد"]
+      },
+      "definition_zh": "适用于该业主或采购体系多数合同的标准条款，通常由专用条款对项目细节进行补充或修改。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Special Conditions of Contract",
+      "zh": "合同专用条款",
+      "ru": "особые условия контракта",
+      "ar": "الشروط الخاصة للعقد",
+      "category": "award_contract",
+      "context": "Project-specific provisions supplementing or amending the general conditions; SCC",
+      "aliases": {
+        "en": ["SCC", "Particular Conditions of Contract"],
+        "zh": ["专用合同条件", "合同特别条款"],
+        "ru": ["специальные условия договора", "особые условия договора"],
+        "ar": ["الشروط التعاقدية الخاصة", "الأحكام الخاصة للعقد"]
+      },
+      "definition_zh": "针对具体项目补充、细化或修改合同通用条款的项目专用规定。",
+      "confidence": "high",
+      "source_ids": ["WORLD-BANK-RFB-WORKS-2017", "UNCITRAL-PROCUREMENT-GLOSSARY-EN", "UNCITRAL-PROCUREMENT-GLOSSARY-ZH"]
+    },
+    {
+      "en": "Incoterms 2020",
+      "zh": "《国际贸易术语解释通则2020》",
+      "ru": "Инкотермс 2020",
+      "ar": "قواعد إنكوترمز 2020",
+      "category": "trade_delivery",
+      "context": "ICC rules allocating delivery, carriage, customs, costs and risk between seller and buyer",
+      "aliases": {
+        "en": ["Incoterms® 2020"],
+        "zh": ["2020版国际贸易术语"],
+        "ru": ["правила Инкотермс 2020"],
+        "ar": ["مصطلحات التجارة الدولية 2020", "إنكوتيرمز 2020"]
+      },
+      "definition_zh": "ICC发布的国际贸易术语规则，用于明确交货点、运输、保险、清关、费用和风险转移；必须与具体术语及地点一起写明。",
+      "confidence": "high",
+      "source_ids": ["ICC-INCOTERMS-2020"]
+    },
+    {
+      "en": "Named Place of Destination",
+      "zh": "指定目的地",
+      "ru": "поименованное место назначения",
+      "ar": "مكان الوصول المسمّى",
+      "category": "trade_delivery",
+      "context": "Specific destination stated after a C or D Incoterms rule",
+      "aliases": {
+        "en": ["Named Destination"],
+        "zh": ["指定到达地点"],
+        "ru": ["указанное место назначения"],
+        "ar": ["مكان الوجهة المحدد", "المكان المسمى للوصول"]
+      },
+      "definition_zh": "在C组或D组Incoterms术语后明确写出的目的地点；其是否为风险转移点取决于所用术语。",
+      "confidence": "high",
+      "source_ids": ["ICC-INCOTERMS-2020"]
+    },
+    {
+      "en": "Port of Shipment",
+      "zh": "装运港",
+      "ru": "порт отгрузки",
+      "ar": "ميناء الشحن",
+      "category": "trade_delivery",
+      "context": "Port where goods are loaded or delivered for shipment under maritime terms",
+      "aliases": {
+        "en": ["Port of Loading"],
+        "zh": ["起运港", "装货港"],
+        "ru": ["порт погрузки", "порт отправления"],
+        "ar": ["ميناء التحميل", "ميناء الإرسال"]
+      },
+      "definition_zh": "货物装船或交付承运人的起运港；在FOB、CFR、CIF等海运术语中必须准确指定。",
+      "confidence": "high",
+      "source_ids": ["ICC-INCOTERMS-2020"]
+    },
+    {
+      "en": "Document Submittal",
+      "zh": "文件报审",
+      "ru": "представление документации на согласование",
+      "ar": "تقديم المستندات للمراجعة",
+      "category": "document_control",
+      "context": "Submission of a document package for owner/EPC review, comment or approval",
+      "aliases": {
+        "en": ["Document Submission", "Submittal"],
+        "zh": ["文件提交件", "资料报审"],
+        "ru": ["подача документации", "комплект документов на согласование"],
+        "ar": ["تسليم المستندات للاعتماد", "حزمة المستندات المقدمة"]
+      },
+      "definition_zh": "供应商按项目程序提交给业主或EPC进行审查、评论或批准的一次文件报审动作或资料包。",
+      "confidence": "medium",
+      "source_ids": ["QATARENERGY-TECHNICAL-SUBMISSIONS", "WORLD-BANK-RFB-TWO-ENVELOPE-2025"]
+    },
+    {
+      "en": "Document Transmittal",
+      "zh": "文件传递单",
+      "ru": "сопроводительный лист передачи документов",
+      "ar": "مذكرة إحالة المستندات",
+      "category": "document_control",
+      "context": "Controlled cover record identifying documents, revisions, purpose and recipients in a transmission",
+      "aliases": {
+        "en": ["Transmittal", "Document Transmittal Sheet"],
+        "zh": ["文件发送单", "资料传递单"],
+        "ru": ["реестр передачи документов", "сопроводительное письмо к документам"],
+        "ar": ["خطاب إرسال المستندات", "نموذج إحالة الوثائق"]
+      },
+      "definition_zh": "记录本次发送文件的编号、版本、用途、收件方和日期的受控封面单，不等同文件本身。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-TECHNICAL-SUBMISSIONS", "WORLD-BANK-RFB-WORKS-2017"]
+    },
+    {
+      "en": "Supplier Document Register",
+      "zh": "供应商文件清单",
+      "ru": "реестр документов поставщика",
+      "ar": "سجل مستندات المورد",
+      "category": "document_control",
+      "context": "Controlled list of all supplier documents, numbers, revisions, planned dates and review status; SDR",
+      "aliases": {
+        "en": ["SDR", "Vendor Document Register"],
+        "zh": ["供应商文件登记表", "厂商文件清单"],
+        "ru": ["реестр документации поставщика"],
+        "ar": ["قائمة مستندات المورد", "سجل وثائق المورّد"]
+      },
+      "definition_zh": "统一登记供应商全部文件编号、名称、版本、计划日期和审查状态的受控清单。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-TECHNICAL-SUBMISSIONS", "WORLD-BANK-RFB-TWO-ENVELOPE-2025"]
+    },
+    {
+      "en": "Vendor Data Book",
+      "zh": "供应商数据资料册",
+      "ru": "комплект документации поставщика",
+      "ar": "ملف بيانات المورد",
+      "category": "document_control",
+      "context": "Final compiled vendor dossier containing approved drawings, certificates, reports and manuals; VDB",
+      "aliases": {
+        "en": ["VDB", "Vendor Data Dossier"],
+        "zh": ["供应商竣工资料册", "厂商数据包"],
+        "ru": ["итоговое досье поставщика", "комплект исполнительной документации поставщика"],
+        "ar": ["حافظة بيانات المورد", "ملف الوثائق النهائي للمورد"]
+      },
+      "definition_zh": "供货结束时汇编的最终资料包，通常包括批准图纸、材质证书、检验报告、合格证和操作维护手册；与MRB边界按业主定义。",
+      "confidence": "medium",
+      "source_ids": ["QATARENERGY-TECHNICAL-SUBMISSIONS", "WORLD-BANK-RFB-TWO-ENVELOPE-2025"]
+    },
+    {
+      "en": "Document Submission Schedule",
+      "zh": "文件提交计划",
+      "ru": "график предоставления документации",
+      "ar": "جدول تقديم المستندات",
+      "category": "document_control",
+      "context": "Planned dates for initial, revised and final issue of each supplier document",
+      "aliases": {
+        "en": ["Document Submittal Schedule", "Document Delivery Schedule"],
+        "zh": ["文件报审计划", "资料提交进度表"],
+        "ru": ["график подачи документов", "график выдачи документации"],
+        "ar": ["الجدول الزمني لتقديم المستندات", "برنامج تسليم الوثائق"]
+      },
+      "definition_zh": "列明供应商各类文件首次提交、修改版和最终版计划日期的进度表。",
+      "confidence": "high",
+      "source_ids": ["QATARENERGY-TECHNICAL-SUBMISSIONS", "WORLD-BANK-RFB-TWO-ENVELOPE-2025"]
+    }
+  ],
+  "human_review_required": [
+    {
+      "en": "Commercial Bid",
+      "issue": "Some owners use Commercial Bid for all non-technical terms, while World Bank documents use Financial Proposal for the price envelope.",
+      "decision_needed": "Keep both keys and choose the target term from the owner's tender definitions."
+    },
+    {
+      "en": "Schedule of Deviations",
+      "issue": "Gulf Arabic alternates among جدول الانحرافات, جدول الاستثناءات and جدول التحفظات; each can carry a slightly different legal tone.",
+      "decision_needed": "Use the exact owner template heading when available; default to جدول الانحرافات."
+    },
+    {
+      "en": "Retention Guarantee",
+      "issue": "Some projects treat retention guarantee and warranty/maintenance bond as interchangeable; others issue them at different contract milestones.",
+      "decision_needed": "Do not merge with Warranty Bond until the contract security clause is read."
+    },
+    {
+      "en": "Warranty Bond",
+      "issue": "Warranty Bond, Maintenance Bond and retention-release security are not interchangeable in every Gulf owner contract.",
+      "decision_needed": "Confirm the covered obligations and effective period from the contract security clause before selecting the Arabic heading."
+    },
+    {
+      "en": "Performance Security",
+      "issue": "This is a generic procurement-law concept, while Performance Bond is a specific instrument already present in the production/research vocabulary.",
+      "decision_needed": "Retain both only if the runtime can distinguish generic security from a bank bond."
+    },
+    {
+      "en": "In-Country Value",
+      "issue": "ADNOC uses ICV, Saudi Aramco uses iktva, and other Gulf owners use local-content formulas with different certificates.",
+      "decision_needed": "Never replace the owner's program name with another operator's acronym."
+    },
+    {
+      "en": "Project Owner",
+      "issue": "Owner, Employer, Company, Buyer and End User may be different legal entities in EPC tenders.",
+      "decision_needed": "Use the capitalized party name defined in the contract rather than assuming these roles are synonymous."
+    },
+    {
+      "en": "Document Submittal",
+      "issue": "In owner document-control systems, a submittal normally means a controlled package sent for review or approval, not any document delivery.",
+      "decision_needed": "Use the owner's workflow label and distinguish review submittals from final handover dossiers."
+    },
+    {
+      "en": "Vendor Data Book",
+      "issue": "Owner document-control procedures may use VDB, MRB and final dossier for overlapping or different deliverables.",
+      "decision_needed": "Map to the owner's document index before merging with Manufacturing Record Book."
+    }
+  ],
+  "self_check_summary": {
+    "candidate_count": 60,
+    "source_count": 19,
+    "high_confidence_count": 52,
+    "medium_confidence_count": 8,
+    "duplicate_en_keys_case_insensitive": 0,
+    "empty_required_fields": 0,
+    "production_overlap_count": 0,
+    "research_overlap_count": 0,
+    "required_fields": ["en", "zh", "ru", "ar", "category", "context", "definition_zh", "confidence", "source_ids"],
+    "dedup_scope": [
+      "native-host/valve_glossary.json",
+      "native-host/valve_glossary_multilingual.json",
+      "research/glossary_batches/2026-07-30-ar.json",
+      "research/glossary_batches/2026-07-30-merged.json",
+      "research/glossary_batches/2026-07-30-priority.json",
+      "research/glossary_batches/2026-07-30-ru.json",
+      "research/glossary_batches/2026-07-30-zh-en.json"
+    ],
+    "notes": "Comparison is case-insensitive and trims surrounding whitespace. Existing concepts such as RFQ, Bid Bond, Performance Bond, Quotation Validity, Delivery Schedule, Inspection and Test Plan and For Your Reference were intentionally not duplicated."
+  }
+}

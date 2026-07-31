@@ -15,7 +15,7 @@ def main() -> None:
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest = {
         "name": "com.lianggu.mail_translate",
-        "description": "Lianggu offline English to Chinese mail translator",
+        "description": "Lianggu offline English, Russian, and Arabic to Chinese mail translator",
         "path": str(launcher_path),
         "type": "stdio",
         "allowed_extensions": ["game-mail-summary@example.com"],

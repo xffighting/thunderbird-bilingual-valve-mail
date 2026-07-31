@@ -24,8 +24,8 @@
     <section id="assistantContent" class="assistant-content" hidden>
       <section class="summary-strip">
         <div>
-          <span class="eyebrow">已完成</span>
-          <strong>技术术语保护 + 商务语气优化</strong>
+          <span id="syncState" class="eyebrow sync-state">实时同步</span>
+          <strong>AI 中文优化 + 四语专业翻译</strong>
         </div>
         <span id="updatedAt" class="updated-at"></span>
       </section>
@@ -56,7 +56,13 @@
           </header>
           <div id="candidatePreview" class="candidate-preview" role="tabpanel"></div>
           <footer class="candidate-actions">
-            <p>将替换上方短中文草稿；签名和历史邮件保持不变。</p>
+            <div class="action-copy">
+              <p>将替换上方短中文草稿；签名和历史邮件保持不变。</p>
+              <label id="reviewConfirmation" class="review-confirmation" hidden>
+                <input id="reviewCheckbox" type="checkbox">
+                <span>我已核对编号、金额、日期、范围和书面确认条件</span>
+              </label>
+            </div>
             <button id="insertCandidate" class="primary-button" type="button">插入当前语种</button>
           </footer>
         </section>

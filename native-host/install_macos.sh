@@ -45,9 +45,18 @@ touch "${APP_DIR}/venv/.lianggu-lite-runtime-v1"
 
 cp "${SOURCE_DIR}/translator_host.py" "${APP_DIR}/translator_host.py"
 cp "${SOURCE_DIR}/valve_glossary.json" "${APP_DIR}/valve_glossary.json"
+cp "${SOURCE_DIR}/valve_glossary_multilingual.json" "${APP_DIR}/valve_glossary_multilingual.json"
+cp "${SOURCE_DIR}/valve_glossary_batch_2026_07_30.json" "${APP_DIR}/valve_glossary_batch_2026_07_30.json"
+cp "${SOURCE_DIR}/valve_glossary_batch_2026_07_30_round2.json" "${APP_DIR}/valve_glossary_batch_2026_07_30_round2.json"
+cp "${SOURCE_DIR}/reply_intents_multilingual.json" "${APP_DIR}/reply_intents_multilingual.json"
 cp "${SOURCE_DIR}/host-launcher.sh" "${APP_DIR}/host-launcher.sh"
 chmod 700 "${APP_DIR}/host-launcher.sh" "${APP_DIR}/translator_host.py"
-chmod 600 "${APP_DIR}/valve_glossary.json"
+chmod 600 \
+  "${APP_DIR}/valve_glossary.json" \
+  "${APP_DIR}/valve_glossary_multilingual.json" \
+  "${APP_DIR}/valve_glossary_batch_2026_07_30.json" \
+  "${APP_DIR}/valve_glossary_batch_2026_07_30_round2.json" \
+  "${APP_DIR}/reply_intents_multilingual.json"
 
 if [[ -d "${APP_DIR}/data/argos-translate/packages/translate-en_zh-1_9" ]] && [[ ! -d "${APP_DIR}/model" ]]; then
   mkdir -p "${APP_DIR}/model"

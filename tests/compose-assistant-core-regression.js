@@ -27,6 +27,8 @@ const response = core.normalizeSuggestionResponse(
   {
     ok: true,
     engine: "argos-offline",
+    requiresHumanReview: true,
+    highRiskIntentIds: ["payment_due_by_date"],
     technicalTerms: ["球阀 / Ball Valve", "DN50"],
     warnings: ["请复核价格。"],
     candidates: core.LANGUAGE_ORDER.map(code => ({
@@ -46,6 +48,8 @@ assert.deepStrictEqual(
   "all four languages should remain in the fixed decision order"
 );
 assert.strictEqual(response.candidates[3].direction, "rtl");
+assert.strictEqual(response.requiresHumanReview, true);
+assert.deepStrictEqual(response.highRiskIntentIds, ["payment_due_by_date"]);
 assert.strictEqual(
   core.candidateToPlainText(response.candidates[0]),
   "zh-hello\n\nzh-label：zh-content\n\nzh-close",

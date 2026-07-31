@@ -21,36 +21,9 @@ _ENGINE = None
 _ENGINE_ROOT = None
 _ENGINE_CACHE: dict[str, Any] = {}
 _GLOSSARY = None
+_REPLY_INTENTS = None
 CJK_PATTERN = re.compile(r"[\u3400-\u9fff\uf900-\ufaff]")
 REPEATED_CJK_PATTERN = re.compile(r"([\u3400-\u9fff]{1,4})\1{4,}")
-RUSSIAN_VALVE_TERMS: list[dict[str, str]] = [
-    {"en": "материал корпуса", "zh": "阀体材质", "context": "always"},
-    {"en": "коммерческое предложение", "zh": "报价单", "context": "always"},
-    {"en": "ценовое предложение", "zh": "报价单", "context": "always"},
-    {"en": "срок поставки", "zh": "交期", "context": "always"},
-    {"en": "условный проход", "zh": "公称通径", "context": "valve"},
-    {"en": "номинальное давление", "zh": "公称压力", "context": "valve"},
-    {"en": "шаровой кран", "zh": "球阀", "context": "always"},
-    {"en": "дисковый затвор", "zh": "蝶阀", "context": "always"},
-    {"en": "поворотный затвор", "zh": "蝶阀", "context": "always"},
-    {"en": "обратный клапан", "zh": "止回阀", "context": "always"},
-    {"en": "запорный клапан", "zh": "截止阀", "context": "always"},
-    {"en": "регулирующий клапан", "zh": "调节阀", "context": "always"},
-    {"en": "предохранительный клапан", "zh": "安全阀", "context": "always"},
-    {"en": "игольчатый клапан", "zh": "针型阀", "context": "always"},
-    {"en": "задвижка", "zh": "闸阀", "context": "always"},
-    {"en": "корпус", "zh": "阀体", "context": "valve"},
-    {"en": "крышка", "zh": "阀盖", "context": "valve"},
-    {"en": "шток", "zh": "阀杆", "context": "valve"},
-    {"en": "диск", "zh": "阀瓣", "context": "valve"},
-    {"en": "седло", "zh": "阀座", "context": "valve"},
-    {"en": "уплотнение", "zh": "密封", "context": "valve"},
-    {"en": "фланец", "zh": "法兰", "context": "valve"},
-    {"en": "редуктор", "zh": "齿轮箱", "context": "valve"},
-    {"en": "привод", "zh": "执行机构", "context": "valve"},
-    {"en": "количество", "zh": "数量", "context": "always"},
-    {"en": "запрос цен", "zh": "询价", "context": "always"},
-]
 
 
 def read_message() -> dict[str, Any] | None:
@@ -278,7 +251,11 @@ def sanitize_custom_terms(values: Any) -> list[dict[str, str]]:
         chinese = re.sub(r"\s+", " ", str(value.get("zh") or "")).strip()[:240]
         if not english or not chinese:
             continue
-        source_language = "ru" if value.get("sourceLanguage") == "ru" else "en"
+        source_language = (
+            value.get("sourceLanguage")
+            if value.get("sourceLanguage") in {"en", "ru", "ar"}
+            else "en"
+        )
         by_english[f"{source_language}\0{english.casefold()}"] = {
             "en": english,
             "zh": chinese,
@@ -303,6 +280,98 @@ def get_valve_glossary() -> dict[str, Any]:
         raise RuntimeError("Valve glossary terms are unavailable")
     if not isinstance(glossary.get("preserve_patterns"), list):
         raise RuntimeError("Valve glossary preserve patterns are unavailable")
+
+    base_by_english = {
+        str(term.get("en") or "").casefold(): term
+        for term in glossary["terms"]
+        if str(term.get("en") or "").strip()
+    }
+    glossary["baseVersion"] = glossary.get("version", "unknown")
+    multilingual_count = 0
+    multilingual_sources: list[dict[str, Any]] = []
+    glossary_dir = pathlib.Path(__file__).resolve().parent
+    multilingual_paths = [
+        glossary_dir / "valve_glossary_multilingual.json",
+        *sorted(glossary_dir.glob("valve_glossary_batch_*.json")),
+    ]
+    for index, multilingual_path in enumerate(multilingual_paths):
+        with multilingual_path.open("r", encoding="utf-8") as handle:
+            multilingual = json.load(handle)
+        expected_name = (
+            "lianggu-valve-multilingual-glossary"
+            if index == 0
+            else "lianggu-valve-multilingual-glossary-batch"
+        )
+        if multilingual.get("name") != expected_name:
+            raise RuntimeError(
+                f"Multilingual valve glossary identity check failed: {multilingual_path.name}"
+            )
+        fields = multilingual.get("fields")
+        if fields != ["en", "zh", "ru", "ar", "category", "context"]:
+            raise RuntimeError(
+                f"Multilingual valve glossary schema check failed: {multilingual_path.name}"
+            )
+        aliases = multilingual.get("aliases")
+        aliases = aliases if isinstance(aliases, dict) else {}
+        for raw_term in multilingual.get("terms", []):
+            if not isinstance(raw_term, list) or len(raw_term) != len(fields):
+                raise RuntimeError(
+                    f"Multilingual valve glossary term is invalid: {multilingual_path.name}"
+                )
+            term = dict(zip(fields, raw_term))
+            if not all(
+                str(term.get(language) or "").strip()
+                for language in ("en", "zh", "ru", "ar")
+            ):
+                raise RuntimeError(
+                    f"Multilingual valve glossary translation is incomplete: {multilingual_path.name}"
+                )
+            key = str(term["en"]).casefold()
+            target = base_by_english.get(key)
+            if target is None:
+                target = {
+                    "en": term["en"],
+                    "zh": term["zh"],
+                    "category": term["category"],
+                    "context": term["context"],
+                }
+                glossary["terms"].append(target)
+                base_by_english[key] = target
+            target["ru"] = term["ru"]
+            target["ar"] = term["ar"]
+            term_aliases = aliases.get(term["en"])
+            if isinstance(term_aliases, dict):
+                for language in ("en", "zh", "ru", "ar"):
+                    alias_key = f"{language}Aliases"
+                    target[alias_key] = list(
+                        dict.fromkeys(
+                            [
+                                *target.get(alias_key, []),
+                                *[
+                                    str(value).strip()
+                                    for value in term_aliases.get(language, [])
+                                    if str(value).strip()
+                                ],
+                            ]
+                        )
+                    )
+            multilingual_count += 1
+        glossary["version"] = multilingual.get(
+            "version",
+            glossary.get("version", glossary["baseVersion"]),
+        )
+        glossary["languages"] = multilingual.get(
+            "languages",
+            glossary.get("languages", ["zh-CN", "en", "ru", "ar"]),
+        )
+        multilingual_sources.extend(multilingual.get("sources", []))
+
+    glossary["multilingualTermCount"] = multilingual_count
+    glossary["multilingualSources"] = multilingual_sources
+    glossary["sources"] = [
+        *glossary.get("sources", []),
+        *glossary["multilingualSources"],
+    ]
     _GLOSSARY = glossary
     return glossary
 
@@ -313,6 +382,14 @@ def get_glossary_metadata() -> dict[str, Any]:
         "name": glossary["name"],
         "version": glossary.get("version", "unknown"),
         "termCount": len(glossary["terms"]),
+        "multilingualTermCount": glossary.get("multilingualTermCount", 0),
+        "russianTermCount": sum(
+            1 for term in glossary["terms"] if str(term.get("ru") or "").strip()
+        ),
+        "arabicTermCount": sum(
+            1 for term in glossary["terms"] if str(term.get("ar") or "").strip()
+        ),
+        "languages": glossary.get("languages", ["zh-CN", "en"]),
         "sourceCount": len(glossary.get("sources", [])),
     }
 
@@ -321,6 +398,22 @@ def _phrase_pattern(value: str) -> re.Pattern[str]:
     parts = [re.escape(part) for part in re.split(r"[\s-]+", value.strip()) if part]
     return re.compile(
         r"(?<![\w])" + r"[\s-]+".join(parts) + r"(?![\w])",
+        re.IGNORECASE,
+    )
+
+
+def _source_phrase_pattern(value: str, source_language: str) -> re.Pattern[str]:
+    if source_language != "ar":
+        return _phrase_pattern(value)
+    parts = [
+        re.escape(part)
+        for part in re.split(r"[\s-]+", value.strip())
+        if part
+    ]
+    return re.compile(
+        r"(?<![\w])(?:[وفبكل]|لل)?(?:ال)?"
+        + r"[\s-]+".join(parts)
+        + r"(?![\w])",
         re.IGNORECASE,
     )
 
@@ -378,18 +471,66 @@ def _is_russian_valve_context(source: str, glossary: dict[str, Any]) -> bool:
     )
 
 
+def _is_arabic_valve_context(source: str, glossary: dict[str, Any]) -> bool:
+    if re.search(
+        r"(?:صمام|صمامات|محبس|بوابة|كروي|فراشة|مشغل|"
+        r"جسم\s+الصمام|ساق\s+الصمام|مقعد\s+الصمام|شفة)",
+        source,
+        re.IGNORECASE,
+    ):
+        return True
+    if re.search(
+        r"^\s*مادة\s+(?:جسم|بدن)\s+الصمام\s*(?::|=|/|$)",
+        source,
+        re.IGNORECASE,
+    ):
+        return True
+    return any(
+        re.search(pattern, source, re.IGNORECASE)
+        for pattern in glossary["preserve_patterns"]
+    )
+
+
+def _glossary_source_terms(
+    glossary: dict[str, Any],
+    source_language: str,
+) -> list[dict[str, str]]:
+    source_key = source_language if source_language in {"ru", "ar"} else "en"
+    alias_key = f"{source_key}Aliases"
+    output: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for term in glossary["terms"]:
+        values = [term.get(source_key), *term.get(alias_key, [])]
+        for raw_value in values:
+            value = str(raw_value or "").strip()
+            if not value or value.casefold() in seen:
+                continue
+            seen.add(value.casefold())
+            output.append(
+                {
+                    "en": value,
+                    "zh": str(term.get("zh") or "").strip(),
+                    "category": str(term.get("category") or "custom"),
+                    "context": str(term.get("context") or "always"),
+                    "sourceLanguage": source_key,
+                }
+            )
+    return output
+
+
 def protect_valve_terms(
     source: str,
     custom_terms: Any = None,
     source_language: str = "en",
 ) -> tuple[str, list[dict[str, str]]]:
     glossary = get_valve_glossary()
-    source_language = "ru" if source_language == "ru" else "en"
-    valve_context = (
-        _is_russian_valve_context(source, glossary)
-        if source_language == "ru"
-        else _is_valve_context(source, glossary)
-    )
+    source_language = source_language if source_language in {"en", "ru", "ar"} else "en"
+    if source_language == "ru":
+        valve_context = _is_russian_valve_context(source, glossary)
+    elif source_language == "ar":
+        valve_context = _is_arabic_valve_context(source, glossary)
+    else:
+        valve_context = _is_valve_context(source, glossary)
     protected = source
     replacements: list[dict[str, str]] = []
 
@@ -410,7 +551,7 @@ def protect_valve_terms(
         for term in sanitize_custom_terms(custom_terms)
         if term.get("sourceLanguage", "en") == source_language
     ]
-    base_terms = RUSSIAN_VALVE_TERMS if source_language == "ru" else glossary["terms"]
+    base_terms = _glossary_source_terms(glossary, source_language)
     terms = sorted(
         [*custom_source_terms, *base_terms],
         key=lambda item: len(item["en"]),
@@ -419,7 +560,7 @@ def protect_valve_terms(
     for term in terms:
         if term.get("context") == "valve" and not valve_context:
             continue
-        protected = _phrase_pattern(term["en"]).sub(
+        protected = _source_phrase_pattern(term["en"], source_language).sub(
             lambda match, value=term["zh"]: replace_match(match, value, "term"),
             protected,
         )
@@ -518,6 +659,11 @@ def translate_with_glossary(
 
 def translate_russian_to_chinese_batch(texts: list[str]) -> list[str]:
     english = get_directional_engine("ru", "en").translate_batch(texts)
+    return get_translation_engine().translate_batch(english)
+
+
+def translate_arabic_to_chinese_batch(texts: list[str]) -> list[str]:
+    english = get_directional_engine("ar", "en").translate_batch(texts)
     return get_translation_engine().translate_batch(english)
 
 
@@ -646,6 +792,13 @@ def post_process_translation(source: str, translated: str) -> str:
         result = result.replace("你最好的价格", "最优价格").replace("最好的价格", "最优价格")
     if re.search(r"\bplease\s+(?:kindly\s+)?quote\s+(?:us\s+|your\s+)?", source_lower):
         result = re.sub(r"^请(?:向我们)?报价(?:你的|你)?", "请提供", result)
+    if re.search(r"\b(?:soft|gentle|kind|friendly)\s+reminder\b", source_lower):
+        result = (
+            result.replace("支付状况", "付款状态")
+            .replace("支付状态", "付款状态")
+        )
+        result = re.sub(r"^友情提醒\s*[:：,，]?\s*", "友情提醒：", result)
+        result = re.sub(r"\.$", "。", result)
 
     return result
 
@@ -701,27 +854,6 @@ CLOSING_TEXT = {
     "en": "If you have any questions, please feel free to contact us.",
     "ru": "Если у Вас возникнут вопросы, пожалуйста, свяжитесь с нами.",
     "ar": "إذا كانت لديكم أي أسئلة، فلا تترددوا في التواصل معنا.",
-}
-
-TARGET_TECHNICAL_TERMS = {
-    "Ball Valve": {"ru": "Шаровой кран", "ar": "صمام كروي"},
-    "Gate Valve": {"ru": "Задвижка", "ar": "صمام بوابة"},
-    "Globe Valve": {"ru": "Запорный клапан", "ar": "صمام غلوب"},
-    "Check Valve": {"ru": "Обратный клапан", "ar": "صمام عدم رجوع"},
-    "Butterfly Valve": {"ru": "Дисковый затвор", "ar": "صمام فراشة"},
-    "Control Valve": {"ru": "Регулирующий клапан", "ar": "صمام تحكم"},
-    "Safety Valve": {"ru": "Предохранительный клапан", "ar": "صمام أمان"},
-    "Relief Valve": {"ru": "Сбросной клапан", "ar": "صمام تنفيس"},
-    "Plug Valve": {"ru": "Пробковый кран", "ar": "صمام سدادي"},
-    "Needle Valve": {"ru": "Игольчатый клапан", "ar": "صمام إبري"},
-    "Strainer": {"ru": "Фильтр", "ar": "مصفاة"},
-    "Electric Actuator": {"ru": "Электропривод", "ar": "مشغل كهربائي"},
-    "Pneumatic Actuator": {"ru": "Пневмопривод", "ar": "مشغل هوائي"},
-    "Valve Body": {"ru": "Корпус клапана", "ar": "جسم الصمام"},
-    "Bonnet": {"ru": "Крышка клапана", "ar": "غطاء الصمام"},
-    "Stem": {"ru": "Шток", "ar": "ساق الصمام"},
-    "Seat": {"ru": "Седло", "ar": "مقعد الصمام"},
-    "Trim": {"ru": "Внутренние детали", "ar": "الأجزاء الداخلية"},
 }
 
 INFORMAL_REPLY_REWRITES = [
@@ -791,6 +923,167 @@ def _field_key(value: str) -> str | None:
     return None
 
 
+def get_reply_intents() -> dict[str, Any]:
+    global _REPLY_INTENTS
+    if _REPLY_INTENTS is not None:
+        return _REPLY_INTENTS
+    path = pathlib.Path(__file__).resolve().parent / "reply_intents_multilingual.json"
+    if not path.is_file():
+        _REPLY_INTENTS = {
+            "name": "lianggu-reply-intents-multilingual",
+            "version": "unavailable",
+            "intents": [],
+            "sources": [],
+        }
+        return _REPLY_INTENTS
+    with path.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    if payload.get("name") != "lianggu-reply-intents-multilingual":
+        raise RuntimeError("Reply intent library identity check failed")
+    if not isinstance(payload.get("intents"), list):
+        raise RuntimeError("Reply intent library is unavailable")
+    seen_ids: set[str] = set()
+    for intent in payload["intents"]:
+        intent_id = str(intent.get("intent_id") or "").strip()
+        if not intent_id or intent_id in seen_ids:
+            raise RuntimeError("Reply intent identifier is missing or duplicated")
+        seen_ids.add(intent_id)
+        patterns = intent.get("trigger_zh_patterns")
+        if not isinstance(patterns, list) or not patterns:
+            raise RuntimeError(f"Reply intent triggers are missing: {intent_id}")
+        for pattern in patterns:
+            if len(str(pattern)) > 180:
+                raise RuntimeError(f"Reply intent trigger is too long: {intent_id}")
+            re.compile(str(pattern))
+        if not all(str(intent.get(language) or "").strip() for language in ("zh", "en", "ru", "ar")):
+            raise RuntimeError(f"Reply intent translations are incomplete: {intent_id}")
+        variables = [
+            str(value).strip()
+            for value in intent.get("variables", [])
+            if str(value).strip()
+        ]
+        for language in ("zh", "en", "ru", "ar"):
+            if set(re.findall(r"\{[a-z][a-z0-9_]*\}", str(intent[language]))) != set(variables):
+                raise RuntimeError(f"Reply intent placeholders do not align: {intent_id}")
+    _REPLY_INTENTS = payload
+    return payload
+
+
+def _intent_template_match(template: str, source: str) -> dict[str, str] | None:
+    pieces = re.split(r"(\{[a-z][a-z0-9_]*\})", template)
+    pattern_parts: list[str] = []
+    variables: list[str] = []
+    for piece in pieces:
+        variable_match = re.fullmatch(r"\{([a-z][a-z0-9_]*)\}", piece)
+        if variable_match:
+            variable = variable_match.group(1)
+            variables.append(variable)
+            pattern_parts.append(rf"(?P<{variable}>.+?)")
+        else:
+            escaped = re.escape(piece)
+            pattern_parts.append(re.sub(r"(?:\\\s)+", r"\\s*", escaped))
+    pattern = re.compile(
+        r"^\s*" + "".join(pattern_parts).rstrip(r"\。") + r"[。.!！?？]?\s*$"
+    )
+    match = pattern.fullmatch(source)
+    if not match:
+        return None
+    return {
+        variable: str(match.group(variable) or "").strip(" \t\r\n，,；;。.")
+        for variable in variables
+    }
+
+
+def _match_reply_intent(
+    source: str,
+) -> tuple[dict[str, Any], dict[str, str]] | None:
+    normalized_source = str(source or "").strip()
+    if not normalized_source:
+        return None
+    for intent in get_reply_intents()["intents"]:
+        variables = _intent_template_match(str(intent["zh"]), normalized_source)
+        if (
+            variables is None
+            and not intent.get("variables")
+            and intent.get("allow_pattern_match") is True
+            and len(normalized_source) <= 160
+        ):
+            if any(
+                re.search(str(pattern), normalized_source)
+                for pattern in intent["trigger_zh_patterns"]
+            ):
+                variables = {}
+        if variables is None:
+            continue
+        return intent, variables
+    return None
+
+
+def controlled_reply_intent(source: str, target_language: str) -> str | None:
+    if target_language not in {"zh", "en", "ru", "ar"}:
+        return None
+    matched = _match_reply_intent(source)
+    if matched is None:
+        return None
+    intent, variables = matched
+    rendered = str(intent[target_language])
+    for variable, value in variables.items():
+        rendered = rendered.replace(f"{{{variable}}}", value)
+    if re.search(r"\{[a-z][a-z0-9_]*\}", rendered):
+        return None
+    if target_language != "zh" and CJK_PATTERN.search(rendered):
+        return None
+    return rendered
+
+
+def matched_reply_intents(source: str) -> list[dict[str, Any]]:
+    candidates = [str(source or "").strip(), *_sentence_parts(str(source or ""))]
+    output: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        matched = _match_reply_intent(candidate)
+        if matched is None:
+            continue
+        intent, _ = matched
+        intent_id = str(intent.get("intent_id") or "").strip()
+        if intent_id and intent_id not in seen:
+            seen.add(intent_id)
+            output.append(intent)
+    return output
+
+
+def reply_intent_review(source: str) -> dict[str, Any]:
+    matched = matched_reply_intents(source)
+    high_risk_ids = [
+        str(intent["intent_id"])
+        for intent in matched
+        if intent.get("requires_human_review") is True
+        or str(intent.get("risk_level") or "").strip().lower() == "high"
+    ]
+    medium_risk_ids = [
+        str(intent["intent_id"])
+        for intent in matched
+        if str(intent.get("risk_level") or "").strip().lower() == "medium"
+    ]
+    return {
+        "requiresHumanReview": bool(high_risk_ids),
+        "highRiskIntentIds": high_risk_ids,
+        "mediumRiskIntentIds": medium_risk_ids,
+    }
+
+
+def reply_intent_warning(source: str) -> str | None:
+    review = reply_intent_review(source)
+    if review["requiresHumanReview"]:
+        return (
+            "该表达涉及付款、交期、报价、检验或技术承诺等高风险条件，"
+            "请复核编号、金额、日期、范围和书面确认边界。"
+        )
+    if review["mediumRiskIntentIds"]:
+        return "该表达包含商务条件，请复核编号、日期、金额及适用范围。"
+    return None
+
+
 def optimize_chinese_reply(value: Any) -> list[dict[str, Any]]:
     source = _clean_compose_source(value)
     if not source or len(CJK_PATTERN.findall(source)) < 6:
@@ -800,7 +1093,10 @@ def optimize_chinese_reply(value: Any) -> list[dict[str, Any]]:
         {"type": "greeting", "key": "greeting", "text": GREETING_TEXT["zh"]}
     ]
     has_closing = False
-    for sentence in _sentence_parts(source):
+    controlled_source = controlled_reply_intent(source, "zh")
+    sentences = [controlled_source] if controlled_source else _sentence_parts(source)
+    for sentence in sentences:
+        sentence = controlled_reply_intent(sentence, "zh") or sentence
         short_thanks = (
             len(sentence) <= 20
             and re.fullmatch(r"(?:谢谢|感谢(?:您的)?(?:配合|支持|理解)?)[。！？]?", sentence)
@@ -824,13 +1120,18 @@ def optimize_chinese_reply(value: Any) -> list[dict[str, Any]]:
 
 def _reply_terms(custom_terms: Any = None) -> list[dict[str, str]]:
     glossary_terms = get_valve_glossary()["terms"]
+    expanded_glossary_terms: list[dict[str, str]] = []
+    for term in glossary_terms:
+        expanded_glossary_terms.append(term)
+        for chinese_alias in term.get("zhAliases", []):
+            expanded_glossary_terms.append({**term, "zh": chinese_alias})
     english_custom_terms = [
         term
         for term in sanitize_custom_terms(custom_terms)
         if term.get("sourceLanguage", "en") == "en"
     ]
     return sorted(
-        [*english_custom_terms, *glossary_terms],
+        [*english_custom_terms, *expanded_glossary_terms],
         key=lambda item: (len(item.get("zh", "")), len(item.get("en", ""))),
         reverse=True,
     )
@@ -880,12 +1181,10 @@ def _localized_technical_descriptor(
         if not chinese or not english or chinese not in source:
             continue
         if target_language in {"ru", "ar"}:
-            values.append(
-                TARGET_TECHNICAL_TERMS.get(english, {}).get(
-                    target_language,
-                    english,
-                )
-            )
+            localized = str(term.get(target_language) or english).strip()
+            if target_language == "ru" and localized:
+                localized = localized[:1].lower() + localized[1:]
+            values.append(localized)
         else:
             values.append(english)
     for raw_pattern in get_valve_glossary()["preserve_patterns"]:
@@ -969,11 +1268,35 @@ def controlled_reply_translation(
 ) -> str | None:
     if target_language not in {"en", "ru", "ar"}:
         return None
+    intent_translation = controlled_reply_intent(source, target_language)
+    if intent_translation:
+        return intent_translation
     descriptor = _localized_technical_descriptor(
         source,
         target_language,
         custom_terms,
     )
+
+    if re.search(r"(?:友情|温馨|善意|友好)?提醒", source):
+        if re.search(r"(?:付款|支付)", source):
+            if re.search(r"(?:确认|状态|情况|进度)", source):
+                return {
+                    "en": "Just a reminder—please confirm the payment status.",
+                    "ru": "Напоминаем Вам: пожалуйста, подтвердите статус оплаты.",
+                    "ar": "نود تذكيركم بلطف؛ يرجى تأكيد حالة الدفع.",
+                }[target_language]
+            if re.search(r"(?:安排|办理|完成)", source):
+                return {
+                    "en": "Just a reminder—please arrange the payment.",
+                    "ru": "Напоминаем Вам: пожалуйста, организуйте оплату.",
+                    "ar": "نود تذكيركم بلطف؛ يرجى ترتيب عملية الدفع.",
+                }[target_language]
+        if re.search(r"(?:回复|反馈)", source):
+            return {
+                "en": "Just a reminder—we look forward to your reply.",
+                "ru": "Напоминаем Вам, что ожидаем Вашего ответа.",
+                "ar": "نود تذكيركم بلطف بأننا نتطلع إلى ردكم.",
+            }[target_language]
 
     if re.search(r"报价(?:单)?.{0,8}(?:准备|完成|做好)|报价做好", source):
         if target_language == "en":
@@ -1078,49 +1401,72 @@ def _protect_reply_terms(
     replacements: list[dict[str, str]] = []
 
     if source_language == "zh":
+        outbound_english = {
+            "友情提醒": "Just a reminder",
+            "温馨提醒": "This is a gentle reminder",
+        }
         for term in _reply_terms(custom_terms):
             chinese = str(term.get("zh") or "").strip()
             english = str(term.get("en") or "").strip()
             if not chinese or not english or chinese not in protected:
                 continue
+            english = outbound_english.get(chinese, english)
             protected = protected.replace(chinese, english)
     elif source_language == "en" and target_language in {"ru", "ar"}:
-        for english, translations in sorted(
-            TARGET_TECHNICAL_TERMS.items(),
-            key=lambda item: len(item[0]),
+        target_terms = [
+            term
+            for term in _reply_terms(custom_terms)
+            if str(term.get(target_language) or "").strip()
+        ]
+        for term in sorted(
+            target_terms,
+            key=lambda item: len(str(item.get("en") or "")),
             reverse=True,
         ):
-            if not re.search(re.escape(english), protected, re.IGNORECASE):
+            english = str(term.get("en") or "").strip()
+            replacement = str(term.get(target_language) or "").strip()
+            if not english or not replacement:
                 continue
-            protected = re.sub(
-                rf"(?:the\s+)?{re.escape(english)}",
-                "the specified valve",
-                protected,
-                count=1,
-                flags=re.IGNORECASE,
-            )
-            replacements.append(
-                {
-                    "token": "",
-                    "source": english,
-                    "replacement": translations[target_language],
-                }
+            parts = [
+                re.escape(part)
+                for part in re.split(r"[\s-]+", english)
+                if part
+            ]
+            term_pattern = re.compile(
+                r"(?<![\w])(?:the\s+)?"
+                + r"[\s-]+".join(parts)
+                + r"(?![\w])",
+                re.IGNORECASE,
             )
 
+            def protect_target_term(match: re.Match[str]) -> str:
+                token = f"[RPL{len(replacements):03d}]"
+                replacements.append(
+                    {
+                        "token": token,
+                        "source": match.group(0),
+                        "replacement": replacement,
+                    }
+                )
+                return token
+
+            protected = term_pattern.sub(protect_target_term, protected)
+
     for raw_pattern in get_valve_glossary()["preserve_patterns"]:
-        def remove_code(match: re.Match[str]) -> str:
+        def protect_code(match: re.Match[str]) -> str:
+            token = f"[RPL{len(replacements):03d}]"
             replacements.append(
                 {
-                    "token": "",
+                    "token": token,
                     "source": match.group(0),
                     "replacement": match.group(0),
                 }
             )
-            return " "
+            return token
 
         protected = re.sub(
             raw_pattern,
-            remove_code,
+            protect_code,
             protected,
             flags=re.IGNORECASE,
         )
@@ -1317,12 +1663,27 @@ def _candidate_from_blocks(
         blocks.append(block)
 
     if target_language in {"en", "ru", "ar"} and english_anchor_terms:
+        localized_anchor_terms = english_anchor_terms
+        if target_language in {"ru", "ar"}:
+            glossary_by_english = {
+                str(term.get("en") or "").casefold(): term
+                for term in get_valve_glossary()["terms"]
+            }
+            localized_anchor_terms = []
+            for english_term in english_anchor_terms:
+                glossary_term = glossary_by_english.get(english_term.casefold())
+                localized = str(
+                    (glossary_term or {}).get(target_language) or ""
+                ).strip()
+                localized_anchor_terms.append(
+                    f"{localized} / {english_term}" if localized else english_term
+                )
         blocks.insert(
             max(1, len(blocks) - 1),
             {
                 "type": "field",
                 "label": FIELD_LABELS[target_language]["technical_anchor"],
-                "text": "; ".join(english_anchor_terms),
+                "text": "; ".join(localized_anchor_terms),
                 "emphasis": True,
             },
         )
@@ -1344,6 +1705,9 @@ def _candidate_from_blocks(
 
 def compose_reply_warnings(source: str) -> list[str]:
     warnings: list[str] = []
+    intent_warning = reply_intent_warning(source)
+    if intent_warning:
+        warnings.append(intent_warning)
     if re.search(r"保证|一定|百分之百|终身|绝对", source):
         warnings.append("原文包含承诺性措辞，请确认后再发送。")
     if re.search(r"价格|报价|交期|付款|质保|今天|明天|本周|下周|\d", source):
@@ -1387,12 +1751,15 @@ def create_compose_suggestions(
         id(block): english_content[index]
         for index, block in enumerate(content_blocks)
     }
+    intent_review = reply_intent_review(source)
     return {
         "ok": True,
         "engine": "argos-offline",
         "optimizedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "replyIntentVersion": get_reply_intents().get("version", "unavailable"),
         "technicalTerms": display_terms,
         "warnings": compose_reply_warnings(source),
+        **intent_review,
         "candidates": [
             _candidate_from_blocks(
                 source_blocks,
@@ -1411,19 +1778,32 @@ def handle_message(request: dict[str, Any]) -> dict[str, Any]:
     if request_type == "health":
         get_translation_engine()
         glossary = get_glossary_metadata()
+        reply_intents = get_reply_intents()
         model = get_active_model_metadata()
         russian_models = discover_model_roots("ru", "en")
+        arabic_models = discover_model_roots("ar", "en")
         return {
             "ok": True,
             "engine": "argos-offline",
             "source": "en",
-            "sources": ["en", *(["ru"] if russian_models else [])],
+            "sources": [
+                "en",
+                *(["ru"] if russian_models else []),
+                *(["ar"] if arabic_models else []),
+            ],
             "target": "zh",
             "terminology": glossary["name"],
             "terminologyVersion": glossary["version"],
-            "termCount": glossary["termCount"] + len(RUSSIAN_VALVE_TERMS),
-            "russianTermCount": len(RUSSIAN_VALVE_TERMS),
+            "termCount": glossary["termCount"],
+            "multilingualTermCount": glossary["multilingualTermCount"],
+            "russianTermCount": glossary["russianTermCount"],
+            "arabicTermCount": glossary["arabicTermCount"],
+            "terminologySourceCount": glossary["sourceCount"],
+            "replyIntentVersion": reply_intents.get("version", "unavailable"),
+            "replyIntentCount": len(reply_intents.get("intents", [])),
+            "replyIntentSourceCount": len(reply_intents.get("sources", [])),
             "russianModelId": _model_id(russian_models[0]) if russian_models else "",
+            "arabicModelId": _model_id(arabic_models[0]) if arabic_models else "",
             **model,
         }
 
@@ -1452,31 +1832,33 @@ def handle_message(request: dict[str, Any]) -> dict[str, Any]:
         return {"ok": False, "message": "Unsupported native host request"}
 
     source_language = request.get("source", "en")
-    if source_language not in {"en", "ru"} or request.get("target", "zh") != "zh":
+    if source_language not in {"en", "ru", "ar"} or request.get("target", "zh") != "zh":
         return {
             "ok": False,
-            "message": "Only English or Russian to Chinese translation is enabled",
+            "message": "Only English, Russian, or Arabic to Chinese translation is enabled",
         }
 
     texts = sanitize_texts(request.get("texts"))
-    translate_batch = (
-        translate_russian_to_chinese_batch
-        if source_language == "ru"
-        else get_translation_engine().translate_batch
-    )
+    if source_language == "ru":
+        translate_batch = translate_russian_to_chinese_batch
+    elif source_language == "ar":
+        translate_batch = translate_arabic_to_chinese_batch
+    else:
+        translate_batch = get_translation_engine().translate_batch
     translated_texts = translate_with_glossary(
         texts,
         translate_batch,
         request.get("customTerms"),
         source_language=source_language,
     )
-    if source_language == "ru":
-        russian_models = discover_model_roots("ru", "en")
-        if not russian_models:
-            raise RuntimeError("Russian to English offline model is not installed")
+    if source_language in {"ru", "ar"}:
+        pivot_models = discover_model_roots(source_language, "en")
+        if not pivot_models:
+            language_name = "Russian" if source_language == "ru" else "Arabic"
+            raise RuntimeError(f"{language_name} to English offline model is not installed")
         model = {
-            "modelId": f"{_model_id(russian_models[0])}+{get_active_model_metadata()['modelId']}",
-            "candidateCount": len(russian_models),
+            "modelId": f"{_model_id(pivot_models[0])}+{get_active_model_metadata()['modelId']}",
+            "candidateCount": len(pivot_models),
         }
     else:
         model = get_active_model_metadata()
@@ -1521,9 +1903,18 @@ def self_test() -> int:
             "texts": ["Шаровой кран DN50 PN16."],
         }
     )
+    arabic_response = handle_message(
+        {
+            "type": "translate",
+            "source": "ar",
+            "target": "zh",
+            "texts": ["صمام كروي DN50 PN16."],
+        }
+    )
     response = {
         "translation": translation_response,
         "russianTranslation": russian_response,
+        "arabicTranslation": arabic_response,
         "composeAssistant": reply_response,
     }
     print(json.dumps(response, ensure_ascii=False, indent=2))
@@ -1539,6 +1930,8 @@ def self_test() -> int:
         and len(translation_response.get("translations", [])) == 2
         and russian_response.get("ok")
         and "球阀" in russian_response.get("translations", [""])[0]
+        and arabic_response.get("ok")
+        and "球阀" in arabic_response.get("translations", [""])[0]
         and [candidate.get("code") for candidate in candidates] == ["zh", "en", "ru", "ar"]
         and all(
             token in candidate_text.get("en", "")

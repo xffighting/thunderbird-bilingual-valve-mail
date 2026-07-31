@@ -153,6 +153,25 @@ button {
   font-size: 11px;
 }
 
+.sync-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #276f48;
+}
+
+.sync-state::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34a853;
+  content: "";
+}
+
+.sync-state.refreshing::before {
+  background: #d99026;
+}
+
 .warning-panel {
   padding: 12px 14px;
   color: var(--warning);
@@ -305,10 +324,34 @@ button {
   background: rgba(248, 248, 250, 0.86);
 }
 
+.action-copy {
+  display: grid;
+  gap: 7px;
+}
+
 .candidate-actions p {
   margin: 0;
   color: var(--secondary);
   font-size: 11px;
+}
+
+.review-confirmation {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: #815316;
+  font-size: 11px;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.review-confirmation[hidden] {
+  display: none;
+}
+
+.review-confirmation input {
+  margin: 1px 0 0;
+  accent-color: var(--accent);
 }
 
 .primary-button {
@@ -328,7 +371,7 @@ button {
 }
 
 .primary-button:disabled {
-  cursor: wait;
+  cursor: not-allowed;
   opacity: 0.6;
 }
 

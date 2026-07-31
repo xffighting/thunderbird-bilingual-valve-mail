@@ -1,0 +1,1639 @@
+{
+  "batch_id": "2026-07-30-ar",
+  "focus": "Arabic valve-industry terminology and formal export-email phrases",
+  "scope": "High-frequency English-Arabic candidates for valve RFQs, datasheets, quotations and follow-up emails. Existing English keys in native-host/valve_glossary_multilingual.json are excluded.",
+  "sources": [
+    {
+      "id": "SASO-PRESSURE-EQUIPMENT-2025",
+      "title": "اللائحة الفنية لمعدات الضغط وملحقاتها",
+      "authority": "الهيئة السعودية للمواصفات والمقاييس والجودة (SASO)",
+      "url": "https://www.saso.gov.sa/ar/Laws-And-Regulations/Technical_regulations/Documents/TR-Pressure-Equipment.pdf",
+      "language": "Arabic with English technical abbreviations",
+      "used_for": "Pressure-equipment definitions, safety accessories, maximum allowable pressure, conformity, inspection and technical documentation terminology"
+    },
+    {
+      "id": "SASO-ISO-TR-9464-2020",
+      "title": "SASO ISO/TR 9464:2020 — Guidelines for the use of ISO 5167",
+      "authority": "الهيئة السعودية للمواصفات والمقاييس والجودة (SASO)",
+      "url": "https://www.saso.gov.sa/ar/Laws-And-Regulations/public_multimedia/Documents/SASO-ISO-TR-9464-2020-A.pdf",
+      "language": "Arabic",
+      "used_for": "Arabic wording for isolation valves, full-bore ball valves, pressure lines, pressure measurement and fittings"
+    },
+    {
+      "id": "GSO-ISO-22435-2025",
+      "title": "GSO ISO 22435:2025 — Gas cylinders — Cylinder valves with integrated pressure regulators — Specification and type testing",
+      "authority": "GCC Standardization Organization (GSO)",
+      "url": "https://www.gso.org.sa/store/standards/GSO%3A975182/GSO%20ISO%2022435%3A2025?lang=en",
+      "language": "English",
+      "used_for": "Normative English keys for integrated regulators, quick-release and self-closing cylinder valves, residual-pressure devices and type testing"
+    },
+    {
+      "id": "GSO-EN-558-2021",
+      "title": "GSO EN 558:2021 — Industrial valves — Face-to-face and centre-to-face dimensions",
+      "authority": "GCC Standardization Organization (GSO)",
+      "url": "https://dgsm.gso.org.sa/store/standards/GSO%3A790142?lang=en",
+      "language": "English",
+      "used_for": "Normative valve dimension and pressure-class terminology"
+    },
+    {
+      "id": "GSO-ISO-13703-2010",
+      "title": "GSO ISO 13703:2010 — Petroleum and natural gas industries — Design and installation of piping systems on offshore production platforms",
+      "authority": "GCC Standardization Organization (GSO)",
+      "url": "https://www.gso.org.sa/store/standards/GSO%3A536817/GSO%20ISO%2013703%3A2010/?lang=en",
+      "language": "English",
+      "used_for": "Oil-and-gas piping design, materials, operating conditions and sour-service context"
+    },
+    {
+      "id": "ARAMCO-2025-SOURCING-GAPS",
+      "title": "2025 Material Sourcing Gaps List",
+      "authority": "Aramco Europe",
+      "url": "https://europe.aramco.com/-/media/aramcoaoc/pdf/2025-sourcing-gaps-list.pdf",
+      "language": "English",
+      "used_for": "High-frequency procurement descriptions for non-slam checks, triple-eccentric butterflies, through-conduit gates, flexible wedges, body materials and end connections"
+    },
+    {
+      "id": "QATARENERGY-QGDL-IML-003",
+      "title": "QGDL-IML-003 — Guidelines for Building Permit Technical Submissions to QP-RLC",
+      "authority": "QatarEnergy, Ras Laffan Industrial City",
+      "url": "https://www.qatarenergy.qa/en/Whatwedo/IndustrialCities/Documents/Procedures/DPE/QGDL-IML-003%20Guidelines%20for%20BP%20Technical%20Submissions%20to%20QP-RLC%20Rev02%2026Jul17.pdf",
+      "language": "English",
+      "used_for": "Isolation and tie-in valves, post-indicator assembly, valve chamber, dismantling joint, design pressure and temperature, ductile iron and compliance submissions"
+    },
+    {
+      "id": "QATARENERGY-SUSTAINABILITY-2021",
+      "title": "QatarEnergy Sustainability Report 2021",
+      "authority": "QatarEnergy",
+      "url": "https://www.qatarenergy.qa/en/MediaCenter/Publications/QatarEnergy%202021%20Sustainability%20Report.pdf",
+      "language": "English",
+      "used_for": "Pressure safety valve and emergency shutdown valve terminology in process-safety studies"
+    },
+    {
+      "id": "ADNOC-DIGITAL-WELL-CONTROL-2024",
+      "title": "أدنوك تُرسي عقداً لتوسعة برنامج تطبيق الحلول الرقمية في الآبار",
+      "authority": "ADNOC",
+      "url": "https://www.adnoc.ae/ar/news-and-media/press-releases/2024/adnoc-awards-920-million-contract-to-extend-aipowered",
+      "language": "Arabic",
+      "used_for": "Official Gulf Arabic wording for digital control valves, measuring equipment, wells and pipelines"
+    },
+    {
+      "id": "UNESCWA-CORRESPONDENCE-GUIDE",
+      "title": "United Nations Correspondence Manual and ESCWA editorial resources",
+      "authority": "United Nations Economic and Social Commission for Western Asia (ESCWA)",
+      "url": "https://guides.unescwa.org/webgover/standards-documents",
+      "language": "English and Arabic",
+      "used_for": "Formal Arabic correspondence register and non-literal business-email phrasing"
+    },
+    {
+      "id": "UNIDO-ARABIC-CORRESPONDENCE-2023",
+      "title": "IDB.51/13 — Official Arabic correspondence to UNIDO",
+      "authority": "United Nations Industrial Development Organization (UNIDO)",
+      "url": "https://documents.un.org/api/symbol/access?l=ar&s=IDB.51%2F13&t=pdf",
+      "language": "Arabic, original correspondence context",
+      "used_for": "Attested formal constructions such as يرجى التكرم and polite request/consideration register"
+    }
+  ],
+  "entries": [
+    {
+      "en": "Angle Valve",
+      "ar": "صمام زاوي",
+      "ar_aliases": ["صمام بزاوية", "صمامات زاوية"],
+      "category": "valve_type",
+      "context": "Piping where inlet and outlet axes are at an angle",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "صمام زاوي is the compact technical form; صمام بزاوية is clearer in quotations. Plural: صمامات زاوية; attached form: بالصمام الزاوي."
+    },
+    {
+      "en": "Foot Valve",
+      "ar": "صمام قدم",
+      "ar_aliases": ["صمام قاع بخاصية عدم الرجوع", "صمام سفلي للمضخة"],
+      "category": "valve_type",
+      "context": "Pump suction line with integral check function",
+      "source_ids": ["SASO-ISO-TR-9464-2020", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "صمام قدم is established waterworks Arabic. Add بخاصية عدم الرجوع where function must be explicit. Plural: صمامات قدم."
+    },
+    {
+      "en": "Bellows Seal Globe Valve",
+      "ar": "صمام غلوب محكم بمنفاخ معدني",
+      "ar_aliases": ["صمام غلوب بمانع تسرب منفاخي", "صمام كروي المقعد ذو مانع تسرب بمنفاخ"],
+      "category": "valve_type",
+      "context": "Low-emission or hazardous-fluid isolation",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Retain Globe Valve in parentheses because كروي المقعد can be confused with ball valve. Plural: صمامات غلوب محكمة بمنفاخ معدني."
+    },
+    {
+      "en": "Axial Flow Check Valve",
+      "ar": "صمام عدم رجوع بالتدفق المحوري",
+      "ar_aliases": ["صمام لا رجعي محوري", "صمام عدم رجوع محوري الجريان"],
+      "category": "valve_type",
+      "context": "Fast-response non-slam pipeline check service",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "التدفق المحوري is the preferred technical phrase. Plural: صمامات عدم رجوع بالتدفق المحوري; attached form: لصمام عدم الرجوع المحوري."
+    },
+    {
+      "en": "Tilting Disc Check Valve",
+      "ar": "صمام عدم رجوع بقرص مائل",
+      "ar_aliases": ["صمام لا رجعي بقرص متأرجح مائل", "صمام عدم رجوع ذو قرص مائل"],
+      "category": "valve_type",
+      "context": "Tilting-disc non-return service",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "قرص مائل differentiates this design from swing check. Plural: صمامات عدم رجوع بأقراص مائلة."
+    },
+    {
+      "en": "Piston Check Valve",
+      "ar": "صمام عدم رجوع مكبسي",
+      "ar_aliases": ["صمام لا رجعي بمكبس", "صمام عدم رجوع من نوع المكبس"],
+      "category": "valve_type",
+      "context": "Small-bore or high-pressure reciprocating check service",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مكبسي is concise; من نوع المكبس is safest for customer mail. Plural: صمامات عدم رجوع مكبسية."
+    },
+    {
+      "en": "Wafer Check Valve",
+      "ar": "صمام عدم رجوع رقائقي",
+      "ar_aliases": ["صمام عدم رجوع من نوع ويفر", "صمام لا رجعي بين الفلنجات"],
+      "category": "valve_type",
+      "context": "Compact check valve installed between flanges",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "رقائقي is formal; ويفر is widespread Gulf procurement usage. بين الفلنجات describes installation and is useful for clarity. Plural: صمامات عدم رجوع رقائقية."
+    },
+    {
+      "en": "Resilient Seated Gate Valve",
+      "ar": "صمام بوابة بمقعد مرن",
+      "ar_aliases": ["صمام بوابي مرن الإحكام", "صمام بوابة ذو مقعد مطاطي"],
+      "category": "valve_type",
+      "context": "Waterworks soft-seated gate isolation",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "مقعد مرن is material-neutral; مطاطي is narrower. Plural: صمامات بوابة بمقاعد مرنة."
+    },
+    {
+      "en": "Slab Gate Valve",
+      "ar": "صمام بوابة بلوح منزلق",
+      "ar_aliases": ["صمام بوابي من نوع البلاطة", "صمام بوابة سلاب"],
+      "category": "valve_type",
+      "context": "Pipeline through-conduit slab-gate design",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "لوح منزلق is clearer than the transliteration سلاب. Retain Slab Gate in parentheses for exact design matching. Plural: صمامات بوابة بألواح منزلقة."
+    },
+    {
+      "en": "Three-way Ball Valve",
+      "ar": "صمام كروي ثلاثي المنافذ",
+      "ar_aliases": ["صمام كروي ثلاثي الاتجاهات", "صمام كروي بثلاث فتحات"],
+      "category": "valve_type",
+      "context": "Flow diversion or mixing",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "ثلاثي المنافذ describes the physical valve; ثلاثي الاتجاهات describes function. Plural: صمامات كروية ثلاثية المنافذ."
+    },
+    {
+      "en": "V-port Ball Valve",
+      "ar": "صمام كروي بفتحة على شكل V",
+      "ar_aliases": ["صمام كروي بمنفذ V", "صمام كروي بقطاع حرف V"],
+      "category": "valve_type",
+      "context": "Modulating ball valve with characterized opening",
+      "source_ids": ["GSO-ISO-13703-2010", "ADNOC-DIGITAL-WELL-CONTROL-2024"],
+      "confidence": "high",
+      "notes": "Keep the Latin V because it is the drawing geometry. Plural: صمامات كروية بفتحات على شكل V."
+    },
+    {
+      "en": "Double-offset Butterfly Valve",
+      "ar": "صمام فراشة مزدوج اللامركزية",
+      "ar_aliases": ["صمام فراشة مزدوج الإزاحة", "صمام فراشي ثنائي التعويض"],
+      "category": "valve_type",
+      "context": "High-performance butterfly design",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مزدوج اللامركزية is preferred engineering Arabic; مزدوج الإزاحة is common vendor usage. Plural: صمامات فراشة مزدوجة اللامركزية."
+    },
+    {
+      "en": "Lined Butterfly Valve",
+      "ar": "صمام فراشة مبطّن",
+      "ar_aliases": ["صمام فراشي ذو بطانة", "صمام فراشة مبطن بالكامل"],
+      "category": "valve_type",
+      "context": "Corrosive or abrasive fluid service",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Specify lining material after مبطن. Plural: صمامات فراشة مبطنة; attached form: للصمام الفراشة المبطن."
+    },
+    {
+      "en": "Closure Member",
+      "ar": "عضو الإغلاق",
+      "ar_aliases": ["عنصر الإغلاق", "جزء الغلق المتحرك"],
+      "category": "component",
+      "context": "Generic disc, ball, plug or gate element",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-22435-2025"],
+      "confidence": "high",
+      "notes": "عنصر الإغلاق is more natural in prose; عضو الإغلاق is compact standards language. Plural: أعضاء الإغلاق."
+    },
+    {
+      "en": "Clapper",
+      "ar": "قرص متأرجح",
+      "ar_aliases": ["لوح الصمام المتأرجح", "رفراف صمام عدم الرجوع"],
+      "category": "component",
+      "context": "Swing check valve closure element",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "قرص متأرجح is preferred. رفراف is workshop usage and should remain an alias. Plural: أقراص متأرجحة."
+    },
+    {
+      "en": "Floating Seat",
+      "ar": "مقعد عائم",
+      "ar_aliases": ["حلقة مقعد عائمة", "مقعد حر الحركة"],
+      "category": "component",
+      "context": "Pressure-energized ball-valve seat design",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مقعد عائم is established. Do not confuse it with Floating Ball. Plural: مقاعد عائمة; attached form: بالمقعد العائم."
+    },
+    {
+      "en": "Self-relieving Seat",
+      "ar": "مقعد ذاتي التنفيس",
+      "ar_aliases": ["مقعد ذاتي تخفيف الضغط", "مقعد يخفف الضغط تلقائيا"],
+      "category": "component",
+      "context": "Automatic body-cavity pressure relief through the seat",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "ذاتي تخفيف الضغط is clearest in explanations; ذاتي التنفيس is compact. Plural: مقاعد ذاتية التنفيس."
+    },
+    {
+      "en": "Drain Plug",
+      "ar": "سدادة تصريف",
+      "ar_aliases": ["سدادة التفريغ", "قابس التصريف"],
+      "category": "component",
+      "context": "Body-cavity drain connection",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "سدادة تصريف is preferred. قابس is less common for mechanical plugs. Plural: سدادات تصريف."
+    },
+    {
+      "en": "Vent Plug",
+      "ar": "سدادة تنفيس",
+      "ar_aliases": ["سدادة التهوية", "قابس التنفيس"],
+      "category": "component",
+      "context": "Body-cavity or bonnet vent connection",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "سدادة تنفيس is preferred. تهوية can imply continuous ventilation. Plural: سدادات تنفيس."
+    },
+    {
+      "en": "Part-turn Actuator",
+      "ar": "مشغّل جزئي الدوران",
+      "ar_aliases": ["مشغل محدود الزاوية", "مشغل ربع دورة"],
+      "category": "actuation",
+      "context": "Actuator whose travel is less than one full turn",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "Part-turn is broader than quarter-turn, so جزئي الدوران is the exact default. Plural: مشغلات جزئية الدوران."
+    },
+    {
+      "en": "Linear Actuator",
+      "ar": "مشغّل خطي",
+      "ar_aliases": ["مشغل بحركة خطية", "مشغلات خطية"],
+      "category": "actuation",
+      "context": "Globe, diaphragm and linear-control valve actuation",
+      "source_ids": ["GSO-ISO-13703-2010", "ADNOC-DIGITAL-WELL-CONTROL-2024"],
+      "confidence": "high",
+      "notes": "مشغّل خطي is standard. Attached form: بالمشغل الخطي; plural: مشغلات خطية."
+    },
+    {
+      "en": "Fail Close",
+      "ar": "يغلق عند الفشل",
+      "ar_aliases": ["إغلاق آمن عند الفشل", "يغلق عند فقد الطاقة"],
+      "category": "actuation",
+      "context": "Fail-safe action code in datasheets",
+      "source_ids": ["QATARENERGY-SUSTAINABILITY-2021", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "Use يغلق عند الفشل as the direct action. فقد الطاقة is narrower. Do not translate as فشل الإغلاق."
+    },
+    {
+      "en": "Fail Open",
+      "ar": "يفتح عند الفشل",
+      "ar_aliases": ["فتح آمن عند الفشل", "يفتح عند فقد الطاقة"],
+      "category": "actuation",
+      "context": "Fail-safe action code in datasheets",
+      "source_ids": ["QATARENERGY-SUSTAINABILITY-2021", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "Use يفتح عند الفشل as the direct action. Do not translate as فشل الفتح."
+    },
+    {
+      "en": "Limit Switch",
+      "ar": "مفتاح نهاية المشوار",
+      "ar_aliases": ["مفتاح حدي", "مفتاح تحديد نهاية الحركة"],
+      "category": "actuation",
+      "context": "Open/closed travel indication and interlock",
+      "source_ids": ["GSO-ISO-13703-2010", "ADNOC-DIGITAL-WELL-CONTROL-2024"],
+      "confidence": "high",
+      "notes": "مفتاح نهاية المشوار is clearest in Gulf industrial Arabic. Plural: مفاتيح نهاية المشوار."
+    },
+    {
+      "en": "Torque Switch",
+      "ar": "مفتاح عزم الدوران",
+      "ar_aliases": ["مفتاح تحديد العزم", "قاطع العزم"],
+      "category": "actuation",
+      "context": "Electric actuator torque protection",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مفتاح عزم الدوران is preferred. قاطع العزم may imply an electrical breaker. Plural: مفاتيح عزم الدوران."
+    },
+    {
+      "en": "Mounting Kit",
+      "ar": "طقم تركيب",
+      "ar_aliases": ["عدة تثبيت", "مجموعة تركيب المشغّل"],
+      "category": "actuation",
+      "context": "Actuator bracket, coupling and fasteners",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "طقم تركيب is common Gulf procurement Arabic; مجموعة تركيب is more formal. Plural: أطقم تركيب."
+    },
+    {
+      "en": "End-to-end Dimension",
+      "ar": "البعد من طرف إلى طرف",
+      "ar_aliases": ["طول طرف إلى طرف", "المسافة بين الطرفين"],
+      "category": "connection_design",
+      "context": "Overall valve end dimension; ETE",
+      "source_ids": ["GSO-EN-558-2021", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "البعد من طرف إلى طرف is preferred. Retain ETE in drawings. Plural: الأبعاد من طرف إلى طرف."
+    },
+    {
+      "en": "Pressure-temperature Rating",
+      "ar": "تصنيف الضغط ودرجة الحرارة",
+      "ar_aliases": ["حدود الضغط والحرارة", "معدل الضغط ودرجة الحرارة"],
+      "category": "connection_design",
+      "context": "Allowable valve pressure over temperature",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "This key matches the shared English batch exactly. تصنيف is preferred over معدل, which can imply rate."
+    },
+    {
+      "en": "Flangeless Valve",
+      "ar": "صمام بدون فلنجات",
+      "ar_aliases": ["صمام عديم الشفاه", "صمام يركب بين الفلنجات"],
+      "category": "connection_design",
+      "context": "Wafer or lug valve without integral end flanges",
+      "source_ids": ["GSO-EN-558-2021", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "بدون فلنجات is clear industry Arabic; عديم الشفاه is formal but less common. Regional projects often transliterate flange."
+    },
+    {
+      "en": "Socket-welding End",
+      "ar": "طرف لحام بالمقبس",
+      "ar_aliases": ["نهاية لحام سوكيت", "طرف ملحوم بالتجويف"],
+      "category": "connection_design",
+      "context": "Socket-weld valve end",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "طرف لحام بالمقبس is formal. سوكيت is a common Gulf workshop alias. Plural: أطراف لحام بالمقبس."
+    },
+    {
+      "en": "Butt-welding End",
+      "ar": "طرف لحام تناكبي",
+      "ar_aliases": ["نهاية لحام طرفي", "طرف لحام بات"],
+      "category": "connection_design",
+      "context": "Butt-weld valve end",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "تناكبي is the technical term. بات is workshop transliteration and should not be the generated default. Plural: أطراف لحام تناكبي."
+    },
+    {
+      "en": "Through-bolt Type",
+      "ar": "نوع بمسامير نافذة",
+      "ar_aliases": ["تصميم بمسامير عابرة", "نوع بمسامير تمريرية"],
+      "category": "connection_design",
+      "context": "Wafer/lug body bolting arrangement",
+      "source_ids": ["GSO-EN-558-2021", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "بمسامير نافذة is compact; بمسامير عابرة is clearer in prose. Plural form depends on the head noun, not on نوع."
+    },
+    {
+      "en": "Outside Screw and Yoke",
+      "ar": "لولب خارجي ونير",
+      "ar_aliases": ["ساق لولبية خارجية مع نير", "تصميم OS&Y"],
+      "category": "connection_design",
+      "context": "Rising-stem gate/globe valve construction; OS&Y",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "Retain OS&Y because نير varies regionally between نير and حامل. Attached form: بتصميم لولب خارجي ونير."
+    },
+    {
+      "en": "Carbon Steel Forging",
+      "ar": "مطروقات من الفولاذ الكربوني",
+      "ar_aliases": ["فولاذ كربوني مطروق", "قطعة مطروقة من الصلب الكربوني"],
+      "category": "material",
+      "context": "Forged valve body or pressure-containing part",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use فولاذ كربوني مطروق for a single part and مطروقات for material class. Attached form: من الفولاذ الكربوني المطروق."
+    },
+    {
+      "en": "Carbon Steel Casting",
+      "ar": "مسبوكات من الفولاذ الكربوني",
+      "ar_aliases": ["فولاذ كربوني مصبوب", "قطعة مسبوكة من الصلب الكربوني"],
+      "category": "material",
+      "context": "Cast valve body or pressure-containing part",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use فولاذ كربوني مصبوب for a single part and مسبوكات for material category."
+    },
+    {
+      "en": "Stainless Steel Casting",
+      "ar": "مسبوكات من الفولاذ المقاوم للصدأ",
+      "ar_aliases": ["فولاذ مقاوم للصدأ مصبوب", "مسبوكات ستانلس ستيل"],
+      "category": "material",
+      "context": "Cast stainless pressure-containing part",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "The formal term is فولاذ مقاوم للصدأ. ستانلس ستيل remains a procurement alias only."
+    },
+    {
+      "en": "Stainless Steel Forging",
+      "ar": "مطروقات من الفولاذ المقاوم للصدأ",
+      "ar_aliases": ["فولاذ مقاوم للصدأ مطروق", "مطروقات ستانلس ستيل"],
+      "category": "material",
+      "context": "Forged stainless pressure-containing part",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use مطروقات for the product form. Attached form: من الفولاذ المقاوم للصدأ المطروق."
+    },
+    {
+      "en": "Flake Graphite Iron Casting",
+      "ar": "مسبوكات حديد بجرافيت رقائقي",
+      "ar_aliases": ["حديد زهر بجرافيت قشري", "مسبوكات الحديد الرمادي"],
+      "category": "material",
+      "context": "Gray cast iron valve body",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "جرافيت رقائقي is the microstructure term. الحديد الرمادي is commercially familiar but less exact. Plural is inherent in مسبوكات."
+    },
+    {
+      "en": "Spheroidal Graphite Iron Casting",
+      "ar": "مسبوكات حديد بجرافيت كروي",
+      "ar_aliases": ["حديد زهر كروي الجرافيت", "مسبوكات حديد مطيل"],
+      "category": "material",
+      "context": "Ductile iron valve body",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "جرافيت كروي is exact; حديد مطيل is the common product term. Avoid حديد مطاوع alone because it may imply wrought iron."
+    },
+    {
+      "en": "Nickel Alloy Casting",
+      "ar": "مسبوكات من سبائك النيكل",
+      "ar_aliases": ["سبيكة نيكل مصبوبة", "مسبوكات نيكل سبائكية"],
+      "category": "material",
+      "context": "Corrosion-resistant cast valve part",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use سبائك النيكل, not نيكل مخلوط. Grade/UNS number should accompany the term."
+    },
+    {
+      "en": "Copper Alloy Casting",
+      "ar": "مسبوكات من سبائك النحاس",
+      "ar_aliases": ["سبيكة نحاس مصبوبة", "مسبوكات نحاسية سبائكية"],
+      "category": "material",
+      "context": "Bronze or other copper-alloy valve part",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use سبائك النحاس when the exact bronze grade is not yet known. Attached form: من مسبوكات سبائك النحاس."
+    },
+    {
+      "en": "High-pressure Closure Test",
+      "ar": "اختبار الإغلاق بالضغط العالي",
+      "ar_aliases": ["اختبار إحكام المقعد بالضغط العالي", "اختبار الغلق عالي الضغط"],
+      "category": "inspection_testing",
+      "context": "Valve closure tightness at high pressure",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "إحكام المقعد is clearer when the test boundary is the seat. Plural: اختبارات الإغلاق بالضغط العالي."
+    },
+    {
+      "en": "Low-pressure Closure Test",
+      "ar": "اختبار الإغلاق بالضغط المنخفض",
+      "ar_aliases": ["اختبار إحكام المقعد بالضغط المنخفض", "اختبار الغلق منخفض الضغط"],
+      "category": "inspection_testing",
+      "context": "Low-pressure gas closure tightness",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "Specify gas medium separately. Plural: اختبارات الإغلاق بالضغط المنخفض."
+    },
+    {
+      "en": "Backseat Test",
+      "ar": "اختبار المقعد الخلفي",
+      "ar_aliases": ["اختبار إحكام المقعد الخلفي", "فحص المقعد الخلفي"],
+      "category": "inspection_testing",
+      "context": "Stem backseat tightness test",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "المقعد الخلفي is the established valve term. Plural: اختبارات المقعد الخلفي."
+    },
+    {
+      "en": "Cavity Relief Test",
+      "ar": "اختبار تنفيس تجويف الجسم",
+      "ar_aliases": ["اختبار تخفيف ضغط التجويف", "اختبار تصريف ضغط حجرة الصمام"],
+      "category": "inspection_testing",
+      "context": "Self-relieving seat and body-cavity pressure test",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "تخفيف ضغط التجويف is clearest. Avoid راحة التجويف, a literal mistranslation of relief."
+    },
+    {
+      "en": "Antistatic Continuity Test",
+      "ar": "اختبار الاستمرارية المضادة للكهرباء الساكنة",
+      "ar_aliases": ["اختبار التوصيل المضاد للشحنات الساكنة", "اختبار الاستمرارية الكهربائية للخاصية المضادة للسكون"],
+      "category": "inspection_testing",
+      "context": "Electrical continuity across valve components",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "المضادة للكهرباء الساكنة is formal. Plural: اختبارات الاستمرارية المضادة للكهرباء الساكنة."
+    },
+    {
+      "en": "Fire Type Test",
+      "ar": "اختبار نوعي لمقاومة الحريق",
+      "ar_aliases": ["اختبار التأهيل ضد الحريق", "اختبار النوع للحريق"],
+      "category": "inspection_testing",
+      "context": "Fire-safe design qualification",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مقاومة الحريق is the clear customer-facing purpose. Do not shorten to اختبار نار in formal correspondence."
+    },
+    {
+      "en": "Through-seat Leakage",
+      "ar": "تسرب عبر المقعد",
+      "ar_aliases": ["تسرب من خلال المقعد", "تسرب المقعد الداخلي"],
+      "category": "inspection_testing",
+      "context": "Internal leakage across the closure seat",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "عبر المقعد is concise. Do not use تسرب خلال المقعد without من. Attached form: للتسرب عبر المقعد."
+    },
+    {
+      "en": "External Leakage",
+      "ar": "تسرب خارجي",
+      "ar_aliases": ["التسرب إلى الخارج", "تسرب عبر الغلاف الخارجي"],
+      "category": "inspection_testing",
+      "context": "Leakage from pressure boundary to atmosphere",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "تسرب خارجي is preferred. Plural: تسربات خارجية; attached form: من دون تسرب خارجي."
+    },
+    {
+      "en": "Acceptance Criteria",
+      "ar": "معايير القبول",
+      "ar_aliases": ["اشتراطات القبول", "حدود القبول"],
+      "category": "inspection_testing",
+      "context": "Inspection and test pass/fail criteria",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-22435-2025"],
+      "confidence": "high",
+      "notes": "معايير القبول is the general term; حدود القبول is better for numerical limits. The Arabic is already plural."
+    },
+    {
+      "en": "Test Pressure",
+      "ar": "ضغط الاختبار",
+      "ar_aliases": ["ضغط الفحص", "ضغط التجربة"],
+      "category": "inspection_testing",
+      "context": "Hydrostatic or pneumatic test condition",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "ضغط الاختبار is preferred. ضغط التجربة is regional and less formal. Attached form: عند ضغط الاختبار."
+    },
+    {
+      "en": "Leakage Rate",
+      "ar": "معدل التسرب",
+      "ar_aliases": ["نسبة التسرب", "معدل تسريب المائع"],
+      "category": "inspection_testing",
+      "context": "Quantified seat or external leakage",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "معدل is correct for measured flow over time; نسبة is only correct when expressed as a ratio. Attached form: لمعدل التسرب."
+    },
+    {
+      "en": "Pressure Boundary",
+      "ar": "حدود احتواء الضغط",
+      "ar_aliases": ["الغلاف الحابس للضغط", "الأجزاء المحتوية للضغط"],
+      "category": "inspection_testing",
+      "context": "Body, bonnet and joints retaining internal pressure",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "الأجزاء المحتوية للضغط is clearest in procurement. حدود احتواء الضغط is compact standards language."
+    },
+    {
+      "en": "This is a gentle reminder",
+      "ar": "نود التذكير بلطف بأن",
+      "ar_aliases": ["تذكير ودي بشأن", "نود تذكيركم بكل لطف بأن"],
+      "category": "business_email_phrase",
+      "context": "Polite opening for a pending reply or action",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "Translate the communicative intent, not gentle word by word. Never use هذا تذكير لطيف as the default or تذكير ناعم under any circumstances."
+    },
+    {
+      "en": "Just a reminder",
+      "ar": "نود فقط التذكير بأن",
+      "ar_aliases": ["للتذكير فقط", "مجرد تذكير بشأن"],
+      "category": "business_email_phrase",
+      "context": "Brief neutral reminder",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "للتذكير فقط works as a short lead-in; نود فقط التذكير بأن is better as a full sentence frame."
+    },
+    {
+      "en": "Kindly reminder",
+      "ar": "نود التذكير بلطف بأن",
+      "ar_aliases": ["يرجى التكرم بملاحظة أن", "تذكير ودي بشأن"],
+      "category": "business_email_phrase",
+      "context": "Input-normalization key for non-native English email wording",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "medium",
+      "notes": "The English key is ungrammatical but high-frequency in trade email. Normalize intent; do not mirror its syntax in Arabic."
+    },
+    {
+      "en": "A kind reminder",
+      "ar": "نود تذكيركم بكل لطف بأن",
+      "ar_aliases": ["نرجو التكرم بملاحظة أن", "تذكير ودي بشأن"],
+      "category": "business_email_phrase",
+      "context": "Formal courteous reminder",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "Use the sentence frame in body text. Avoid تذكير كريم, a literal and unnatural rendering."
+    },
+    {
+      "en": "Just a gentle reminder",
+      "ar": "نود فقط التذكير بلطف بأن",
+      "ar_aliases": ["تذكير ودي بسيط بشأن", "للتذكير بكل لطف"],
+      "category": "business_email_phrase",
+      "context": "Soft follow-up without escalation",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "Do not stack literal adjectives in Arabic. The adverbial frame بلطف carries the required tone."
+    },
+    {
+      "en": "We are following up on",
+      "ar": "نود المتابعة بشأن",
+      "ar_aliases": ["نتابع معكم بخصوص", "نكتب إليكم للمتابعة بشأن"],
+      "category": "business_email_phrase",
+      "context": "Company-voice follow-up opening",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "بشأن is more formal than بخصوص. The plural company voice does not require addressee gender."
+    },
+    {
+      "en": "I am following up on",
+      "ar": "أتواصل معكم للمتابعة بشأن",
+      "ar_aliases": ["أود المتابعة بخصوص", "أكتب إليكم للمتابعة بشأن"],
+      "category": "business_email_phrase",
+      "context": "Individual-sender follow-up opening",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "أتواصل is gender-neutral for the sender. Avoid أنا أتابع على, a calque from English."
+    },
+    {
+      "en": "Further to our previous email",
+      "ar": "إلحاقا برسالتنا الإلكترونية السابقة",
+      "ar_aliases": ["بالإشارة إلى رسالتنا السابقة", "متابعة لرسالتنا السابقة"],
+      "category": "business_email_phrase",
+      "context": "Formal linkage to an earlier email",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "إلحاقا is best when adding information; بالاشارة إلى is safer for a general follow-up."
+    },
+    {
+      "en": "For your kind attention",
+      "ar": "لعنايتكم الكريمة",
+      "ar_aliases": ["يرجى التكرم بالاطلاع", "نلفت عنايتكم إلى"],
+      "category": "business_email_phrase",
+      "context": "Formal callout before an important point",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "medium",
+      "notes": "لعنايتكم الكريمة is common but formulaic. For a complete sentence use نلفت عنايتكم إلى."
+    },
+    {
+      "en": "At your earliest convenience",
+      "ar": "في أقرب وقت يناسبكم",
+      "ar_aliases": ["في أقرب وقت ممكن لكم", "عندما يتسنى لكم ذلك"],
+      "category": "business_email_phrase",
+      "context": "Polite timing request without imposing a hard deadline",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "عندما يتسنى لكم ذلك is softer; في أقرب وقت يناسبكم preserves the timing request. Avoid في راحتك الأولى."
+    },
+    {
+      "en": "Could you please let us know",
+      "ar": "يرجى التكرم بإفادتنا",
+      "ar_aliases": ["هل تتفضلون بإبلاغنا", "نرجو موافاتنا بـ"],
+      "category": "business_email_phrase",
+      "context": "Polite request for information",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "يرجى التكرم is formal and recipient-neutral. Do not translate could as هل يمكنكم when a concise formal request is preferred."
+    },
+    {
+      "en": "We would appreciate your prompt reply",
+      "ar": "نقدّر تفضلكم بالرد في أقرب وقت",
+      "ar_aliases": ["سنكون شاكرين لردكم السريع", "نرجو التكرم بالرد العاجل"],
+      "category": "business_email_phrase",
+      "context": "Courteous but time-sensitive reply request",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "في أقرب وقت is softer than العاجل. Use العاجل only where there is genuine urgency."
+    },
+    {
+      "en": "We look forward to hearing from you",
+      "ar": "نتطلع إلى تلقي ردكم",
+      "ar_aliases": ["نتطلع إلى سماع رأيكم", "بانتظار إفادتكم"],
+      "category": "business_email_phrase",
+      "context": "Positive professional closing",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "تلقي ردكم fits transactional mail; سماع رأيكم fits feedback. Avoid نتطلع إلى السماع منك, a literal calque."
+    },
+    {
+      "en": "Please find attached",
+      "ar": "يرجى الاطلاع على المرفق",
+      "ar_aliases": ["مرفق طيه", "نرفق لكم"],
+      "category": "business_email_phrase",
+      "context": "Introducing an attached quotation, drawing or document",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "يرجى الاطلاع على المرفق is natural email Arabic. مرفق طيه is more formal and document-oriented."
+    },
+    {
+      "en": "For your review and approval",
+      "ar": "لمراجعتكم واعتمادكم",
+      "ar_aliases": ["للاطلاع والموافقة", "يرجى المراجعة والاعتماد"],
+      "category": "business_email_phrase",
+      "context": "Document submission requiring approval",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "اعتماد is stronger and more formal than موافقة. Choose according to the actual approval authority."
+    },
+    {
+      "en": "Thank you for your patience",
+      "ar": "نشكر لكم صبركم",
+      "ar_aliases": ["شكرا لتفهمكم وصبركم", "نقدّر لكم سعة صدركم"],
+      "category": "business_email_phrase",
+      "context": "Delay acknowledgement",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "شكرا لتفهمكم وصبركم is warmer. سعة صدركم is idiomatic but more regional and personal."
+    },
+    {
+      "en": "Thank you for your cooperation",
+      "ar": "نشكر لكم تعاونكم",
+      "ar_aliases": ["شكرا لحسن تعاونكم", "نقدّر تعاونكم"],
+      "category": "business_email_phrase",
+      "context": "Neutral courteous closing",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "حسن تعاونكم is warmer and common in Gulf correspondence. All variants are recipient-gender neutral."
+    },
+    {
+      "en": "Please do not hesitate to contact us",
+      "ar": "يرجى عدم التردد في التواصل معنا",
+      "ar_aliases": ["لا تترددوا في الاتصال بنا", "نحن على استعداد للإجابة عن أي استفسار"],
+      "category": "business_email_phrase",
+      "context": "Helpful closing offering support",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "The neutral alternative نحن على استعداد avoids singular/plural addressee agreement. Avoid لا تحجم عن الاتصال."
+    },
+    {
+      "en": "Could you confirm receipt",
+      "ar": "يرجى تأكيد الاستلام",
+      "ar_aliases": ["هل تتفضلون بتأكيد الاستلام", "نرجو إشعارنا باستلامكم"],
+      "category": "business_email_phrase",
+      "context": "Acknowledgement request for email or attachment",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "يرجى تأكيد الاستلام is concise and neutral. استلامكم is polite but number-sensitive."
+    },
+    {
+      "en": "Isolation Valve",
+      "ar": "صمام عزل",
+      "ar_aliases": ["صمام العزل", "صمامات العزل"],
+      "category": "valve_type",
+      "context": "Piping isolation, potable-water and firewater systems",
+      "source_ids": ["SASO-ISO-TR-9464-2020", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "Plural is صمامات العزل. Definite and attached forms الصمام/للصمام/بالصمام/والصمام should normalize to the same term."
+    },
+    {
+      "en": "Full-port Ball Valve",
+      "ar": "صمام كروي كامل المجرى",
+      "ar_aliases": ["صمام كروي كامل الفتحة", "صمام كروي ذو مجرى كامل"],
+      "category": "valve_type",
+      "context": "Depositing or dirty service where an unobstructed bore is required",
+      "source_ids": ["SASO-ISO-TR-9464-2020", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مجرى كامل is preferred in technical Arabic; كامل الفتحة is common vendor usage. Plural: صمامات كروية كاملة المجرى."
+    },
+    {
+      "en": "Cylinder Valve with Integrated Pressure Regulator",
+      "ar": "صمام أسطوانة مزود بمنظم ضغط مدمج",
+      "ar_aliases": ["صمام أسطوانة بمنظم ضغط متكامل", "صمامات أسطوانات بمنظمات ضغط مدمجة"],
+      "category": "valve_type",
+      "context": "Compressed-gas cylinders and bundles; VIPR",
+      "source_ids": ["GSO-ISO-22435-2025", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use مزود بمنظم ضغط مدمج in specifications. The plural shifts both nouns: صمامات أسطوانات. Attached prepositions may produce لصمام أسطوانة."
+    },
+    {
+      "en": "Quick-release Cylinder Valve",
+      "ar": "صمام أسطوانة سريع التحرير",
+      "ar_aliases": ["صمام أسطوانة سريع الفك", "صمامات أسطوانات سريعة التحرير"],
+      "category": "valve_type",
+      "context": "Gas-cylinder closure systems",
+      "source_ids": ["GSO-ISO-22435-2025"],
+      "confidence": "medium",
+      "notes": "سريع التحرير is the standards-oriented rendering; سريع الفك is common in Gulf maintenance speech but can imply mechanical disassembly."
+    },
+    {
+      "en": "Self-closing Cylinder Valve",
+      "ar": "صمام أسطوانة ذاتي الإغلاق",
+      "ar_aliases": ["صمام أسطوانة يغلق ذاتيا", "صمامات أسطوانات ذاتية الإغلاق"],
+      "category": "valve_type",
+      "context": "Gas-cylinder closure systems",
+      "source_ids": ["GSO-ISO-22435-2025"],
+      "confidence": "high",
+      "notes": "ذاتي الإغلاق is preferred. Do not use أوتوماتيكي الإغلاق unless the mechanism is specifically automatic. Attached form: للصمام ذاتي الإغلاق."
+    },
+    {
+      "en": "Non-slam Check Valve",
+      "ar": "صمام عدم رجوع غير طرقي",
+      "ar_aliases": ["صمام عدم رجوع مانع للطرق", "صمام لا رجعي عديم الصدمة"],
+      "category": "valve_type",
+      "context": "Pump discharge and fast-closing pipeline service",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "مانع للطرق is clearer to many Gulf buyers; غير طرقي is concise datasheet usage. Avoid translating slam as صفع. Plural: صمامات عدم رجوع غير طرقية."
+    },
+    {
+      "en": "Nozzle Check Valve",
+      "ar": "صمام عدم رجوع فوهِي",
+      "ar_aliases": ["صمام عدم رجوع من نوع الفوهة", "صمام لا رجعي بفوهة"],
+      "category": "valve_type",
+      "context": "Spring-controlled axial non-slam service",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "medium",
+      "notes": "من نوع الفوهة is safest in quotations; فوهِي is compact but less familiar. Plural: صمامات عدم رجوع من نوع الفوهة."
+    },
+    {
+      "en": "High-performance Butterfly Valve",
+      "ar": "صمام فراشة عالي الأداء",
+      "ar_aliases": ["صمام فراشي عالي الأداء", "صمامات فراشة عالية الأداء"],
+      "category": "valve_type",
+      "context": "API 609 Category B and severe-service butterfly applications",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "صمام فراشة is dominant Gulf procurement wording. فراشي appears in standards/vendor Arabic. Attached form: للصمام الفراشة عالي الأداء."
+    },
+    {
+      "en": "Triple-offset Butterfly Valve",
+      "ar": "صمام فراشة ثلاثي اللامركزية",
+      "ar_aliases": ["صمام فراشة ثلاثي الإزاحة", "صمام فراشي ثلاثي التعويض"],
+      "category": "valve_type",
+      "context": "Metal-seated high-performance butterfly valve design",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "ثلاثي اللامركزية is the clearest engineering term. ثلاثي الإزاحة is common vendor wording. Do not use ثلاثي الأوفست in customer-facing Arabic."
+    },
+    {
+      "en": "Through-conduit Gate Valve",
+      "ar": "صمام بوابة كامل المجرى",
+      "ar_aliases": ["صمام بوابة نافذ المجرى", "صمام بوابة عبر المجرى"],
+      "category": "valve_type",
+      "context": "Pipeline gate valve with unobstructed conduit",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "medium",
+      "notes": "كامل المجرى is commercially clear but can overlap with full-bore. For exact design statements retain English in parentheses. Plural: صمامات بوابة كاملة المجرى."
+    },
+    {
+      "en": "Flexible-wedge Gate Valve",
+      "ar": "صمام بوابة بإسفين مرن",
+      "ar_aliases": ["صمام بوابي ذو إسفين مرن", "صمامات بوابة بإسفين مرن"],
+      "category": "valve_type",
+      "context": "Large-bore steel wedge gate valves",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "إسفين is the established wedge term. The plural normally changes صمام only; بإسفين مرن stays singular as the component description."
+    },
+    {
+      "en": "Post Indicator Valve",
+      "ar": "صمام بمؤشر قائم",
+      "ar_aliases": ["صمام مؤشر عمودي", "مجموعة صمام بمؤشر قائم"],
+      "category": "valve_type",
+      "context": "Firewater buried-main isolation; PIV/PIVA",
+      "source_ids": ["QATARENERGY-QGDL-IML-003"],
+      "confidence": "medium",
+      "notes": "Gulf fire-protection projects often retain PIV/PIVA in Latin letters. Include the acronym on first use to avoid confusion. Plural: صمامات بمؤشرات قائمة."
+    },
+    {
+      "en": "Emergency Shutdown Valve",
+      "ar": "صمام الإغلاق الطارئ",
+      "ar_aliases": ["صمام الإيقاف في حالات الطوارئ", "صمام عزل طارئ"],
+      "category": "valve_type",
+      "context": "Process-safety ESD system",
+      "source_ids": ["QATARENERGY-SUSTAINABILITY-2021", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use صمام الإغلاق الطارئ with ESDV on first mention. Gulf sites also say صمام إيقاف الطوارئ. Plural: صمامات الإغلاق الطارئ."
+    },
+    {
+      "en": "Pressure Safety Valve",
+      "ar": "صمام أمان الضغط",
+      "ar_aliases": ["صمام أمان للضغط", "صمام الأمان من زيادة الضغط"],
+      "category": "valve_type",
+      "context": "PSV adequacy and overpressure protection",
+      "source_ids": ["QATARENERGY-SUSTAINABILITY-2021", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Keep PSV in parentheses because صمام أمان may also map to safety valve generally. Plural: صمامات أمان الضغط."
+    },
+    {
+      "en": "Instrument Valve",
+      "ar": "صمام أجهزة قياس",
+      "ar_aliases": ["صمام عدّات", "صمام أجهزة دقيقة"],
+      "category": "valve_type",
+      "context": "Small-bore isolation for instruments and impulse lines",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-ISO-TR-9464-2020"],
+      "confidence": "medium",
+      "notes": "صمام أجهزة قياس is precise. صمام عدّات is colloquial Gulf project usage and should not be the default. Plural: صمامات أجهزة قياس."
+    },
+    {
+      "en": "Digital Control Valve",
+      "ar": "صمام تحكم رقمي",
+      "ar_aliases": ["صمامات تحكم رقمية", "صمام رقمي للتحكم"],
+      "category": "valve_type",
+      "context": "Digitally monitored or actuated well-control applications",
+      "source_ids": ["ADNOC-DIGITAL-WELL-CONTROL-2024"],
+      "confidence": "high",
+      "notes": "Official ADNOC Arabic uses صمامات تحكم رقمية. Attached forms include بصمام تحكم رقمي and لصمامات التحكم الرقمية."
+    },
+    {
+      "en": "Air Release Valve",
+      "ar": "صمام إطلاق الهواء",
+      "ar_aliases": ["صمام تنفيس الهواء", "صمام طرد الهواء"],
+      "category": "valve_type",
+      "context": "Water and wastewater pipelines",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-ISO-TR-9464-2020"],
+      "confidence": "medium",
+      "notes": "Regional preference varies: إطلاق الهواء is neutral, طرد الهواء is common in waterworks, and تنفيس الهواء can overlap with air vent valve."
+    },
+    {
+      "en": "Vacuum Breaker Valve",
+      "ar": "صمام كسر الفراغ",
+      "ar_aliases": ["صمام مانع للتفريغ", "صمام تنفيس الفراغ"],
+      "category": "valve_type",
+      "context": "Pipeline and vessel vacuum protection",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "medium",
+      "notes": "صمام كسر الفراغ is standard industry Arabic. تفريغ can mean discharge, so retain Vacuum Breaker in parentheses for unfamiliar customers."
+    },
+    {
+      "en": "Body Cavity",
+      "ar": "تجويف جسم الصمام",
+      "ar_aliases": ["تجويف البدن", "حجرة جسم الصمام"],
+      "category": "component",
+      "context": "Ball-valve cavity pressure and drainage",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "جسم الصمام is more universal than بدن الصمام. Plural context usually remains singular as a part name; attached form: في تجويف الجسم."
+    },
+    {
+      "en": "Seat Insert",
+      "ar": "بطانة المقعد",
+      "ar_aliases": ["حشوة المقعد", "حلقة إدخال المقعد"],
+      "category": "component",
+      "context": "Soft-seat construction and spare parts",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "medium",
+      "notes": "بطانة المقعد is preferred; حشوة may be confused with packing. Plural: بطانات المقاعد. Attached form: لبطانة المقعد."
+    },
+    {
+      "en": "Seat Retainer",
+      "ar": "مثبّت المقعد",
+      "ar_aliases": ["حلقة تثبيت المقعد", "حامل المقعد"],
+      "category": "component",
+      "context": "Ball and butterfly valve seat retention",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "medium",
+      "notes": "حلقة تثبيت المقعد is safest where the part is annular. حامل المقعد can denote seat carrier. Plural: مثبتات المقاعد."
+    },
+    {
+      "en": "Stem Extension",
+      "ar": "امتداد ساق الصمام",
+      "ar_aliases": ["وصلة إطالة الساق", "ساق صمام ممتدة"],
+      "category": "component",
+      "context": "Buried, insulated or cryogenic valve operation",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "امتداد ساق الصمام is preferred. Do not use عمود unless the design calls the part a shaft. Plural: امتدادات سيقان الصمامات."
+    },
+    {
+      "en": "Position Indicator",
+      "ar": "مؤشر الوضع",
+      "ar_aliases": ["مبين وضع الصمام", "مؤشر الفتح والإغلاق"],
+      "category": "component",
+      "context": "Open/closed or travel indication",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "GSO-ISO-22435-2025"],
+      "confidence": "high",
+      "notes": "مؤشر الوضع is concise; مؤشر الفتح والإغلاق is clearer for two-position valves. Plural: مؤشرات الوضع."
+    },
+    {
+      "en": "Locking Device",
+      "ar": "جهاز قفل",
+      "ar_aliases": ["آلية قفل", "وسيلة تأمين بالقفل"],
+      "category": "component",
+      "context": "Lockable valve operator and LOTO service",
+      "source_ids": ["QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "جهاز قفل is neutral. آلية قفل is preferred when integral to the valve. Plural: أجهزة قفل; attached form: بجهاز القفل."
+    },
+    {
+      "en": "Sealant Injection Fitting",
+      "ar": "وصلة حقن مادة مانعة للتسرب",
+      "ar_aliases": ["فتحة حقن مانع التسرب", "وصلة حقن مادة الإحكام"],
+      "category": "component",
+      "context": "Emergency stem or seat sealing on pipeline valves",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "مادة مانعة للتسرب is clearest in specifications. مادة الإحكام is shorter but less common. Plural: وصلات حقن مادة مانعة للتسرب."
+    },
+    {
+      "en": "Nameplate",
+      "ar": "لوحة البيانات",
+      "ar_aliases": ["لوحة تعريف", "لوحة اسم الصمام"],
+      "category": "component",
+      "context": "Valve marking and traceability",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-22435-2025"],
+      "confidence": "high",
+      "notes": "لوحة البيانات is the standard equipment term. لوحة الاسم is a literal vendor variant. Plural: لوحات البيانات; attached form: على لوحة البيانات."
+    },
+    {
+      "en": "Quarter-turn Actuator",
+      "ar": "مشغّل ربع دورة",
+      "ar_aliases": ["مشغل بزاوية 90 درجة", "مشغلات ربع دورة"],
+      "category": "actuation",
+      "context": "Ball, butterfly and plug valve actuation",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "مشغّل is preferred over محرك because it covers pneumatic, hydraulic and electric units. Plural: مشغّلات ربع دورة."
+    },
+    {
+      "en": "Multi-turn Actuator",
+      "ar": "مشغّل متعدد الدورات",
+      "ar_aliases": ["مشغل متعدد اللفات", "مشغلات متعددة الدورات"],
+      "category": "actuation",
+      "context": "Gate and globe valve actuation",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "متعدد الدورات is formal; متعدد اللفات is common vendor Arabic. Attached form: بالمشغّل متعدد الدورات."
+    },
+    {
+      "en": "Spring-return Actuator",
+      "ar": "مشغّل بعودة نابضية",
+      "ar_aliases": ["مشغل بزنبرك رجوع", "مشغل مرتد بنابض"],
+      "category": "actuation",
+      "context": "Fail-safe pneumatic actuation",
+      "source_ids": ["GSO-ISO-13703-2010", "QATARENERGY-SUSTAINABILITY-2021"],
+      "confidence": "medium",
+      "notes": "Regional variants نابض and زنبرك are both common; نابض is more formal. Plural: مشغلات بعودة نابضية."
+    },
+    {
+      "en": "Double-acting Actuator",
+      "ar": "مشغّل مزدوج الفعل",
+      "ar_aliases": ["مشغل ثنائي الفعل", "مشغل مزدوج التأثير"],
+      "category": "actuation",
+      "context": "Pneumatic or hydraulic actuator powered in both directions",
+      "source_ids": ["GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "مزدوج الفعل and ثنائي الفعل are both accepted. Avoid مزدوج التشغيل, which can be interpreted more broadly. Plural: مشغلات مزدوجة الفعل."
+    },
+    {
+      "en": "Fail-open Position",
+      "ar": "وضع الفتح عند الفشل",
+      "ar_aliases": ["يفتح عند فقد الطاقة", "وضع آمن مفتوح"],
+      "category": "actuation",
+      "context": "Control-valve fail-safe action",
+      "source_ids": ["QATARENERGY-SUSTAINABILITY-2021", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "Use وضع الفتح عند الفشل in datasheets. فقد الطاقة is narrower than fail and should be used only when that is the cause."
+    },
+    {
+      "en": "Fail-closed Position",
+      "ar": "وضع الإغلاق عند الفشل",
+      "ar_aliases": ["يغلق عند فقد الطاقة", "وضع آمن مغلق"],
+      "category": "actuation",
+      "context": "Control-valve and ESDV fail-safe action",
+      "source_ids": ["QATARENERGY-SUSTAINABILITY-2021", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "Use وضع الإغلاق عند الفشل in datasheets. The definite and attached forms عند فشل الصمام/للإغلاق are normal."
+    },
+    {
+      "en": "Fail-in-place Position",
+      "ar": "وضع الثبات عند الفشل",
+      "ar_aliases": ["يبقى في موضعه عند الفشل", "تثبيت آخر وضع"],
+      "category": "actuation",
+      "context": "Control-valve fail-safe action",
+      "source_ids": ["GSO-ISO-13703-2010"],
+      "confidence": "medium",
+      "notes": "يبقى في موضعه is clearer in correspondence; وضع الثبات عند الفشل is compact for datasheets. Avoid translation as يفشل في المكان."
+    },
+    {
+      "en": "Manual Override",
+      "ar": "تجاوز يدوي",
+      "ar_aliases": ["تشغيل يدوي احتياطي", "آلية تشغيل يدوي"],
+      "category": "actuation",
+      "context": "Local manual operation of an actuated valve",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "تشغيل يدوي احتياطي is clearer to buyers; تجاوز يدوي is the compact controls term. Plural: آليات تجاوز يدوي."
+    },
+    {
+      "en": "Valve Positioner",
+      "ar": "محدّد موضع الصمام",
+      "ar_aliases": ["مضبط وضع الصمام", "مموضع الصمام"],
+      "category": "actuation",
+      "context": "Control-valve positioning device",
+      "source_ids": ["GSO-ISO-13703-2010", "ADNOC-DIGITAL-WELL-CONTROL-2024"],
+      "confidence": "medium",
+      "notes": "Arabic usage varies significantly. محدد موضع الصمام is broadly understandable; many Gulf projects retain Positioner in parentheses."
+    },
+    {
+      "en": "End Connection",
+      "ar": "وصلة طرفية",
+      "ar_aliases": ["نوع توصيل الأطراف", "نهاية التوصيل"],
+      "category": "connection_design",
+      "context": "Flanged, butt-weld, socket-weld or threaded valve ends",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "نوع توصيل الأطراف is clearest as a datasheet field. Plural: وصلات طرفية. Attached form: بالوصلة الطرفية."
+    },
+    {
+      "en": "Face-to-face Dimension",
+      "ar": "البعد بين الوجهين",
+      "ar_aliases": ["مسافة وجه إلى وجه", "طول وجه لوجه"],
+      "category": "connection_design",
+      "context": "Valve installation dimension; FTF",
+      "source_ids": ["GSO-EN-558-2021"],
+      "confidence": "high",
+      "notes": "البعد بين الوجهين is the formal engineering rendering. Retain FTF in parentheses on drawings. Plural: الأبعاد بين الوجهين."
+    },
+    {
+      "en": "Centre-to-face Dimension",
+      "ar": "البعد من المركز إلى الوجه",
+      "ar_aliases": ["مسافة المركز إلى الوجه", "البعد مركز إلى وجه"],
+      "category": "connection_design",
+      "context": "Angle-valve installation dimension; CTF",
+      "source_ids": ["GSO-EN-558-2021"],
+      "confidence": "high",
+      "notes": "Use من المركز إلى الوجه. British spelling Centre is retained in the English key to match the GSO title."
+    },
+    {
+      "en": "Dismantling Joint",
+      "ar": "وصلة فك وتركيب",
+      "ar_aliases": ["وصلة تفكيك", "وصلة قابلة للفك"],
+      "category": "connection_design",
+      "context": "Water and firewater valve-chamber installation",
+      "source_ids": ["QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "وصلة فك وتركيب is common Gulf waterworks terminology. وصلة تفكيك is formal but less explicit. Plural: وصلات فك وتركيب."
+    },
+    {
+      "en": "Tie-in Valve",
+      "ar": "صمام الربط",
+      "ar_aliases": ["صمام نقطة الربط", "صمام التوصيل بالشبكة"],
+      "category": "connection_design",
+      "context": "Connection to an existing plant or utility network",
+      "source_ids": ["QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "صمام الربط is concise; نقطة الربط clarifies brownfield context. Do not use صمام التعادل. Plural: صمامات الربط."
+    },
+    {
+      "en": "Valve Chamber",
+      "ar": "غرفة الصمامات",
+      "ar_aliases": ["حجرة الصمام", "غرفة محابس"],
+      "category": "connection_design",
+      "context": "Underground utility and firewater valve installation",
+      "source_ids": ["QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "غرفة الصمامات is preferred Gulf formal usage. غرفة محابس is frequent in Egypt and some water authorities; treat it as a regional alias."
+    },
+    {
+      "en": "Design Pressure",
+      "ar": "ضغط التصميم",
+      "ar_aliases": ["الضغط التصميمي", "ضغط التصميم المعتمد"],
+      "category": "connection_design",
+      "context": "Piping and valve design basis",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "ضغط التصميم is preferred. Attached forms بضغط التصميم/لضغط التصميم are common. Do not conflate with nominal pressure."
+    },
+    {
+      "en": "Design Temperature",
+      "ar": "درجة حرارة التصميم",
+      "ar_aliases": ["درجة الحرارة التصميمية", "حرارة التصميم"],
+      "category": "connection_design",
+      "context": "Piping and valve design basis",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "درجة حرارة التصميم is preferred. حرارة التصميم is concise vendor usage. Do not conflate with operating temperature."
+    },
+    {
+      "en": "Differential Pressure",
+      "ar": "فرق الضغط",
+      "ar_aliases": ["الضغط التفاضلي", "فارق الضغط"],
+      "category": "connection_design",
+      "context": "Valve sizing, actuator sizing and seat load",
+      "source_ids": ["SASO-ISO-TR-9464-2020", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "فرق الضغط is clearest; الضغط التفاضلي is common in calculations. Attached forms لفرق الضغط/بفرق ضغط."
+    },
+    {
+      "en": "Maximum Allowable Pressure",
+      "ar": "أقصى ضغط مسموح به",
+      "ar_aliases": ["الضغط الأقصى المسموح", "أقصى ضغط تشغيل مسموح"],
+      "category": "connection_design",
+      "context": "Pressure-equipment regulatory limit; PS",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Official SASO wording is أقصى ضغط مسموح به. Do not add تشغيل unless the source specifically means MAWP."
+    },
+    {
+      "en": "Corrosion Allowance",
+      "ar": "سماحية التآكل",
+      "ar_aliases": ["بدل التآكل", "هامش التآكل"],
+      "category": "connection_design",
+      "context": "Minimum wall thickness and material selection",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "سماحية التآكل is formal engineering Arabic. بدل التآكل is common in Gulf EPC documents. Plural is uncommon because the term is usually a singular design value."
+    },
+    {
+      "en": "Carbon Steel",
+      "ar": "فولاذ كربوني",
+      "ar_aliases": ["صلب كربوني", "الفولاذ الكربوني"],
+      "category": "material_service",
+      "context": "Valve body and trim material",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "فولاذ is standards-oriented; صلب is widespread in Egypt and supplier catalogues. Attached forms من الفولاذ الكربوني/بجسم فولاذي."
+    },
+    {
+      "en": "Stainless Steel",
+      "ar": "فولاذ مقاوم للصدأ",
+      "ar_aliases": ["ستانلس ستيل", "صلب غير قابل للصدأ"],
+      "category": "material_service",
+      "context": "Valve body, trim and instrumentation material",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use فولاذ مقاوم للصدأ in formal Arabic. ستانلس ستيل is a common procurement alias but should not be the generated default."
+    },
+    {
+      "en": "Duplex Stainless Steel",
+      "ar": "فولاذ مقاوم للصدأ مزدوج الطور",
+      "ar_aliases": ["فولاذ دوبلكس", "ستانلس ستيل دوبلكس"],
+      "category": "material_service",
+      "context": "Corrosive oil, gas and seawater service",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "مزدوج الطور is the technical rendering; دوبلكس is the procurement shorthand. Attached form: من فولاذ دوبلكس."
+    },
+    {
+      "en": "Super Duplex Stainless Steel",
+      "ar": "فولاذ مقاوم للصدأ فائق الازدواج",
+      "ar_aliases": ["فولاذ سوبر دوبلكس", "ستانلس ستيل فائق الازدواج"],
+      "category": "material_service",
+      "context": "Severe chloride and offshore service",
+      "source_ids": ["GSO-ISO-13703-2010", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "فائق الازدواج is formal; سوبر دوبلكس is common Gulf procurement shorthand. Retain UNS grade to eliminate ambiguity."
+    },
+    {
+      "en": "Low-temperature Carbon Steel",
+      "ar": "فولاذ كربوني للخدمة منخفضة الحرارة",
+      "ar_aliases": ["فولاذ كربوني منخفض الحرارة", "صلب كربوني لدرجات الحرارة المنخفضة"],
+      "category": "material_service",
+      "context": "LTCS valve bodies for low-temperature service",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use للخدمة منخفضة الحرارة to avoid implying the steel itself has a low temperature. LTCS may be retained in parentheses."
+    },
+    {
+      "en": "Ductile Iron",
+      "ar": "حديد زهر مطيل",
+      "ar_aliases": ["حديد دكتايل", "حديد مطاوع كروي الجرافيت"],
+      "category": "material_service",
+      "context": "Water and firewater valve body material",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "حديد زهر مطيل is the formal term. حديد دكتايل is common Gulf procurement speech. Do not shorten to حديد مطاوع without grade context."
+    },
+    {
+      "en": "Aluminum Bronze",
+      "ar": "برونز الألومنيوم",
+      "ar_aliases": ["برونز ألمنيومي", "سبيكة برونز الألومنيوم"],
+      "category": "material_service",
+      "context": "Non-ferrous valve body and seawater service",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "high",
+      "notes": "Both الألومنيوم and الألمنيوم occur regionally; الألومنيوم is used here as the formal default. Attached form: من برونز الألومنيوم."
+    },
+    {
+      "en": "Sour Service",
+      "ar": "خدمة الموائع الحامضية",
+      "ar_aliases": ["خدمة الغاز الحامضي", "ظروف الخدمة الحامضية"],
+      "category": "material_service",
+      "context": "H2S-containing oil and gas service",
+      "source_ids": ["GSO-ISO-13703-2010", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "Use الموائع الحامضية when the fluid can be gas or liquid; الغاز الحامضي is narrower. Avoid the literal خدمة حامضة."
+    },
+    {
+      "en": "Factory Acceptance Test",
+      "ar": "اختبار القبول في المصنع",
+      "ar_aliases": ["اختبار استلام المصنع", "اختبار قبول المصنع"],
+      "category": "inspection_document",
+      "context": "Pre-shipment customer or third-party witness testing; FAT",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "اختبار القبول في المصنع is preferred. Retain FAT in parentheses. Plural: اختبارات القبول في المصنع."
+    },
+    {
+      "en": "Type Test",
+      "ar": "اختبار النوع",
+      "ar_aliases": ["اختبار نمطي", "اختبارات النوع"],
+      "category": "inspection_document",
+      "context": "Design qualification testing",
+      "source_ids": ["GSO-ISO-22435-2025", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "اختبار النوع is standard. اختبار نمطي occurs regionally but can be less clear. Attached form: لاختبار النوع."
+    },
+    {
+      "en": "Functional Test",
+      "ar": "اختبار وظيفي",
+      "ar_aliases": ["اختبار التشغيل الوظيفي", "اختبار أداء الوظيفة"],
+      "category": "inspection_document",
+      "context": "Valve and actuator function verification",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "اختبار وظيفي is concise; اختبار التشغيل الوظيفي is clearer in an ITP. Plural: اختبارات وظيفية."
+    },
+    {
+      "en": "Torque Test",
+      "ar": "اختبار عزم التشغيل",
+      "ar_aliases": ["اختبار عزم الدوران", "اختبار عزم الصمام"],
+      "category": "inspection_document",
+      "context": "Valve operating torque and actuator sizing verification",
+      "source_ids": ["ARAMCO-2025-SOURCING-GAPS", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "عزم التشغيل is specific to valve operation; عزم الدوران is the general mechanics term. Plural: اختبارات عزم التشغيل."
+    },
+    {
+      "en": "Pneumatic Test",
+      "ar": "اختبار هوائي",
+      "ar_aliases": ["اختبار الضغط بالهواء", "اختبار بالغاز المضغوط"],
+      "category": "inspection_document",
+      "context": "Pressure or leakage testing with gas",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "اختبار هوائي is preferred as the general term. Specify gas medium where required. Do not translate as اختبار رئوي."
+    },
+    {
+      "en": "Fugitive Emission Test",
+      "ar": "اختبار الانبعاثات المتسربة",
+      "ar_aliases": ["اختبار الانبعاثات الهاربة", "اختبار التسربات الانبعاثية"],
+      "category": "inspection_document",
+      "context": "Stem and body-joint emissions qualification",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ADNOC-DIGITAL-WELL-CONTROL-2024"],
+      "confidence": "medium",
+      "notes": "الانبعاثات المتسربة is clearest. الهاربة is a literal standards variant but sounds less natural in Gulf commercial Arabic."
+    },
+    {
+      "en": "Dimensional Inspection",
+      "ar": "فحص الأبعاد",
+      "ar_aliases": ["التفتيش على الأبعاد", "التحقق من الأبعاد"],
+      "category": "inspection_document",
+      "context": "Face-to-face, bore and connection verification",
+      "source_ids": ["GSO-EN-558-2021", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "فحص الأبعاد is preferred. التحقق من الأبعاد is suitable in procedural text. Plural: فحوص الأبعاد."
+    },
+    {
+      "en": "Hardness Test",
+      "ar": "اختبار الصلادة",
+      "ar_aliases": ["اختبار القساوة", "قياس الصلادة"],
+      "category": "inspection_document",
+      "context": "Material verification and sour-service compliance",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "الصلادة is the standards term; القساوة is a common regional variant. Plural: اختبارات الصلادة."
+    },
+    {
+      "en": "Coating Inspection",
+      "ar": "فحص الطلاء",
+      "ar_aliases": ["فحص التغطية الواقية", "التفتيش على الطلاء"],
+      "category": "inspection_document",
+      "context": "External coating quality and holiday inspection",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "فحص الطلاء is concise. التغطية الواقية is useful where coating includes lining or multilayer protection. Plural: فحوص الطلاء."
+    },
+    {
+      "en": "Calibration Certificate",
+      "ar": "شهادة معايرة",
+      "ar_aliases": ["شهادة المعايرة", "شهادات المعايرة"],
+      "category": "inspection_document",
+      "context": "Pressure gauges, torque tools and test equipment",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "QATARENERGY-QGDL-IML-003"],
+      "confidence": "high",
+      "notes": "شهادة معايرة is standard. Definite and attached forms شهادة المعايرة/بشهادة معايرة should be normalized."
+    },
+    {
+      "en": "Operation and Maintenance Manual",
+      "ar": "دليل التشغيل والصيانة",
+      "ar_aliases": ["كتيب التشغيل والصيانة", "دليل الاستخدام والصيانة"],
+      "category": "inspection_document",
+      "context": "Vendor documentation; O&M manual",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "دليل التشغيل والصيانة is the standard equipment term. Retain O&M in parentheses when matching document indexes."
+    },
+    {
+      "en": "Welding Procedure Specification",
+      "ar": "مواصفة إجراء اللحام",
+      "ar_aliases": ["مواصفة إجراءات اللحام", "وثيقة إجراءات اللحام", "مستند WPS"],
+      "category": "documentation",
+      "context": "Qualified production-welding instructions submitted with valve manufacturing documents; WPS",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "GSO-ISO-13703-2010"],
+      "confidence": "high",
+      "notes": "مواصفة إجراء اللحام is the preferred singular normative term; مواصفة إجراءات اللحام is common in Gulf vendor documents. Retain WPS in parentheses. Plural: مواصفات إجراءات اللحام; attached forms include لمواصفة إجراء اللحام وبموجب مواصفة إجراء اللحام. Do not confuse WPS with سجل تأهيل إجراء اللحام (PQR)."
+    },
+    {
+      "en": "Manufacturing Record Book",
+      "ar": "سجل وثائق التصنيع",
+      "ar_aliases": ["ملف سجلات التصنيع", "كتاب سجل التصنيع"],
+      "category": "inspection_document",
+      "context": "Compiled quality dossier; MRB",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "medium",
+      "notes": "سجل وثائق التصنيع is natural and precise. كتاب سجل التصنيع is a literal vendor variant. Retain MRB in parentheses."
+    },
+    {
+      "en": "Technical Compliance Statement",
+      "ar": "بيان المطابقة الفنية",
+      "ar_aliases": ["إقرار الامتثال الفني", "بيان التوافق الفني"],
+      "category": "inspection_document",
+      "context": "Tender checklist and bid compliance submission",
+      "source_ids": ["QATARENERGY-QGDL-IML-003", "SASO-PRESSURE-EQUIPMENT-2025"],
+      "confidence": "high",
+      "notes": "QatarEnergy uses a technical compliance statement/checklist concept. المطابقة is product-oriented; الامتثال is regulatory. Choose by context."
+    },
+    {
+      "en": "Inspection Release Note",
+      "ar": "مذكرة الإفراج بعد الفحص",
+      "ar_aliases": ["إشعار الإفراج عن الفحص", "تصريح الشحن بعد الفحص"],
+      "category": "inspection_document",
+      "context": "Release for packing or shipment after inspection; IRN",
+      "source_ids": ["SASO-PRESSURE-EQUIPMENT-2025", "ARAMCO-2025-SOURCING-GAPS"],
+      "confidence": "medium",
+      "notes": "Meaning varies by buyer workflow. Retain IRN and confirm whether it authorizes shipment. Avoid translating release as تحرير without context."
+    },
+    {
+      "en": "Follow-up on Our Previous Email",
+      "ar": "متابعة لرسالتنا الإلكترونية السابقة",
+      "ar_aliases": ["بالإشارة إلى رسالتنا السابقة", "إلحاقا برسالتنا السابقة"],
+      "category": "business_email_phrase",
+      "context": "Opening that links a follow-up to an earlier email",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "بالإشارة إلى is more formal than متابعة لـ. إلحاقا is suitable when providing additional material, not merely chasing a reply."
+    },
+    {
+      "en": "We Kindly Request Your Update",
+      "ar": "نرجو التكرم بتزويدنا بآخر المستجدات",
+      "ar_aliases": ["يرجى موافاتنا بآخر التطورات", "نأمل إفادتنا بآخر تحديث"],
+      "category": "business_email_phrase",
+      "context": "Requesting a status update without sounding demanding",
+      "source_ids": ["UNIDO-ARABIC-CORRESPONDENCE-2023", "UNESCWA-CORRESPONDENCE-GUIDE"],
+      "confidence": "high",
+      "notes": "آخر المستجدات is natural formal Arabic. آخر تحديث is common but more literal. Use تزويدنا/موافاتنا regardless of recipient gender."
+    },
+    {
+      "en": "Please Confirm Receipt",
+      "ar": "يرجى تأكيد الاستلام",
+      "ar_aliases": ["نرجو تأكيد استلامكم", "يرجى التكرم بإشعارنا بالاستلام"],
+      "category": "business_email_phrase",
+      "context": "Requesting acknowledgement of an email, quotation or attachment",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "يرجى تأكيد الاستلام is neutral and concise. استلامكم is polite but number-sensitive; use the neutral form for automated generation."
+    },
+    {
+      "en": "We Await Your Kind Reply",
+      "ar": "نتطلع إلى ردكم الكريم",
+      "ar_aliases": ["بانتظار ردكم الكريم", "نترقب إفادتكم الكريمة"],
+      "category": "business_email_phrase",
+      "context": "Polite closing requesting a reply",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "نتطلع إلى is positive and professional. بانتظار is acceptable but slightly more pressing. Avoid ننتظر ردك الطيب in formal B2B mail."
+    },
+    {
+      "en": "Your Prompt Response Would Be Appreciated",
+      "ar": "نقدّر تفضلكم بالرد في أقرب وقت",
+      "ar_aliases": ["نرجو التكرم بالرد العاجل", "سنكون شاكرين لردكم السريع"],
+      "category": "business_email_phrase",
+      "context": "Time-sensitive follow-up that remains courteous",
+      "source_ids": ["UNIDO-ARABIC-CORRESPONDENCE-2023", "UNESCWA-CORRESPONDENCE-GUIDE"],
+      "confidence": "high",
+      "notes": "في أقرب وقت is softer than العاجل. Use العاجل only for genuine urgency. Avoid الاستجابة الفورية ستكون مقدرة, which is structurally English."
+    },
+    {
+      "en": "Please Advise the Current Status",
+      "ar": "يرجى إفادتنا بالوضع الحالي",
+      "ar_aliases": ["نرجو موافاتنا بحالة الطلب الحالية", "يرجى إطلاعنا على آخر حالة"],
+      "category": "business_email_phrase",
+      "context": "Order, quotation, drawing or approval status follow-up",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "Replace الطلب with quotation/order/drawing when known. آخر حالة is common but less formal. إفادتنا is recipient-gender neutral."
+    },
+    {
+      "en": "Please Let Us Know If You Need Any Clarification",
+      "ar": "يرجى إبلاغنا إذا احتجتم إلى أي إيضاح",
+      "ar_aliases": ["نحن على استعداد لتقديم أي إيضاحات إضافية", "يرجى التواصل معنا لأي استفسار"],
+      "category": "business_email_phrase",
+      "context": "Helpful closing after a quotation or technical response",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "The neutral alternative نحن على استعداد avoids singular/plural addressee agreement. إيضاح is preferred over توضيح when referring to formal clarification."
+    },
+    {
+      "en": "Thank You in Advance for Your Cooperation",
+      "ar": "نشكر لكم تعاونكم مقدما",
+      "ar_aliases": ["شاكرين لكم حسن تعاونكم", "نقدّر تعاونكم سلفا"],
+      "category": "business_email_phrase",
+      "context": "Courteous close before requested action is completed",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "مقدما is more natural than سلفا in Gulf business email. حسن تعاونكم is warmer and can be used without مقدما."
+    },
+    {
+      "en": "We Would Appreciate Your Feedback",
+      "ar": "نقدّر تزويدنا بملاحظاتكم",
+      "ar_aliases": ["يسعدنا تلقي ملاحظاتكم", "نرجو موافاتنا بمرئياتكم"],
+      "category": "business_email_phrase",
+      "context": "Seeking comments on a quotation, drawing or technical proposal",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "ملاحظاتكم is broadly understood. مرئياتكم is formal Gulf-government usage and may sound too official for some overseas customers."
+    },
+    {
+      "en": "Please Note That",
+      "ar": "يرجى ملاحظة أن",
+      "ar_aliases": ["نود لفت عنايتكم إلى أن", "نحيطكم علما بأن"],
+      "category": "business_email_phrase",
+      "context": "Introducing an important commercial or technical condition",
+      "source_ids": ["UNESCWA-CORRESPONDENCE-GUIDE", "UNIDO-ARABIC-CORRESPONDENCE-2023"],
+      "confidence": "high",
+      "notes": "Use نود لفت عنايتكم for emphasis and نحيطكم علما for formal notice. Avoid يرجى أخذ العلم that, which is a calque."
+    }
+  ],
+  "rejected_or_ambiguous": [
+    {
+      "en": "Soft Reminder",
+      "rejected_ar": ["تذكير ناعم", "تذكير لين"],
+      "reason": "These are literal translations of soft and sound unnatural in professional Arabic. Map the intent to نود التذكير بلطف بأن or تذكير ودي بشأن."
+    },
+    {
+      "en": "Nozzle Check Valve",
+      "ambiguous_ar": ["صمام فوهة"],
+      "reason": "صمام فوهة can be interpreted as a valve attached to a nozzle rather than an axial nozzle-type check valve; prefer صمام عدم رجوع من نوع الفوهة."
+    },
+    {
+      "en": "Through-conduit Gate Valve",
+      "ambiguous_ar": ["صمام بوابة خلالي"],
+      "reason": "خلالي is uncommon and unclear. Use كامل المجرى with the English design name retained in parentheses when exact differentiation from full-bore is required."
+    },
+    {
+      "en": "Post Indicator Valve",
+      "ambiguous_ar": ["صمام مؤشر آخر"],
+      "reason": "Post means a vertical indicator post, not subsequent/after. Use صمام بمؤشر قائم and retain PIV/PIVA."
+    },
+    {
+      "en": "Valve Positioner",
+      "ambiguous_ar": ["واضع الصمام"],
+      "reason": "This literal form is not standard technical Arabic. Use محدد موضع الصمام and retain Positioner for projects whose controlled vocabulary is English."
+    },
+    {
+      "en": "Ductile Iron",
+      "ambiguous_ar": ["حديد مطاوع"],
+      "reason": "حديد مطاوع can be read as wrought iron. Use حديد زهر مطيل or the procurement alias حديد دكتايل with the material grade."
+    }
+  ]
+}

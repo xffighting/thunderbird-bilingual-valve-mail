@@ -8,11 +8,14 @@
   const elements = {
     state: document.getElementById("state"),
     content: document.getElementById("assistantContent"),
+    syncState: document.getElementById("syncState"),
     updatedAt: document.getElementById("updatedAt"),
     warningPanel: document.getElementById("warningPanel"),
     warnings: document.getElementById("warnings"),
     technicalSection: document.getElementById("technicalSection"),
     technicalTerms: document.getElementById("technicalTerms"),
+    reviewConfirmation: document.getElementById("reviewConfirmation"),
+    reviewCheckbox: document.getElementById("reviewCheckbox"),
     tabs: document.getElementById("languageTabs"),
     languageLabel: document.getElementById("languageLabel"),
     candidateTitle: document.getElementById("candidateTitle"),
@@ -23,6 +26,7 @@
   let sessionId = new URLSearchParams(location.search).get("session") || "";
   let session = null;
   let activeLanguage = "zh";
+  let refreshing = false;
 
   function clear(node) {
     node.replaceChildren();
@@ -60,6 +64,21 @@
     });
   }
 
+  function updateInsertState() {
+    const candidate = session?.candidates?.find(item => item.code === activeLanguage);
+    if (!candidate) return;
+    if (refreshing) {
+      elements.insert.disabled = true;
+      elements.insert.textContent = "正在根据新草稿更新";
+      return;
+    }
+    const reviewPending = session.requiresHumanReview && !elements.reviewCheckbox.checked;
+    elements.insert.disabled = reviewPending;
+    elements.insert.textContent = reviewPending
+      ? `复核后插入${candidate.label}`
+      : `插入${candidate.label}`;
+  }
+
   function selectLanguage(code, moveFocus = false) {
     const candidate = session?.candidates?.find(item => item.code === code);
     if (!candidate) return;
@@ -89,7 +108,7 @@
       }
       elements.preview.appendChild(node);
     }
-    elements.insert.textContent = `插入${candidate.label}`;
+    updateInsertState();
   }
 
   function renderTabs() {
@@ -127,7 +146,14 @@
     elements.state.hidden = true;
     elements.state.classList.remove("error");
     elements.content.hidden = false;
-    elements.updatedAt.textContent = session.isPlainText ? "纯文本邮件" : "支持重点加粗";
+    refreshing = false;
+    elements.syncState.classList.remove("refreshing");
+    elements.syncState.textContent = `已同步 ${session.source.length} 字`;
+    elements.updatedAt.textContent = session.isPlainText
+      ? "实时跟随 · 纯文本"
+      : "实时跟随 · 支持重点加粗";
+    elements.reviewCheckbox.checked = false;
+    elements.reviewConfirmation.hidden = !session.requiresHumanReview;
     renderWarnings();
     renderTerms();
     renderTabs();
@@ -153,7 +179,8 @@
       const response = await api.runtime.sendMessage({
         type: "applyComposeSuggestion",
         sessionId,
-        language: activeLanguage
+        language: activeLanguage,
+        humanReviewConfirmed: elements.reviewCheckbox.checked
       });
       if (!response?.ok) throw new Error(response?.message || "插入当前邮件失败。");
       elements.insert.textContent = "已插入当前邮件";
@@ -166,11 +193,22 @@
   }
 
   elements.insert.addEventListener("click", insertCandidate);
+  elements.reviewCheckbox.addEventListener("change", updateInsertState);
   global.addEventListener("beforeunload", () => keepAlivePort?.disconnect?.(), { once: true });
   api.runtime.onMessage.addListener(request => {
+    if (request?.type === "composeSuggestionSessionPending" && request.sessionId === sessionId) {
+      refreshing = true;
+      elements.syncState.classList.add("refreshing");
+      elements.syncState.textContent = "正在根据新草稿更新";
+      updateInsertState();
+      return undefined;
+    }
     if (request?.type !== "composeSuggestionSessionUpdated" || request.sessionId !== sessionId) {
       return undefined;
     }
+    refreshing = true;
+    elements.syncState.classList.add("refreshing");
+    elements.syncState.textContent = "正在刷新";
     loadSession().catch(showError);
     return undefined;
   });

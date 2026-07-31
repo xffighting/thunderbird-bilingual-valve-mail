@@ -103,6 +103,13 @@
         .map(value => cleanText(value, 240))
         .filter(Boolean)
         .slice(0, 8),
+      requiresHumanReview: response.requiresHumanReview === true,
+      highRiskIntentIds: (Array.isArray(response.highRiskIntentIds)
+        ? response.highRiskIntentIds
+        : [])
+        .map(value => cleanText(value, 80))
+        .filter(Boolean)
+        .slice(0, 12),
       candidates
     };
   }

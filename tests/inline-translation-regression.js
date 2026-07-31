@@ -31,6 +31,18 @@ assert.strictEqual(
 );
 
 assert.strictEqual(
+  core.detectSourceLanguage("يرجى تقديم أفضل سعر لصمام كروي DN50 PN16."),
+  "ar",
+  "business Arabic should be detected as Arabic"
+);
+
+assert.strictEqual(
+  core.isArabicLine("يرجى تقديم أفضل سعر لصمام كروي DN50 PN16."),
+  true,
+  "business Arabic should be translated"
+);
+
+assert.strictEqual(
   core.isEnglishLine("请提供最优价格和交期。"),
   false,
   "existing Chinese should not be translated"
@@ -54,6 +66,9 @@ for (const headerLine of [
   "To: buyer@example.test",
   "Cc: team@example.test",
   "Subject: Re: RFQ-100",
+  "الموضوع: طلب عرض سعر RFQ-100",
+  "من: buyer@example.test",
+  "-----الرسالة الأصلية-----",
   "From: sender@example.test Sent: Monday To: buyer@example.test Subject: RFQ-100",
   "-----Original Message-----"
 ]) {
@@ -66,15 +81,24 @@ for (const headerLine of [
 
 assert.deepStrictEqual(
   core.normalizeTranslationResponse(
-    ["Please quote.", "Delivery: 4 weeks.", "Материал корпуса: WCB."],
-    { ok: true, translations: ["请报价。", "交期：4周。", "阀体材质：WCB。"] }
+    [
+      "Please quote.",
+      "Delivery: 4 weeks.",
+      "Материал корпуса: WCB.",
+      "مادة جسم الصمام: WCB."
+    ],
+    {
+      ok: true,
+      translations: ["请报价。", "交期：4周。", "阀体材质：WCB。", "阀体材质：WCB。"]
+    }
   ),
   [
     { source: "Please quote.", translation: "请报价。" },
     { source: "Delivery: 4 weeks.", translation: "交期：4周。" },
-    { source: "Материал корпуса: WCB.", translation: "阀体材质：WCB。" }
+    { source: "Материал корпуса: WCB.", translation: "阀体材质：WCB。" },
+    { source: "مادة جسم الصمام: WCB.", translation: "阀体材质：WCB。" }
   ],
-  "English and Russian translations should keep a stable one-to-one source mapping"
+  "English, Russian, and Arabic translations should keep a stable one-to-one source mapping"
 );
 
 assert.deepStrictEqual(

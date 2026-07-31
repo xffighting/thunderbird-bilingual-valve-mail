@@ -11,6 +11,12 @@ globalThis.browser = {
           translations: request.texts.map(() => "阀体材质：WCB。")
         };
       }
+      if (request.source === "ar") {
+        return {
+          ok: true,
+          translations: request.texts.map(() => "球阀 DN50 PN16。")
+        };
+      }
       return {
         ok: true,
         translations: request.texts.map(() => "请确认数量。")
@@ -27,7 +33,8 @@ require("../src/translation-native.js");
   const result = await globalThis.OfflineMailTranslator.translateBatch(
     [
       "Please confirm the quantity.",
-      "Материал корпуса: WCB."
+      "Материал корпуса: WCB.",
+      "يرجى تقديم سعر لصمام كروي DN50 PN16."
     ],
     [
       {
@@ -41,8 +48,8 @@ require("../src/translation-native.js");
 
   assert.deepStrictEqual(
     result.translations,
-    ["请确认数量。", "阀体材质：WCB。"],
-    "mixed English and Russian input should preserve source order"
+    ["请确认数量。", "阀体材质：WCB。", "球阀 DN50 PN16。"],
+    "mixed English, Russian, and Arabic input should preserve source order"
   );
   assert.deepStrictEqual(
     requests.map(request => ({
@@ -63,9 +70,15 @@ require("../src/translation-native.js");
         source: "ru",
         target: "zh",
         texts: ["Материал корпуса: WCB."]
+      },
+      {
+        type: "translate",
+        source: "ar",
+        target: "zh",
+        texts: ["يرجى تقديم سعر لصمام كروي DN50 PN16."]
       }
     ],
-    "English and Russian lines should be sent only to their matching offline model route"
+    "English, Russian, and Arabic lines should be sent only to their matching offline model route"
   );
   assert.strictEqual(
     requests[1].customTerms[0].sourceLanguage,

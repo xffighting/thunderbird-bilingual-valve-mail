@@ -10,6 +10,7 @@
   const SCRIPT_CSS = ["ui/compose-assistant-compose.css"];
   const sessions = new Map();
   const popupWindowsByTab = new Map();
+  const latestFingerprintByTab = new Map();
   const assistantPorts = new Set();
 
   if (!api || !core) return;
@@ -40,8 +41,8 @@
       return {
         width,
         height,
-        left: Math.max(0, Number(parent.left || 0) + Number(parent.width || width) - width - 20),
-        top: Math.max(0, Number(parent.top || 0) + 34)
+        left: Number(parent.left || 0) + Number(parent.width || width) - width - 20,
+        top: Number(parent.top || 0) + 34
       };
     } catch (error) {
       return {};
@@ -52,7 +53,9 @@
     const currentWindowId = popupWindowsByTab.get(tab.id);
     if (typeof currentWindowId === "number") {
       try {
-        await api.windows.update(currentWindowId, { focused: true });
+        if (api.windows?.get) {
+          await api.windows.get(currentWindowId);
+        }
         await api.runtime.sendMessage({
           type: "composeSuggestionSessionUpdated",
           sessionId
@@ -69,7 +72,7 @@
     const popup = await api.windows.create({
       ...position,
       type: "popup",
-      focused: true,
+      focused: false,
       url: api.runtime.getURL(`ui/compose-assistant.html?session=${encodeURIComponent(sessionId)}`)
     });
     if (typeof popup?.id === "number") {
@@ -91,6 +94,7 @@
     if (request.sourceFingerprint && request.sourceFingerprint !== sourceFingerprint) {
       return { ok: false, ignored: true };
     }
+    latestFingerprintByTab.set(tab.id, sourceFingerprint);
 
     const assistantOptions = await getAssistantOptions();
     if (!assistantOptions.enabled) {
@@ -103,6 +107,9 @@
         : Promise.resolve({}),
       OfflineMailTranslator.composeSuggestions(source, customTerms)
     ]);
+    if (latestFingerprintByTab.get(tab.id) !== sourceFingerprint) {
+      return { ok: false, ignored: true, reason: "superseded" };
+    }
     const suggestions = core.normalizeSuggestionResponse(source, suggestionResponse);
     const sessionId = `compose-${tab.id}`;
     sessions.set(sessionId, {
@@ -135,6 +142,13 @@
     if (!session) {
       return { ok: false, message: "回复候选已过期，请继续编辑中文草稿后重试。" };
     }
+    if (session.requiresHumanReview && request.humanReviewConfirmed !== true) {
+      return {
+        ok: false,
+        reviewRequired: true,
+        message: "这段回复涉及高风险商务条件，请先完成发送前复核确认。"
+      };
+    }
     const candidate = session.candidates.find(item => item.code === request.language);
     if (!candidate) {
       return { ok: false, message: "没有找到所选语种。" };
@@ -149,6 +163,37 @@
       return { ok: false, message: response?.message || "无法写入当前邮件。" };
     }
     sessions.delete(session.id);
+    latestFingerprintByTab.delete(session.tabId);
+    return { ok: true };
+  }
+
+  async function clearDraftPreview(sender) {
+    const tabId = sender?.tab?.id;
+    if (typeof tabId !== "number") return { ok: false, ignored: true };
+    sessions.delete(`compose-${tabId}`);
+    latestFingerprintByTab.delete(tabId);
+    const popupWindowId = popupWindowsByTab.get(tabId);
+    popupWindowsByTab.delete(tabId);
+    if (typeof popupWindowId === "number" && api.windows?.remove) {
+      await api.windows.remove(popupWindowId).catch(() => undefined);
+    }
+    return { ok: true };
+  }
+
+  async function markDraftPending(request, sender) {
+    const tabId = sender?.tab?.id;
+    if (typeof tabId !== "number") return { ok: false, ignored: true };
+    const sourceFingerprint = String(request.sourceFingerprint || "");
+    if (!sourceFingerprint) return { ok: false, ignored: true };
+    latestFingerprintByTab.set(tabId, sourceFingerprint);
+    const sessionId = `compose-${tabId}`;
+    if (sessions.has(sessionId) && popupWindowsByTab.has(tabId)) {
+      await api.runtime.sendMessage({
+        type: "composeSuggestionSessionPending",
+        sessionId,
+        sourceFingerprint
+      });
+    }
     return { ok: true };
   }
 
@@ -158,6 +203,12 @@
         ok: false,
         message: error.message || "生成四语回复失败。"
       }));
+    }
+    if (request?.type === "clearComposeDraftPreview") {
+      return clearDraftPreview(sender);
+    }
+    if (request?.type === "composeDraftPreviewPending") {
+      return markDraftPending(request, sender);
     }
     if (request?.type === "getComposeSuggestionSession") {
       const session = sessions.get(String(request.sessionId || ""));
@@ -220,6 +271,17 @@
     api.windows.onRemoved.addListener(windowId => {
       for (const [tabId, popupWindowId] of popupWindowsByTab) {
         if (popupWindowId === windowId) popupWindowsByTab.delete(tabId);
+      }
+    });
+  }
+  if (api.tabs?.onRemoved) {
+    api.tabs.onRemoved.addListener(tabId => {
+      sessions.delete(`compose-${tabId}`);
+      latestFingerprintByTab.delete(tabId);
+      const popupWindowId = popupWindowsByTab.get(tabId);
+      popupWindowsByTab.delete(tabId);
+      if (typeof popupWindowId === "number" && api.windows?.remove) {
+        api.windows.remove(popupWindowId).catch(() => undefined);
       }
     });
   }

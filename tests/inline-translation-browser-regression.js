@@ -6,7 +6,6 @@ const { chromium } = require("playwright");
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
-  const feedbackRequests = [];
 
   await page.setContent(`
     <!doctype html>
@@ -30,11 +29,7 @@ The material shall be stainless steel.</pre>
     </html>
   `);
 
-  await page.exposeFunction("captureFeedbackRequest", request => {
-    feedbackRequests.push(request);
-  });
   await page.evaluate(() => {
-    globalThis.gmsFeedbackMode = "failure";
     globalThis.browser = {
       runtime: {
         sendMessage: async request => {
@@ -57,14 +52,6 @@ The material shall be stainless steel.</pre>
                 return text;
               })
             };
-          }
-          if (request.type === "saveTranslationFeedback") {
-            await globalThis.captureFeedbackRequest(request);
-            await new Promise(resolve => setTimeout(resolve, 60));
-            if (globalThis.gmsFeedbackMode === "failure") {
-              return { ok: false, message: "模拟保存失败" };
-            }
-            return { ok: true, feedbackCount: 1 };
           }
           throw new Error(`Unexpected request: ${request.type}`);
         }
@@ -167,73 +154,13 @@ The material shall be stainless steel.</pre>
 
   assert.strictEqual(
     await page.locator(".gms-inline-feedback-button").count(),
-    5,
-    "every usable translation should offer a local correction action"
-  );
-  const firstFeedbackButton = page.locator(".gms-inline-feedback-button").first();
-  await firstFeedbackButton.click();
-  await page.locator("#gms-feedback-source").fill("best price");
-  await page.locator("#gms-feedback-suggestion").fill("最优价格");
-  await page.locator("#gms-feedback-form button[type='submit']").click();
-  await page.waitForFunction(() => {
-    return document.getElementById("gms-feedback-status").textContent.includes("模拟保存失败");
-  });
-  assert.strictEqual(
-    await page.locator("#gms-translation-feedback-dialog").getAttribute("open") !== null,
-    true,
-    "the correction dialog should stay open when local persistence fails"
+    0,
+    "translated rows should not add a correction button to every line"
   );
   assert.strictEqual(
-    await page.locator("#gms-feedback-form button[type='submit']").isEnabled(),
-    true,
-    "the correction submit button should be reusable after failure"
-  );
-
-  await page.evaluate(() => {
-    globalThis.gmsFeedbackMode = "success";
-  });
-  await page.locator("#gms-feedback-form button[type='submit']").click();
-  assert.strictEqual(
-    await page.locator("#gms-feedback-form button[type='submit']").isDisabled(),
-    true,
-    "the correction submit button should lock while saving"
-  );
-  await page.waitForFunction(() => !document.getElementById("gms-translation-feedback-dialog").open);
-  assert.strictEqual(
-    await firstFeedbackButton.getAttribute("aria-label"),
-    "本行纠错已记录",
-    "the source row should show that the correction was recorded"
-  );
-  assert.strictEqual(
-    await firstFeedbackButton.textContent(),
-    "✓",
-    "the source row should show a visible saved marker"
-  );
-  await firstFeedbackButton.click();
-  assert.strictEqual(
-    await page.locator("#gms-translation-feedback-dialog").getAttribute("open"),
-    null,
-    "an already recorded correction should not reopen the dialog or create duplicates"
-  );
-  assert.deepStrictEqual(
-    feedbackRequests.map(request => ({
-      type: request.type,
-      source: request.source,
-      suggestedTranslation: request.suggestedTranslation
-    })),
-    [
-      {
-        type: "saveTranslationFeedback",
-        source: "best price",
-        suggestedTranslation: "最优价格"
-      },
-      {
-        type: "saveTranslationFeedback",
-        source: "best price",
-        suggestedTranslation: "最优价格"
-      }
-    ],
-    "a failed save may be retried once, while a saved correction cannot be duplicated"
+    await page.locator("#gms-translation-feedback-dialog").count(),
+    0,
+    "the message view should not create a per-line correction dialog"
   );
 
   const artifactDir = path.join(__dirname, ".artifacts");

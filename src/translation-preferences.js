@@ -12,14 +12,26 @@
     return `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
   }
 
+  function normalizeSourceLanguage(value) {
+    return ["en", "ru", "ar"].includes(value) ? value : "en";
+  }
+
+  function localeForSourceLanguage(value) {
+    return {
+      en: "en-US",
+      ru: "ru-RU",
+      ar: "ar-SA"
+    }[normalizeSourceLanguage(value)];
+  }
+
   function normalizeCustomTerms(values) {
     const byEnglish = new Map();
     for (const raw of Array.isArray(values) ? values : []) {
       const en = cleanText(raw?.en, 240);
       const zh = cleanText(raw?.zh, 240);
       if (!en || !zh) continue;
-      const sourceLanguage = raw?.sourceLanguage === "ru" ? "ru" : "en";
-      const locale = sourceLanguage === "ru" ? "ru-RU" : "en-US";
+      const sourceLanguage = normalizeSourceLanguage(raw?.sourceLanguage);
+      const locale = localeForSourceLanguage(sourceLanguage);
       const key = `${sourceLanguage}\u0000${en.toLocaleLowerCase(locale)}`;
       byEnglish.set(key, {
         id: cleanText(raw?.id, 120) || createId("term"),
@@ -46,7 +58,7 @@
       output.push({
         id: cleanText(raw?.id, 120) || createId("feedback"),
         source,
-        sourceLanguage: raw?.sourceLanguage === "ru" ? "ru" : "en",
+        sourceLanguage: normalizeSourceLanguage(raw?.sourceLanguage),
         currentTranslation: cleanText(raw?.currentTranslation, 600),
         suggestedTranslation,
         status,
@@ -76,14 +88,14 @@
     if (!candidate) return { feedback, record: null, created: false };
 
     const sourceKey = candidate.source.toLocaleLowerCase(
-      candidate.sourceLanguage === "ru" ? "ru-RU" : "en-US"
+      localeForSourceLanguage(candidate.sourceLanguage)
     );
     const existing = feedback.find(item => {
       if (item.status !== "pending" || item.sourceLanguage !== candidate.sourceLanguage) {
         return false;
       }
       return item.source.toLocaleLowerCase(
-        item.sourceLanguage === "ru" ? "ru-RU" : "en-US"
+        localeForSourceLanguage(item.sourceLanguage)
       ) === sourceKey;
     });
 

@@ -10,6 +10,8 @@ const mockSession = {
   source: "球阀DN50 PN16报价做好了，请查收附件。",
   sourceFingerprint: "sample",
   isPlainText: false,
+  requiresHumanReview: false,
+  highRiskIntentIds: [],
   engine: "argos-offline",
   technicalTerms: ["球阀 / Ball Valve", "DN50", "PN16"],
   warnings: ["涉及数字、价格、交期或条款时，请以最终审核结果为准。"],
@@ -116,11 +118,30 @@ const mockSession = {
   await composePage.evaluate(() => {
     document.body.dispatchEvent(new InputEvent("input", { bubbles: true }));
   });
-  await composePage.waitForTimeout(1050);
-  assert.strictEqual(previewRequests.length, 1);
-  assert.strictEqual(previewRequests[0].type, "previewComposeDraft");
-  assert.ok(!previewRequests[0].source.includes("Original customer message"));
-  assert.ok(!previewRequests[0].source.includes("Lianggu Valve"));
+  await composePage.waitForTimeout(650);
+  const draftPreviewRequests = previewRequests.filter(
+    request => request.type === "previewComposeDraft"
+  );
+  assert.strictEqual(draftPreviewRequests.length, 1);
+  assert.ok(previewRequests.some(request => request.type === "composeDraftPreviewPending"));
+  assert.ok(!draftPreviewRequests[0].source.includes("Original customer message"));
+  assert.ok(!draftPreviewRequests[0].source.includes("Lianggu Valve"));
+
+  const staleResult = await composePage.evaluate(async ({ candidate, sourceFingerprint }) => {
+    document.getElementById("draft").append(" 请再确认交期。");
+    return globalThis.__composeListeners[0]({
+      type: "insertComposeSuggestion",
+      candidate,
+      isPlainText: false,
+      sourceFingerprint
+    });
+  }, {
+    candidate: mockSession.candidates[1],
+    sourceFingerprint: draftPreviewRequests[0].sourceFingerprint
+  });
+  assert.strictEqual(staleResult.ok, false);
+  assert.strictEqual(staleResult.stale, true);
+  assert.ok((await composePage.locator("body").innerText()).includes("请再确认交期"));
 
   await composePage.evaluate(async candidate => {
     const response = await globalThis.__composeListeners[0]({
@@ -180,6 +201,8 @@ const mockSession = {
   ).href}?session=compose-42`;
   await assistantPage.goto(assistantUrl);
   await assistantPage.waitForSelector("#assistantContent:not([hidden])");
+  assert.ok((await assistantPage.locator("#syncState").textContent()).includes("已同步"));
+  assert.ok((await assistantPage.locator("#updatedAt").textContent()).includes("实时跟随"));
   assert.strictEqual(await assistantPage.locator(".language-tab").count(), 4);
   assert.strictEqual(await assistantPage.locator(".chip").count(), 3);
   await assistantPage.locator(".language-tab[data-language='ar']").click();
@@ -201,7 +224,50 @@ const mockSession = {
   assert.deepStrictEqual(applyRequests, [{
     type: "applyComposeSuggestion",
     sessionId: "compose-42",
-    language: "ar"
+    language: "ar",
+    humanReviewConfirmed: false
+  }]);
+
+  const reviewPage = await browser.newPage({ viewport: { width: 520, height: 800 } });
+  const reviewApplyRequests = [];
+  await reviewPage.exposeFunction("captureReviewApplyRequest", request => {
+    reviewApplyRequests.push(request);
+  });
+  await reviewPage.addInitScript(session => {
+    globalThis.browser = {
+      runtime: {
+        sendMessage: async request => {
+          if (request.type === "getComposeSuggestionSession") {
+            return { ok: true, session };
+          }
+          if (request.type === "applyComposeSuggestion") {
+            await globalThis.captureReviewApplyRequest(request);
+            return { ok: true };
+          }
+          return {};
+        },
+        onMessage: { addListener() {} }
+      }
+    };
+  }, {
+    ...mockSession,
+    requiresHumanReview: true,
+    highRiskIntentIds: ["payment_due_by_date"],
+    warnings: ["该表达涉及高风险商务条件，请复核。"]
+  });
+  await reviewPage.goto(assistantUrl);
+  await reviewPage.waitForSelector("#assistantContent:not([hidden])");
+  assert.strictEqual(await reviewPage.locator("#reviewConfirmation").isVisible(), true);
+  assert.strictEqual(await reviewPage.locator("#insertCandidate").isDisabled(), true);
+  await reviewPage.locator("#reviewCheckbox").check();
+  assert.strictEqual(await reviewPage.locator("#insertCandidate").isEnabled(), true);
+  await reviewPage.locator("#insertCandidate").click();
+  await reviewPage.waitForTimeout(50);
+  assert.deepStrictEqual(reviewApplyRequests, [{
+    type: "applyComposeSuggestion",
+    sessionId: "compose-42",
+    language: "zh",
+    humanReviewConfirmed: true
   }]);
 
   await browser.close();

@@ -7,8 +7,6 @@
     `#${toggleId}`,
     "#game-mail-summary-inline-root",
     ".gms-inline-translation",
-    ".gms-translation-feedback-dialog",
-    ".gms-inline-feedback-button",
     "script",
     "style",
     "noscript",
@@ -18,8 +16,6 @@
   let translated = false;
   let translating = false;
   let hidden = false;
-  let activeFeedback = null;
-  let feedbackSubmitting = false;
 
   if (!api?.runtime?.sendMessage || !core || document.getElementById(toggleId)) return;
 
@@ -135,115 +131,6 @@
       .slice(0, 80);
   }
 
-  function closeFeedbackDialog(dialog, returnFocus) {
-    if (dialog.open && typeof dialog.close === "function") {
-      try {
-        dialog.close();
-      } catch (error) {
-        dialog.removeAttribute("open");
-      }
-    } else {
-      dialog.removeAttribute("open");
-    }
-    if (dialog.open) dialog.removeAttribute("open");
-    if (returnFocus?.isConnected) {
-      Promise.resolve().then(() => returnFocus.focus());
-    }
-  }
-
-  function getFeedbackDialog() {
-    const existing = document.getElementById("gms-translation-feedback-dialog");
-    if (existing) return existing;
-
-    const dialog = document.createElement("dialog");
-    dialog.id = "gms-translation-feedback-dialog";
-    dialog.className = "gms-translation-feedback-dialog";
-    dialog.innerHTML = `
-      <form id="gms-feedback-form">
-        <div class="gms-feedback-heading">
-          <strong>纠正本行译文</strong>
-          <button class="gms-feedback-close" type="button" aria-label="关闭纠错窗口">×</button>
-        <p>只保存在本机。确认后可在插件设置中批准为长期术语。</p>
-        <label>
-          英文或俄文术语/短语
-          <input id="gms-feedback-source" type="text" maxlength="240" required>
-        </label>
-        <label>
-          正确中文译法
-          <input id="gms-feedback-suggestion" type="text" maxlength="240" required>
-        </label>
-        <div class="gms-feedback-actions">
-          <span id="gms-feedback-status" role="status"></span>
-          <button class="gms-feedback-submit" type="submit">记录纠错</button>
-        </div>
-      </form>
-    `;
-    document.body.appendChild(dialog);
-
-    dialog.querySelector(".gms-feedback-close").addEventListener("click", () => {
-      if (!feedbackSubmitting) closeFeedbackDialog(dialog, activeFeedback?.button);
-    });
-    dialog.addEventListener("click", event => {
-      if (event.target === dialog && !feedbackSubmitting) {
-        closeFeedbackDialog(dialog, activeFeedback?.button);
-      }
-    });
-    dialog.querySelector("#gms-feedback-form").addEventListener("submit", async event => {
-      event.preventDefault();
-      if (!activeFeedback || feedbackSubmitting) return;
-      const feedback = activeFeedback;
-      const source = dialog.querySelector("#gms-feedback-source").value.trim();
-      const suggestedTranslation = dialog.querySelector("#gms-feedback-suggestion").value.trim();
-      const status = dialog.querySelector("#gms-feedback-status");
-      const submitButton = dialog.querySelector(".gms-feedback-submit");
-      if (!source || !suggestedTranslation) {
-        status.textContent = "请填写原文术语和正确中文译法。";
-        return;
-      }
-      feedbackSubmitting = true;
-      submitButton.disabled = true;
-      submitButton.textContent = "正在记录…";
-      status.textContent = "正在保存到本机…";
-      try {
-        const response = await api.runtime.sendMessage({
-          type: "saveTranslationFeedback",
-          source,
-          sourceLanguage: feedback.plan.sourceLanguage || "en",
-          currentTranslation: feedback.translation,
-          suggestedTranslation
-        });
-        if (response?.ok !== true) {
-          throw new Error(response?.message || "纠错记录保存失败。");
-        }
-        feedback.button.dataset.saved = "true";
-        feedback.button.dataset.feedbackId = response.feedbackId || "";
-        feedback.button.setAttribute("aria-label", "本行纠错已记录");
-        feedback.button.title = "已保存到本机，等待在设置中确认";
-        feedback.button.textContent = "✓";
-        if (activeFeedback === feedback) activeFeedback = null;
-        closeFeedbackDialog(dialog, feedback.button);
-      } catch (error) {
-        status.textContent = error.message || "纠错记录保存失败。";
-      } finally {
-        feedbackSubmitting = false;
-        submitButton.disabled = false;
-        submitButton.textContent = "记录纠错";
-      }
-    });
-    return dialog;
-  }
-
-  function openFeedback(plan, translation, button) {
-    if (button.dataset.saved === "true" || feedbackSubmitting) return;
-    const dialog = getFeedbackDialog();
-    activeFeedback = { plan, translation, button };
-    dialog.querySelector("#gms-feedback-source").value = plan.text;
-    dialog.querySelector("#gms-feedback-suggestion").value = translation;
-    dialog.querySelector("#gms-feedback-status").textContent = "";
-    dialog.showModal();
-    dialog.querySelector("#gms-feedback-source").focus();
-  }
-
   function insertTranslation(plan, translation) {
     if (!translation) return;
     const breakNode = document.createElement("br");
@@ -252,15 +139,6 @@
     translationNode.className = "gms-inline-translation";
     translationNode.lang = "zh-CN";
     translationNode.textContent = translation;
-    const feedbackButton = document.createElement("button");
-    feedbackButton.className = "gms-inline-feedback-button";
-    feedbackButton.type = "button";
-    feedbackButton.setAttribute("aria-label", "纠正这行翻译");
-    feedbackButton.title = "纠正这行翻译";
-    feedbackButton.addEventListener("click", () => {
-      openFeedback(plan, translation, feedbackButton);
-    });
-    translationNode.appendChild(feedbackButton);
 
     if (plan.anchor) {
       plan.element.insertBefore(breakNode, plan.anchor);

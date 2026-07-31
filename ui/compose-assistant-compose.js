@@ -13,6 +13,7 @@
   ].join(",");
   let debounceTimer = null;
   let lastRequestedFingerprint = "";
+  let lastObservedFingerprint = "";
   let lastSelection = null;
   let applyingSuggestion = false;
 
@@ -48,8 +49,22 @@
     if (applyingSuggestion) return;
     clearTimeout(debounceTimer);
     const source = currentDraftText();
-    if (!core.isEligibleChineseDraft(source)) return;
+    if (!core.isEligibleChineseDraft(source)) {
+      if (lastRequestedFingerprint || lastObservedFingerprint) {
+        lastRequestedFingerprint = "";
+        lastObservedFingerprint = "";
+        api.runtime.sendMessage({ type: "clearComposeDraftPreview" }).catch(() => undefined);
+      }
+      return;
+    }
     const sourceFingerprint = core.fingerprint(source);
+    if (sourceFingerprint !== lastObservedFingerprint) {
+      lastObservedFingerprint = sourceFingerprint;
+      api.runtime.sendMessage({
+        type: "composeDraftPreviewPending",
+        sourceFingerprint
+      }).catch(() => undefined);
+    }
     if (sourceFingerprint === lastRequestedFingerprint) return;
     debounceTimer = setTimeout(async () => {
       const latestSource = currentDraftText();
@@ -71,7 +86,7 @@
         lastRequestedFingerprint = "";
         console.error("Failed to preview the compose draft", error);
       }
-    }, 900);
+    }, 500);
   }
 
   function createHtmlBlock(block, candidate) {
@@ -133,6 +148,7 @@
     selection.addRange(range);
     lastSelection = range.cloneRange();
     lastRequestedFingerprint = core.fingerprint(currentDraftText());
+    lastObservedFingerprint = lastRequestedFingerprint;
     document.body.dispatchEvent(new InputEvent("input", {
       bubbles: true,
       inputType: "insertReplacementText"
@@ -146,6 +162,17 @@
     const candidate = request.candidate;
     if (!candidate?.blocks?.length) {
       return Promise.resolve({ ok: false, message: "没有可插入的语种内容。" });
+    }
+    const currentFingerprint = core.fingerprint(currentDraftText());
+    if (
+      request.sourceFingerprint &&
+      request.sourceFingerprint !== currentFingerprint
+    ) {
+      return Promise.resolve({
+        ok: false,
+        stale: true,
+        message: "中文草稿已经变化，四语版本正在实时更新，请稍后再插入。"
+      });
     }
     try {
       replaceDraft(candidate, request.isPlainText === true);
@@ -163,4 +190,5 @@
   document.body.addEventListener("input", schedulePreview, true);
   document.addEventListener("selectionchange", saveSelection);
   api.runtime.onMessage.addListener(onRuntimeMessage);
+  setTimeout(schedulePreview, 0);
 })(globalThis);

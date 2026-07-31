@@ -33,8 +33,14 @@
   function glossarySignature(customTerms) {
     return customTerms
       .map(term => {
-        const sourceLanguage = term.sourceLanguage === "ru" ? "ru" : "en";
-        const locale = sourceLanguage === "ru" ? "ru-RU" : "en-US";
+        const sourceLanguage = ["en", "ru", "ar"].includes(term.sourceLanguage)
+          ? term.sourceLanguage
+          : "en";
+        const locale = {
+          en: "en-US",
+          ru: "ru-RU",
+          ar: "ar-SA"
+        }[sourceLanguage];
         return `${sourceLanguage}:${term.en.toLocaleLowerCase(locale)}=${term.zh}`;
       })
       .sort()

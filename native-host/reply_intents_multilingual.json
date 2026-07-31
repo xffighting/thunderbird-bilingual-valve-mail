@@ -1,0 +1,1068 @@
+{
+  "name": "lianggu-reply-intents-multilingual",
+  "version": "2026.07.30.4",
+  "languages": [
+    "zh-CN",
+    "en",
+    "ru",
+    "ar"
+  ],
+  "privacy": "local_offline_only",
+  "review_policy": "Only 32 independent-QA-approved intent templates are enabled. Pattern-only matching is disabled. Twenty-two high-risk templates require visible human review before insertion.",
+  "forbidden_outward_patterns": [
+    "(?i)\\bsoft\\s+reminder\\b"
+  ],
+  "sources": [
+    {
+      "id": "round2-trade:bc_email",
+      "title": "British Council LearnEnglish — English for emails",
+      "publisher": "British Council",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/business/english-emails",
+      "use": "Business email structure, etiquette, arrangements and enquiries",
+      "original_id": "bc_email",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:bc_enquiries",
+      "title": "British Council LearnEnglish — Unit 6: Enquiries",
+      "publisher": "British Council",
+      "url": "https://learnenglish.britishcouncil.org/free-resources/business/english-emails/unit-6-enquiries",
+      "use": "Clear and polite questions and requests for an answer",
+      "original_id": "bc_enquiries",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:govuk_email",
+      "title": "Planning and writing text messages and emails",
+      "publisher": "UK Government Digital Service",
+      "url": "https://www.gov.uk/service-manual/design/sending-emails-and-text-messages",
+      "use": "Plain English, one clear action, deadlines, references and next steps",
+      "original_id": "govuk_email",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:icc_incoterms2020",
+      "title": "Incoterms 2020",
+      "publisher": "International Chamber of Commerce",
+      "url": "https://iccwbo.org/business-solutions/incoterms-rules/incoterms-2020/",
+      "use": "Named-place delivery terms, allocation of cost, risk and obligations",
+      "original_id": "icc_incoterms2020",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:icc_ucp600",
+      "title": "UCP 600 — Uniform Rules and Practice for Documentary Credits",
+      "publisher": "International Chamber of Commerce",
+      "url": "https://2go.iccwbo.org/explore-our-products/ebooks/ucp-600-uniform-rules-for-documentary-credits-config-1.html",
+      "use": "Documentary-credit and document-presentation terminology",
+      "original_id": "icc_ucp600",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:tradegov_documents",
+      "title": "Common Export Documents",
+      "publisher": "U.S. International Trade Administration",
+      "url": "https://www.trade.gov/common-export-documents",
+      "use": "Pro forma invoice, commercial invoice, packing list and transport-document roles",
+      "original_id": "tradegov_documents",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:unece_rec6",
+      "title": "UN/CEFACT Recommendation 6 — Aligned Invoice Layout Key for International Trade",
+      "publisher": "United Nations Economic Commission for Europe",
+      "url": "https://unece.org/trade/uncefact/tf_recommendations",
+      "use": "International-trade invoice data and document consistency",
+      "original_id": "unece_rec6",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:iso5208",
+      "title": "ISO 5208:2015 — Industrial valves — Pressure testing of metallic valves",
+      "publisher": "International Organization for Standardization",
+      "url": "https://www.iso.org/standard/65111.html",
+      "use": "Valve pressure testing, closure tightness and test-record context",
+      "original_id": "iso5208",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:api6d",
+      "title": "API Specification 6D, 25th Edition — Specification for Valves",
+      "publisher": "American Petroleum Institute",
+      "url": "https://www.api.org/products-and-services/standards/important-standards-announcements/spec6d",
+      "use": "Pipeline and piping valve manufacturing, documentation and inspection context",
+      "original_id": "api6d",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:worldbank_procurement",
+      "title": "World Bank Procurement Regulations for IPF Borrowers, Sixth Edition",
+      "publisher": "World Bank",
+      "url": "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099722402252531135",
+      "use": "Written tender clarification, addenda, bid validity and controlled deviations",
+      "original_id": "worldbank_procurement",
+      "source_batch": "trade"
+    },
+    {
+      "id": "round2-trade:internal_controlled_reply",
+      "title": "Existing Lianggu controlled reply implementation",
+      "publisher": "Lianggu local project",
+      "path": "native-host/translator_host.py#controlled_reply_translation",
+      "use": "Overlap exclusion only; not used as an external authority",
+      "original_id": "internal_controlled_reply",
+      "source_batch": "trade"
+    }
+  ],
+  "intents": [
+    {
+      "intent_id": "inquiry_acknowledged",
+      "scenario": "first_inquiry_reply",
+      "trigger_zh_patterns": [
+        "感谢.*询价",
+        "收到.*阀门需求",
+        "正在.*技术.*商务.*评审"
+      ],
+      "zh": "感谢您的询价。我们已收到 {project_name} 的阀门需求，正在进行技术和商务评审。",
+      "en": "Thank you for your inquiry. We have received the valve requirements for {project_name} and are reviewing the technical and commercial details.",
+      "ru": "Благодарим вас за запрос. Мы получили требования к арматуре по проекту {project_name} и проводим техническую и коммерческую проверку.",
+      "ar": "شكرًا لاستفساركم. لقد استلمنا متطلبات الصمامات لمشروع {project_name} ونعمل على مراجعتها فنيًا وتجاريًا.",
+      "tone": "professional_warm",
+      "risk_level": "low",
+      "variables": [
+        "{project_name}"
+      ],
+      "do_not_use": [
+        "We got your inquiry and will check."
+      ],
+      "source_ids": [
+        "round2-trade:bc_email",
+        "round2-trade:govuk_email",
+        "round2-trade:internal_controlled_reply"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "specs_missing_core_parameters",
+      "scenario": "parameter_gap",
+      "trigger_zh_patterns": [
+        "缺少.*口径",
+        "缺少.*压力",
+        "补充.*关键参数"
+      ],
+      "zh": "目前还缺少以下报价参数：{missing_parameters}。烦请补充，以免选型或价格出现偏差。",
+      "en": "The following information is still required for an accurate quotation: {missing_parameters}. Please provide it so that we can avoid selection or pricing discrepancies.",
+      "ru": "Для точного расчёта предложения пока не хватает следующих данных: {missing_parameters}. Просим предоставить их, чтобы избежать ошибок в подборе или цене.",
+      "ar": "لا تزال المعلومات التالية مطلوبة لإعداد عرض دقيق: {missing_parameters}. يرجى تزويدنا بها لتجنب أي اختلاف في الاختيار أو التسعير.",
+      "tone": "technical_precise",
+      "risk_level": "medium",
+      "variables": [
+        "{missing_parameters}"
+      ],
+      "do_not_use": [
+        "Your information is incomplete."
+      ],
+      "source_ids": [
+        "round2-trade:bc_enquiries",
+        "round2-trade:govuk_email",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "specs_standard_conflict",
+      "scenario": "parameter_gap",
+      "trigger_zh_patterns": [
+        "标准.*冲突",
+        "规格.*不一致",
+        "请确认.*优先"
+      ],
+      "zh": "我们注意到 {standard_a} 与 {standard_b} 的要求存在差异。请确认本项目应优先采用哪一项，或提供允许的偏差范围。",
+      "en": "We noted a difference between the requirements of {standard_a} and {standard_b}. Please confirm which standard takes precedence for this project, or provide the permitted deviation.",
+      "ru": "Мы обнаружили различие между требованиями {standard_a} и {standard_b}. Просим подтвердить, какой стандарт имеет приоритет для проекта, либо указать допустимое отклонение.",
+      "ar": "لاحظنا اختلافًا بين متطلبات {standard_a} و{standard_b}. يرجى تأكيد المعيار ذي الأولوية لهذا المشروع أو تحديد الانحراف المسموح به.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{standard_a}",
+        "{standard_b}"
+      ],
+      "do_not_use": [
+        "We will choose the standard ourselves."
+      ],
+      "source_ids": [
+        "round2-trade:api6d",
+        "round2-trade:iso5208",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "quotation_sent_with_validity",
+      "scenario": "quotation_send_revision",
+      "trigger_zh_patterns": [
+        "报价单.*随附",
+        "报价编号",
+        "有效期"
+      ],
+      "zh": "随附报价单 {quotation_no}，有效期至 {valid_until}。请重点核对技术范围、数量、贸易术语和交期。",
+      "en": "Please find quotation {quotation_no} attached, valid until {valid_until}. Kindly review the technical scope, quantities, Incoterms rule and lead time.",
+      "ru": "Направляем во вложении коммерческое предложение {quotation_no}, действительное до {valid_until}. Просим проверить технический объём, количество, условие Инкотермс и срок поставки.",
+      "ar": "يرجى الاطلاع على عرض السعر المرفق رقم {quotation_no}، وهو صالح حتى {valid_until}. نرجو مراجعة النطاق الفني والكميات وقاعدة الإنكوترمز ومدة التوريد.",
+      "tone": "professional_warm",
+      "risk_level": "medium",
+      "variables": [
+        "{quotation_no}",
+        "{valid_until}"
+      ],
+      "do_not_use": [
+        "Please find attached our best quote forever valid."
+      ],
+      "source_ids": [
+        "round2-trade:bc_email",
+        "round2-trade:govuk_email",
+        "round2-trade:icc_incoterms2020"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "quotation_revised_supersedes",
+      "scenario": "quotation_send_revision",
+      "trigger_zh_patterns": [
+        "修订报价",
+        "替代.*之前版本",
+        "以.*版本为准"
+      ],
+      "zh": "随附修订报价 {quotation_no}，版本 {revision_no}。本版本替代此前版本，请以本邮件附件为准。",
+      "en": "Attached is revised quotation {quotation_no}, revision {revision_no}. It supersedes all previous versions; please use the attachment to this email as the current offer.",
+      "ru": "Во вложении направляем пересмотренное предложение {quotation_no}, редакция {revision_no}. Оно заменяет все предыдущие версии; актуальным является приложение к настоящему письму.",
+      "ar": "مرفق عرض السعر المعدل رقم {quotation_no}، المراجعة {revision_no}. تحل هذه النسخة محل جميع النسخ السابقة؛ يرجى اعتماد مرفق هذه الرسالة.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{quotation_no}",
+        "{revision_no}"
+      ],
+      "do_not_use": [
+        "Ignore old quote."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:unece_rec6",
+        "round2-trade:internal_controlled_reply"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "quotation_scope_exclusions",
+      "scenario": "quotation_send_revision",
+      "trigger_zh_patterns": [
+        "报价.*不包含",
+        "供货范围.*排除",
+        "单独列出.*可选项"
+      ],
+      "zh": "本报价仅包含 {included_scope}；{excluded_scope} 未计入价格。如有需要，我们可以另行报价。",
+      "en": "This quotation covers {included_scope} only. {excluded_scope} is excluded from the price and can be quoted separately if required.",
+      "ru": "Настоящее предложение включает только {included_scope}. Позиции {excluded_scope} не включены в цену и при необходимости могут быть рассчитаны отдельно.",
+      "ar": "يشمل هذا العرض {included_scope} فقط. أما {excluded_scope} فغير مشمول في السعر، ويمكن تسعيره بشكل منفصل عند الطلب.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{included_scope}",
+        "{excluded_scope}"
+      ],
+      "do_not_use": [
+        "Everything is included."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_incoterms2020"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "price_target_gap",
+      "scenario": "price_negotiation",
+      "trigger_zh_patterns": [
+        "目标价.*低于",
+        "价格差距",
+        "调整.*技术范围"
+      ],
+      "zh": "目标价 {currency} {target_price} 低于当前材料和检验范围的成本基础。若该目标必须保持，请告知可调整的技术范围或商务条件。",
+      "en": "The target price of {currency} {target_price} is below the current cost basis for the specified materials and inspection scope. If the target must be maintained, please advise which technical scope or commercial terms may be adjusted.",
+      "ru": "Целевая цена {currency} {target_price} ниже текущей себестоимости с учётом указанных материалов и объёма контроля. Если целевую цену необходимо сохранить, просим указать, какие технические или коммерческие условия можно скорректировать.",
+      "ar": "السعر المستهدف {currency} {target_price} أقل من أساس التكلفة الحالي للمواد ونطاق الفحص المحددين. وإذا كان لا بد من الحفاظ على هذا السعر، يرجى تحديد النطاق الفني أو الشروط التجارية التي يمكن تعديلها.",
+      "tone": "firm_polite",
+      "risk_level": "high",
+      "variables": [
+        "{currency}",
+        "{target_price}"
+      ],
+      "do_not_use": [
+        "Your target price is impossible."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "price_concession_conditions",
+      "scenario": "price_negotiation",
+      "trigger_zh_patterns": [
+        "价格优惠.*条件",
+        "付款条件.*调整",
+        "贸易术语.*调整"
+      ],
+      "zh": "我们可以在 {commercial_condition} 的前提下提供 {discount} 的价格调整；其他技术和商务条件保持不变。",
+      "en": "We can offer a price adjustment of {discount}, subject to {commercial_condition}. All other technical and commercial terms remain unchanged.",
+      "ru": "Мы можем предоставить корректировку цены на {discount} при условии {commercial_condition}. Все остальные технические и коммерческие условия остаются без изменений.",
+      "ar": "يمكننا تقديم تعديل سعري قدره {discount} بشرط {commercial_condition}. وتظل جميع الشروط الفنية والتجارية الأخرى دون تغيير.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{commercial_condition}",
+        "{discount}"
+      ],
+      "do_not_use": [
+        "We give discount with no conditions."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_incoterms2020"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "followup_quotation_feedback",
+      "scenario": "follow_up",
+      "trigger_zh_patterns": [
+        "跟进.*报价",
+        "报价.*反馈",
+        "是否.*需要.*调整"
+      ],
+      "zh": "想跟进一下报价 {quotation_no}。请问技术方案和商务条件是否符合项目要求，或是否有需要调整的内容？",
+      "en": "I am following up on quotation {quotation_no}. Do the technical proposal and commercial offer meet the project requirements, or is any adjustment needed?",
+      "ru": "Хотели бы уточнить статус предложения {quotation_no}. Соответствуют ли техническое и коммерческое предложения требованиям проекта, или требуются корректировки?",
+      "ar": "نود متابعة عرض السعر {quotation_no}. هل يفي العرض الفني والتجاري بمتطلبات المشروع، أم توجد أي تعديلات مطلوبة؟",
+      "tone": "professional_warm",
+      "risk_level": "low",
+      "variables": [
+        "{quotation_no}"
+      ],
+      "do_not_use": [
+        "Why no feedback?"
+      ],
+      "source_ids": [
+        "round2-trade:bc_enquiries",
+        "round2-trade:bc_email",
+        "round2-trade:internal_controlled_reply"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "reminder_missing_parameters",
+      "scenario": "follow_up",
+      "trigger_zh_patterns": [
+        "友情提醒.*参数",
+        "等待.*补充信息",
+        "收到后.*完成报价"
+      ],
+      "zh": "友情提醒：我们仍在等待 {missing_parameters}。收到后，我们即可继续完成选型和报价。",
+      "en": "Just a reminder: we are still waiting for {missing_parameters}. Once received, we can complete the valve selection and quotation.",
+      "ru": "Напоминаем, что мы всё ещё ожидаем {missing_parameters}. После получения данных мы сможем завершить подбор арматуры и подготовку предложения.",
+      "ar": "تذكير لطيف: ما زلنا بانتظار {missing_parameters}. وبعد استلامها، سنتمكن من استكمال اختيار الصمامات وإعداد العرض.",
+      "tone": "professional_warm",
+      "risk_level": "low",
+      "variables": [
+        "{missing_parameters}"
+      ],
+      "do_not_use": [
+        "Soft reminder, send missing details immediately."
+      ],
+      "source_ids": [
+        "round2-trade:bc_email",
+        "round2-trade:govuk_email",
+        "round2-trade:internal_controlled_reply"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "reminder_reply_by_date",
+      "scenario": "follow_up",
+      "trigger_zh_patterns": [
+        "温和提醒.*日期",
+        "请在.*前回复",
+        "以便.*保留"
+      ],
+      "zh": "温和提醒：如需保留当前价格和交期，请在 {reply_date} 前确认；若时间安排有变化，也请告知。",
+      "en": "A gentle reminder: to keep the current price and lead time, please confirm by {reply_date}. If your schedule has changed, please let us know.",
+      "ru": "Вежливо напоминаем: чтобы сохранить текущую цену и срок поставки, просим подтвердить заказ до {reply_date}. Если график проекта изменился, сообщите нам.",
+      "ar": "تذكير لطيف: للحفاظ على السعر ومدة التوريد الحاليين، يرجى التأكيد بحلول {reply_date}. وإذا تغير جدول المشروع، نرجو إبلاغنا.",
+      "tone": "firm_polite",
+      "risk_level": "medium",
+      "variables": [
+        "{reply_date}"
+      ],
+      "do_not_use": [
+        "Confirm today or price will increase."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:bc_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "payment_status_confirmation",
+      "scenario": "payment_progress",
+      "trigger_zh_patterns": [
+        "确认.*付款状态",
+        "付款.*进度",
+        "发票.*付款"
+      ],
+      "zh": "烦请确认发票 {invoice_no} 的付款状态。如已安排，请告知预计到账日期，便于我们更新订单计划。",
+      "en": "Please confirm the payment status of invoice {invoice_no}. If payment has been arranged, kindly advise the expected value date so that we can update the order schedule.",
+      "ru": "Просим подтвердить статус оплаты счёта {invoice_no}. Если платёж уже организован, сообщите ожидаемую дату зачисления, чтобы мы могли обновить график заказа.",
+      "ar": "يرجى تأكيد حالة سداد الفاتورة {invoice_no}. وإذا تم ترتيب الدفع، فنرجو إفادتنا بتاريخ القيد المتوقع حتى نتمكن من تحديث جدول الطلب.",
+      "tone": "firm_polite",
+      "risk_level": "medium",
+      "variables": [
+        "{invoice_no}"
+      ],
+      "do_not_use": [
+        "Soft reminder for your payment."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_ucp600",
+        "round2-trade:internal_controlled_reply"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "payment_due_by_date",
+      "scenario": "payment_progress",
+      "trigger_zh_patterns": [
+        "付款.*到期",
+        "应付金额",
+        "请在.*前安排"
+      ],
+      "zh": "根据已确认的付款条件，{amount} 应于 {due_date} 前支付。请确认能否按期安排。",
+      "en": "Under the agreed payment terms, {amount} is due by {due_date}. Please confirm whether payment can be arranged by that date.",
+      "ru": "Согласно согласованным условиям оплаты сумма {amount} подлежит оплате до {due_date}. Просим подтвердить возможность оплаты в указанный срок.",
+      "ar": "وفقًا لشروط الدفع المتفق عليها، يستحق مبلغ {amount} بحلول {due_date}. يرجى تأكيد إمكانية ترتيب الدفع في هذا الموعد.",
+      "tone": "firm_polite",
+      "risk_level": "high",
+      "variables": [
+        "{amount}",
+        "{due_date}"
+      ],
+      "do_not_use": [
+        "Pay immediately."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_ucp600"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "advance_payment_before_production",
+      "scenario": "payment_progress",
+      "trigger_zh_patterns": [
+        "预付款.*生产",
+        "到账后.*排产",
+        "付款条件.*启动"
+      ],
+      "zh": "根据订单付款条件，生产将在预付款 {amount} 到账并完成技术文件确认后启动。",
+      "en": "Under the order payment terms, production will start after the advance payment of {amount} has been received and the technical documents have been approved.",
+      "ru": "Согласно условиям оплаты производство начнётся после поступления аванса {amount} и утверждения технической документации.",
+      "ar": "وفقًا لشروط دفع الطلب، سيبدأ الإنتاج بعد استلام الدفعة المقدمة البالغة {amount} واعتماد المستندات الفنية.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{amount}"
+      ],
+      "do_not_use": [
+        "We cannot do anything until you pay."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_ucp600",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "lead_time_start_conditions",
+      "scenario": "delivery_adjustment",
+      "trigger_zh_patterns": [
+        "交期.*起算",
+        "图纸批准.*预付款",
+        "确认后.*生产周期"
+      ],
+      "zh": "交期 {lead_time} 自批准图纸、确认技术参数并收到约定预付款之日起计算。",
+      "en": "The lead time of {lead_time} starts from the date of drawing approval, final technical confirmation and receipt of the agreed advance payment.",
+      "ru": "Срок поставки {lead_time} исчисляется с даты утверждения чертежей, окончательного технического согласования и получения согласованного аванса.",
+      "ar": "تبدأ مدة التوريد البالغة {lead_time} من تاريخ اعتماد الرسومات والتأكيد الفني النهائي واستلام الدفعة المقدمة المتفق عليها.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{lead_time}"
+      ],
+      "do_not_use": [
+        "Delivery starts from PO date in all cases."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_incoterms2020",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "delivery_delay_notification",
+      "scenario": "delivery_adjustment",
+      "trigger_zh_patterns": [
+        "交期.*调整",
+        "延期.*原因",
+        "新的.*日期"
+      ],
+      "zh": "由于 {reason}，预计交付日期需调整至 {new_delivery_date}。我们正在采取措施减少影响，请确认该日期是否可接受。",
+      "en": "Due to {reason}, the expected delivery date needs to be revised to {new_delivery_date}. We are taking action to limit the impact; please confirm whether the revised date is acceptable.",
+      "ru": "В связи с {reason} ожидаемую дату поставки необходимо перенести на {new_delivery_date}. Мы принимаем меры для сокращения задержки; просим подтвердить приемлемость новой даты.",
+      "ar": "بسبب {reason}، يلزم تعديل تاريخ التسليم المتوقع إلى {new_delivery_date}. نتخذ إجراءات للحد من الأثر؛ يرجى تأكيد ما إذا كان التاريخ المعدل مقبولًا.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{new_delivery_date}",
+        "{reason}"
+      ],
+      "do_not_use": [
+        "Delivery is delayed, please understand."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:icc_incoterms2020"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "delivery_expedite_review",
+      "scenario": "delivery_adjustment",
+      "trigger_zh_patterns": [
+        "加急.*交期",
+        "评估.*产能",
+        "不能.*承诺"
+      ],
+      "zh": "我们正在评估将交期提前至 {requested_date} 的可行性。在生产和检验计划确认前，该日期暂不能视为承诺。",
+      "en": "We are assessing whether delivery can be brought forward to {requested_date}. This date should not be treated as a commitment until the production and inspection schedules are confirmed.",
+      "ru": "Мы оцениваем возможность переноса поставки на более раннюю дату {requested_date}. До подтверждения производственного и инспекционного графиков эта дата не является обязательством.",
+      "ar": "نقيّم إمكانية تقديم موعد التسليم إلى {requested_date}. ولا ينبغي اعتبار هذا التاريخ التزامًا قبل تأكيد برنامجي الإنتاج والفحص.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{requested_date}"
+      ],
+      "do_not_use": [
+        "We promise to expedite."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "delivery_partial_shipment_option",
+      "scenario": "delivery_adjustment",
+      "trigger_zh_patterns": [
+        "分批发货",
+        "先发.*已完成",
+        "剩余.*后续"
+      ],
+      "zh": "为降低进度影响，我们可以先发运 {ready_quantity}，剩余 {balance_quantity} 预计于 {balance_date} 完成。请确认是否接受分批发货。",
+      "en": "To reduce the schedule impact, we can ship {ready_quantity} first. The remaining {balance_quantity} is expected to be completed by {balance_date}. Please confirm whether partial shipment is acceptable.",
+      "ru": "Чтобы сократить влияние на график, мы можем сначала отгрузить {ready_quantity}. Оставшиеся {balance_quantity} планируется завершить к {balance_date}. Просим подтвердить возможность частичной отгрузки.",
+      "ar": "للحد من أثر الجدول، يمكننا شحن {ready_quantity} أولًا، ومن المتوقع استكمال الكمية المتبقية {balance_quantity} بحلول {balance_date}. يرجى تأكيد قبول الشحن الجزئي.",
+      "tone": "solution_oriented",
+      "risk_level": "high",
+      "variables": [
+        "{balance_date}",
+        "{balance_quantity}",
+        "{ready_quantity}"
+      ],
+      "do_not_use": [
+        "We will make partial shipment without approval."
+      ],
+      "source_ids": [
+        "round2-trade:icc_incoterms2020",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "shipment_ready_request_instructions",
+      "scenario": "shipping_documents",
+      "trigger_zh_patterns": [
+        "货物.*备妥",
+        "发货指示",
+        "货代.*信息"
+      ],
+      "zh": "订单 {po_no} 的货物已备妥。请提供发货指示、指定货代及收货信息，以便安排订舱。",
+      "en": "The goods for order {po_no} are ready. Please provide the shipping instructions, nominated forwarder and consignee details so that we can arrange the booking.",
+      "ru": "Товар по заказу {po_no} готов. Просим предоставить инструкции по отгрузке, данные назначенного экспедитора и грузополучателя для организации бронирования.",
+      "ar": "البضاعة الخاصة بالطلب {po_no} جاهزة. يرجى تزويدنا بتعليمات الشحن وبيانات وكيل الشحن المعين والمرسل إليه حتى نتمكن من إجراء الحجز.",
+      "tone": "concise_neutral",
+      "risk_level": "medium",
+      "variables": [
+        "{po_no}"
+      ],
+      "do_not_use": [
+        "Goods ready, send forwarder."
+      ],
+      "source_ids": [
+        "round2-trade:tradegov_documents",
+        "round2-trade:icc_incoterms2020",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "shipping_draft_documents_review",
+      "scenario": "shipping_documents",
+      "trigger_zh_patterns": [
+        "单证草稿",
+        "签发前.*确认",
+        "提单.*发票.*装箱单"
+      ],
+      "zh": "随附单证草稿：{document_list}。请在 {reply_date} 前核对公司名称、地址、货物描述和唛头，以便正式签发。",
+      "en": "Attached are the draft shipping documents: {document_list}. Please check the company name, address, goods description and shipping marks by {reply_date} before final issuance.",
+      "ru": "Во вложении направляем проекты отгрузочных документов: {document_list}. До {reply_date} просим проверить наименование компании, адрес, описание товара и маркировку перед окончательным оформлением.",
+      "ar": "مرفقة مسودات مستندات الشحن: {document_list}. يرجى مراجعة اسم الشركة والعنوان ووصف البضاعة وعلامات الشحن بحلول {reply_date} قبل الإصدار النهائي.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{document_list}",
+        "{reply_date}"
+      ],
+      "do_not_use": [
+        "Documents are final; no changes possible."
+      ],
+      "source_ids": [
+        "round2-trade:tradegov_documents",
+        "round2-trade:unece_rec6",
+        "round2-trade:icc_ucp600",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "shipping_document_discrepancy_correction",
+      "scenario": "shipping_documents",
+      "trigger_zh_patterns": [
+        "单证.*不一致",
+        "正在.*更正",
+        "修正版.*发送"
+      ],
+      "zh": "我们确认 {document_name} 中的 {field_name} 存在不一致，正在更正。修正版预计于 {reply_date} 前发送，请暂勿使用当前版本。",
+      "en": "We confirm a discrepancy in {field_name} on {document_name} and are correcting it. The revised document is expected by {reply_date}; please do not use the current version.",
+      "ru": "Подтверждаем расхождение в поле {field_name} документа {document_name} и уже вносим исправление. Обновлённый документ будет направлен до {reply_date}; просим не использовать текущую версию.",
+      "ar": "نؤكد وجود اختلاف في الحقل {field_name} ضمن المستند {document_name}، ونعمل على تصحيحه. من المتوقع إرسال النسخة المعدلة بحلول {reply_date}؛ يرجى عدم استخدام النسخة الحالية.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{document_name}",
+        "{field_name}",
+        "{reply_date}"
+      ],
+      "do_not_use": [
+        "It is a small mistake; use it anyway."
+      ],
+      "source_ids": [
+        "round2-trade:unece_rec6",
+        "round2-trade:tradegov_documents",
+        "round2-trade:icc_ucp600"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "inspection_propose_date_location",
+      "scenario": "inspection_witness",
+      "trigger_zh_patterns": [
+        "安排.*检验",
+        "检验日期",
+        "检验地点"
+      ],
+      "zh": "我们建议于 {inspection_date} 在 {inspection_location} 进行 {inspection_scope}。请确认您或第三方检验机构是否出席。",
+      "en": "We propose to conduct {inspection_scope} on {inspection_date} at {inspection_location}. Please confirm whether you or the third-party inspector will attend.",
+      "ru": "Предлагаем провести {inspection_scope} {inspection_date} по адресу {inspection_location}. Просим подтвердить участие вашего представителя или независимого инспектора.",
+      "ar": "نقترح إجراء {inspection_scope} بتاريخ {inspection_date} في {inspection_location}. يرجى تأكيد حضوركم أو حضور جهة التفتيش الخارجية.",
+      "tone": "technical_precise",
+      "risk_level": "medium",
+      "variables": [
+        "{inspection_date}",
+        "{inspection_location}",
+        "{inspection_scope}"
+      ],
+      "do_not_use": [
+        "Inspection will be tomorrow."
+      ],
+      "source_ids": [
+        "round2-trade:api6d",
+        "round2-trade:iso5208",
+        "round2-trade:bc_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "inspection_witness_point_confirm",
+      "scenario": "inspection_witness",
+      "trigger_zh_patterns": [
+        "见证点",
+        "ITP.*确认",
+        "检验通知"
+      ],
+      "zh": "根据 ITP {itp_revision}，本次为见证点 {witness_point}。请在 {reply_date} 前确认见证安排或书面授权继续检验。",
+      "en": "Under ITP {itp_revision}, this activity is designated as witness point {witness_point}. Please confirm the witnessing arrangement by {reply_date}, or provide written authorization to proceed.",
+      "ru": "Согласно ITP {itp_revision}, данная операция является точкой освидетельствования {witness_point}. До {reply_date} просим подтвердить участие либо письменно разрешить продолжение работ.",
+      "ar": "وفق خطة الفحص والاختبار ITP {itp_revision}، يمثل هذا النشاط نقطة مشاهدة {witness_point}. يرجى تأكيد ترتيبات الحضور بحلول {reply_date} أو تقديم تفويض كتابي بالمتابعة.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{itp_revision}",
+        "{reply_date}",
+        "{witness_point}"
+      ],
+      "do_not_use": [
+        "No reply means automatic approval."
+      ],
+      "source_ids": [
+        "round2-trade:api6d",
+        "round2-trade:iso5208",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "tender_clarification_request",
+      "scenario": "tender_clarification",
+      "trigger_zh_patterns": [
+        "投标.*澄清",
+        "招标文件.*不明确",
+        "正式.*回复"
+      ],
+      "zh": "关于招标编号 {tender_reference}，请澄清以下事项：{clarification_question}。烦请通过招标规定渠道在 {reply_date} 前正式回复。",
+      "en": "For tender {tender_reference}, please clarify the following point: {clarification_question}. Kindly issue the formal response through the prescribed tender channel by {reply_date}.",
+      "ru": "По тендеру {tender_reference} просим разъяснить следующий вопрос: {clarification_question}. Просим предоставить официальный ответ через установленный тендерный канал до {reply_date}.",
+      "ar": "بخصوص المناقصة {tender_reference}، يرجى توضيح النقطة التالية: {clarification_question}. نرجو إصدار الرد الرسمي عبر قناة المناقصة المحددة بحلول {reply_date}.",
+      "tone": "formal_precise",
+      "risk_level": "high",
+      "variables": [
+        "{clarification_question}",
+        "{reply_date}",
+        "{tender_reference}"
+      ],
+      "do_not_use": [
+        "Please privately confirm the tender requirement."
+      ],
+      "source_ids": [
+        "round2-trade:worldbank_procurement",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "tender_bid_validity_subject_to_clarification",
+      "scenario": "tender_clarification",
+      "trigger_zh_patterns": [
+        "报价.*澄清.*为准",
+        "投标.*前提",
+        "待.*确认"
+      ],
+      "zh": "本报价基于我方对当前招标文件的理解，并以澄清事项 {clarification_no} 获得正式确认为前提。",
+      "en": "Our bid is based on our current understanding of the tender documents and is subject to formal confirmation of clarification {clarification_no}.",
+      "ru": "Наша заявка основана на текущем понимании тендерной документации и действует при условии официального подтверждения разъяснения {clarification_no}.",
+      "ar": "يستند عرضنا إلى فهمنا الحالي لوثائق المناقصة، ويخضع للتأكيد الرسمي على الإيضاح {clarification_no}.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{clarification_no}"
+      ],
+      "do_not_use": [
+        "We assume our interpretation is accepted."
+      ],
+      "source_ids": [
+        "round2-trade:worldbank_procurement"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "sample_offer_cost_freight",
+      "scenario": "sample",
+      "trigger_zh_patterns": [
+        "样品.*提供",
+        "样品费",
+        "运费.*承担"
+      ],
+      "zh": "我们可以提供 {sample_model} 样品 {sample_quantity}。样品费为 {sample_cost}，运费按 {freight_arrangement} 安排。",
+      "en": "We can provide sample {sample_model}, quantity: {sample_quantity}. The sample cost is {sample_cost}, and freight will be arranged on the basis of {freight_arrangement}.",
+      "ru": "Мы можем предоставить образец {sample_model} в количестве {sample_quantity}. Стоимость образца составляет {sample_cost}, доставка будет организована на условии {freight_arrangement}.",
+      "ar": "يمكننا توفير {sample_quantity} من العينة {sample_model}. تبلغ تكلفة العينة {sample_cost}، وسيتم ترتيب الشحن وفق {freight_arrangement}.",
+      "tone": "concise_neutral",
+      "risk_level": "medium",
+      "variables": [
+        "{freight_arrangement}",
+        "{sample_cost}",
+        "{sample_model}",
+        "{sample_quantity}"
+      ],
+      "do_not_use": [
+        "Free sample and free delivery."
+      ],
+      "source_ids": [
+        "round2-trade:bc_email",
+        "round2-trade:icc_incoterms2020"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": false
+    },
+    {
+      "intent_id": "sample_lead_time_and_purpose",
+      "scenario": "sample",
+      "trigger_zh_patterns": [
+        "样品.*周期",
+        "仅用于.*评估",
+        "量产.*另行确认"
+      ],
+      "zh": "样品预计在 {sample_lead_time} 内完成，仅用于 {sample_purpose}。量产配置、性能和认证范围需在正式订单前另行确认。",
+      "en": "The sample is expected to be ready within {sample_lead_time} and is intended only for {sample_purpose}. The production configuration, performance and certification scope must be confirmed separately before the formal order.",
+      "ru": "Образец будет готов ориентировочно в течение {sample_lead_time} и предназначен только для {sample_purpose}. Серийная конфигурация, характеристики и объём сертификации подлежат отдельному согласованию до размещения заказа.",
+      "ar": "من المتوقع أن تكون العينة جاهزة خلال {sample_lead_time}، وهي مخصصة فقط لـ {sample_purpose}. ويجب تأكيد تكوين الإنتاج والأداء ونطاق الشهادات بشكل منفصل قبل الطلب الرسمي.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{sample_lead_time}",
+        "{sample_purpose}"
+      ],
+      "do_not_use": [
+        "The sample guarantees production performance."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "aftersales_case_acknowledged",
+      "scenario": "after_sales",
+      "trigger_zh_patterns": [
+        "售后.*收到",
+        "问题.*正在调查",
+        "提供.*序列号"
+      ],
+      "zh": "我们已登记售后问题，编号 {case_no}。为便于调查，请提供阀门序列号、铭牌照片、现场工况和故障现象。",
+      "en": "We have registered the after-sales case as {case_no}. To support the investigation, please provide the valve serial number, nameplate photo, service conditions and observed symptoms.",
+      "ru": "Мы зарегистрировали обращение по послепродажному обслуживанию под номером {case_no}. Для расследования просим предоставить серийный номер арматуры, фотографию заводской таблички, условия эксплуатации и описание неисправности.",
+      "ar": "تم تسجيل حالة ما بعد البيع برقم {case_no}. ولدعم التحقيق، يرجى تزويدنا بالرقم التسلسلي للصمام وصورة لوحة البيانات وظروف التشغيل والأعراض الملحوظة.",
+      "tone": "professional_warm",
+      "risk_level": "high",
+      "variables": [
+        "{case_no}"
+      ],
+      "do_not_use": [
+        "This is not our problem."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "aftersales_root_cause_pending",
+      "scenario": "after_sales",
+      "trigger_zh_patterns": [
+        "根因.*调查",
+        "尚不能.*结论",
+        "补充.*证据"
+      ],
+      "zh": "目前信息不足以确认根因。我们的技术团队正在分析 {evidence_list}，将在 {reply_date} 前提供阶段性结论。",
+      "en": "The available information is not yet sufficient to confirm the root cause. Our technical team is reviewing {evidence_list} and will provide an interim finding by {reply_date}.",
+      "ru": "Имеющейся информации пока недостаточно для подтверждения первопричины. Наша техническая команда анализирует {evidence_list} и предоставит предварительное заключение до {reply_date}.",
+      "ar": "المعلومات المتاحة غير كافية حتى الآن لتأكيد السبب الجذري. يراجع فريقنا الفني {evidence_list} وسيقدم نتيجة أولية بحلول {reply_date}.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{evidence_list}",
+        "{reply_date}"
+      ],
+      "do_not_use": [
+        "The valve failed because of misuse."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:api6d",
+        "round2-trade:iso5208"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "aftersales_corrective_action",
+      "scenario": "after_sales",
+      "trigger_zh_patterns": [
+        "纠正措施",
+        "备件.*发送",
+        "现场.*指导"
+      ],
+      "zh": "根据当前分析，我们建议采取以下纠正措施：{corrective_action}。请确认现场执行条件，我们将同步安排 {support_action}。",
+      "en": "Based on the current analysis, we recommend the following corrective action: {corrective_action}. Please confirm the site conditions for implementation, and we will arrange {support_action} in parallel.",
+      "ru": "По результатам текущего анализа рекомендуем следующее корректирующее действие: {corrective_action}. Просим подтвердить условия выполнения на площадке; параллельно мы организуем {support_action}.",
+      "ar": "استنادًا إلى التحليل الحالي، نوصي بالإجراء التصحيحي التالي: {corrective_action}. يرجى تأكيد ظروف التنفيذ في الموقع، وسنرتب بالتوازي {support_action}.",
+      "tone": "solution_oriented",
+      "risk_level": "high",
+      "variables": [
+        "{corrective_action}",
+        "{support_action}"
+      ],
+      "do_not_use": [
+        "Replace parts yourself without instructions."
+      ],
+      "source_ids": [
+        "round2-trade:api6d",
+        "round2-trade:iso5208",
+        "round2-trade:govuk_email"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "po_received_scope_check",
+      "scenario": "order_production",
+      "trigger_zh_patterns": [
+        "收到.*订单",
+        "订单.*差异",
+        "核对.*范围"
+      ],
+      "zh": "感谢订单 {po_no}。我们正在核对其与报价 {quotation_no} 的技术和商务范围，如有差异会在订单确认前列出。",
+      "en": "Thank you for purchase order {po_no}. We are checking it against the technical and commercial scope of quotation {quotation_no} and will list any discrepancy before order confirmation.",
+      "ru": "Благодарим за заказ {po_no}. Мы сверяем его с техническим и коммерческим объёмом предложения {quotation_no} и укажем все расхождения до подтверждения заказа.",
+      "ar": "شكرًا لأمر الشراء {po_no}. نراجعه مقابل النطاق الفني والتجاري لعرض السعر {quotation_no}، وسنوضح أي اختلاف قبل تأكيد الطلب.",
+      "tone": "professional_warm",
+      "risk_level": "high",
+      "variables": [
+        "{po_no}",
+        "{quotation_no}"
+      ],
+      "do_not_use": [
+        "PO received and accepted."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:unece_rec6",
+        "round2-trade:api6d"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    },
+    {
+      "intent_id": "production_start_after_approval",
+      "scenario": "order_production",
+      "trigger_zh_patterns": [
+        "排产.*批准",
+        "生产.*启动条件",
+        "图纸.*确认"
+      ],
+      "zh": "订单 {po_no} 将在技术文件批准和约定付款条件满足后排产，计划启动日期为 {production_start_date}。",
+      "en": "Order {po_no} will be released for production after the technical documents are approved and the agreed payment conditions are met. The planned start date is {production_start_date}.",
+      "ru": "Заказ {po_no} будет запущен в производство после утверждения технической документации и выполнения согласованных условий оплаты. Плановая дата начала — {production_start_date}.",
+      "ar": "سيتم إطلاق الطلب {po_no} للإنتاج بعد اعتماد المستندات الفنية واستيفاء شروط الدفع المتفق عليها. وتاريخ البدء المخطط هو {production_start_date}.",
+      "tone": "risk_controlled",
+      "risk_level": "high",
+      "variables": [
+        "{po_no}",
+        "{production_start_date}"
+      ],
+      "do_not_use": [
+        "Production has started immediately after PO."
+      ],
+      "source_ids": [
+        "round2-trade:govuk_email",
+        "round2-trade:api6d",
+        "round2-trade:icc_ucp600"
+      ],
+      "confidence": "high",
+      "allow_pattern_match": false,
+      "requires_human_review": true
+    }
+  ],
+  "qa": {
+    "source_file": "research/glossary_batches/2026-07-30-round2-independent-qa.json",
+    "approved": 32,
+    "review_required": 9,
+    "rejected": 1,
+    "high_risk_requires_human_review": 22,
+    "whole_batch_release": false
+  }
+}
