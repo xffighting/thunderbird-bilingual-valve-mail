@@ -604,10 +604,58 @@ def restore_valve_terms(
         translated,
         flags=re.IGNORECASE,
     )
+    token_patterns: list[re.Pattern[str]] = []
+    for index, item in enumerate(replacements):
+        token_pattern = re.compile(
+            rf"\[\s*TERM\s*0*{index}\s*\]",
+            re.IGNORECASE,
+        )
+        result = token_pattern.sub(item["token"], result)
+        token_patterns.append(re.compile(re.escape(item["token"]), re.IGNORECASE))
+
+    # Small offline models occasionally drop the first token in a consecutive
+    # technical-code sequence. Reinsert it beside the nearest surviving token
+    # before replacing tokens, so DN/PN/material codes keep their source order
+    # instead of being appended as an outward-facing terminology note.
+    for index, item in enumerate(replacements):
+        if (
+            token_patterns[index].search(result)
+            or item["replacement"] in result
+        ):
+            continue
+        next_index = next(
+            (
+                candidate
+                for candidate in range(index + 1, len(replacements))
+                if token_patterns[candidate].search(result)
+            ),
+            None,
+        )
+        if next_index is not None:
+            result = token_patterns[next_index].sub(
+                lambda match, token=item["token"]: f"{token} {match.group(0)}",
+                result,
+                count=1,
+            )
+            continue
+        previous_index = next(
+            (
+                candidate
+                for candidate in range(index - 1, -1, -1)
+                if token_patterns[candidate].search(result)
+            ),
+            None,
+        )
+        if previous_index is not None:
+            result = token_patterns[previous_index].sub(
+                lambda match, token=item["token"]: f"{match.group(0)} {token}",
+                result,
+                count=1,
+            )
+
     missing: list[str] = []
-    for item in replacements:
-        token_pattern = re.compile(re.escape(item["token"]), re.IGNORECASE)
-        result, count = token_pattern.subn(
+    for index, item in enumerate(replacements):
+        result, count = token_patterns[index].subn(
             lambda _match, value=item["replacement"]: value,
             result,
         )
@@ -617,7 +665,11 @@ def restore_valve_terms(
     if missing:
         unique_missing = list(dict.fromkeys(missing))
         result = f"{result.rstrip()}（术语：{'、'.join(unique_missing)}）"
-    language_suffix = re.search(r"\s*[\(（]英语[\)）]([。.]?)\s*$", result)
+    language_suffix = re.search(
+        r"\s*[\(（](?:英语|简体中文|中文(?:\s*[\(（]简体[\)）])?)"
+        r"\s*[\)）]([。.]?)\s*$",
+        result,
+    )
     if language_suffix:
         punctuation = language_suffix.group(1)
         result = result[: language_suffix.start()].rstrip()

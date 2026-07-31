@@ -2,6 +2,18 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.12.1] - 2026-07-31
+
+### Fixed
+
+- Reinsert a technical placeholder beside the nearest surviving token when a
+  small offline model drops one item from a consecutive DN/PN/material code
+  sequence.
+- Remove stray model language suffixes such as `中文(简体)` from translated
+  valve-field output.
+- Added deterministic and real-model regression coverage to prevent
+  outward-facing `（术语：…）` fallback notes.
+
 ## [0.12.0] - 2026-07-31
 
 ### Added

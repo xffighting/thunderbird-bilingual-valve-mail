@@ -114,6 +114,22 @@ def main() -> None:
         replacements,
     )
     assert restored_compacted == restored
+    dn_token = next(
+        item["token"]
+        for item in replacements
+        if item["replacement"] == "DN50"
+    )
+    restored_after_model_drop = restore_valve_terms(
+        protected.replace(f"{dn_token} ", ""),
+        replacements,
+    )
+    assert "DN50 PN16 WCB" in restored_after_model_drop
+    assert "术语：" not in restored_after_model_drop
+    assert "[TERM" not in restored_after_model_drop
+    assert restore_valve_terms(
+        "[ TERM 000 ] (中文(简体) ).",
+        [replacements[0]],
+    ) == "截止阀."
 
     ordinary_text = "The ball is on the seat."
     ordinary_protected, ordinary_replacements = protect_valve_terms(ordinary_text)
