@@ -41,6 +41,21 @@ assert.ok(
   "Offline translation should use a local native host instead of a remote translation API."
 );
 assert.ok(
+  manifest.permissions.includes("alarms"),
+  "Signed glossary checks need a restart-safe 24-hour schedule."
+);
+assert.deepStrictEqual(
+  manifest.host_permissions,
+  [
+    "https://xffighting.github.io/open-valve-glossary/*",
+    "https://feiver.net/open-valve-glossary/*",
+    "https://api.github.com/repos/xffighting/open-valve-glossary/releases/*",
+    "https://github.com/xffighting/open-valve-glossary/releases/*",
+    "https://release-assets.githubusercontent.com/*"
+  ],
+  "Glossary networking must remain limited to the public registry and signed GitHub Release fallback."
+);
+assert.ok(
   !manifest.permissions.includes("messagesModify"),
   "The add-on must remain read-only with respect to Thunderbird messages."
 );
@@ -52,6 +67,7 @@ const requiredBackgroundScripts = [
   "src/translation-preferences.js",
   "src/summary.js",
   "src/translation-native.js",
+  "src/glossary-update.js",
   "src/opportunity-intake-native.js",
   "src/compose-assistant-core.js",
   "src/thread-keeper.js",
@@ -194,6 +210,15 @@ assert.ok(
   "The offline translator should ship with the QA-whitelisted reply-intent library."
 );
 assert.ok(
+  fs.existsSync(
+    path.join(__dirname, "..", "native-host", "open_valve_glossary_bundle.json")
+  ) &&
+  fs.existsSync(
+    path.join(__dirname, "..", "native-host", "glossary_provider.py")
+  ),
+  "The native host should ship with the verified provider and v1.0.0 fallback bundle."
+);
+assert.ok(
   nativeInstaller.includes('cp "${SOURCE_DIR}/valve_glossary.json" "${APP_DIR}/valve_glossary.json"'),
   "The macOS installer should install the valve glossary next to the native host."
 );
@@ -220,5 +245,20 @@ assert.ok(
     'cp "${SOURCE_DIR}/reply_intents_multilingual.json" "${APP_DIR}/reply_intents_multilingual.json"'
   ),
   "The macOS installer should install the controlled reply-intent library."
+);
+assert.ok(
+  nativeInstaller.includes(
+    'cp "${SOURCE_DIR}/glossary_provider.py" "${APP_DIR}/glossary_provider.py"'
+  ) &&
+  nativeInstaller.includes(
+    'cp "${SOURCE_DIR}/open_valve_glossary_bundle.json" "${APP_DIR}/open_valve_glossary_bundle.json"'
+  ),
+  "The macOS installer should install the signed glossary provider and embedded bundle."
+);
+assert.ok(
+  background.includes("getGlossaryUpdateStatus") &&
+  background.includes("checkGlossaryUpdate") &&
+  background.includes("rollbackGlossaryUpdate"),
+  "Settings must expose status, signed update, and rollback messages."
 );
 console.log("manifest-placement-regression: ok");

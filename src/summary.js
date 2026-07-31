@@ -19,6 +19,7 @@
     inlineTranslationEnabled: true,
     inlineTranslationIncludeQuoted: false,
     composeAssistantEnabled: true,
+    glossaryAutoUpdateEnabled: true,
     customTerms: [],
     translationFeedback: [],
     cacheEpoch: 0

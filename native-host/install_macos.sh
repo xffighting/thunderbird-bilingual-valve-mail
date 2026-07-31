@@ -44,14 +44,20 @@ PIP_DISABLE_PIP_VERSION_CHECK=1 "${APP_DIR}/venv/bin/python" -m pip install \
 touch "${APP_DIR}/venv/.lianggu-lite-runtime-v1"
 
 cp "${SOURCE_DIR}/translator_host.py" "${APP_DIR}/translator_host.py"
+cp "${SOURCE_DIR}/glossary_provider.py" "${APP_DIR}/glossary_provider.py"
+cp "${SOURCE_DIR}/open_valve_glossary_bundle.json" "${APP_DIR}/open_valve_glossary_bundle.json"
 cp "${SOURCE_DIR}/valve_glossary.json" "${APP_DIR}/valve_glossary.json"
 cp "${SOURCE_DIR}/valve_glossary_multilingual.json" "${APP_DIR}/valve_glossary_multilingual.json"
 cp "${SOURCE_DIR}/valve_glossary_batch_2026_07_30.json" "${APP_DIR}/valve_glossary_batch_2026_07_30.json"
 cp "${SOURCE_DIR}/valve_glossary_batch_2026_07_30_round2.json" "${APP_DIR}/valve_glossary_batch_2026_07_30_round2.json"
 cp "${SOURCE_DIR}/reply_intents_multilingual.json" "${APP_DIR}/reply_intents_multilingual.json"
 cp "${SOURCE_DIR}/host-launcher.sh" "${APP_DIR}/host-launcher.sh"
-chmod 700 "${APP_DIR}/host-launcher.sh" "${APP_DIR}/translator_host.py"
+chmod 700 \
+  "${APP_DIR}/host-launcher.sh" \
+  "${APP_DIR}/translator_host.py" \
+  "${APP_DIR}/glossary_provider.py"
 chmod 600 \
+  "${APP_DIR}/open_valve_glossary_bundle.json" \
   "${APP_DIR}/valve_glossary.json" \
   "${APP_DIR}/valve_glossary_multilingual.json" \
   "${APP_DIR}/valve_glossary_batch_2026_07_30.json" \

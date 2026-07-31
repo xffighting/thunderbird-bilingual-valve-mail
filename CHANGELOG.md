@@ -2,6 +2,30 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [0.12.0] - 2026-07-31
+
+### Added
+
+- Integrated the independent `open-valve-glossary` v1 provider with 309
+  approved Chinese-English-Russian-Arabic terms and 32 approved reply intents.
+- Added signed automatic glossary checks, manual checks, version status, and
+  one-click rollback in Settings.
+- Added RSA-PSS-SHA256 manifest verification, SHA-256 package integrity,
+  schema, four-language, alias collision, placeholder, and high-risk intent
+  gates before activation.
+
+### Safety and rollback
+
+- Version checks are limited to the fixed Open Valve Glossary registry and
+  never include message content, customer information, query terms, or email
+  addresses.
+- Unsigned, downgraded, oversized, corrupted, hash-mismatched, or
+  schema-incompatible packages are rejected.
+- Activation uses an atomic pointer and retains the current and previous two
+  versions. A failed load automatically returns to the last valid bundle or
+  the embedded v1.0.0 fallback.
+- The legacy JSON loader remains available for one compatibility release.
+
 ## [0.11.0] - 2026-07-30
 
 ### Added

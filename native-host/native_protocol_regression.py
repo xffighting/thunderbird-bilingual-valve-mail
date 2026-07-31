@@ -35,7 +35,7 @@ def main() -> None:
     response = send_request(launcher, {"type": "health"})
     assert response.get("ok") is True, response
     assert response.get("engine") == "argos-offline", response
-    assert response.get("terminology") == "lianggu-valve-glossary", response
+    assert response.get("terminology") == "open-valve-glossary", response
     assert int(response.get("termCount", 0)) >= 150, response
     assert response.get("modelId"), response
     assert "ru" in response.get("sources", []), response

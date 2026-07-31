@@ -28,6 +28,7 @@
       inlineTranslationEnabled: document.getElementById("inlineTranslationEnabled").checked,
       inlineTranslationIncludeQuoted: document.getElementById("inlineTranslationIncludeQuoted").checked,
       composeAssistantEnabled: document.getElementById("composeAssistantEnabled").checked,
+      glossaryAutoUpdateEnabled: document.getElementById("glossaryAutoUpdateEnabled").checked,
       ownDomains: splitLines(document.getElementById("ownDomains").value),
       ownEmails: splitLines(document.getElementById("ownEmails").value),
       customerRecords,
@@ -46,6 +47,7 @@
     document.getElementById("inlineTranslationEnabled").checked = options.inlineTranslationEnabled !== false;
     document.getElementById("inlineTranslationIncludeQuoted").checked = Boolean(options.inlineTranslationIncludeQuoted);
     document.getElementById("composeAssistantEnabled").checked = options.composeAssistantEnabled !== false;
+    document.getElementById("glossaryAutoUpdateEnabled").checked = options.glossaryAutoUpdateEnabled !== false;
     document.getElementById("ownDomains").value = (options.ownDomains || []).join("\n");
     document.getElementById("ownEmails").value = (options.ownEmails || []).join("\n");
     customerRecords = CustomerIntelligence.normalizeRegistry(options.customerRecords || []);

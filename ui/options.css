@@ -262,6 +262,42 @@ summary:focus-visible {
   font-size: 12px;
 }
 
+.glossary-version-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.glossary-version-panel > div {
+  display: grid;
+  gap: 5px;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f8f8fa;
+}
+
+.glossary-version-panel span {
+  color: var(--secondary);
+  font-size: 11px;
+}
+
+.glossary-version-panel strong {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.glossary-actions {
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.glossary-actions .hint {
+  flex: 1 1 280px;
+}
+
 .benchmark-panel .hint {
   text-align: right;
 }
@@ -479,6 +515,10 @@ code {
 @media (max-width: 720px) {
   .form-grid,
   .form-grid.two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .glossary-version-panel {
     grid-template-columns: 1fr;
   }
 

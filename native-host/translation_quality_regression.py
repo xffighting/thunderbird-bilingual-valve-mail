@@ -222,8 +222,8 @@ def main() -> None:
     ) == "نود تذكيركم بلطف؛ يرجى تأكيد حالة الدفع."
 
     reply_intents = get_reply_intents()
-    assert reply_intents["name"] == "lianggu-reply-intents-multilingual"
-    assert reply_intents["version"] == "2026.07.30.4"
+    assert reply_intents["name"] == "open-valve-reply-intents"
+    assert reply_intents["version"] == "1.0.0"
     assert len(reply_intents["intents"]) == 32
     assert sum(
         intent.get("requires_human_review") is True
@@ -367,12 +367,12 @@ def main() -> None:
     assert 80 <= score <= 100, score
 
     metadata = get_glossary_metadata()
-    assert metadata["name"] == "lianggu-valve-glossary"
+    assert metadata["name"] == "open-valve-glossary"
     assert metadata["termCount"] == 309
-    assert metadata["multilingualTermCount"] == 297
-    assert metadata["russianTermCount"] == 297
-    assert metadata["arabicTermCount"] == 297
-    assert metadata["sourceCount"] == 105
+    assert metadata["multilingualTermCount"] == 309
+    assert metadata["russianTermCount"] == 309
+    assert metadata["arabicTermCount"] == 309
+    assert metadata["sourceCount"] == 118
     print("translation quality regression passed")
 
 

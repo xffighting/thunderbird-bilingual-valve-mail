@@ -56,6 +56,15 @@ Thunderbird 本地邮件助手。查看或选中邮件时，生成阀门业务�
 
 ## 本次更新重点
 
+v0.12.0 接入独立开源词库与安全自动更新：
+
+- 四语正式词库升级为 309 条完整词条；32 条已批准外贸意图保持独立版本。
+- 词库已拆分到 [xffighting/open-valve-glossary](https://github.com/xffighting/open-valve-glossary)，代码 MIT，原创数据 CC BY 4.0。
+- Thunderbird 启动后每 24 小时最多检查一次；只访问固定版本清单和数据包，不上传邮件正文、客户资料、邮箱地址或查询词。
+- 启用前验证 RSA-PSS 签名、SHA-256、Schema、版本递增、四语完整性、别名冲突、占位符和高风险人工复核标识。
+- 保留当前版和前两版；加载或自检失败自动回滚，设置页也可手动检查和回滚。
+- 插件内置 `1.0.0` 离线兜底；断网或更新失败不会影响现有翻译。
+
 v0.11.0 完成“实时四语回复 + 专家词库第二轮”：
 
 - 阀门专家和招投标专家共整理 120 条候选术语，独立质检仅放行 89 条；生产词库现有 297 条完整中英俄阿词条、309 个运行时检索词。
@@ -249,7 +258,8 @@ zsh native-host/install_macos.sh
 3. 点击齿轮菜单。
 4. 选择 Debug Add-ons。
 5. 点击 Load Temporary Add-on。
-6. 选择本目录中的 `manifest.json`；正式安装可选择 `dist/game-mail-summary-v0.9.2.xpi`。
+6. 选择本目录中的 `manifest.json`；正式安装请选择对应 Release 中的
+   `game-mail-summary-vX.Y.Z.xpi`。
 
 ## 打包为 XPI
 

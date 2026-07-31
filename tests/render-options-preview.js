@@ -17,6 +17,7 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
       bodyLimitPerMessage: 12000,
       keyPointLimit: 12,
       includeSubFolders: false,
+      glossaryAutoUpdateEnabled: true,
       ownDomains: ["our-company.com"],
       ownEmails: [],
       customerRecords: [],
@@ -52,8 +53,8 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
             return {
               ok: true,
               engine: "argos-offline",
-              terminology: "lianggu-valve-glossary",
-              terminologyVersion: "2026.07.28.1",
+              terminology: "open-valve-glossary",
+              terminologyVersion: "1.0.0",
               termCount: 45
             };
           }
@@ -65,6 +66,17 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
               score: 96,
               latencyMs: 138,
               sampleCount: 6
+            };
+          }
+          if (request.type === "getGlossaryUpdateStatus") {
+            return {
+              ok: true,
+              state: "CURRENT",
+              currentVersion: "1.0.0",
+              latestVersion: "1.0.0",
+              previousVersion: null,
+              updatedAt: "2026-07-31T00:00:00Z",
+              error: null
             };
           }
           if (request.type === "reviewTranslationFeedback") {
@@ -96,7 +108,7 @@ const optionsUrl = pathToFileURL(path.join(__dirname, "..", "ui", "options.html"
   await page.goto(optionsUrl);
   await page.waitForSelector("#maxMessages");
   await page.locator("#checkTranslator").click();
-  await page.waitForFunction(() => document.getElementById("translatorStatus").textContent.includes("良固阀门术语库"));
+  await page.waitForFunction(() => document.getElementById("translatorStatus").textContent.includes("Open Valve Glossary"));
   assert.ok(
     (await page.locator("#translatorStatus").textContent()).includes("45 条"),
     "The settings page should show the active valve terminology count."

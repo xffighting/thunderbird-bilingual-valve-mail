@@ -8,6 +8,13 @@
     const translatorStatus = document.getElementById("translatorStatus");
     const benchmarkStatus = document.getElementById("benchmarkStatus");
     const benchmarkButton = document.getElementById("runTranslationBenchmark");
+    const glossaryBadge = document.getElementById("glossaryUpdateBadge");
+    const glossaryCurrentVersion = document.getElementById("glossaryCurrentVersion");
+    const glossaryLatestVersion = document.getElementById("glossaryLatestVersion");
+    const glossaryUpdatedAt = document.getElementById("glossaryUpdatedAt");
+    const glossaryStatus = document.getElementById("glossaryUpdateStatus");
+    const glossaryCheckButton = document.getElementById("checkGlossaryUpdate");
+    const glossaryRollbackButton = document.getElementById("rollbackGlossaryUpdate");
     let customTerms = [];
     let translationFeedback = [];
 
@@ -215,13 +222,88 @@
       );
       renderTerms();
       renderFeedback();
+      refreshGlossaryStatus().catch(error => {
+        glossaryStatus.textContent = `无法读取词库状态：${error.message || error}`;
+      });
+    }
+
+    const STATE_LABELS = {
+      CURRENT: "已是最新",
+      AVAILABLE: "发现新版",
+      DOWNLOADING: "正在下载",
+      VALIDATING: "正在校验",
+      ACTIVE: "已启用",
+      ROLLED_BACK: "已回滚",
+      FAILED: "更新失败"
+    };
+
+    function renderGlossaryStatus(result) {
+      const state = result?.state || "FAILED";
+      glossaryBadge.textContent = STATE_LABELS[state] || state;
+      glossaryCurrentVersion.textContent = result?.currentVersion || "—";
+      glossaryLatestVersion.textContent = result?.latestVersion || "—";
+      glossaryUpdatedAt.textContent = result?.updatedAt
+        ? new Date(result.updatedAt).toLocaleString()
+        : "随插件内置";
+      glossaryRollbackButton.disabled = !result?.previousVersion;
+      if (result?.error?.message) {
+        glossaryStatus.textContent =
+          `当前版本仍可用；${result.error.message}`;
+      } else if (state === "ACTIVE") {
+        glossaryStatus.textContent = "签名、SHA-256、Schema 和四语质量门禁均已通过，已原子切换。";
+      } else if (state === "ROLLED_BACK") {
+        glossaryStatus.textContent = `已回滚到 ${result.currentVersion}，可继续离线翻译。`;
+      } else if (state === "AVAILABLE") {
+        glossaryStatus.textContent = `发现 ${result.latestVersion}，等待安全下载与启用。`;
+      } else {
+        glossaryStatus.textContent = "当前词库可用；邮件内容不会进入版本检查请求。";
+      }
+    }
+
+    async function refreshGlossaryStatus() {
+      const result = await api.runtime.sendMessage({
+        type: "getGlossaryUpdateStatus"
+      });
+      renderGlossaryStatus(result);
+      return result;
+    }
+
+    async function checkGlossaryUpdate() {
+      glossaryCheckButton.disabled = true;
+      glossaryRollbackButton.disabled = true;
+      glossaryBadge.textContent = "正在检查";
+      glossaryStatus.textContent = "正在验证远端签名清单；不会上传邮件内容。";
+      try {
+        const result = await api.runtime.sendMessage({
+          type: "checkGlossaryUpdate",
+          force: true,
+          apply: true
+        });
+        renderGlossaryStatus(result);
+      } finally {
+        glossaryCheckButton.disabled = false;
+      }
+    }
+
+    async function rollbackGlossaryUpdate() {
+      if (!global.confirm("确定回滚到上一版词库吗？当前版本仍会保留，可再次更新。")) return;
+      glossaryRollbackButton.disabled = true;
+      glossaryStatus.textContent = "正在原子切换到上一版词库…";
+      try {
+        const result = await api.runtime.sendMessage({
+          type: "rollbackGlossaryUpdate"
+        });
+        renderGlossaryStatus(result);
+      } finally {
+        glossaryRollbackButton.disabled = false;
+      }
     }
 
     async function checkTranslator() {
       translatorStatus.textContent = "正在检查本机离线翻译…";
       try {
         const result = await api.runtime.sendMessage({ type: "checkOfflineTranslator" });
-        if (result?.ok && result.terminology === "lianggu-valve-glossary") {
+        if (result?.ok && result.terminology === "open-valve-glossary") {
           const model = result.modelId ? `；模型 ${result.modelId}` : "";
           const sourceLabels = { en: "英语", ru: "俄语", ar: "阿拉伯语" };
           const sourceText = (Array.isArray(result.sources) ? result.sources : ["en"])
@@ -233,11 +315,11 @@
             ? `，其中四语专业术语 ${multilingualCount} 条`
             : "";
           translatorStatus.textContent =
-            `${sourceText}转中文可用。良固阀门术语库 ${Number(result.termCount) || 0} 条` +
+            `${sourceText}转中文可用。Open Valve Glossary ${Number(result.termCount) || 0} 条` +
             `${multilingualSummary}${model}；邮件正文只在本机处理。`;
         } else {
           translatorStatus.textContent = result?.ok
-            ? "离线翻译可用，但良固阀门术语库尚未启用。"
+            ? "离线翻译可用，但 Open Valve Glossary 尚未启用。"
             : "离线翻译组件未就绪。";
         }
       } catch (error) {
@@ -269,6 +351,18 @@
     });
     document.getElementById("checkTranslator").addEventListener("click", checkTranslator);
     benchmarkButton.addEventListener("click", runBenchmark);
+    glossaryCheckButton.addEventListener("click", () => {
+      checkGlossaryUpdate().catch(error => {
+        glossaryStatus.textContent = `检查失败：${error.message || error}`;
+        glossaryCheckButton.disabled = false;
+      });
+    });
+    glossaryRollbackButton.addEventListener("click", () => {
+      rollbackGlossaryUpdate().catch(error => {
+        glossaryStatus.textContent = `回滚失败：${error.message || error}`;
+        glossaryRollbackButton.disabled = false;
+      });
+    });
 
     return { read, write };
   }

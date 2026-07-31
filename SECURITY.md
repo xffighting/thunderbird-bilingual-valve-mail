@@ -20,6 +20,31 @@ English-to-Arabic models with a deterministic terminology layer.
 Russian-to-Chinese and Arabic-to-Chinese reading translation use their local
 English pivot models in sequence.
 
+## Signed glossary updates
+
+Glossary version checks are limited by extension permission and code allowlist
+to `https://xffighting.github.io/open-valve-glossary/` and its fixed GitHub
+Pages custom-domain redirect `https://feiver.net/open-valve-glossary/`.
+Requests contain no message text, reply draft, customer identity, email
+address, or terminology query.
+
+If the account-level Pages custom domain is unavailable, the extension reads
+the same signed manifest and package from the repository's public GitHub
+Release through fixed `api.github.com`, `github.com`, and GitHub release-asset
+permissions. The fallback does not weaken signature or SHA-256 verification.
+
+The extension verifies the release manifest with a pinned RSA-PSS-SHA256
+public key before the local host downloads a package. The local host then
+verifies the exact allowlisted HTTPS path, compressed size, SHA-256, compatible
+schema, monotonic semantic version, four-language completeness, source IDs,
+cross-concept aliases, reply placeholders, forbidden outward reminder wording,
+and mandatory review flags for high-risk intents.
+
+Activation is atomic. The current version and previous two versions are
+retained; an invalid active bundle automatically rolls back to the last valid
+version or the embedded v1.0.0 bundle. Unsigned or downgraded content is never
+activated.
+
 The one-click opportunity action sends only the user-selected raw message to
 the fixed local Native Messaging host `com.lianggu.thunderbird_intake`. The
 host runs the Lianggu sales operating system on the same Mac. It requires an

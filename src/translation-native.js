@@ -138,6 +138,7 @@
   global.OfflineMailTranslator = {
     HOST_NAME,
     benchmark,
+    callNative,
     composeSuggestions,
     health,
     sanitizeCustomTerms,

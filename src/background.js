@@ -1,4 +1,5 @@
 /* global browser, messenger, GameMailSummary, CustomerIntelligence, CustomerResearch, OfflineMailTranslator, TranslationPreferences, LiangguOpportunityIntake */
+/* global GlossaryUpdate */
 (function initBackground(global) {
   const api = global.messenger || global.browser;
   const MESSAGE_DISPLAY_SCRIPT_ID = "game-mail-summary-inline-v5";
@@ -434,13 +435,17 @@
         customerRecords: CustomerIntelligence.normalizeRegistry(incoming.customerRecords || []),
         autoCustomerResearchEnabled: incoming.autoCustomerResearchEnabled !== false,
         autoUpdateDingTalkResearch: incoming.autoUpdateDingTalkResearch !== false,
+        glossaryAutoUpdateEnabled: incoming.glossaryAutoUpdateEnabled !== false,
         customTerms: TranslationPreferences.normalizeCustomTerms(incoming.customTerms || []),
         translationFeedback: TranslationPreferences.normalizeTranslationFeedback(
           incoming.translationFeedback || []
         ),
         cacheEpoch: Date.now()
       };
-      return api.storage.local.set({ options }).then(() => options);
+      return api.storage.local.set({ options }).then(async () => {
+        await GlossaryUpdate.configure(options.glossaryAutoUpdateEnabled);
+        return options;
+      });
     }
 
     if (request.type === "openDingTalkLink") {
@@ -470,6 +475,21 @@
       return getStoredOptions().then(options => {
         return OfflineMailTranslator.benchmark(options.customTerms);
       });
+    }
+
+    if (request.type === "getGlossaryUpdateStatus") {
+      return GlossaryUpdate.status();
+    }
+
+    if (request.type === "checkGlossaryUpdate") {
+      return GlossaryUpdate.check({
+        force: request.force === true,
+        apply: request.apply !== false
+      });
+    }
+
+    if (request.type === "rollbackGlossaryUpdate") {
+      return GlossaryUpdate.rollback();
     }
 
     if (request.type === "saveTranslationFeedback") {
@@ -523,4 +543,5 @@
     .catch(error => {
       console.error("Failed to register message display script", error);
     });
+  GlossaryUpdate.start().catch(() => undefined);
 })(globalThis);

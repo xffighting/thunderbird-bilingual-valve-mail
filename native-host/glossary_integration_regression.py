@@ -27,7 +27,7 @@ def main() -> None:
         }
     )
     assert response.get("ok") is True, response
-    assert response.get("terminology") == "lianggu-valve-glossary", response
+    assert response.get("terminology") == "open-valve-glossary", response
     translations = response.get("translations", [])
     assert len(translations) == 8, response
 

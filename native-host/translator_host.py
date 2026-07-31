@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import os
 import pathlib
@@ -12,6 +13,12 @@ import sys
 import time
 from html import unescape as html_unescape
 from typing import Any
+
+from glossary_provider import (
+    bundle_to_legacy_glossary,
+    bundle_to_legacy_intents,
+    get_provider,
+)
 
 MAX_NATIVE_MESSAGE_BYTES = 1_048_576
 MAX_LINES = 80
@@ -280,6 +287,17 @@ def get_valve_glossary() -> dict[str, Any]:
         raise RuntimeError("Valve glossary terms are unavailable")
     if not isinstance(glossary.get("preserve_patterns"), list):
         raise RuntimeError("Valve glossary preserve patterns are unavailable")
+
+    try:
+        active_bundle = get_provider().load_active_bundle()
+        _GLOSSARY = bundle_to_legacy_glossary(
+            active_bundle,
+            glossary["preserve_patterns"],
+        )
+        return _GLOSSARY
+    except Exception:
+        # The legacy embedded JSON remains the compatibility fallback for v0.12.
+        pass
 
     base_by_english = {
         str(term.get("en") or "").casefold(): term
@@ -927,6 +945,14 @@ def get_reply_intents() -> dict[str, Any]:
     global _REPLY_INTENTS
     if _REPLY_INTENTS is not None:
         return _REPLY_INTENTS
+    try:
+        _REPLY_INTENTS = bundle_to_legacy_intents(
+            get_provider().load_active_bundle()
+        )
+        return _REPLY_INTENTS
+    except Exception:
+        # Keep one release of the existing loader as an offline fallback.
+        pass
     path = pathlib.Path(__file__).resolve().parent / "reply_intents_multilingual.json"
     if not path.is_file():
         _REPLY_INTENTS = {
@@ -1774,7 +1800,76 @@ def create_compose_suggestions(
 
 
 def handle_message(request: dict[str, Any]) -> dict[str, Any]:
+    global _GLOSSARY, _REPLY_INTENTS
     request_type = request.get("type")
+    if request_type == "glossary_update_status":
+        latest = request.get("latestVersion")
+        return get_provider().status(
+            str(latest) if latest is not None else None
+        )
+
+    if request_type == "glossary_update_apply":
+        encoded_bundle = request.get("bundleBase64")
+        compressed_bundle = None
+        if encoded_bundle is not None:
+            if (
+                not isinstance(encoded_bundle, str)
+                or len(encoded_bundle) > 980_000
+            ):
+                return {
+                    "ok": False,
+                    "state": "FAILED",
+                    "currentVersion": get_provider().status().get("currentVersion"),
+                    "latestVersion": None,
+                    "previousVersion": get_provider().status().get("previousVersion"),
+                    "updatedAt": get_provider().status().get("updatedAt"),
+                    "error": {
+                        "code": "INVALID_BUNDLE",
+                        "message": "Compressed glossary payload is outside the allowed size",
+                    },
+                }
+            try:
+                compressed_bundle = base64.b64decode(
+                    encoded_bundle,
+                    validate=True,
+                )
+            except (ValueError, TypeError):
+                return {
+                    "ok": False,
+                    "state": "FAILED",
+                    "currentVersion": get_provider().status().get("currentVersion"),
+                    "latestVersion": None,
+                    "previousVersion": get_provider().status().get("previousVersion"),
+                    "updatedAt": get_provider().status().get("updatedAt"),
+                    "error": {
+                        "code": "INVALID_BUNDLE",
+                        "message": "Compressed glossary payload is not valid base64",
+                    },
+                }
+        result = get_provider().apply(
+            request.get("manifest"),
+            compressed_bundle,
+        )
+        if result.get("ok"):
+            _GLOSSARY = None
+            _REPLY_INTENTS = None
+            try:
+                get_valve_glossary()
+                get_reply_intents()
+            except Exception:
+                rollback = get_provider().rollback()
+                _GLOSSARY = None
+                _REPLY_INTENTS = None
+                return rollback
+        return result
+
+    if request_type == "glossary_update_rollback":
+        result = get_provider().rollback()
+        if result.get("ok"):
+            _GLOSSARY = None
+            _REPLY_INTENTS = None
+        return result
+
     if request_type == "health":
         get_translation_engine()
         glossary = get_glossary_metadata()
